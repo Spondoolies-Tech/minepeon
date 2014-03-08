@@ -178,18 +178,23 @@ include('menu.php');
   <h2>Settings</h2>
 
 <!-- ######################## Miner speed -->
-  <form name="turbo" action="/settings.php" method="post" class="form-horizontal">
+  <form name="speed" action="/settings.php" method="post" class="form-horizontal">
       <fieldset>
-          <legend>Turbo speed</legend>
+          <legend>Miner speed</legend>
           <div class="form-group">
               <div class="col-lg-9 col-offset-3">
-                  <div class="checkbox">
-                      <input type='hidden' value='false' name='turboEnable'>
+                  <div class="radio">
                       <label>
-                          <input type="checkbox" <?php echo $settings['turboEnable']?"checked":""; ?> value="true" id="turboEnable" name="turboEnable"> Enable TURBO mode
+                          <input type="radio" name="minerSpeed" id="minerSpeed" value="silent" <?php echo $settings['minerSpeed'] == 1?"checked":""; ?> >Silent<br>
+                      </label>
+                      <label>
+                          <input type="radio" name="minerSpeed" id="minerSpeed" value="normal" <?php echo $settings['minerSpeed'] == 2?"checked":""; ?> >Normal<br>
+                      </label>
+                      <label>
+                          <input type="radio" name="minerSpeed" id="minerSpeed" value="turbo" <?php echo $settings['minerSpeed'] == 3?"checked":""; ?> >Turbo
                       </label>
                   </div>
-                  <p class="help-block">NOTE: This will increase the fans noise and power consumption.</p>
+                  <p class="help-block">NOTE: This will change the fans noise and the power consumption.</p>
                   <button type="submit" class="btn btn-default">Save</button>
               </div>
           </div>
@@ -266,6 +271,7 @@ include('menu.php');
 
       <div class="form-group">
         <div class="col-lg-9 col-offset-3">
+          <p class="help-block alert">WARNING: Setting incorrect network settings, will make your miner un-accessible.</p>
           <button type="submit" class="btn btn-default">Save</button>
         </div>
       </div>
