@@ -175,7 +175,27 @@ include('menu.php');
 ?>
 <div class="container">
   <h2>Settings</h2>
-  
+
+<!-- ######################## Miner speed -->
+  <form name="turbo" action="/settings.php" method="post" class="form-horizontal">
+      <fieldset>
+          <legend>Turbo speed</legend>
+          <div class="form-group">
+              <div class="col-lg-9 col-offset-3">
+                  <div class="checkbox">
+                      <input type='hidden' value='false' name='turboEnable'>
+                      <label>
+                          <input type="checkbox" <?php echo $settings['turboEnable']?"checked":""; ?> value="true" id="turboEnable" name="turboEnable"> Enable TURBO mode
+                      </label>
+                  </div>
+                  <p class="help-block">NOTE: This will increase the fans noise and power consumption.</p>
+                  <button type="submit" class="btn btn-default">Save</button>
+              </div>
+          </div>
+      </fieldset>
+  </form>
+<!-- ######################## -->
+
 <!-- ######################## -->
 
   <form name="timezone" action="/settings.php" method="post" class="form-horizontal">
@@ -210,15 +230,55 @@ include('menu.php');
     </fieldset>
   </form>
   
+<!-- ######################## Network -->
+  <form name="network" action="/settings.php" method="post" class="form-horizontal">
+    <fieldset>
+      <legend>Network settings</legend>
+      <div class="form-group">
+        <div class="col-lg-9 col-offset-3">
+          <div class="checkbox">
+            <input type='hidden' value='false' name='dhcpEnable'>
+            <label>
+              <input type="checkbox" <?php echo $settings['dhcpEnable']?"checked":""; ?> value="true" id="dhcpEnable" name="dhcpEnable"> Use DHCP
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group dhcp-enabled <?php echo $settings['dhcpEnable']?"":"collapse"; ?>">
+        <label for="ipaddress" class="control-label col-lg-3">IP address</label>
+        <div class="col-lg-9">
+          <input type="text" value="<?php echo $settings['dhcpEnable'] ?>" id="ipaddress" name="ipaddress" class="form-control" placeholder="192.x.x.x">
+        </div>
+      </div>
+      <div class="form-group dhcp-enabled <?php echo $settings['dhcpEnable']?"":"collapse"; ?>">
+        <label for="subnet" class="control-label col-lg-3">Subnet</label>
+        <div class="col-lg-9">
+          <input type="email" value="<?php echo $settings['dhcpEnable'] ?>" id="subnet" name="subnet" class="form-control" placeholder="255.255.255.0">
+        </div>
+      </div>
+      <div class="form-group dhcp-enabled <?php echo $settings['dhcpEnable']?"":"collapse"; dhcpEnable?>">
+        <label for="gateway" class="control-label col-lg-3">Gateway</label>
+        <div class="col-lg-9">
+          <input type="text" value="<?php echo $settings['dhcpEnable'] ?>" id="gateway" name="gateway" class="form-control" placeholder="192.x.x.1">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-lg-9 col-offset-3">
+          <button type="submit" class="btn btn-default">Save</button>
+        </div>
+      </div>
+    </fieldset>
+  </form>
 <!-- ######################## -->
 
-  <form name="mining" action="/settings.php" method="post" class="form-horizontal">
+<!--  <form name="mining" action="/settings.php" method="post" class="form-horizontal">
     <fieldset>
       <legend>Mining</legend>
       <div class="form-group">
         <label for="miningExpDev" class="control-label col-lg-3">Expected Devices</label>
         <div class="col-lg-9">
-          <input type="number" value="<?php echo $settings['miningExpDev'] ?>" id="miningExpDev" name="miningExpDev" class="form-control">
+          <input type="number" value="<?php /*echo $settings['miningExpDev'] */?>" id="miningExpDev" name="miningExpDev" class="form-control">
           <p class="help-block">
             If the count of active devices falls below this value, an alert will be sent.
           </p>
@@ -228,7 +288,7 @@ include('menu.php');
         <label for="miningExpHash" class="control-label col-lg-3">Expected Hashrate</label>
         <div class="col-lg-9">
           <div class="input-group">
-            <input type="number" value="<?php echo $settings['miningExpHash'] ?>" id="miningExpHash" name="miningExpHash" class="form-control">
+            <input type="number" value="<?php /*echo $settings['miningExpHash'] */?>" id="miningExpHash" name="miningExpHash" class="form-control">
             <span class="input-group-addon">MH/s</span>
           </div>
           <p class="help-block">
@@ -242,10 +302,10 @@ include('menu.php');
         </div>
       </div>
     </fieldset>
-  
+-->
 <!-- ######################## Alerts -->
 
-  <form name="alerts" action="/settings.php" method="post" class="form-horizontal">
+<!--  <form name="alerts" action="/settings.php" method="post" class="form-horizontal">
     <fieldset>
       <legend>Alerts</legend>
       <div class="form-group">
@@ -253,27 +313,27 @@ include('menu.php');
           <div class="checkbox">
             <input type='hidden' value='false' name='alertEnable'>
             <label>
-              <input type="checkbox" <?php echo $settings['alertEnable']?"checked":""; ?> value="true" id="alertEnable" name="alertEnable"> Enable e-mail alerts
+              <input type="checkbox" <?php /*echo $settings['alertEnable']?"checked":""; */?> value="true" id="alertEnable" name="alertEnable"> Enable e-mail alerts
             </label>
           </div>
         </div>
       </div>
-      <div class="form-group alert-enabled <?php echo $settings['alertEnable']?"":"collapse"; ?>">
+      <div class="form-group alert-enabled <?php /*echo $settings['alertEnable']?"":"collapse"; */?>">
         <label for="alertDevice" class="control-label col-lg-3">Device Name</label>
         <div class="col-lg-9">
-          <input type="text" value="<?php echo $settings['alertDevice'] ?>" id="alertDevice" name="alertDevice" class="form-control" placeholder="MinePeon">
+          <input type="text" value="<?php /*echo $settings['alertDevice'] */?>" id="alertDevice" name="alertDevice" class="form-control" placeholder="MinePeon">
         </div>
       </div>
-      <div class="form-group alert-enabled <?php echo $settings['alertEnable']?"":"collapse"; ?>">
+      <div class="form-group alert-enabled <?php /*echo $settings['alertEnable']?"":"collapse"; */?>">
         <label for="alertEmail" class="control-label col-lg-3">E-mail</label>
         <div class="col-lg-9">
-          <input type="email" value="<?php echo $settings['alertEmail'] ?>" id="alertEmail" name="alertEmail" class="form-control" placeholder="example@example.com">
+          <input type="email" value="<?php /*echo $settings['alertEmail'] */?>" id="alertEmail" name="alertEmail" class="form-control" placeholder="example@example.com">
         </div>
       </div>
-      <div class="form-group alert-enabled <?php echo $settings['alertEnable']?"":"collapse"; ?>">
+      <div class="form-group alert-enabled <?php /*echo $settings['alertEnable']?"":"collapse"; */?>">
         <label for="alertSmtp" class="control-label col-lg-3">SMTP Server</label>
         <div class="col-lg-9">
-          <input type="text" value="<?php echo $settings['alertSmtp'] ?>" id="alertSmtp" name="alertSmtp" class="form-control" placeholder="smtp.myisp.com">
+          <input type="text" value="<?php /*echo $settings['alertSmtp'] */?>" id="alertSmtp" name="alertSmtp" class="form-control" placeholder="smtp.myisp.com">
           <p class="help-block">Please choose your own SMTP server.</p>
         </div>
       </div>
@@ -283,30 +343,30 @@ include('menu.php');
           <div class="checkbox" >
             <input type='hidden' value='false' name='alertSMTPAuth'>
             <label class="form-group alert-enabled ">
-              <input type="checkbox"  class="form-group alert-enabled " <?php echo $settings['alertSMTPAuth']?"checked":""; ?> value="true" id="alertSMTPAuth" name="alertSMTPAuth"> Use SMTP Auth
+              <input type="checkbox"  class="form-group alert-enabled " <?php /*echo $settings['alertSMTPAuth']?"checked":""; */?> value="true" id="alertSMTPAuth" name="alertSMTPAuth"> Use SMTP Auth
             </label>
           </div>
         </div>
       </div>
 	  
-	  <div class="form-group smtpauth-enabled alert-enabled <?php echo $settings['alertSMTPAuth']?"":"collapse"; ?>">
+	  <div class="form-group smtpauth-enabled alert-enabled <?php /*echo $settings['alertSMTPAuth']?"":"collapse"; */?>">
         <label for="alertSmtp" class="control-label col-lg-3">SMTP Auth Username</label>
         <div class="col-lg-9">
-          <input type="text" value="<?php echo $settings['alertSmtpAuthUser'] ?>" id="alertSmtpAuthUser" name="alertSmtpAuthUser" class="form-control">
+          <input type="text" value="<?php /*echo $settings['alertSmtpAuthUser'] */?>" id="alertSmtpAuthUser" name="alertSmtpAuthUser" class="form-control">
         </div>
       </div>
 	  
-	  <div class="form-group smtpauth-enabled alert-enabled <?php echo $settings['alertSMTPAuth']?"":"collapse"; ?>">
+	  <div class="form-group smtpauth-enabled alert-enabled <?php /*echo $settings['alertSMTPAuth']?"":"collapse"; */?>">
         <label for="alertSmtp" class="control-label col-lg-3">SMTP Auth Password</label>
         <div class="col-lg-9">
-          <input type="text" value="<?php echo $settings['alertSmtpAuthPass'] ?>" id="alertSmtpAuthPass" name="alertSmtpAuthPass" class="form-control">
+          <input type="text" value="<?php /*echo $settings['alertSmtpAuthPass'] */?>" id="alertSmtpAuthPass" name="alertSmtpAuthPass" class="form-control">
         </div>
       </div>
 
-	  <div class="form-group smtpauth-enabled alert-enabled <?php echo $settings['alertSMTPAuth']?"":"collapse"; ?>">
+	  <div class="form-group smtpauth-enabled alert-enabled <?php /*echo $settings['alertSMTPAuth']?"":"collapse"; */?>">
         <label for="alertSmtp" class="control-label col-lg-3">SMTP Auth Port</label>
         <div class="col-lg-9">
-          <input type="text" value="<?php echo $settings['alertSmtpAuthPort'] ?>" id="alertSmtpAuthPort" name="alertSmtpAuthPort" class="form-control">
+          <input type="text" value="<?php /*echo $settings['alertSmtpAuthPort'] */?>" id="alertSmtpAuthPort" name="alertSmtpAuthPort" class="form-control">
         </div>
       </div>
 	  
@@ -316,18 +376,18 @@ include('menu.php');
         </div>
       </div>
     </fieldset>
-  </form>
-  
+  </form>-->
+
 <!-- ######################## -->
 
-  <form name="minerStartup" action="/settings.php" method="post" class="form-horizontal">
+<!--  <form name="minerStartup" action="/settings.php" method="post" class="form-horizontal">
     <fieldset>
       <legend>Miner Startup Settings</legend>
       <div class="form-group">
         <label for="minerSettings" class="control-label col-lg-3">Settings</label>
         <div class="col-lg-9">
           <div>
-			<textarea rows="4" cols="120" id="minerSettings" name="minerSettings"><?php echo $minerStartup ?></textarea>
+			<textarea rows="4" cols="120" id="minerSettings" name="minerSettings"><?php /*echo $minerStartup */?></textarea>
           </div>
         </div>
       </div>
@@ -359,10 +419,10 @@ include('menu.php');
       </div>
     </fieldset>
   </form>
-  
+-->
 <!-- ######################## -->
 
-  <form name="donation" action="/settings.php" method="post" class="form-horizontal">
+<!--  <form name="donation" action="/settings.php" method="post" class="form-horizontal">
     <fieldset>
       <legend>Donation</legend>
       <div class="form-group">
@@ -371,12 +431,12 @@ include('menu.php');
           <div class="checkbox">
             <input type='hidden' value='false' name='donateEnable'>
             <label>
-              <input type="checkbox" <?php echo $settings['donateEnable']?"checked":""; ?> value="true" id="donateEnable" name="donateEnable"> Enable donation
+              <input type="checkbox" <?php /*echo $settings['donateEnable']?"checked":""; */?> value="true" id="donateEnable" name="donateEnable"> Enable donation
             </label>
           </div>
-          <div class="donate-enabled <?php echo $settings['donateEnable']?"":"collapse"; ?>">
+          <div class="donate-enabled <?php /*echo $settings['donateEnable']?"":"collapse"; */?>">
             <div class="input-group">
-              <input type="number" value="<?php echo $settings['donateAmount'] ?>" placeholder="Donation minutes" id="donateAmount" name="donateAmount" class="form-control">
+              <input type="number" value="<?php /*echo $settings['donateAmount'] */?>" placeholder="Donation minutes" id="donateAmount" name="donateAmount" class="form-control">
               <span class="input-group-addon">minutes per day</span>
             </div>
           </div>
@@ -389,7 +449,7 @@ include('menu.php');
       </div>
     </fieldset>
   </form>
-  
+-->
 <!-- ######################## -->
 
   <form name="backup" action="/settings.php" method="post" enctype="multipart/form-data" class="form-horizontal">

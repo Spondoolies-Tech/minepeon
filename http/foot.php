@@ -21,6 +21,9 @@
           }
       });
     });
+    $('#dhcpEnable').click(function() {
+      $(".dhcp-enabled").toggle(!this.checked);
+    });
     $('#alertEnable').click(function() {
       $(".alert-enabled").toggle(this.checked);
     });
