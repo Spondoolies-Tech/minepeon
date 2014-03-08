@@ -31,7 +31,7 @@ if (isset($_POST['userPassword1'])) {
 
 	if ($_POST['userPassword1'] <> '') {
 	
-		exec("/usr/bin/htpasswd -b /opt/minepeon/etc/uipassword minepeon " . $_POST['userPassword1']);
+		exec("/usr/bin/htdigest /etc/ui.pwd admin " . $_POST['userPassword1']);
 		header('Location: /settings.php');
 		exit;
 

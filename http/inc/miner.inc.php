@@ -13,12 +13,13 @@ function miner($command, $parameter) {
         $host = "192.168.0.109";
         $port = 4028;
 
-        $client = @stream_socket_client("tcp://$host:$port", $errno, $errorMessage);
+        $client = @stream_socket_client("tcp://$host:$port", $errno, $errorMessage, 3);
 
         if ($client === false) {
                 return false;
         }
         fwrite($client, $jsonCmd);
+        stream_set_timeout($client, 3);
         $response = stream_get_contents($client);
         fclose($client);
         $response = preg_replace("/[^[:alnum:][:punct:]]/","",$response);
