@@ -197,8 +197,10 @@ function statsTable($devs) {
     <thead>
       <tr>
         <th>Name</th>
+<!--
         <th>ID</th>
         <th>Temp</th>
+-->
         <th>GH/s</th>
         <th>Accept</th>
         <th>Reject</th>
@@ -245,8 +247,8 @@ function statsTable($devs) {
 		}
 		
 	$tableRow = $tableRow . "<td>" . "SP10" . "</td>
-      <td>" . "1" . "</td>
-      <td>" . $temperature . "</td>
+      <!-- <td>" . "1" . "</td>
+      <td>" . $temperature . "</td> -->
       <td>" . $dev['MHSav'] / 1000 . "</td>
       <td>" . $dev['Accepted'] . "</td>
       <td>" . $dev['Rejected'] . " [" . round($dev['DeviceRejected%'], 2) . "%]</td>
@@ -273,7 +275,7 @@ function statsTable($devs) {
   $totalShares = $Accepted + $Rejected + $HardwareErrors;
   $tableRow = $tableRow . "
   </tbody>
-  <tfoot>
+  <!-- <tfoot>
   <tr>
   <th>Totals</th>
   <th>" . $devices . "</th>
@@ -285,7 +287,7 @@ function statsTable($devs) {
   <th>" . $Utility . "</th>
   <th></th>
   </tr>
-  </tfoot>
+  </tfoot> -->
   </tbody>
   </table>
   ";
