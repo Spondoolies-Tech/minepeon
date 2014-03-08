@@ -123,7 +123,7 @@ include('menu.php');
     <a class="btn btn-default" href='/reboot.php'>Reboot</a> 
     <a class="btn btn-default" href='/halt.php'>ShutDown</a>
   </center>
-  <h3>Pools</h3>
+  <h3>Pool</h3>
   <table id="pools" class="table table-striped table-hover">
     <thead> 
       <tr>
@@ -149,7 +149,7 @@ include('menu.php');
     </tbody>
   </table>
 
-  <h3>Devices</h3>
+  <h3>Miner</h3>
   <?php echo statsTable($devs); ?>
   <?php
   if ($debug == true) {

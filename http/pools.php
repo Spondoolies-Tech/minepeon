@@ -2,7 +2,7 @@
 require('settings.inc.php');
 
 // set the number of extra empty rows for adding pools
-$extraPools = 2;
+$extraPools = 0;
 
 // Read miner config file
 $data = json_decode(file_get_contents("/opt/minepeon/etc/miner.conf", true), true);
@@ -13,8 +13,8 @@ include('menu.php');
 
 <div class="container">
 	<p class="alert"><b>WARNING:</b> There is very little validation on these settings at the moment so make sure your settings are correct!</p>
-	<h1>Pools</h1>
-	<p>MinePeon will use the following pools. Change it to your mining accounts or leave it to donate.</p>
+	<h1>Pool</h1>
+	<p>SpondMiner will use the following pool:</p>
 	<form id="formpools">
 		<input type="hidden" name="saving" value="1">
 		<?php
