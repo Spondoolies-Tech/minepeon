@@ -13,3 +13,7 @@ http/rrd/mhsav-week.png
 http/rrd/mhsav-year.png
 var/rrd/hashrate.rrd
 var/rrd/temp.rrd
+.idea
+.vagrant
+Vagrantfile
+info.php

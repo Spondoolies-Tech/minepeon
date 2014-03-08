@@ -12,7 +12,7 @@ create_graph("mhsav-month.png", "-1m", "Last Month");
 create_graph("mhsav-year.png", "-1y", "Last Year");
 
 function create_graph($output, $start, $title) {
-  $RRDPATH = '/opt/minepeon/var/rrd/';
+  $RRDPATH = '/tmp/';
   $options = array(
     "--slope-mode",
     "--start", $start,
@@ -113,9 +113,9 @@ include('menu.php');
         <dd><?php echo $version; ?></dd>
         <dt>Miner Version</dt>
         <dd><?php echo $summary['STATUS'][0]['Description']; ?></dd>
-        <dt>Donation Minutes</dt>
-        <dd><?php echo $settings['donateAmount']; ?>
-      </dl>
+<!--        <dt>Donation Minutes</dt>
+        <dd><//?php echo $settings['donateAmount']; ?>
+-->      </dl>
     </div>
   </div>
   <center>
@@ -226,7 +226,8 @@ function statsTable($devs) {
 
 	if ((time() - $dev['LastShareTime']) > 500) {
 		// Only show devices that have returned a share in the past 5 minutes
-		$validDevice = false;
+        //TODO: Enable on production
+		//$validDevice = false;
 	}
 	
 	if (isset($dev['Temperature'])) {
@@ -243,8 +244,8 @@ function statsTable($devs) {
 			$tableRow = $tableRow . "<tr class=\"success\">";
 		}
 		
-	$tableRow = $tableRow . "<td>" . $dev['Name'] . "</td>
-      <td>" . $dev['ID'] . "</td>
+	$tableRow = $tableRow . "<td>" . "SpondMiner" . "</td>
+      <td>" . "1" . "</td>
       <td>" . $temperature . "</td>
       <td><a href='http://mineforeman.com/bitcoin-mining-calculator/?hash=" . $dev['MHSav'] . "' target='_blank'>" . $dev['MHSav'] . "</a></td>
       <td>" . $dev['Accepted'] . "</td>

@@ -5,7 +5,7 @@ include('settings.inc.php');
 
 $metric  = 'hashrate';
 $RRDFILE = $metric . '.rrd';
-$RRDPATH = '/opt/minepeon/var/rrd/';
+$RRDPATH = '/tmp/';
 $RRD     = $RRDPATH . $RRDFILE;
 
 

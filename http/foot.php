@@ -2,7 +2,8 @@
   <hr />
   Server Time: <?php echo date('D, d M Y H:i:s T') ?>
 
-  <?php if(empty($settings['donateAmount'])) { echo $plea; } ?>
+  <!-- TODO: Re-enable for production -->
+  <?php //if(empty($settings['donateAmount'])) { echo $plea; } ?>
 </footer>
 
 <script type="text/javascript" src="js/jquery.min.js"></script> 

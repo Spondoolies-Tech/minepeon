@@ -10,7 +10,7 @@ function miner($command, $parameter) {
 
         $jsonCmd = json_encode($command);
 
-        $host = "127.0.0.1";
+        $host = "10.0.2.2";
         $port = 4028;
 
         $client = @stream_socket_client("tcp://$host:$port", $errno, $errorMessage);
@@ -28,7 +28,8 @@ function miner($command, $parameter) {
 }
 
 function promotePool($addr, $user){
-  $pools = miner('pools','')['POOLS'];
+  $pools = miner('pools','');
+  $pools = $pools['POOLS'];
   $pool = 0;
   // echo "changeing";
   foreach ($pools as $key => $value) {
