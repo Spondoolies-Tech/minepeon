@@ -271,7 +271,7 @@ include('menu.php');
 
       <div class="form-group">
         <div class="col-lg-9 col-offset-3">
-          <p class="help-block alert">WARNING: Setting incorrect network settings, will make your miner un-accessible.</p>
+          <p class="help-block alert">WARNING: Incorrect settings may make your miner unavailable.</p>
           <button type="submit" class="btn btn-default">Save</button>
         </div>
       </div>

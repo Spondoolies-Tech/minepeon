@@ -33,4 +33,4 @@ window.setTimeout('CountDown()',100);
 
 <?php
 
-exec('/usr/bin/sudo /usr/bin/reboot > /dev/null 2>&1 &');
+exec('/usr/bin/reboot > /dev/null 2>&1 &');
