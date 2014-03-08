@@ -2,7 +2,8 @@
 
 require_once('settings.inc.php');
 require_once('miner.inc.php');
- 
+require_once('network.inc.php');
+
 // Check for settings to write and do it after all checks
 $writeSettings=false;
 
@@ -247,19 +248,19 @@ include('menu.php');
       <div class="form-group dhcp-enabled <?php echo $settings['dhcpEnable']?"":"collapse"; ?>">
         <label for="ipaddress" class="control-label col-lg-3">IP address</label>
         <div class="col-lg-9">
-          <input type="text" value="<?php echo $settings['dhcpEnable'] ?>" id="ipaddress" name="ipaddress" class="form-control" placeholder="192.x.x.x">
+          <input type="text" value="<?php echo $network_settings['ipaddress'] ?>" id="ipaddress" name="ipaddress" class="form-control" placeholder="192.x.x.x">
         </div>
       </div>
       <div class="form-group dhcp-enabled <?php echo $settings['dhcpEnable']?"":"collapse"; ?>">
         <label for="subnet" class="control-label col-lg-3">Subnet</label>
         <div class="col-lg-9">
-          <input type="email" value="<?php echo $settings['dhcpEnable'] ?>" id="subnet" name="subnet" class="form-control" placeholder="255.255.255.0">
+          <input type="email" value="<?php echo $network_settings['subnet'] ?>" id="subnet" name="subnet" class="form-control" placeholder="255.255.255.0">
         </div>
       </div>
       <div class="form-group dhcp-enabled <?php echo $settings['dhcpEnable']?"":"collapse"; dhcpEnable?>">
         <label for="gateway" class="control-label col-lg-3">Gateway</label>
         <div class="col-lg-9">
-          <input type="text" value="<?php echo $settings['dhcpEnable'] ?>" id="gateway" name="gateway" class="form-control" placeholder="192.x.x.1">
+          <input type="text" value="<?php echo $network_settings['gateway'] ?>" id="gateway" name="gateway" class="form-control" placeholder="192.x.x.1">
         </div>
       </div>
 
