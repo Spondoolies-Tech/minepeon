@@ -10,7 +10,7 @@ function miner($command, $parameter) {
 
         $jsonCmd = json_encode($command);
 
-        $host = "10.0.2.2";
+        $host = "192.168.0.109";
         $port = 4028;
 
         $client = @stream_socket_client("tcp://$host:$port", $errno, $errorMessage);

@@ -47,7 +47,9 @@ function set_fixed_network($settings)
     "netmask ".$settings['netmask']."\n".
     "gateway ".$settings['gateway']."\n";
 
-    file_put_contents("/opt/minepeon/nettesting", $network_file);
+    file_put_contents("/etc/network/interfaces", $network_file);
+
+    exec("/etc/init.d/network restart");
 }
 
 function set_dhcp_network()
@@ -59,7 +61,9 @@ function set_dhcp_network()
         "auto eth0\n".
         "iface eth0 inet dhcp\n";
 
-    file_put_contents("/opt/minepeon/nettesting", $network_file);
+    file_put_contents("/etc/network/interfaces", $network_file);
+
+    exec("/etc/init.d/network restart");
 }
 
 $network_settings = get_network("eth0");
