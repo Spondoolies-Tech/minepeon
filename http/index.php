@@ -199,7 +199,7 @@ function statsTable($devs) {
         <th>Name</th>
         <th>ID</th>
         <th>Temp</th>
-        <th>MH/s</th>
+        <th>GH/s</th>
         <th>Accept</th>
         <th>Reject</th>
         <th>Error</th>
@@ -244,10 +244,10 @@ function statsTable($devs) {
 			$tableRow = $tableRow . "<tr class=\"success\">";
 		}
 		
-	$tableRow = $tableRow . "<td>" . "SpondMiner" . "</td>
+	$tableRow = $tableRow . "<td>" . "SP10" . "</td>
       <td>" . "1" . "</td>
       <td>" . $temperature . "</td>
-      <td><a href='http://mineforeman.com/bitcoin-mining-calculator/?hash=" . $dev['MHSav'] . "' target='_blank'>" . $dev['MHSav'] . "</a></td>
+      <td>" . $dev['MHSav'] / 1000 . "</td>
       <td>" . $dev['Accepted'] . "</td>
       <td>" . $dev['Rejected'] . " [" . round($dev['DeviceRejected%'], 2) . "%]</td>
       <td>" . $dev['HardwareErrors'] . " [" . round($dev['DeviceHardware%'], 2) . "%]</td>
@@ -278,7 +278,7 @@ function statsTable($devs) {
   <th>Totals</th>
   <th>" . $devices . "</th>
   <th></th>
-  <th><a href='http://mineforeman.com/bitcoin-mining-calculator/?hash=" . $MHSav . "' target='_blank'>" . $MHSav . "</a></th>
+  <th>" . $MHSav / 1000 . "</th>
   <th>" . $Accepted . "</th>
   <th>" . $Rejected . " [" . round(($DeviceRejected / $devices), 2) . "%]</th>
   <th>" . $HardwareErrors . " [" . round(($hwErrorPercent / $devices), 2) . "%]</th>
