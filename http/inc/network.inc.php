@@ -63,9 +63,10 @@ function set_dhcp_network()
 }
 
 $network_settings = get_network("eth0");
+
 //Tester
 //var_dump($network_settings);
-set_dhcp_network();
+//set_dhcp_network();
 /*$fixip = array();
 $fixip['ipaddress'] = "192.160.1.10";
 $fixip['netmask'] = "255.255.255.0";
