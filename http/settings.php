@@ -27,6 +27,18 @@ if (isset($_POST['userTimezone'])) {
   exit;
 
 }
+
+// Network settings
+if (isset($_POST['dhcpEnable'])) {
+  if($_POST['dhcpEnable'] == "true")
+      set_dhcp_network();
+  else
+      set_fixed_network(array($_POST['ipaddress'], $_POST['subnet'], $_POST['gateway']));
+
+  header('Location: /settings.php');
+  exit;
+}
+
 if (isset($_POST['userPassword1'])) {
 
 	if ($_POST['userPassword1'] <> '') {
@@ -259,7 +271,7 @@ include('menu.php');
       <div class="form-group dhcp-enabled <?php echo $settings['dhcpEnable']?"":"collapse"; ?>">
         <label for="subnet" class="control-label col-lg-3">Subnet</label>
         <div class="col-lg-9">
-          <input type="email" value="<?php echo $network_settings['subnet'] ?>" id="subnet" name="subnet" class="form-control" placeholder="255.255.255.0">
+          <input type="text" value="<?php echo $network_settings['subnet'] ?>" id="subnet" name="subnet" class="form-control" placeholder="255.255.255.0">
         </div>
       </div>
       <div class="form-group dhcp-enabled <?php echo $settings['dhcpEnable']?"":"collapse"; dhcpEnable?>">
@@ -419,7 +431,7 @@ include('menu.php');
 		  </script>
 		  <p class="help-block">
             Enter you own miner parameters or select a default bfgminer or cgminer configuration.  
-			You will need to press Save and then reboot MinePeon when you finish.<br />
+			You will need to press Save and then reboot SpondMiner when you finish.<br />
 			If you intend to enable the cgminer-HEXu option <a href="http://minepeon.com/index.php/Cgminer-HEXu">please read this page for instructions.</a>
           </p>
         </div>

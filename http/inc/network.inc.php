@@ -43,9 +43,9 @@ function set_fixed_network($settings)
     $network_file = $network_file_header.
     "#Your static network configuration\n".
     "iface eth0 inet static\n".
-    "address ".$settings['ipaddress']."\n".
-    "netmask ".$settings['netmask']."\n".
-    "gateway ".$settings['gateway']."\n";
+    "address ".$settings['0']."\n".
+    "netmask ".$settings['1']."\n".
+    "gateway ".$settings['2']."\n";
 
     file_put_contents("/etc/network/interfaces", $network_file);
 
@@ -72,8 +72,8 @@ $network_settings = get_network("eth0");
 //var_dump($network_settings);
 //set_dhcp_network();
 /*$fixip = array();
-$fixip['ipaddress'] = "192.160.1.10";
-$fixip['netmask'] = "255.255.255.0";
-$fixip['gateway'] = "192.160.1.1";
+$fixip['0'] = "192.160.1.10";
+$fixip['1'] = "255.255.255.0";
+$fixip['2'] = "192.160.1.1";
 set_fixed_network($fixip);*/
 ?>
