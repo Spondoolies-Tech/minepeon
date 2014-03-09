@@ -23,7 +23,7 @@ window.setTimeout('CountDown()',100);
   </head>
   <body>
   <center>
-  <p><h1>Rebooting MinePeon</h1></p>
+  <p><h1>Rebooting SpondMiner</h1></p>
   <p>You will be redirected in</p> 
   <p><h1 id="countdown">60</h1></p>  
   <p>seconds.</p> 

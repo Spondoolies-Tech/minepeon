@@ -1,6 +1,6 @@
 <div class="navbar">
   <div class="container">
-    <a class="navbar-brand" href="">MinePeon</a>
+    <a class="navbar-brand" href="">SpondMiner</a>
     <ul class="nav navbar-nav">
       <li><a href="/">Status</a></li>
       <li><a href="pools.php">Pool</a></li>

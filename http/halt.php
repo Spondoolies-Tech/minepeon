@@ -23,7 +23,7 @@ window.setTimeout('CountDown()',100);
   </head>
   <body>
   <center>
-  <p><h1>Shutting Down MinePeon</h1></p>
+  <p><h1>Shutting Down SpondMiner</h1></p>
   <p>It should be safe to unplug in</p> 
   <p><h1 id="countdown">30</h1></p>  
   <p>seconds.</p> 

@@ -89,9 +89,9 @@ include('menu.php');
   <div class="row">
     <div class="col-lg-4">
       <dl class="dl-horizontal">
-        <dt>MinePeon Temp</dt>
+        <dt>SpondMiner Temp</dt>
         <dd><?php echo $mpTemp; ?> <small>&deg;C</small> | <?php echo $mpTemp*9/5+32; ?> <small>&deg;F</small></dd>
-        <dt>MinePeon CPU Load</dt>
+        <dt>SpondMiner CPU Load</dt>
         <dd><?php echo $mpCPULoad[0]; ?> <small>[1 min]</small></dd>
         <dd><?php echo $mpCPULoad[1]; ?> <small>[5 min]</small></dd>
         <dd><?php echo $mpCPULoad[2]; ?> <small>[15 min]</small></dd>
@@ -101,7 +101,7 @@ include('menu.php');
       <dl class="dl-horizontal">
         <dt>Best Share</dt>
         <dd><?php echo $summary['SUMMARY'][0]['BestShare']; ?></dd>
-        <dt>MinePeon Uptime</dt>
+        <dt>SpondMiner Uptime</dt>
         <dd><?php echo secondsToWords(round($uptime[0])); ?></dd>
         <dt>Miner Uptime</dt>
         <dd><?php echo secondsToWords($summary['SUMMARY'][0]['Elapsed']); ?></dd>
@@ -109,9 +109,9 @@ include('menu.php');
     </div>
     <div class="col-lg-4">
       <dl class="dl-horizontal">
-        <dt>MinePeon Version</dt>
+        <dt>SpondMiner Version</dt>
         <dd><?php echo $version; ?></dd>
-        <dt>Miner Version</dt>
+        <dt>CGMiner Version</dt>
         <dd><?php echo $summary['STATUS'][0]['Description']; ?></dd>
 <!--        <dt>Donation Minutes</dt>
         <dd><//?php echo $settings['donateAmount']; ?>
