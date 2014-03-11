@@ -171,9 +171,9 @@ document.title = '<?php echo $G_MHSav; ?>|<?php echo $version; ?>';
  
 // Change screen colour test for alerts
  
-if ($settings['donateAmount'] < 1) {
+/*if ($settings['donateAmount'] < 1) {
 	echo 'document.body.style.background = "#FFFFCF"';
-}
+}*/
 
 ?>
 
