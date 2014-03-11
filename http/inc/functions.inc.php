@@ -1,6 +1,6 @@
 <?php
 
-require_once('Mail.php');
+//require_once('Mail.php');
 
 /**********************************
 
@@ -23,10 +23,10 @@ function sendEmail($settings, $subject, $body) {
 
 		//$settings['alertDevice']
 
-		$mail = Mail::factory("smtp", $mailSettings );
+/*		$mail = Mail::factory("smtp", $mailSettings );
 
 		$headers = array("From"=>$settings['alertEmail'], "Subject"=>$subject);
-		$mail->send($settings['alertEmail'], $headers, $body);		
+		$mail->send($settings['alertEmail'], $headers, $body);		*/
 
 }
 
