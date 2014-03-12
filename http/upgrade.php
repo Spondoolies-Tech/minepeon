@@ -10,17 +10,7 @@ header('Last-Modified: '.gmdate('D, d M Y H:i:i').' GMT');
 header('Cache-Control: no-store, no-cache, must-revalidate');
 header('Cache-control: post-check=0, pre-check=0', false);
 header('Pragma: no-cache');
-?>
-<? /*
-<html>
-<head>
-<title>Upgrading Firmware</title>
-</head>
-<body>
-<div>
-<pre>
-*/ ?>
-<?
+
 $p = popen(FIRMWARE_UPGRADE_SCRIPT." ".FIRMWARE_UPGRADE_PARAMS, 'r');
 while($line = fgets($p)){
 	echo $line;
