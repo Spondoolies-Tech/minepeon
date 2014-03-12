@@ -3,41 +3,47 @@
 include('head.php');
 include('menu.php');
 ?>
-    <script language="javascript" type="text/javascript">
-        function upgrade(){
-            if(!confirm("Upgrade Firmware?")) return;
-//document.getElementById("upgrade_output").src="upgrade.php";
-            var t = document.getElementById("upgrade_output");
-            var s = document.getElementById("upgrade_scroller");
-            var req = new XMLHttpRequest();
-            try{
-                req.responseType = "chunked-text";
-            }catch(e){}
-            req.onreadystatechange = function(){
-                if(req.readyState > 2){
-                    if(req.responseText) t.innerHTML = req.responseText;
-                    else if(req.response) t.innerHTML = req.response;
-                    s.scrollIntoView();
+    <script type="text/javascript">
+        function upgradeFirmware()
+        {
+            bootbox.confirm("Are you sure you want to upgrade?", function(result) {
+                if (!result) return;
+
+                var o = $('#upgrade_output');
+                var s = $('#upgrade_scroller');
+
+                var xhr = new XMLHttpRequest();
+                xhr.open("GET", "upgrade.php", true);
+                xhr.onreadystatechange = function(){
+                    if(xhr.readyState > 2){
+                        if(xhr.responseText)
+                            o.html(xhr.responseText);
+                        else if(xhr.response)
+                            s.html(xhr.response);
+                        s.scrollIntoView();
+                    }
                 }
-            }
-            req.open("GET", "upgrade.php", true);
-            req.send();
+                xhr.send();
+            });
+
         }
 
     </script>
+
     <div>
 
         <div class="container">
             <p class="alert"><b>WARNING:</b>Power interruption during the upgrade may brick your unit!</p>
             <h1>Firmware upgrade</h1>
-            <button name="upgrade" class="btn btn-default" onclick="javascript:upgrade()">Upgrade Now</button>
+            <button name="upgrade" class="btn btn-default" onclick="upgradeFirmware()">Upgrade Now</button>
             <br><br>
-<pre>
-<div id="upgrade_output"></div>
-<span id="upgrade_scroller"></span>
+            <pre>
+                <div id="upgrade_output"></div>
+                <span id="upgrade_scroller"></span>
+            </pre>
         </div>
-        </pre>
     </div>
+
 <?php
 include('foot.php');
 
