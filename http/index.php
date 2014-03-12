@@ -24,10 +24,10 @@ function create_graph($output, $start, $title) {
     "LINE2:realspeed#FF0000"
     );
 
-  //$ret = rrd_graph("/opt/minepeon/http/rrd/" . $output, $options);
+/*  $ret = rrd_graph("/opt/minepeon/http/rrd/" . $output, $options);
   if (! $ret) {
-    //echo "<b>Graph error: </b>".rrd_error()."\n";
-  }
+    echo "<b>Graph error: </b>".rrd_error()."\n";
+  }*/
 }
 
 // A few globals for the title of the page
