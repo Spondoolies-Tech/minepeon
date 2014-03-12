@@ -33,7 +33,7 @@ include('menu.php');
     <div>
 
         <div class="container">
-            <p class="alert"><b>WARNING:</b>Power interruption during the upgrade may brick your unit!</p>
+            <p class="alert"><b>WARNING:</b> Power interruption during the upgrade may brick your unit!</p>
             <h1>Firmware upgrade</h1>
             <button name="upgrade" class="btn btn-default" onclick="upgradeFirmware()">Upgrade Now</button>
             <br><br>
