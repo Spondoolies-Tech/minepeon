@@ -3,15 +3,6 @@
 include('head.php');
 include('menu.php');
 ?>
-<style type="text/css">
-#upgrade_wrapper{
-height:300px;
-background:#cbc;
-color:#323;
-overflow:auto;
-padding:10px 0 0 10px;
-}
-</style> 
 <script language="javascript" type="text/javascript">
 function upgrade(){
 if(!confirm("Upgrade Firmware?")) return;
@@ -25,7 +16,7 @@ try{
 req.onreadystatechange = function(){
 if(req.readyState > 2){
 if(req.responseText) t.innerHTML = req.responseText;
-else if(req.response) t.innerHTML = req.response; 
+else if(req.response) t.innerHTML = req.response;
 s.scrollIntoView();
 }
 }
@@ -37,9 +28,11 @@ req.send();
 <div>
 
 <div class="container">
-<button name="upgrade" onclick="javascript:upgrade()">Upgrade Now</button>
+<p class="alert"><b>WARNING:</b>Power interruption during the upgrade may brick your unit!</p>
+<h1>Firmware upgrade</h1>
+<button name="upgrade" class="btn btn-default" onclick="javascript:upgrade()">Upgrade Now</button>
+<br><br>
 <pre>
-<div id="upgrade_wrapper">
 <div id="upgrade_output"></div>
 <span id="upgrade_scroller"></span>
 </div>
