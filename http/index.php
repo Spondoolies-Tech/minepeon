@@ -12,6 +12,11 @@ create_graph("mhsav-month.png", "-1m", "Last Month");
 create_graph("mhsav-year.png", "-1y", "Last Year");
 
 function create_graph($output, $start, $title) {
+	/*
+if(!function_exists('rrd_graph')){
+	return false;
+}
+	 */
   $RRDPATH = '/tmp/';
   $options = array(
     "--slope-mode",
@@ -23,10 +28,9 @@ function create_graph($output, $start, $title) {
     "CDEF:realspeed=hashrate,1000,*",
     "LINE2:realspeed#FF0000"
     );
-
   $ret = rrd_graph("/opt/minepeon/http/rrd/" . $output, $options);
   if (! $ret) {
-    //echo "<b>Graph error: </b>".rrd_error()."\n";
+    echo "<b>Graph error: </b>".rrd_error()."\n";
   }
 }
 
