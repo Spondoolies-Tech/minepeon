@@ -24,7 +24,7 @@ function create_graph($output, $start, $title) {
     "LINE2:realspeed#FF0000"
     );
 
-  //$ret = rrd_graph("/opt/minepeon/http/rrd/" . $output, $options);
+  $ret = rrd_graph("/opt/minepeon/http/rrd/" . $output, $options);
   if (! $ret) {
     //echo "<b>Graph error: </b>".rrd_error()."\n";
   }
@@ -52,11 +52,28 @@ if (isset($_GET['url']) and isset($_GET['user'])) {
 
 }
 
-$stats = miner("devs", "");
-$status = $stats['STATUS'];
-$devs = $stats['DEVS'];
-$summary = miner("summary", "");
-$pools = miner("pools", "");
+try{
+	$stats = miner("devs", "");
+	$status = $stats['STATUS'];
+	$devs = $stats['DEVS'];
+	$summary = miner("summary", "");
+	$pools = miner("pools", "");
+	$running = true;
+}catch(Exception $e){
+	$status = "NA";
+	$devs = array();
+	$summary = array(
+		"SUMMARY"=>array(array(
+			"BestShare"=>"NA",
+			"Elapsed" => null
+			)),
+		"STATUS" => array(array(
+			"Description" => "NA"
+			)));
+	$pools = array();
+	$running = false;
+	$error = $e->getMessage();
+}
 
 include('head.php');
 include('menu.php');
@@ -85,6 +102,9 @@ include('menu.php');
   <center><h2>Please wait upto 5 minutes</h2></center>
   <?php
   }
+	if(!$running){
+echo "<center class='alert alert-warning'><h1>".$error."</h1></center>";
+	}
   ?>
   <div class="row">
     <div class="col-lg-4">
@@ -145,7 +165,9 @@ include('menu.php');
       </tr>
     </thead>
     <tbody>
-      <?php echo poolsTable($pools['POOLS']); ?>
+      <?php if($running) echo poolsTable($pools['POOLS']); 
+	    else echo "<div class='alert alert-danger'>".$error."</div>";
+	?>
     </tbody>
   </table>
 

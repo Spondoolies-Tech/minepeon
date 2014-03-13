@@ -16,7 +16,7 @@ function miner($command, $parameter) {
         $client = @stream_socket_client("tcp://$host:$port", $errno, $errorMessage, 1.5);
 
         if ($client === false) {
-                return false;
+		throw new Exception("Cannot connect to local miner server.");
         }
         fwrite($client, $jsonCmd);
         stream_set_timeout($client, 1.5);
@@ -29,7 +29,11 @@ function miner($command, $parameter) {
 }
 
 function promotePool($addr, $user){
+try{
   $pools = miner('pools','');
+}catch(Exception $e){
+echo $e;
+}
   $pools = $pools['POOLS'];
   $pool = 0;
   // echo "changeing";
