@@ -316,7 +316,7 @@ include('menu.php');
               <label for="userTimezone" class="control-label col-lg-3">Timezone</label>
               <div class="col-lg-9">
                   <?php echo $tzselect ?>
-                  <p class="help-block">SP10 Dawson thinks it is now <?php echo date('D, d M Y H:i:s T') ?></p>
+                  <p class="help-block">Miner thinks it is now <?php echo date('D, d M Y H:i:s T') ?></p>
                   <button type="submit" class="btn btn-default">Save</button>
               </div>
           </div>
@@ -522,7 +522,7 @@ include('menu.php');
 	  <div class="form-group">
 		<div class="col-lg-9 col-offset-3">
 		  <button type="submit" name="submit" class="btn btn-default">Restore</button>
-		  <p class="help-block">Restoring a configuration will cause your SP10 Dawson to reboot.</p>
+		  <p class="help-block">Restoring a configuration will cause your miner to reboot.</p>
 		</div>
       </div>
     </fieldset>
