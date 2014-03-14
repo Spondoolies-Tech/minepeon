@@ -502,7 +502,8 @@ include('menu.php');
     </fieldset>
   </form>
 -->
-<!-- ######################## -->
+
+<!-- ######################## Backup -->
 
   <form name="backup" action="/settings.php" method="post" enctype="multipart/form-data" class="form-horizontal">
     <fieldset>
@@ -510,7 +511,7 @@ include('menu.php');
      <div class="form-group">
         <div class="col-lg-9 col-offset-3">
 		  <a class="btn btn-default" href="/backup.php">Backup</a>
-		  <p class="help-block">The backup will contain all of your settings and statistics.  Plugins will have to be restored separately.</p>
+		  <p class="help-block">The backup will contain all of your settings and statistics.</p>
         </div>
       </div>
       <div class="form-group">
@@ -526,6 +527,8 @@ include('menu.php');
       </div>
     </fieldset>
   </form>
+<!-- ######################## -->
+
 <script type="text/javascript" id="js">
   function checkPass(id, submitButton)
 {

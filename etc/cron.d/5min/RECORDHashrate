@@ -5,7 +5,7 @@ include('settings.inc.php');
 
 $metric  = 'hashrate';
 $RRDFILE = $metric . '.rrd';
-$RRDPATH = '/tmp/';
+$RRDPATH = '/mnt/mmc-config/rrd/';
 $RRD     = $RRDPATH . $RRDFILE;
 
 
