@@ -2,7 +2,7 @@
 require('settings.inc.php');
 
 // set the number of extra empty rows for adding pools
-$extraPools = 0;
+$extraPools = 1;
 
 // Read miner config file
 $data = json_decode(file_get_contents("/etc/cgminer.conf", true), true);
