@@ -4,7 +4,8 @@ require('miner.inc.php');
 include('settings.inc.php');
 include('functions.inc.php');
 
-
+/*
+//Moved to Cron-based PHP CLI generation
 create_graph("mhsav-hour.png", "-1h", "Last Hour");
 create_graph("mhsav-day.png", "-1d", "Last Day");
 create_graph("mhsav-week.png", "-1w", "Last Week");
@@ -27,7 +28,7 @@ function create_graph($output, $start, $title) {
   if (! $ret) {
     echo "<b>Graph error: </b>".rrd_error()."\n";
   }
-}
+}*/
 
 // A few globals for the title of the page
 $G_MHSav = 0;
@@ -36,7 +37,7 @@ $G_MHSav = 0;
 $mpTemp = round(exec('cat /sys/class/thermal/thermal_zone0/temp') / 1000, 2);
 
 //MinePeon Version
-$version = exec('cat /opt/minepeon/etc/version');
+$version = "SpondMiner";
 
 //MinePeon CPU load
 $mpCPULoad = sys_getloadavg();
