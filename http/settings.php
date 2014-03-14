@@ -39,7 +39,6 @@ if (isset($_POST['dhcpEnable'])) {
   exit;
 }
 
-// UI password change
 if (isset($_POST['userPassword1'])) {
 
 	if ($_POST['userPassword1'] <> '') {
@@ -50,20 +49,28 @@ if (isset($_POST['userPassword1'])) {
 
 	}
 }
-
-// SSH password change
-if (isset($_POST['sshPassword1'])) {
-
-	if ($_POST['sshPassword1'] <> '') {
-
-        $npass = $_POST['sshPassword1'];
-		exec("echo -e \"$npass\n$npass\n\" | passwd root");
-		header('Location: /settings.php');
-		exit;
-
+if (isset($_POST['rootPassword1'])) {
+	try{
+		$p = popen('passwd');
+		fputs($p, $_POST['rootPasswordCurrent']);	
+		fputs($p, "\n");
+		fputs($p, $_POST['rootPassword1']);	
+		fputs($p, "\n");
+		fputs($p, $_POST['rootPassword1']);	
+		fputs($p, "\n");
+		$res = pclose($p);
+	}catch(Exception $e){
+		echo "Error setting new root password: ".$e->getMessage(); 
+		$res = 1;
 	}
+	if($res){
+		echo "<br/>New password not set.";
+		echo "\n<br/>";
+		echo "<a href='settings.php'>Return to settings page</a>";
+		exit;
+	}
+	header('Location: /settings.php');
 }
-
 // Miner startup file
 
 if (isset($_POST['minerSettings'])) {
@@ -205,20 +212,20 @@ include('menu.php');
   <h2>Settings</h2>
 
 <!-- ######################## Miner speed -->
-<!--  <form name="speed" action="/settings.php" method="post" class="form-horizontal">
+  <form name="speed" action="/settings.php" method="post" class="form-horizontal">
       <fieldset>
           <legend>Miner speed</legend>
           <div class="form-group">
               <div class="col-lg-9 col-offset-3">
                   <div class="radio">
                       <label>
-                          <input type="radio" name="minerSpeed" id="minerSpeed" value="silent" <?php /*echo $settings['minerSpeed'] == 1?"checked":""; */?> >Silent<br>
+                          <input type="radio" name="minerSpeed" id="minerSpeed" value="silent" <?php echo $settings['minerSpeed'] == 1?"checked":""; ?> >Silent<br>
                       </label>
                       <label>
-                          <input type="radio" name="minerSpeed" id="minerSpeed" value="normal" <?php /*echo $settings['minerSpeed'] == 2?"checked":""; */?> >Normal<br>
+                          <input type="radio" name="minerSpeed" id="minerSpeed" value="normal" <?php echo $settings['minerSpeed'] == 2?"checked":""; ?> >Normal<br>
                       </label>
                       <label>
-                          <input type="radio" name="minerSpeed" id="minerSpeed" value="turbo" <?php /*echo $settings['minerSpeed'] == 3?"checked":""; */?> >Turbo
+                          <input type="radio" name="minerSpeed" id="minerSpeed" value="turbo" <?php echo $settings['minerSpeed'] == 3?"checked":""; ?> >Turbo
                       </label>
                   </div>
                   <p class="help-block">NOTE: This will change the fans noise and the power consumption.</p>
@@ -227,8 +234,62 @@ include('menu.php');
           </div>
       </fieldset>
   </form>
---><!-- ######################## -->
+<!-- ######################## -->
 
+<!-- ######################## -->
+
+  <form name="timezone" action="/settings.php" method="post" class="form-horizontal">
+    <fieldset>
+      <legend>TimeZone</legend>
+      <div class="form-group">
+        <label for="userTimezone" class="control-label col-lg-3">Timezone</label>
+        <div class="col-lg-9">
+          <?php echo $tzselect ?>
+          <p class="help-block">SpondMiner thinks it is now <?php echo date('D, d M Y H:i:s T') ?></p>
+		  <button type="submit" class="btn btn-default">Save</button>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+  
+    <form name="password" action="/settings.php" method="post" class="form-horizontal">
+    <fieldset>
+      <legend>Web Password</legend>
+      <div class="form-group">
+        <label for="userPassword" class="control-label col-lg-3">New Password</label>
+        <div class="col-lg-9">
+          <input type="password" placeholder="New password" id="userPassword1" name="userPassword1" class="form-control" onkeyup="checkPass('userPassword'); return false;">
+		  <br />
+		  <input type="password" placeholder="Repeat Password" id="userPassword2" name="userPassword2" class="form-control" onkeyup="checkPass('userPassword'); return false;">
+		  <br />
+          <button type="submit" id="submitPassword" class="btn btn-default">Save</button>
+        </div>
+		
+      </div>
+	  
+    </fieldset>
+  </form>
+  
+    <form name="miner_password" action="/settings.php" method="post" class="form-horizontal">
+    <fieldset>
+      <legend>Root Password</legend>
+      <div class="form-group">
+        <label for="rootPassword" class="control-label col-lg-3">New Root Password</label>
+        <div class="col-lg-9">
+          <input type="password" placeholder="Current password" id="rootPasswordCurrent" name="rootPasswordCurrent" class="form-control">
+		  <br />
+          <input type="password" placeholder="New password" id="rootPassword1" name="rootPassword1" class="form-control" onkeyup="checkPass('rootPassword'); return false;">
+		  <br />
+		  <input type="password" placeholder="Repeat Password" id="rootPassword2" name="rootPassword2" class="form-control" onkeyup="checkPass('rootPassword'); return false;">
+		  <br />
+          <button type="submit" id="submitPassword" class="btn btn-default">Save</button>
+        </div>
+		
+      </div>
+	  
+    </fieldset>
+  </form>
+  
 <!-- ######################## Network -->
   <form name="network" action="/settings.php" method="post" class="form-horizontal">
     <fieldset>
@@ -271,60 +332,6 @@ include('menu.php');
     </fieldset>
   </form>
 <!-- ######################## -->
-
-  <!-- ######################## Password -->
-
-  <form name="uipassword" action="/settings.php" method="post" class="form-horizontal">
-      <fieldset>
-          <legend>User interface password</legend>
-          <div class="form-group">
-              <label for="userPassword" class="control-label col-lg-3">New Password</label>
-              <div class="col-lg-9">
-                  <input type="password" placeholder="New password" id="userPassword1" name="userPassword1" class="form-control" onblur="checkUIPass()">
-                  <br />
-                  <input type="password" placeholder="Repeat Password" id="userPassword2" name="userPassword2" class="form-control" onblur="checkUIPass()">
-                  <br />
-                  <button type="submit" id="submitPassword" class="btn btn-default">Save</button>
-              </div>
-
-          </div>
-
-      </fieldset>
-  </form>
-
-  <form name="sshpassword" action="/settings.php" method="post" class="form-horizontal">
-      <fieldset>
-          <legend>SSH interface password</legend>
-          <div class="form-group">
-              <label for="userPassword" class="control-label col-lg-3">New Password</label>
-              <div class="col-lg-9">
-                  <input type="password" placeholder="New password" id="sshPassword1" name="sshPassword1" class="form-control" onblur="checkSSHPass()">
-                  <br />
-                  <input type="password" placeholder="Repeat Password" id="sshPassword2" name="sshPassword2" class="form-control" onblur="checkSSHPass()">
-                  <br />
-                  <button type="submit" id="sshSubmitPassword" class="btn btn-default">Save</button>
-              </div>
-
-          </div>
-
-      </fieldset>
-  </form>
-
-  <!-- ######################## Timezone -->
-  <form name="timezone" action="/settings.php" method="post" class="form-horizontal">
-      <fieldset>
-          <legend>TimeZone</legend>
-          <div class="form-group">
-              <label for="userTimezone" class="control-label col-lg-3">Timezone</label>
-              <div class="col-lg-9">
-                  <?php echo $tzselect ?>
-                  <p class="help-block">SpondMiner thinks it is now <?php echo date('D, d M Y H:i:s T') ?></p>
-                  <button type="submit" class="btn btn-default">Save</button>
-              </div>
-          </div>
-      </fieldset>
-  </form>
-  <!-- ######################## -->
 
 <!--  <form name="mining" action="/settings.php" method="post" class="form-horizontal">
     <fieldset>
@@ -529,13 +536,11 @@ include('menu.php');
     </fieldset>
   </form>
 <script type="text/javascript" id="js">
-  //TODO: Unify into a single testing function
-
-  function checkUIPass()
+  function checkPass(id)
 {
     //Store the password field objects into variables ...
-    var pass1 = document.getElementById('userPassword1');
-    var pass2 = document.getElementById('userPassword2');
+    var pass1 = document.getElementById(id+'1');
+    var pass2 = document.getElementById(id+'2');
     //Store the Confimation Message Object ...
     var message = document.getElementById('confirmMessage');
 	var submit = document.getElementById('submitPassword');
@@ -561,40 +566,7 @@ include('menu.php');
         message.style.color = badColor;
         message.innerHTML = "Passwords Do Not Match!"
     }
-}
-
-  function checkSSHPass()
-{
-    //Store the password field objects into variables ...
-    var pass1 = document.getElementById('sshPassword1');
-    var pass2 = document.getElementById('sshPassword2');
-    //Store the Confimation Message Object ...
-    var message = document.getElementById('sshConfirmMessage');
-	var submit = document.getElementById('sshSubmitPassword');
-    //Set the colors we will be using ...
-    var goodColor = "#66cc66";
-    var badColor = "#ff6666";
-    //Compare the values in the password field
-    //and the confirmation field
-    if(pass1.value == pass2.value){
-        //The passwords match.
-        //Set the color to the good color and inform
-        //the user that they have entered the correct password
-		document.getElementById("sshSubmitPassword").disabled = false;
-        pass2.style.backgroundColor = goodColor;
-        message.style.color = goodColor;
-        message.innerHTML = "Passwords Match!"
-    }else{
-        //The passwords do not match.
-        //Set the color to the bad color and
-        //notify the user.
-		document.getElementById("sshSubmitPassword").disabled = true;
-        pass2.style.backgroundColor = badColor;
-        message.style.color = badColor;
-        message.innerHTML = "Passwords Do Not Match!"
-    }
-}
-</script>
+} </script>
 <?php
 include('foot.php');
 ?>

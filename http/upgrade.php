@@ -11,7 +11,24 @@ header('Cache-Control: no-store, no-cache, must-revalidate');
 header('Cache-control: post-check=0, pre-check=0', false);
 header('Pragma: no-cache');
 
-$p = popen(FIRMWARE_UPGRADE_SCRIPT." ".FIRMWARE_UPGRADE_PARAMS, 'r');
+
+/*
+ * these values are best retrieved by the upgraed shell script
+ * which, shockingly, send them regardless of any parameters this script send
+ */
+/*$miner_version = '00000011';
+
+$firmP = popen(FIRMWARE_VERSION_MMC_SCRIPT, 'r');
+$firmware_version = fgets($firmP);
+pclose($firmP);
+if(!$firmware_version){
+$firmP = popen(FIRMWARE_VERSION_SD_SCRIPT, 'r');
+$firmware_version = fgets($firmP);
+pclose($firmP);
+}
+ */
+
+$p = popen(FIRMWARE_UPGRADE_SCRIPT, 'r');
 while($line = fgets($p)){
 	echo $line;
 	//echo "document.write(\"".trim($line)."\");";

@@ -6,8 +6,9 @@ include('menu.php');
     <script type="text/javascript">
         function upgradeFirmware()
         {
-            bootbox.confirm("Are you sure you want to upgrade?", function(result) {
-                if (!result) return;
+            //bootbox.confirm("Are you sure you want to upgrade?", function(result) {
+	   if(!confirm("Are you sure you awant to start the upgrade process?")) return;
+                //if (!result) return;
 
                 var o = $('#upgrade_output');
                 var s = $('#upgrade_scroller');
@@ -19,12 +20,12 @@ include('menu.php');
                         if(xhr.responseText)
                             o.html(xhr.responseText);
                         else if(xhr.response)
-                            s.html(xhr.response);
+                            o.html(xhr.response);
                         s.scrollIntoView();
                     }
                 }
                 xhr.send();
-            });
+            //});
 
         }
 
