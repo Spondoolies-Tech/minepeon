@@ -7,8 +7,8 @@ detect_boot_source()
 # modified from Vladiks script to use /tmp/ if no bootsource found!!! 
 	# bootfrom=<BOOTSOURCE> is always the last element of kernel
 	# command line so may get it this way.
-	grep -q bootfrom /proc/cmdline &&
-		bootfrom=`sed 's/.*bootfrom=//' /proc/cmdline`
+	bootfrom=`find /mnt -name uImage | head -1 | sed 's/-.*//;s/^.*\///'`
+
 	if [ -z "$bootfrom" ]; then
 		bootfrom="/tmp"	
 	fi
@@ -35,7 +35,7 @@ fi
 
 # get firmware version
 # instructions from Vladik
-firmware=`mkimage -l ${bootfrom}/uImage | grep 'Image Name' | sed 's/.*:\s\+//'`
+firmware=`mkimage -l /mnt/${bootfrom}-boot/uImage | grep 'Image Name' | sed 's/.*:\s\+//'`
 
 # get model number
 # script from Vladik
