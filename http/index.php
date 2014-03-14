@@ -37,7 +37,7 @@ $G_MHSav = 0;
 $mpTemp = round(exec('cat /sys/class/thermal/thermal_zone0/temp') / 1000, 2);
 
 //MinePeon Version
-$version = "SpondMiner";
+$version = "SP10 Dawson";
 
 //MinePeon CPU load
 $mpCPULoad = sys_getloadavg();
@@ -109,9 +109,9 @@ echo "<center class='alert alert-warning'><h1>".$error."</h1></center>";
   <div class="row">
     <div class="col-lg-4">
       <dl class="dl-horizontal">
-        <dt>SpondMiner Temp</dt>
-        <dd><?php echo $mpTemp; ?> <small>&deg;C</small> | <?php echo $mpTemp*9/5+32; ?> <small>&deg;F</small></dd>
-        <dt>SpondMiner CPU Load</dt>
+        <!--<dt>SP10 Dawson Temp</dt>
+        <dd><?php /*echo $mpTemp; */?> <small>&deg;C</small> | <?php /*echo $mpTemp*9/5+32; */?> <small>&deg;F</small></dd>-->
+        <dt>SP10 Dawson CPU Load</dt>
         <dd><?php echo $mpCPULoad[0]; ?> <small>[1 min]</small></dd>
         <dd><?php echo $mpCPULoad[1]; ?> <small>[5 min]</small></dd>
         <dd><?php echo $mpCPULoad[2]; ?> <small>[15 min]</small></dd>
@@ -121,7 +121,7 @@ echo "<center class='alert alert-warning'><h1>".$error."</h1></center>";
       <dl class="dl-horizontal">
         <dt>Best Share</dt>
         <dd><?php echo $summary['SUMMARY'][0]['BestShare']; ?></dd>
-        <dt>SpondMiner Uptime</dt>
+        <dt>SP10 Dawson Uptime</dt>
         <dd><?php echo secondsToWords(round($uptime[0])); ?></dd>
         <dt>Miner Uptime</dt>
         <dd><?php echo secondsToWords($summary['SUMMARY'][0]['Elapsed']); ?></dd>
@@ -129,7 +129,7 @@ echo "<center class='alert alert-warning'><h1>".$error."</h1></center>";
     </div>
     <div class="col-lg-4">
       <dl class="dl-horizontal">
-        <dt>SpondMiner Version</dt>
+        <dt>SP10 Dawson Version</dt>
         <dd><?php echo $version; ?></dd>
         <dt>CGMiner Version</dt>
         <dd><?php echo $summary['STATUS'][0]['Description']; ?></dd>

@@ -316,7 +316,7 @@ include('menu.php');
               <label for="userTimezone" class="control-label col-lg-3">Timezone</label>
               <div class="col-lg-9">
                   <?php echo $tzselect ?>
-                  <p class="help-block">SpondMiner thinks it is now <?php echo date('D, d M Y H:i:s T') ?></p>
+                  <p class="help-block">SP10 Dawson thinks it is now <?php echo date('D, d M Y H:i:s T') ?></p>
                   <button type="submit" class="btn btn-default">Save</button>
               </div>
           </div>
@@ -464,7 +464,7 @@ include('menu.php');
 		  </script>
 		  <p class="help-block">
             Enter you own miner parameters or select a default bfgminer or cgminer configuration.  
-			You will need to press Save and then reboot SpondMiner when you finish.<br />
+			You will need to press Save and then reboot SP10 Dawson when you finish.<br />
 			If you intend to enable the cgminer-HEXu option <a href="http://minepeon.com/index.php/Cgminer-HEXu">please read this page for instructions.</a>
           </p>
         </div>
@@ -522,7 +522,7 @@ include('menu.php');
 	  <div class="form-group">
 		<div class="col-lg-9 col-offset-3">
 		  <button type="submit" name="submit" class="btn btn-default">Restore</button>
-		  <p class="help-block">Restoring a configuration will cause your SpondMiner to reboot.</p>
+		  <p class="help-block">Restoring a configuration will cause your SP10 Dawson to reboot.</p>
 		</div>
       </div>
     </fieldset>

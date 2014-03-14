@@ -14,7 +14,7 @@ include('menu.php');
 <div class="container">
 	<p class="alert"><b>WARNING:</b> There is very little validation on these settings at the moment so make sure your settings are correct!</p>
 	<h1>Pool</h1>
-	<p>SpondMiner will use the following pool:</p>
+	<p>SP10 Dawson will use the following pool:</p>
 	<form id="formpools">
 		<input type="hidden" name="saving" value="1">
 		<?php
