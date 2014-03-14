@@ -17,7 +17,7 @@ if(!function_exists('rrd_graph')){
 	return false;
 }
 	 */
-  $RRDPATH = '/tmp/';
+  $RRDPATH = '/mnt/mmc-config/rrd/';
   $options = array(
     "--slope-mode",
     "--start", $start,
@@ -28,7 +28,7 @@ if(!function_exists('rrd_graph')){
     "CDEF:realspeed=hashrate,1000,*",
     "LINE2:realspeed#FF0000"
     );
-  $ret = rrd_graph("/mnt/mmc-config/rrd/" . $output, $options);
+  $ret = rrd_graph("/var/http/rrd/" . $output, $options);
   if (! $ret) {
     echo "<b>Graph error: </b>".rrd_error()."\n";
   }
