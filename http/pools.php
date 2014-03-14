@@ -5,7 +5,7 @@ require('settings.inc.php');
 $extraPools = 0;
 
 // Read miner config file
-$data = json_decode(file_get_contents("/opt/minepeon/etc/miner.conf", true), true);
+$data = json_decode(file_get_contents("/etc/cgminer.conf", true), true);
 
 include('head.php');
 include('menu.php');
