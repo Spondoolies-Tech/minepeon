@@ -23,7 +23,7 @@ function create_graph($output, $start, $title) {
     "CDEF:realspeed=hashrate,1000,*",
     "LINE2:realspeed#FF0000"
     );
-  $ret = rrd_graph("/var/http/rrd/" . $output, $options);
+  $ret = rrd_graph("/tmp/" . $output, $options);
   if (! $ret) {
     echo "<b>Graph error: </b>".rrd_error()."\n";
   }
@@ -80,7 +80,7 @@ include('menu.php');
 <div class="container">
   <h2>Status</h2>
   <?php
-  if (file_exists('/opt/minepeon/http/rrd/mhsav-hour.png')) {
+  if (file_exists('/tmp/mhsav-hour.png')) {
   ?>
   <p class="text-center">
     <img src="rrd/mhsav-hour.png" alt="mhsav.png" />
