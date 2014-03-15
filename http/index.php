@@ -86,7 +86,7 @@ include('menu.php');
   <p class="text-center">
     <img src="rrd/mhsav-hour.png" alt="mhsav.png" />
     <img src="rrd/mhsav-day.png" alt="mhsav.png" /><br/>
-<!--    <a href="#" id="chartToggle">Display extended charts</a>
+    <a href="#" id="chartToggle">Display extended charts</a>
   </p>
   <p class="text-center collapse chartMore">
     <img src="rrd/mhsav-week.png" alt="mhsav.png" />
@@ -95,7 +95,7 @@ include('menu.php');
   <p class="text-center collapse chartMore">
     <img src="rrd/mhsav-year.png" alt="mhsav.png" />
   </p>
--->  <?php
+  <?php
   } else {
   ?>
   <center><h1>Graphs not ready yet</h1></center>
@@ -143,7 +143,7 @@ echo "<center class='alert alert-warning'><h1>".$error."</h1></center>";
     <a class="btn btn-default" href='/reboot.php'>Reboot</a> 
     <a class="btn btn-default" href='/halt.php'>ShutDown</a>
   </center>
-  <h3>Pool</h3>
+  <h3>Pools</h3>
   <table id="pools" class="table table-striped table-hover">
     <thead> 
       <tr>
