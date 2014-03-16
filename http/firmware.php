@@ -6,8 +6,10 @@ include('menu.php');
     <script type="text/javascript">
         function upgradeFirmware()
         {
+		if($(this).hasClass('disabled')) return;
             bootbox.confirm("Are you sure you want to upgrade?", function(result) {
                 if (!result) return;
+		$('.miner-action').addClass('disabled');
 
                 var o = $('#upgrade_output');
                 //var s = $('#upgrade_scroller');
@@ -25,6 +27,9 @@ include('menu.php');
                         /*if(xhr.responseText.match("result:"))
                             $('#reboot').disabled = false;*/
                     }
+		    if(xhr.readyState == 4){
+			$('.miner-action').removeClass('disabled');
+		    }
                 }
                 xhr.send();
             });
@@ -38,7 +43,7 @@ include('menu.php');
         <div class="container">
             <p class="alert"><b>WARNING:</b> Power interruption during the upgrade may brick your unit!</p>
             <h1>Firmware upgrade</h1>
-            <button name="upgrade" class="btn btn-default" onclick="upgradeFirmware()">Upgrade Now</button>
+            <a name="upgrade" class="btn btn-default miner-action" onclick="upgradeFirmware()">Upgrade Now</a>
             <br><br>
             <pre>
                 <div id="upgrade_output"></div>
@@ -49,7 +54,7 @@ include('menu.php');
 
     <center>
         <br><br>
-        <a class="btn btn-default" id="reboot" name="reboot" href='/reboot.php'>Reboot</a>
+        <a class="btn btn-default miner-action" id="reboot" name="reboot" href='/reboot.php'>Reboot</a>
     </center>
 <?php
 include('foot.php');
