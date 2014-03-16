@@ -9,7 +9,7 @@ $agreement = file_get_contents('inc/terms_and_conditions.txt');
 
 require_once('head.php');
 ?>
-<div class="text-center">
+<div class="text-center container">
 <div class="text-left text-info">
 <pre>
 <?=$agreement?>
