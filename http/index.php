@@ -1,7 +1,7 @@
 <?php
 
 require('miner.inc.php');
-include('settings.inc.php');
+include('global.inc.php');
 include('functions.inc.php');
 
 /*

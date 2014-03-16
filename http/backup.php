@@ -1,6 +1,6 @@
 <?php
 
-include('settings.inc.php');
+include('global.inc.php');
 
 $fileDate = date("YmdHis");
 
