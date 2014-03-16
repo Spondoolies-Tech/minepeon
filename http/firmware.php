@@ -10,17 +10,20 @@ include('menu.php');
                 if (!result) return;
 
                 var o = $('#upgrade_output');
-                var s = $('#upgrade_scroller');
+                //var s = $('#upgrade_scroller');
 
                 var xhr = new XMLHttpRequest();
                 xhr.open("GET", "upgrade.php", true);
+
                 xhr.onreadystatechange = function(){
                     if(xhr.readyState > 2){
                         if(xhr.responseText)
                             o.html(xhr.responseText);
                         else if(xhr.response)
                             o.html(xhr.response);
-                        s.scrollIntoView();
+
+                        /*if(xhr.responseText.match("result:"))
+                            $('#reboot').disabled = false;*/
                     }
                 }
                 xhr.send();
@@ -44,6 +47,10 @@ include('menu.php');
         </div>
     </div>
 
+    <center>
+        <br><br>
+        <a class="btn btn-default" id="reboot" name="reboot" href='/reboot.php'>Reboot</a>
+    </center>
 <?php
 include('foot.php');
 
