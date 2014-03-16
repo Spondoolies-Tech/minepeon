@@ -1,6 +1,6 @@
 <?php
 
-require_once('settings.inc.php');
+require_once('global.inc.php');
 require_once('miner.inc.php');
 require_once('network.inc.php');
 
@@ -75,6 +75,10 @@ if (isset($_POST['minerSettings'])) {
 
 $minerStartup = file_get_contents('/opt/minepeon/etc/init.d/miner-start.sh');
 
+if (isset($_POST['agree'])) {
+	$settings['agree'] = time();
+	$writeSettings = true;
+}
 
 // Mining settings
 
