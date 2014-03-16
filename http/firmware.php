@@ -1,5 +1,6 @@
 <?php
 
+require_once('global.inc.php');
 include('head.php');
 include('menu.php');
 ?>
