@@ -28,6 +28,9 @@ include('menu.php');
                     }
 		    if(xhr.readyState == 4){
 			$('.miner-action').removeClass('disabled');
+			if(parseInt(o.text().match(/[0-9]+$/)[0]) == 0){ // return code, trailing number characters of response
+				$('#reboot').removeClass('disabled');
+			}
 		    }
                 }
                 xhr.send();
@@ -53,7 +56,7 @@ include('menu.php');
 
     <center>
         <br><br>
-        <a class="btn btn-default miner-action" id="reboot" name="reboot" href='/reboot.php'>Reboot</a>
+        <a class="btn btn-default disabled" id="reboot" name="reboot" href='/reboot.php'>Reboot</a>
     </center>
 <?php
 include('foot.php');

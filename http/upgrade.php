@@ -17,7 +17,11 @@ flush();
 //Start the  process
 passthru(FIRMWARE_UPGRADE_SCRIPT . " --url " . FIRMWARE_UPGRADE_URL, $result);
 
-echo "result:" . $result;
 if($result === 0){
 echo "\nReboot your miner to complete the upgrade.";
+}else{
+echo "Upgrade failed.";
 }
+
+echo "\nresult:" . $result;
+
