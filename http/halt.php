@@ -33,4 +33,4 @@ window.setTimeout('CountDown()',100);
 
 <?php
 
-exec('/usr/bin/halt > /dev/null 2>&1 &');
+exec('/sbin/halt > /dev/null 2>&1 &');
