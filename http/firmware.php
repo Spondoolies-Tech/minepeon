@@ -6,7 +6,6 @@ include('menu.php');
     <script type="text/javascript">
         function upgradeFirmware()
         {
-		if($(this).hasClass('disabled')) return;
             bootbox.confirm("Are you sure you want to upgrade?", function(result) {
                 if (!result) return;
 		$('.miner-action').addClass('disabled');
