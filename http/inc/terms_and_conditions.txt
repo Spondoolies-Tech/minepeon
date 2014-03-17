@@ -1,6 +1,38 @@
+<h1>EVALUATION AND BETA AGREEMENT</h1>
+<p>
+This Agreement is made as of March l, 2014 by and between Licensee and <b>Spondoolies Tech Ltd.</b>, of 1 Leshem St. Kiryat Gat, 58401, Israel (the <b>Company</b>). The Licensee and the Company, each, a <b>Party</b>, and together the <b>Parties</b>.
 
-TERMS AND CONDITIONS
+</p><p>
 
-By using this software and the Spondoolies miner, you agree to be bound by the full terms and conditions published by Spondoolies Ltd.
-The hardware and software comes with no warranty, not even the warranty of suitability for a particular purpose.
+<b>WHEREAS</b>, Company wishes to grant the Licensee non-exclusive, non-transferable and fully revocable right to use the Product (defined below) developed by the Company, and the Licensee wishes to review and evaluate the Product in order to publish the findings of such review and ascertain the Product's capabilities; and
 
+</p><p>
+
+<b>NOW THEREFORE</b>, in consideration of the mutual promises contained herein, the Parties agree as follows:
+
+</p><p>
+
+<ol>
+<li>
+<b><u>Definitions</u></b>. As used in this Agreement, the following terms shall have the following meanings:
+	<ol>
+	<li><em>"Documentation"</em> means information in written or other documentary form supplied to Licensee by the Company that relates, in whole or in part, to the Product.</li>
+	<li><em>"Product"</em> means a Bitcoin Mining Machine. </li>
+	</ol>
+</li>
+
+<li>
+ <b><u>License; Evaluation of the Product.</u></b>  Company hereby grants to Licensee a non-exclusive, nontransferable, free of charge right to use the Product for an unlimited period of time as of the date of delivery of the Product to the Licensee's possession, solely for the purpose of evaluating and ascertaining the Product's capabilities and their alignment with Company's declared specifications and capabilities of the Product (the "Review"). The Licensee undertakes to publish his/her Review in a timely manner after receipt of the Product. By using the Product, you agree to be bound by all the terms and conditions of this Agreement.
+</li>
+
+<li>
+<b><u> Term and Termination  </u></b>  This Agreement will remain in effect until the lapse of the Evaluation Period, unless it is terminated by either party by a 7 days prior notice, for any reason (the "Term").  Notwithstanding the foregoing, Company may terminate this Agreement immediately upon written notice to Licensee if Licensee breaches a material term of this Agreement.  Upon termination or expiration of this Agreement, Licensee shall immediately cease use of the Product and deliver the Product to the Company, at the Company's expense.  Sections 4 and 5 shall survive termination of this Agreement.
+</li>
+
+<li>
+<b><u> Limitation of Liability </u></b> <b>THE PRODUCT IS PROVIDED TO LICENSEE "AS IS".  LICENSEE HEREBY ACKNOWLEDGES THAT THE PRODUCT IS NOT FULLY TESTED AND HAS NOT BEEN FULLY COMPLETED BY THE COMPANY.  THEREFORE, IT MIGHT CONTAIN DEFECTS, MIGHT FAIL TO COMPLY WITH APPLICABLE SPECIFICATIONS, AND MIGHT PRODUCE UNINTENDED OR ERRONEOUS RESULTS, OR REACH HIGH TEMPERATURES OR OVERHEAT. MOREOVER, COMPANY DOES NOT WARRANT THAT THE PRODUCT AND/OR INFORMATION, CONTENT, MATERIALS, OR OTHER ITEMS INCLUDED IN OR OTHERWISE MADE AVAILABLE TO LICENSEE AS PART OF THE PRODUCT ARE FREE OF VIRUSES OR OTHER HARMFUL COMPONENTS. COMPANY WILL NOT BE LIABLE FOR ANY DAMAGES OF ANY KIND ARISING FROM THE USE OF THE PRODUCT AND/OR FROM ANY INFORMATION, CONTENT, MATERIALS, INCLUDED THEREIN, OR OTHERWISE MADE AVAILABLE TO LICENSEE THROUGH THE PRODUCT, INCLUDING, BUT NOT LIMITED TO, ANY INDIRECT, INCIDENTAL, CONSEQUENTIAL, SPECIAL OR EXEMPLARY DAMAGES ARISING FROM THIS AGREEMENT, EVEN IF THE COMPANY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES, SUCH AS, BUT NOT LIMITED TO, LOSS OF REVENUE OR ANTICIPATED PROFITS OR LOST BUSINESS.</b>
+</li>
+
+<li>
+<b><u> General </u></b> (a) This Agreement may be modified, changed or amended only in writing, signed by both parties. (b) No delay or failure of any party to exercise any right provided herein shall in any way affect its right to enforce that right or any other right under this Agreement at a later time.  No waiver shall be effective unless in writing signed by the waiving party.  (c) If any provision of this Agreement is declared invalid by any lawful tribunal, then it shall be adjusted to conform to legal requirements of that tribunal and that modification shall automatically become a part of the Agreement.  Or, if no adjustment can be made, the provision shall be deleted as though never included in the Agreement and its remaining provisions shall remain in full force and effect.  (d) The Company and Licensee are independent contractors, and neither party shall be, nor represent itself to be, the joint venturer, franchiser, franchisee, partner, broker, employee, servant, agent or representative of the other party for any purpose.  Neither party is, or shall be, responsible for the acts or omissions of the other and neither party shall bear authority to make any representation or incur any obligation on behalf of the other party unless expressly authorized herein.  (e) Neither this Agreement nor individual transactions nor rights under it shall be assigned, nor shall any obligation be delegated by Licensee without the prior written consent of the Company.  Any attempted assignment or delegation without the Company's prior written approval shall be void.  (f) Any notice under this Agreement shall be effective upon initial receipt by addressee regardless of whether notice is rejected if notice is in writing, signed by an authorized representative of the noticing party, and sent by registered or certified mail, return receipt requested, postage prepaid to the Company, at the address stated at the beginning of this Agreement, and to Licensee, at the address stated at the beginning of this Agreement, or as updated by either party from time to time.  (g) This Agreement shall be governed by and construed in accordance with the laws of the State of Israel without regard to the provisions of conflict of laws.  The appropriate courts sitting in Tel Aviv, Israel shall have sole and exclusive jurisdiction and venue over any dispute related to this Agreement and both parties hereby consent to such jurisdiction and venue.  (h) This Agreement, together with the Company's End User License Agreement, constitute the complete and exclusive statement of the agreement between the parties and supersede all prior oral and/or written agreements, communications, representations, statements, negotiations and undertakings relating to the subject matters herein.
+</li>
