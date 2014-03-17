@@ -12,7 +12,7 @@ include('menu.php');
 ?>
 
 <div class="container">
-	<p class="alert"><b>WARNING:</b> There is very little validation on these settings at the moment so make sure your settings are correct!</p>
+	<p class="alert"><b>WARNING:</b> Make sure that you enter the correct values.</p>
 	<h1>Pools</h1>
 	<p>Miner will use the following pool:</p>
 	<form id="formpools">
@@ -75,7 +75,7 @@ $(document).ready(function() {
 		$('.save-msg').addClass('alert-success alert').text("Pool data succesfully saved and miner restarted.");
 	}
 	else if(window.location.search=="?s-"){
-		$('.save-msg').addClass('alert-warning alert').text('Pool data succesfully saved. But failed to restart miner.');
+		$('.save-msg').addClass('alert-warning alert').text('Pool data succesfully saved but failed to restart miner.');
 	}
 
 	$('#save').click( function() {

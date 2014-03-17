@@ -44,7 +44,7 @@ include('menu.php');
     <div>
 
         <div class="container">
-            <p class="alert"><b>WARNING:</b> Power interruption during the upgrade may brick your unit!</p>
+            <p class="alert"><b>WARNING:</b> Power interruption during the upgrade may brick your unit  and will require microSD restore procedure.</p>
             <h1>Firmware upgrade</h1>
             <a name="upgrade" class="btn btn-default miner-action" onclick="upgradeFirmware()">Upgrade Now</a>
             <br><br>

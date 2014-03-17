@@ -25,7 +25,7 @@ window.setTimeout('CountDown()',100);
   <center>
   <p><h1>Restarting Miner</h1></p>
   <p>You will be redirected in</p> 
-  <p><h1 id="countdown">15</h1></p>  
+  <p><h1 id="countdown">15</h1></p>
   <p>seconds.</p> 
   </center>
   </body>
