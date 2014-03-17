@@ -11,9 +11,7 @@ require_once('head.php');
 ?>
 <div class="text-center container">
 <div class="text-left text-info">
-<pre>
 <?=$agreement?>
-</pre>
 </div>
 <?php if(!array_key_exists('accept', $settings) || ! intval(time($settings['accept'])) ){ ?>
 <a id="agree" onclick="agree()" class="btn btn-info">Yes, I agree to the terms and conditions.</a>
