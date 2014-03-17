@@ -24,7 +24,7 @@ window.setTimeout('CountDown()',100);
   <body>
   <center>
   <p><h1>Rebooting SP10 Dawson</h1></p>
-  <p>You will be redirected in</p> 
+  <p>You will be reconnected in</p>
   <p><h1 id="countdown">60</h1></p>  
   <p>seconds.</p> 
   </center>

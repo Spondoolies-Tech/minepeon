@@ -285,6 +285,7 @@ include('menu.php');
                   <br />
                   <input type="password" placeholder="Repeat Password" id="userPassword2" name="userPassword2" class="form-control" onblur="checkPass('userPassword', 'submitPassword');">
                   <br />
+                  <p class="help-block alert">WARNING: If you forget your password you will need to do recovery with micro-SDcard.</p>
                   <button type="submit" id="submitPassword" class="btn btn-default">Save</button>
               </div>
 
@@ -303,6 +304,7 @@ include('menu.php');
                   <br />
                   <input type="password" placeholder="Repeat Password" id="rootPassword2" name="rootPassword2" class="form-control" onblur="checkPass('rootPassword', 'submitRootPassword');">
                   <br />
+                  <p class="help-block alert">It is highly recommended that you change this password, <br\>but if you forget your password and want to access your <br\>miner with ssh you will need to do recovery with micro-SDcard.</p>
                   <button type="submit" id="submitRootPassword" class="btn btn-default">Save</button>
               </div>
 
