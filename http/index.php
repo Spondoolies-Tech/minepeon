@@ -378,9 +378,9 @@ function poolsTable($pools) {
     $table = $table . "
     <tr class='" . $rowclass . "'>
 	<td>";
-	if($poolID != 0) {
+	/*if($poolID != 0) {
 		$table = $table . "<a href='/?url=" . urlencode($pool['URL']) . "&user=" . urlencode($pool['User']) . "'><img src='/img/up.png'></td>";
-	}
+	}*/
 	$table = $table . "
     <td class='text-left'>" . $poolURL[1] . "</td>
     <td class='text-left ellipsis'>" . $pool['User'] . "</td>
