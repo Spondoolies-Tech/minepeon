@@ -23,14 +23,11 @@ include('menu.php');
                             o.html(xhr.responseText);
                         else if(xhr.response)
                             o.html(xhr.response);
-
-                        /*if(xhr.responseText.match("result:"))
-                            $('#reboot').disabled = false;*/
                     }
 		    if(xhr.readyState == 4){
 			$('.miner-action').removeClass('disabled');
-			if(parseInt(o.text().match(/[0-9]+$/)[0]) == 0){ // return code, trailing number characters of response
-				$('#reboot').removeClass('disabled');
+			if(o.text().search("Reboot your miner") >= 0){ // return code, trailing number characters of response
+				$('#reboot').removeClass('hidden');
 			}
 		    }
                 }
@@ -59,7 +56,7 @@ include('menu.php');
 
     <center>
         <br><br>
-        <a class="btn btn-default disabled" id="reboot" name="reboot" href='/reboot.php'>Reboot</a>
+        <a class="btn btn-default hidden" id="reboot" name="reboot" href='/reboot.php'>Reboot</a>
     </center>
 <?php
 include('foot.php');
