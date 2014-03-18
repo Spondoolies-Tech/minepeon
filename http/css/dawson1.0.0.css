@@ -1,0 +1,10 @@
+body{
+color: #252555;
+}
+
+.btn-default{
+/**
+ * overrides #474949
+ */
+background-color: #6c6e6e;
+}
