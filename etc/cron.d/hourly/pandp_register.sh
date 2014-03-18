@@ -68,3 +68,4 @@ else
 	printf "error registering machine, %s" $s | tee -a /var/messages
 fi
 
+echo "done p&p register" >> /var/messages
