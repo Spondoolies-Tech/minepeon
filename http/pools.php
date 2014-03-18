@@ -12,7 +12,6 @@ include('menu.php');
 ?>
 
 <div class="container">
-	<p class="alert"><b>WARNING:</b> Make sure that you enter the correct values.</p>
 	<h1>Pools</h1>
 	<p>Miner will use the following pool:</p>
 	<form id="formpools">

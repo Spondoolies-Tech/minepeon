@@ -103,7 +103,7 @@ include('menu.php');
   <?php
   }
 	if(!$running){
-echo "<center class='alert alert-warning'><h1>".$error."</h1></center>";
+echo "<center class='alert alert-info'><h1>".$error."</h1></center>";
 	}
   ?>
   <div class="row">
@@ -166,7 +166,7 @@ echo "<center class='alert alert-warning'><h1>".$error."</h1></center>";
     </thead>
     <tbody>
       <?php if($running) echo poolsTable($pools['POOLS']); 
-	    else echo "<div class='alert alert-danger'>".$error."</div>";
+	    else echo "<div class='alert alert-info'>".$error."</div>";
 	?>
     </tbody>
   </table>
@@ -205,7 +205,7 @@ include('foot.php');
 
 function statsTable($devs) {
   if(count($devs)==0){
-    return "</tbody></table><div class='alert alert-danger'>No devices running</div>";
+    return "</tbody></table><div class='alert alert-info'>Miner not ready</div>";
   }
 
   $devices = 0;
