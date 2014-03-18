@@ -22,6 +22,9 @@ if (!empty($_REQUEST['parameter'])) {
 $host = "127.0.0.1";
 $port = 4028;
 
+// Declare response
+$response = "";
+
 // Setup socket
 $client = stream_socket_client("tcp://$host:$port", $errno, $errorMessage);
 
@@ -42,7 +45,8 @@ else{
 	$r = json_decode($response, true);
 }
 
-$r['success'] = ($client === false);
+// Parse response for CGMiner RESTART status
+$r['success'] = strstr($response, "RESTART");
 $r['command'] = $command;
 echo json_encode($r);
 ?>
