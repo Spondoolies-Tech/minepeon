@@ -6,7 +6,7 @@
 <script type="text/javascript">
 var start = new Date();
 start = Date.parse(start)/1000;
-var seconds = 60;
+var seconds = 90;
 function CountDown(){
     var now = new Date();
     now = Date.parse(now)/1000;

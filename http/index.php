@@ -294,7 +294,7 @@ function statsTable($devs) {
 		$hwErrorPercent = $hwErrorPercent + $dev['DeviceHardware%'];
 		$Utility = $Utility + $dev['Utility'];
 
-		$GLOBALS['G_MHSav'] = $MHSav . " MH/s|" . $devices . " DEV";
+		$GLOBALS['G_MHSav'] = $MHSav / 1000 . " GH/s|" . $devices . " DEV";
 
 	}
   }
