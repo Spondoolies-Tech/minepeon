@@ -10,7 +10,7 @@ header('Cache-Control: no-store, no-cache, must-revalidate');
 header('Cache-control: post-check=0, pre-check=0', false);
 header('Pragma: no-cache');
 
-echo "Beginning upgrade, this can take up to 3 minutes.\n";
+echo "Beginning upgrade. This can take up to 1 minute.\n";
 ob_flush();
 flush();
 
@@ -21,5 +21,5 @@ if($result === 0){
 //DO NOT CHANGE THIS!!! It's used for UI show Reboot button mechanism
 echo "\nReboot your miner to complete the upgrade.";
 }else{
-echo "Upgrade failed.";
+echo "Upgrade failed this time, but you can try again.";
 }

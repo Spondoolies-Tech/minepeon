@@ -98,8 +98,8 @@ include('menu.php');
   <?php
   } else {
   ?>
-  <center><h1>Processing mining history for visualisation</h1></center>
-  <center><h2>Stay calm and carry on</h2></center>
+  <center><h1>Processing history</h1></center>
+  <center><h2>Amazing graphs will be available shortly</h2></center>
   <?php
   }
 	if(!$running){
@@ -131,6 +131,8 @@ echo "<center class='alert alert-info'><h1>".$error."</h1></center>";
       <dl class="dl-horizontal">
         <dt>Hardware Version</dt>
         <dd><?php echo $version; ?></dd>
+        <dt>FW Version</dt>
+        <dd><?php echo(file_get_contents("/fw_ver")) ?></dd>
         <dt>CGMiner Version</dt>
         <dd><?php echo $summary['STATUS'][0]['Description']; ?></dd>
 <!--        <dt>Donation Minutes</dt>
@@ -246,7 +248,11 @@ function statsTable($devs) {
 	if ($dev['MHS5s'] < 1) {
 		// not mining, not a valid device
 		$validDevice = false;
-	}
+	} else {
+        // Veird mismatch between us and the pool.
+        $dev['MHSav'] = $dev['MHSav']*125/110;
+
+    }
 
 	if ((time() - $dev['LastShareTime']) > 500) {
 		// Only show devices that have returned a share in the past 5 minutes
