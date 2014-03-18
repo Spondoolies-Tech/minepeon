@@ -3,6 +3,7 @@
 require_once('global.inc.php');
 require_once('miner.inc.php');
 require_once('network.inc.php');
+require_once('constants.inc.php');
 
 // Check for settings to write and do it after all checks
 $writeSettings=false;
@@ -42,8 +43,10 @@ if (isset($_POST['dhcpEnable'])) {
 if (isset($_POST['userPassword1'])) {
 
 	if ($_POST['userPassword1'] <> '') {
-	
-		exec("/usr/bin/htdigest /etc/ui.pwd admin " . $_POST['userPassword1']);
+        $hash = crypt($_POST['userPassword1'], base64_encode($_POST['userPassword1']));
+        $contents = UI_USER_NAME . ':' . $hash;
+        file_put_contents('/etc/ui.pwd', $contents);
+
 		header('Location: /settings.php');
 		exit;
 
