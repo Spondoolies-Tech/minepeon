@@ -1,5 +1,5 @@
 <?php
-require_once('constants.php');
+require_once('constants.inc.php');
 header("Content-type: text/text");
 header("Transfer-Encoding: chunked");
 

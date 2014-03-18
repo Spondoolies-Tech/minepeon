@@ -48,8 +48,6 @@ function set_fixed_network($settings)
     "gateway ".$settings['2']."\n";
 
     file_put_contents("/etc/network/interfaces", $network_file);
-
-    exec("/etc/init.d/network restart");
 }
 
 function set_dhcp_network()
@@ -62,8 +60,6 @@ function set_dhcp_network()
         "iface eth0 inet dhcp\n";
 
     file_put_contents("/etc/network/interfaces", $network_file);
-
-    exec("/etc/init.d/network restart");
 }
 
 $network_settings = get_network("eth0");

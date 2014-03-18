@@ -1,4 +1,3 @@
-<?php require_once('constants.php');?>
 <div class="navbar">
   <div class="container">
     <a class="navbar-brand" href="/">SP10 Dawson</a>
