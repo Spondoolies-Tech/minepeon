@@ -84,26 +84,16 @@ include('menu.php');
   if (file_exists('/tmp/rrd/mhsav-hour.png')) {
   ?>
   <p class="text-center">
-    <img src="rrd/mhsav-hour.png" alt="Mhash - Last Hour" />
-    <img src="rrd/temp-hour.png" alt="Temperature - Last Hour" />
-    <br/><a href="#" id="chartToggle">Display extended charts</a>
-  </p>
-  <!-- temp -->
-  <p class="text-center collapse chartMore">
-    <img src="rrd/mhsav-day.png" alt="Mhash - Past Day" />
-    <img src="rrd/temp-day.png" alt="Temperature - Past Day" /><br/>
+    <img src="rrd/mhsav-hour.png" alt="mhsav.png" />
+    <img src="rrd/mhsav-day.png" alt="mhsav.png" /><br/>
+    <a href="#" id="chartToggle">Display extended charts</a>
   </p>
   <p class="text-center collapse chartMore">
-    <img src="rrd/mhsav-week.png" alt="Mhash - Week" />
-    <img src="rrd/temp-week.png" alt="Temperature - Week" />
+    <img src="rrd/mhsav-week.png" alt="mhsav.png" />
+    <img src="rrd/mhsav-month.png" alt="mhsav.png" />
   </p>
   <p class="text-center collapse chartMore">
-    <img src="rrd/mhsav-month.png" alt="Mhash - Month" />
-    <img src="rrd/temp-month.png" alt="Temperature - Month" />
-  </p>
-  <p class="text-center collapse chartMore">
-    <img src="rrd/mhsav-year.png" alt="Mhash - Year" />
-    <img src="rrd/temp-year.png" alt="Temperature - Year" />
+    <img src="rrd/mhsav-year.png" alt="mhsav.png" />
   </p>
   <?php
   } else {
