@@ -98,8 +98,8 @@ include('menu.php');
   <?php
   } else {
   ?>
-  <center><h1>Not enough data to show graphs</h1></center>
-  <center><h2>Gathering history information</h2></center>
+  <center><h1>Processing mining history for visualisation</h1></center>
+  <center><h2>Stay calm and carry on</h2></center>
   <?php
   }
 	if(!$running){
