@@ -10,7 +10,7 @@
       <li><a href="contact.php">Contact</a></li>
 -->      <li><a href="license.php">License</a></li>
     </ul>
-	<a href="http://www.spondoolies-tech.com"><img class="logo responsive pull-right" src="img/SpondooliesLogo-small.png" /></a>
+	<a href="http://www.spondoolies-tech.com"><img class="logo responsive pull-right" src="img/SpondooliesLogo-transparent-small.png" /></a>
   </div>
 </div>
 
