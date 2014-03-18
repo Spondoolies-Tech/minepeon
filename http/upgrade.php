@@ -18,10 +18,8 @@ flush();
 passthru(FIRMWARE_UPGRADE_SCRIPT . " --url " . FIRMWARE_UPGRADE_URL, $result);
 
 if($result === 0){
+//DO NOT CHANGE THIS!!! It's used for UI show Reboot button mechanism
 echo "\nReboot your miner to complete the upgrade.";
 }else{
 echo "Upgrade failed.";
 }
-
-echo "\nresult:" . $result;
-

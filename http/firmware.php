@@ -9,7 +9,7 @@ include('menu.php');
         {
             bootbox.confirm("Press Ok to continue SW upgrade. Your pool settings will not be affected. Note that power interruption during the upgrade may brick your unit and require restore procedure with microSD card.", function(result) {
                 if (!result) return;
-		$('.miner-action').addClass('disabled');
+                $('.miner-action').addClass('disabled');
 
                 var o = $('#upgrade_output');
                 //var s = $('#upgrade_scroller');
@@ -23,17 +23,17 @@ include('menu.php');
                             o.html(xhr.responseText);
                         else if(xhr.response)
                             o.html(xhr.response);
-
-                        /*if(xhr.responseText.match("result:"))
-                            $('#reboot').disabled = false;*/
                     }
-		    if(xhr.readyState == 4){
-			$('.miner-action').removeClass('disabled');
-			if(parseInt(o.text().match(/[0-9]+$/)[0]) == 0){ // return code, trailing number characters of response
-				$('#reboot').removeClass('disabled');
-			}
-		    }
-                }
+
+                    if(xhr.readyState == 4){
+                        $('.miner-action').removeClass('disabled');
+
+                        if(o.text().search("Reboot your miner") >= 0){ // return code, trailing number characters of response
+                            $('#reboot').removeClass('hidden');
+                        }
+                    }
+                };
+
                 xhr.send();
             });
 
@@ -46,6 +46,8 @@ include('menu.php');
         <div class="container">
            <!-- <p class="alert"><b>WARNING:</b> Power interruption during the upgrade may brick your unit  and will require microSD restore procedure.</p> -->
             <h1>Firmware upgrade</h1>
+            <p class="help-block">Your current firmware version is <b><? echo(file_get_contents("/fw_ver")) ?></b>.</p>
+            <br>
             <a name="upgrade" class="btn btn-default miner-action" onclick="upgradeFirmware()">Upgrade Now</a>
             <br><br>
             <pre>
@@ -57,7 +59,7 @@ include('menu.php');
 
     <center>
         <br><br>
-        <a class="btn btn-default disabled" id="reboot" name="reboot" href='/reboot.php'>Reboot</a>
+        <a class="btn btn-default hidden" id="reboot" name="reboot" href='/reboot.php'>Reboot</a>
     </center>
 <?php
 include('foot.php');
