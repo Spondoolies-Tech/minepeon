@@ -10,7 +10,7 @@ header('Cache-Control: no-store, no-cache, must-revalidate');
 header('Cache-control: post-check=0, pre-check=0', false);
 header('Pragma: no-cache');
 
-echo "Beginning upgrade....\n";
+echo "Beginning upgrade, this can take up to 3 minutes.\n";
 ob_flush();
 flush();
 
