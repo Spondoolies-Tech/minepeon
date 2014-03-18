@@ -36,7 +36,7 @@ if (isset($_POST['dhcpEnable'])) {
   else
       set_fixed_network(array($_POST['ipaddress'], $_POST['subnet'], $_POST['gateway']));
 
-  header('Location: /settings.php');
+  header('Location: /reboot.php');
   exit;
 }
 
@@ -235,7 +235,7 @@ include('menu.php');
 <!-- ######################## -->
 
 <!-- ######################## Network -->
-  <form name="network" action="/settings.php" method="post" class="form-horizontal">
+<!--  <form name="network" action="/settings.php" method="post" class="form-horizontal">
     <fieldset>
       <legend>Network settings</legend>
       <div class="form-group">
@@ -243,38 +243,38 @@ include('menu.php');
           <div class="checkbox">
             <input type='hidden' value='false' name='dhcpEnable'>
             <label>
-              <input type="checkbox" <?php echo $settings['dhcpEnable']?"checked":""; ?> value="true" id="dhcpEnable" name="dhcpEnable"> Use DHCP
+              <input type="checkbox" <?php /*echo $settings['dhcpEnable']?"checked":""; */?> value="true" id="dhcpEnable" name="dhcpEnable"> Use DHCP
             </label>
           </div>
         </div>
       </div>
-      <div class="form-group dhcp-enabled <?php echo $settings['dhcpEnable']?"":"collapse"; ?>">
+      <div class="form-group dhcp-enabled <?php /*echo $settings['dhcpEnable']?"":"collapse"; */?>">
         <label for="ipaddress" class="control-label col-lg-3">IP address</label>
         <div class="col-lg-9">
-          <input type="text" value="<?php echo $network_settings['ipaddress'] ?>" id="ipaddress" name="ipaddress" class="form-control" placeholder="192.x.x.x">
+          <input type="text" value="<?php /*echo $network_settings['ipaddress'] */?>" id="ipaddress" name="ipaddress" class="form-control" placeholder="192.x.x.x">
         </div>
       </div>
-      <div class="form-group dhcp-enabled <?php echo $settings['dhcpEnable']?"":"collapse"; ?>">
+      <div class="form-group dhcp-enabled <?php /*echo $settings['dhcpEnable']?"":"collapse"; */?>">
         <label for="subnet" class="control-label col-lg-3">Subnet</label>
         <div class="col-lg-9">
-          <input type="text" value="<?php echo $network_settings['subnet'] ?>" id="subnet" name="subnet" class="form-control" placeholder="255.255.255.0">
+          <input type="text" value="<?php /*echo $network_settings['subnet'] */?>" id="subnet" name="subnet" class="form-control" placeholder="255.255.255.0">
         </div>
       </div>
-      <div class="form-group dhcp-enabled <?php echo $settings['dhcpEnable']?"":"collapse"; dhcpEnable?>">
+      <div class="form-group dhcp-enabled <?php /*echo $settings['dhcpEnable']?"":"collapse"; dhcpEnable*/?>">
         <label for="gateway" class="control-label col-lg-3">Gateway</label>
         <div class="col-lg-9">
-          <input type="text" value="<?php echo $network_settings['gateway'] ?>" id="gateway" name="gateway" class="form-control" placeholder="192.x.x.1">
+          <input type="text" value="<?php /*echo $network_settings['gateway'] */?>" id="gateway" name="gateway" class="form-control" placeholder="192.x.x.1">
         </div>
       </div>
 
       <div class="form-group">
         <div class="col-lg-9 col-offset-3">
           <p class="help-block alert">WARNING: Incorrect settings may make your miner unavailable.</p>
-          <button type="submit" class="btn btn-default">Save</button>
+          <button type="submit" class="btn btn-default">Save and Reboot</button>
         </div>
       </div>
     </fieldset>
-  </form>
+  </form>-->
 <!-- ######################## -->
 
   <!-- ######################## Passwords -->
