@@ -46,7 +46,7 @@ include('menu.php');
         <div class="container">
            <!-- <p class="alert"><b>WARNING:</b> Power interruption during the upgrade may brick your unit  and will require microSD restore procedure.</p> -->
             <h1>Firmware upgrade</h1>
-            <p class="help-block">Your current firmware version is <b><?php echo(file_get_contents("/fw_ver")) ?></b>.</p>
+            <p class="help-block">Your current firmware version is <b><?php echo(file_get_contents("/fw_ver")) ?></b></p>
             <br>
             <a name="upgrade" class="btn btn-default miner-action" onclick="upgradeFirmware()">Upgrade Now</a>
             <br><br>
