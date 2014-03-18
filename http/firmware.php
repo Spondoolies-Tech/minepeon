@@ -7,7 +7,7 @@ include('menu.php');
     <script type="text/javascript">
         function upgradeFirmware()
         {
-            bootbox.confirm("Are you sure you want to upgrade?", function(result) {
+            bootbox.confirm("Press Ok to continue SW upgrade. Your pool settings will not be affected. Note that power interruption during the upgrade may brick your unit and require restore procedure with microSD card.", function(result) {
                 if (!result) return;
                 $('.miner-action').addClass('disabled');
 
@@ -44,7 +44,7 @@ include('menu.php');
     <div>
 
         <div class="container">
-            <p class="alert"><b>WARNING:</b> Power interruption during the upgrade may brick your unit  and will require microSD restore procedure.</p>
+           <!-- <p class="alert"><b>WARNING:</b> Power interruption during the upgrade may brick your unit  and will require microSD restore procedure.</p> -->
             <h1>Firmware upgrade</h1>
             <p class="help-block">Your current firmware version is <b><?php echo(file_get_contents("/fw_ver")) ?></b>.</p>
             <br>

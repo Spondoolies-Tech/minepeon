@@ -13,7 +13,7 @@ include('menu.php');
 
 <div class="container">
 	<h1>Pools</h1>
-	<p>Miner will use the following pool:</p>
+	<p>Miner will use the following pool (the order of pools defines priority):</p>
 	<form id="formpools">
 		<input type="hidden" name="saving" value="1">
 		<?php
