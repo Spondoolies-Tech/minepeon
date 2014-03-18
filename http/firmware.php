@@ -9,7 +9,7 @@ include('menu.php');
         {
             bootbox.confirm("Are you sure you want to upgrade?", function(result) {
                 if (!result) return;
-		$('.miner-action').addClass('disabled');
+                $('.miner-action').addClass('disabled');
 
                 var o = $('#upgrade_output');
                 //var s = $('#upgrade_scroller');
@@ -24,13 +24,16 @@ include('menu.php');
                         else if(xhr.response)
                             o.html(xhr.response);
                     }
-		    if(xhr.readyState == 4){
-			$('.miner-action').removeClass('disabled');
-			if(o.text().search("Reboot your miner") >= 0){ // return code, trailing number characters of response
-				$('#reboot').removeClass('hidden');
-			}
-		    }
-                }
+
+                    if(xhr.readyState == 4){
+                        $('.miner-action').removeClass('disabled');
+
+                        if(o.text().search("Reboot your miner") >= 0){ // return code, trailing number characters of response
+                            $('#reboot').removeClass('hidden');
+                        }
+                    }
+                };
+
                 xhr.send();
             });
 
