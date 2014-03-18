@@ -79,7 +79,7 @@ include('head.php');
 include('menu.php');
 ?>
 <div class="container">
-  <h2>Status</h2>
+  <h3 id="miner-header-txt">Not mining</h3><br>
   <?php
   if (file_exists('/tmp/rrd/mhsav-hour.png')) {
   ?>
@@ -173,7 +173,7 @@ echo "<center class='alert alert-info'><h1>".$error."</h1></center>";
     </tbody>
   </table>
 
-  <h3>Miner</h3>
+  <h3>Statistics</h3>
   <?php echo statsTable($devs); ?>
   <?php
   if ($debug == true) {
@@ -207,7 +207,7 @@ include('foot.php');
 
 function statsTable($devs) {
   if(count($devs)==0){
-    return "</tbody></table><div class='alert alert-info'>Miner not ready</div>";
+    return "</tbody></table><div class='alert alert-info'>Miner is not ready</div>";
   }
 
   $devices = 0;
@@ -217,7 +217,7 @@ function statsTable($devs) {
   $HardwareErrors = 0;
   $Utility = 0;
 
-  $tableRow = '<table id="stats" class="tablesorter table table-striped table-hover stats">
+  $tableRow = '<table id="stats" class="table table-striped table-hover stats">
     <thead>
       <tr>
         <th>Name</th>
@@ -226,9 +226,9 @@ function statsTable($devs) {
         <th>Temp</th>
 -->
         <th>GH/s</th>
-        <th>Accept</th>
-        <th>Reject</th>
-        <th>Error</th>
+        <th>Accepted shares</th>
+        <th>Rejected shares</th>
+        <th>Errors</th>
         <th>Utility</th>
         <th>Last Share</th>
       </tr>
@@ -250,7 +250,7 @@ function statsTable($devs) {
 		$validDevice = false;
 	} else {
         // Veird mismatch between us and the pool.
-        $dev['MHSav'] = $dev['MHSav']*125/110;
+        $dev['MHSav'] = $dev['MHSav']*140/130;
 
     }
 
@@ -273,7 +273,12 @@ function statsTable($devs) {
 		} else {
 			$tableRow = $tableRow . "<tr class=\"success\">";
 		}
-		
+        if($dev['MHSav']/1000 > 100){
+    ?>
+    <script type="text/javascript">document.getElementById("miner-header-txt").innerText = "<?php echo "Mining Rate: ".round($dev['MHSav']/1000000,2)?>Ths";</script>
+    <?php
+        }
+
 	$tableRow = $tableRow . "<td>" . "SP10" . "</td>
       <!-- <td>" . "1" . "</td>
       <td>" . $temperature . "</td> -->

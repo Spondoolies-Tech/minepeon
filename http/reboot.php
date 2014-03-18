@@ -33,4 +33,6 @@ window.setTimeout('CountDown()',100);
 
 <?php
 
+exec('spond-manager stop > /dev/null 2>&1 &');
+sleep(5);
 exec('/sbin/reboot > /dev/null 2>&1 &');

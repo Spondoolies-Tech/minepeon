@@ -6,7 +6,7 @@
 <script type="text/javascript">
 var start = new Date();
 start = Date.parse(start)/1000;
-var seconds = 30;
+var seconds = 20;
 function CountDown(){
     var now = new Date();
     now = Date.parse(now)/1000;
@@ -18,7 +18,7 @@ function CountDown(){
         location.href = "/"
     }
 }
-window.setTimeout('CountDown()',100);
+window.setTimeout('CountDown()',20);
 </script>
   </head>
   <body>
@@ -32,5 +32,6 @@ window.setTimeout('CountDown()',100);
 </html>
 
 <?php
-
+exec('spond-manager stop > /dev/null 2>&1 &');
+sleep(5);
 exec('/sbin/halt > /dev/null 2>&1 &');
