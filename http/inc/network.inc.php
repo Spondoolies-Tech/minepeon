@@ -42,12 +42,20 @@ function set_fixed_network($settings)
 
     $network_file = $network_file_header.
     "#Your static network configuration\n".
+    "auto eth0\n".
     "iface eth0 inet static\n".
     "address ".$settings['0']."\n".
     "netmask ".$settings['1']."\n".
     "gateway ".$settings['2']."\n";
 
     file_put_contents("/etc/network/interfaces", $network_file);
+
+
+    $resolve_file = $network_file_header.
+    "#Your static network configuration\n".
+    "nameserver ".$settings['3']."\n";
+
+    file_put_contents("/etc/resolve.conf", $resolve_file);
 }
 
 function set_dhcp_network()
