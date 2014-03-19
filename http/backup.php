@@ -12,4 +12,5 @@ header('Pragma: no-cache');
 header('Expires: 0');
 
 // create the gzipped tarfile.
-passthru( "tar cz /etc/minepeon.conf /etc/cgminer.conf /mnt/mmc-config/rrd/*.rrd");
+// tar on miner does not support "z" flag
+passthru( "tar c /etc/minepeon.conf /etc/cgminer.conf /mnt/mmc-config/rrd/*.rrd | gzip ");
