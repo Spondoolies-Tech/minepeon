@@ -54,3 +54,13 @@ function getMinerSpeed(){
 	if(file_exists(MINER_WORKMODE_FILE)) return file_get_contents(MINER_WORKMODE_FILE);
 	return DEFAULT_MINER_WORKMODE;
 }
+
+function miner_service($op = "restart"){
+	exec('/usr/local/bin/spond-manager '.$op. " > /dev/null");
+	if(!$ret) return 'Operation succesful';
+	else return 'There was an error while calling the Spondoolies manager.';
+}
+
+
+
+
