@@ -525,12 +525,12 @@ include('menu.php');
       </div>
       <div class="form-group">
 		<div class="col-lg-9 col-offset-3">
-		  <input type="file" name="file" id="file" class="btn btn-default" data-input="false">
+		  <input type="file" name="file" id="file" class="btn btn-default" onchange="enableRestore()" data-input="false">
 		</div>
 	  </div>
 	  <div class="form-group">
 		<div class="col-lg-9 col-offset-3">
-		  <button type="submit" name="submit" class="btn btn-default">Restore</button>
+		  <button type="submit" id="restore_button" name="submit" class="btn btn-default disabled" onclick="return  document.getElementById('file').value != ''">Restore</button>
 		  <p class="help-block">Restoring a configuration will cause your miner to reboot.</p>
 		</div>
       </div>
@@ -569,7 +569,11 @@ include('menu.php');
         message.style.color = badColor;
         message.innerHTML = "Passwords Do Not Match!"
     }
-} </script>
+}
+  function enableRestore(){
+  	$('#restore_button').removeClass('disabled');
+  }
+</script>
 <?php
 include('foot.php');
 ?>
