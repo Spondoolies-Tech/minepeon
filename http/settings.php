@@ -34,7 +34,7 @@ if (isset($_POST['dhcpEnable'])) {
   if($_POST['dhcpEnable'] == "true")
       set_dhcp_network();
   else
-      set_fixed_network(array($_POST['ipaddress'], $_POST['subnet'], $_POST['gateway']));
+      set_fixed_network(array($_POST['ipaddress'], $_POST['subnet'], $_POST['gateway'], $_POST['dns1']));
 
   header('Location: /reboot.php');
   exit;
