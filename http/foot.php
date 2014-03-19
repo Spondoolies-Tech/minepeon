@@ -35,6 +35,13 @@
     $('#alertSMTPAuth').click(function() {
       $(".smtpauth-enabled").toggle(this.checked);
     });
+    // highlight active tab
+    $('.navbar li').each(function(){
+    	if($('a', this).attr('href') == document.location.pathname){
+		$(this).addClass('active');
+		return false;
+	}
+    });
   });
 </script>
 
