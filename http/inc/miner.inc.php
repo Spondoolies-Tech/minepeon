@@ -44,3 +44,13 @@ echo $e;
   }
   
 }
+
+function setMinerSpeed($speed){
+	if(!is_numeric($speed) ) return;
+	file_put_contents(MINER_WORKMODE_FILE, $speed);
+}
+
+function getMinerSpeed(){
+	if(file_exists(MINER_WORKMODE_FILE)) return file_get_contents(MINER_WORKMODE_FILE);
+	return DEFAULT_MINER_WORKMODE;
+}

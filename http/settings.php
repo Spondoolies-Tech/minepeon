@@ -97,6 +97,9 @@ if (isset($_POST['miningExpHash'])) {
   $writeSettings=true;
 
 }
+if (isset($_POST['minerSpeed'])) {
+  setMinerSpeed(intval($_POST["minerSpeed"]));
+}
 
 // Donation settings
 if (isset($_POST['donateEnable']) and isset($_POST['donateAmount'])) {
@@ -202,6 +205,7 @@ foreach(DateTimeZone::listIdentifiers() as $tz) {
 }
 $tzselect = $tzselect . '</select>';
 
+$minerSpeed = getMinerSpeed();
 
 include('head.php');
 include('menu.php');
@@ -210,20 +214,20 @@ include('menu.php');
   <h2>Settings</h2>
 
 <!-- ######################## Miner speed -->
-<!--  <form name="speed" action="/settings.php" method="post" class="form-horizontal">
+<form name="speed" action="/settings.php" method="post" class="form-horizontal">
       <fieldset>
           <legend>Miner speed</legend>
           <div class="form-group">
               <div class="col-lg-9 col-offset-3">
                   <div class="radio">
                       <label>
-                          <input type="radio" name="minerSpeed" id="minerSpeed" value="silent" <?php /*echo $settings['minerSpeed'] == 1?"checked":""; */?> >Silent<br>
+                          <input type="radio" name="minerSpeed" id="minerSpeed" value="silent" <?php echo $minerSpeed == 0?"checked":"";?> >Silent<br>
                       </label>
                       <label>
-                          <input type="radio" name="minerSpeed" id="minerSpeed" value="normal" <?php /*echo $settings['minerSpeed'] == 2?"checked":""; */?> >Normal<br>
+                          <input type="radio" name="minerSpeed" id="minerSpeed" value="normal" <?php echo $minerSpeed == 1?"checked":"";?> >Normal<br>
                       </label>
                       <label>
-                          <input type="radio" name="minerSpeed" id="minerSpeed" value="turbo" <?php /*echo $settings['minerSpeed'] == 3?"checked":""; */?> >Turbo
+                          <input type="radio" name="minerSpeed" id="minerSpeed" value="turbo" <?php echo $minerSpeed == 2?"checked":"";?> >Turbo
                       </label>
                   </div>
                   <p class="help-block">NOTE: This will change the fans noise and the power consumption.</p>
@@ -231,7 +235,7 @@ include('menu.php');
               </div>
           </div>
       </fieldset>
-  </form>-->
+  </form>
 <!-- ######################## -->
 
 <!-- ######################## Network -->
