@@ -10,7 +10,6 @@ $RRD     = $RRDPATH . $RRDFILE;
 
 
 if (!file_exists($RRD)) {
-
         $options = array(
                 "--step", "300",
                 "--start", "-12 months",
@@ -26,12 +25,21 @@ if (!file_exists($RRD)) {
 
 // ############################### Get the data
 
-require('miner.inc.php');
+#require('miner.inc.php');
 
-$return = miner("summary", "");
+#$return = miner("summary", "");
 
-$hashrate = $return['SUMMARY'][0]['MHSav'] * 1000;
+#$hashrate = $return['SUMMARY'][0]['MHSav'] * 1000;
 
+    // Veird mismatch between us and the pool.
+if (file_exists("/var/log/mg_rate_temp")) {
+	$s = file_get_contents("/var/log/mg_rate_temp");
+	$s=explode(" ", $s);
+} else {
+	$s=array(0,0);
+}
+
+$hashrate = $s[0];
 $hashrate = time() . ':' . $hashrate;
 
 $update = array(
@@ -39,12 +47,10 @@ $update = array(
 );
 
 // ###############################
-
 $ret = rrd_update($RRD, $update);
-
 // ###############################
 // Generate graph images
-function create_graph($output, $start, $title) {
+function create_graph_hash($output, $start, $title) {
     $RRDPATH = '/mnt/mmc-config/rrd/';
     $options = array(
         "--slope-mode",
@@ -62,13 +68,11 @@ function create_graph($output, $start, $title) {
     }
 }
 
-create_graph("mhsav-hour.png", "-1h", "Last Hour");
-create_graph("mhsav-day.png", "-1d", "Last Day");
-create_graph("mhsav-week.png", "-1w", "Last Week");
-create_graph("mhsav-month.png", "-1m", "Last Month");
-create_graph("mhsav-year.png", "-1y", "Last Year");
-
-// ###############################
+create_graph_hash("mhsav-hour.png", "-1h", "Last Hour");
+create_graph_hash("mhsav-day.png", "-1d", "Last Day");
+create_graph_hash("mhsav-week.png", "-1w", "Last Week");
+create_graph_hash("mhsav-month.png", "-1m", "Last Month");
+create_graph_hash("mhsav-year.png", "-1y", "Last Year");
 
 //Return hashrate
 $hashrate;

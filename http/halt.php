@@ -25,13 +25,13 @@ window.setTimeout('CountDown()',20);
   <center>
   <p><h1>Shutting Down SP10 Dawson</h1></p>
   <p>It should be safe to unplug in</p> 
-  <p><h1 id="countdown">30</h1></p>  
+  <p><h1 id="countdown">20</h1></p>
   <p>seconds.</p> 
   </center>
   </body>
 </html>
 
 <?php
-exec('spond-manager stop > /dev/null 2>&1 &');
+exec('/usr/local/bin/spond-manager stop > /dev/null 2>&1');
 sleep(5);
 exec('/sbin/halt > /dev/null 2>&1 &');

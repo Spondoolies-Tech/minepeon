@@ -21,5 +21,5 @@ if($result === 0){
 //DO NOT CHANGE THIS!!! It's used for UI show Reboot button mechanism
 echo "\nReboot your miner to complete the upgrade.";
 }else{
-echo "Upgrade failed this time, but you can try again.";
+echo "Upgrade failed this time, but you can try again later.";
 }

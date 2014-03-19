@@ -244,28 +244,23 @@ function statsTable($devs) {
 	
 	$validDevice = true;
  
-	
-	if ($dev['MHS5s'] < 1) {
-		// not mining, not a valid device
-		$validDevice = false;
-	} else {
-        // Veird mismatch between us and the pool.
-        $dev['MHSav'] = $dev['MHSav']*140/130;
 
+    // Veird mismatch between us and the pool.
+    if (file_exists("/var/log/dont_reboot")) {
+        $s = intval(file_get_contents("/var/log/mg_rate_temp"));
     }
+
+    $dev['MHSav'] = 0;
+
 
 	if ((time() - $dev['LastShareTime']) > 500) {
 		// Only show devices that have returned a share in the past 5 minutes
         //TODO: Enable on production
-		//$validDevice = false;
+		$validDevice = false;
 	}
-	
-	if (isset($dev['Temperature'])) {
-		$temperature = $dev['Temperature'];
-	} else {
-		$temperature = "N/A";
-	}
-	
+
+	$temperature = intval($s[1]);
+
 	if ($validDevice) {
 
 		if ($dev['DeviceHardware%'] >= 10 || $dev['DeviceRejected%'] > 5) {
