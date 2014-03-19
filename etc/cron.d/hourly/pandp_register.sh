@@ -40,7 +40,8 @@ firmware=`mkimage -l /mnt/${bootfrom}-boot/uImage | grep 'Image Name' | sed 's/.
 # get model number
 # script from Vladik
 EEPROM_DEVICE=/sys/bus/i2c/devices/0-0050/eeprom
-board=`dd bs=12 skip=7 count=1 if=$EEPROM_DEVICE 2>/dev/null`
+#board=`dd bs=12 skip=7 count=1 if=$EEPROM_DEVICE 2>/dev/null`
+board=`cat /board_ver`
 
 # 
 printf "External IP: %s\n" $ext_ip

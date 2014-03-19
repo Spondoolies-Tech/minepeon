@@ -11,7 +11,7 @@ $writeSettings=false;
 // Restore 
 
 if (isset($_FILES["file"]["tmp_name"])) {
-	exec("tar -xzf " . $_FILES["file"]["tmp_name"] . " -C / ");
+	exec("gunzip -cf ".$_FILES["file"]["tmp_name"] . " | tar -x -C / ");
 	header('Location: /reboot.php');
 	exit;
 }
