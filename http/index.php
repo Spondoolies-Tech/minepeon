@@ -247,10 +247,13 @@ function statsTable($devs) {
 
     // Veird mismatch between us and the pool.
     if (file_exists("/var/run/mg_rate_temp")) {
-        $s = intval(file_get_contents("/var/run/mg_rate_temp"));
+        $s = file_get_contents("/var/run/mg_rate_temp");
+        $s = explode(" ", $s);
+    } else {
+        $s = array(0,0,0);
     }
 
-    $dev['MHSav'] = 0;
+    $dev['MHSav'] = intval($s[0]);
 
 
 	if ((time() - $dev['LastShareTime']) > 500) {
