@@ -99,6 +99,7 @@ if (isset($_POST['miningExpHash'])) {
 }
 if (isset($_POST['minerSpeed'])) {
   setMinerSpeed(intval($_POST["minerSpeed"]));
+  $mining_restart = true;
 }
 
 // Donation settings
@@ -221,17 +222,18 @@ include('menu.php');
               <div class="col-lg-9 col-offset-3">
                   <div class="radio">
                       <label>
-                          <input type="radio" name="minerSpeed" id="minerSpeed" value="silent" <?php echo $minerSpeed == 0?"checked":"";?> >Silent<br>
+                          <input type="radio" name="minerSpeed" id="minerSpeed" value="0" <?php echo $minerSpeed == 0?"checked":"";?> >Silent<br>
                       </label>
                       <label>
-                          <input type="radio" name="minerSpeed" id="minerSpeed" value="normal" <?php echo $minerSpeed == 1?"checked":"";?> >Normal<br>
+                          <input type="radio" name="minerSpeed" id="minerSpeed" value="1" <?php echo $minerSpeed == 1?"checked":"";?> >Normal<br>
                       </label>
                       <label>
-                          <input type="radio" name="minerSpeed" id="minerSpeed" value="turbo" <?php echo $minerSpeed == 2?"checked":"";?> >Turbo
+                          <input type="radio" name="minerSpeed" id="minerSpeed" value="2" <?php echo $minerSpeed == 2?"checked":"";?> >Turbo
                       </label>
                   </div>
                   <p class="help-block">NOTE: This will change the fans noise and the power consumption.</p>
                   <button type="submit" class="btn btn-default">Save</button>
+	<?php if($mining_restart){ echo "<br/>You must restart the mining service for your settings to take effect."; include('widgets/mining_restart.php'); }?>
               </div>
           </div>
       </fieldset>
