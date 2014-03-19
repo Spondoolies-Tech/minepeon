@@ -32,8 +32,8 @@ if (!file_exists($RRD)) {
 #$hashrate = $return['SUMMARY'][0]['MHSav'] * 1000;
 
     // Veird mismatch between us and the pool.
-if (file_exists("/var/log/mg_rate_temp")) {
-	$s = file_get_contents("/var/log/mg_rate_temp");
+if (file_exists("/var/run/mg_rate_temp")) {
+	$s = file_get_contents("/var/run/mg_rate_temp");
 	$s=explode(" ", $s);
 } else {
 	$s=array(0,0);
