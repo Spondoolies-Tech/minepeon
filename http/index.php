@@ -246,8 +246,8 @@ function statsTable($devs) {
  
 
     // Veird mismatch between us and the pool.
-    if (file_exists("/var/log/dont_reboot")) {
-        $s = intval(file_get_contents("/var/log/mg_rate_temp"));
+    if (file_exists("/var/run/mg_rate_temp")) {
+        $s = intval(file_get_contents("/var/run/mg_rate_temp"));
     }
 
     $dev['MHSav'] = 0;
