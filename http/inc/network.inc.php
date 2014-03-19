@@ -29,7 +29,7 @@ function get_network($interface)
 
     $dnsType = file('/etc/resolv.conf');
     $dnsType = str_ireplace("nameserver ", "", $dnsType);
-    $results['dns1'] = $dnsType[2];
+    $results['dns1'] = $dnsType[1];
     //$dns2 = $dnsType[3];
     //$dns3 = $dnsType[4];
 
