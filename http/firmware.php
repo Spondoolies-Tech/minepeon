@@ -28,7 +28,7 @@ include('menu.php');
                     if(xhr.readyState == 4){
                         $('.miner-action').removeClass('disabled');
 
-                        if(o.text().match(/please reboot/i") >= 0){ // return code, trailing number characters of response
+                        if(o.text().match(/please reboot/i) >= 0){ // return code, trailing number characters of response
                             $('#reboot').removeClass('hidden');
                         }
                     }
