@@ -6,7 +6,7 @@
 <script type="text/javascript">
 var start = new Date();
 start = Date.parse(start)/1000;
-var seconds = 30;
+var seconds = 20;
 function CountDown(){
     var now = new Date();
     now = Date.parse(now)/1000;
@@ -18,19 +18,20 @@ function CountDown(){
         location.href = "/"
     }
 }
-window.setTimeout('CountDown()',100);
+window.setTimeout('CountDown()',20);
 </script>
   </head>
   <body>
   <center>
   <p><h1>Shutting Down SP10 Dawson</h1></p>
   <p>It should be safe to unplug in</p> 
-  <p><h1 id="countdown">30</h1></p>  
+  <p><h1 id="countdown">20</h1></p>
   <p>seconds.</p> 
   </center>
   </body>
 </html>
 
 <?php
-
+exec('/usr/local/bin/spond-manager stop > /dev/null 2>&1');
+sleep(5);
 exec('/sbin/halt > /dev/null 2>&1 &');

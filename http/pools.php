@@ -71,10 +71,10 @@ include('foot.php');
 <script type="text/javascript">
 $(document).ready(function() {
 	if(window.location.search=="?sr"){
-		$('.save-msg').addClass('alert-success alert').text("Pool data succesfully saved and miner restarted.");
+		$('.save-msg').addClass('alert-success alert').text("Pool data successfully saved and miner restarted.");
 	}
 	else if(window.location.search=="?s-"){
-		$('.save-msg').addClass('alert-warning alert').text('Pool data succesfully saved but failed to restart miner.');
+		$('.save-msg').addClass('alert-warning alert').text('Pool data successfully saved but failed to restart miner, please try saving again.');
 	}
 
 	$('#save').click( function() {
@@ -91,7 +91,7 @@ $(document).ready(function() {
 				console.log("Debug: "+JSON.stringify(data.debug));
 
 				if(data.success){
-					$('.save-msg').text('Pool data succesfully saved.');
+					$('.save-msg').text('Pool data successfully saved.');
 					console.log("Pool data saved");
 					console.log("Settings: "+data.written+" bytes");
 

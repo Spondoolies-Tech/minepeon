@@ -6,7 +6,7 @@
 <script type="text/javascript">
 var start = new Date();
 start = Date.parse(start)/1000;
-var seconds = 90;
+var seconds = 60;
 function CountDown(){
     var now = new Date();
     now = Date.parse(now)/1000;
@@ -18,7 +18,7 @@ function CountDown(){
         location.href = "/"
     }
 }
-window.setTimeout('CountDown()',100);
+window.setTimeout('CountDown()',60);
 </script>
   </head>
   <body>
@@ -33,8 +33,9 @@ window.setTimeout('CountDown()',100);
 
 <?php
 
+exec('/usr/local/bin/spond-manager stop > /dev/null 2>&1 ');
+sleep(3);
 // flush buffer, so user can see the countdown timer without waiting for the script to complete (500 error)
 ob_flush();
 flush();
-
 exec('/sbin/reboot > /dev/null 2>&1 &');
