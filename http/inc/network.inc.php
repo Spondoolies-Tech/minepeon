@@ -9,7 +9,7 @@ auto lo
 iface lo inet loopback\n\n";
 
 
-function get_network($interface)
+function get_network($interface="eth0")
 {
     $results = array();
 
@@ -20,6 +20,7 @@ function get_network($interface)
     $submask = explode(" ", $submask);
     $results['ipaddress'] = $submask[0];
     $results['subnet'] = $submask[4];
+    $results['dhcp'] = exec('cat /etc/network/interfaces | awk "/iface eth0/{print \$4}"') == "dhcp";
 
     $gatewayType = shell_exec("route -n");
     $gatewayTypeRaw = explode(" ", $gatewayType);
@@ -71,6 +72,13 @@ function set_dhcp_network()
     file_put_contents("/etc/network/interfaces", $network_file);
     network_sync();
 }
+
+/*
+ * didnt work, test well before doing this
+function restart_network(){
+	exec('/etc/init.d/S40network restart');
+}
+ */
 
 function network_sync(){
 	exec('/bin/sync');
