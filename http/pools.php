@@ -74,7 +74,7 @@ $(document).ready(function() {
 		$('.save-msg').addClass('alert-success alert').text("Pool data successfully saved and miner restarted.");
 	}
 	else if(window.location.search=="?s-"){
-		$('.save-msg').addClass('alert-warning alert').text('Pool data successfully saved but failed to restart miner, please try saving again.');
+		$('.save-msg').addClass('alert-warning alert').text('Pool data successfully saved but failed to restart miner, please try again in 1 minute.');
 	}
 
 	$('#save').click( function() {

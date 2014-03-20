@@ -1,7 +1,5 @@
 <footer class="container">
   <hr />
-  Miner Time: <?php echo date('D, d M Y H:i:s T') ?>
-
   <!-- TODO: Re-enable for production -->
   <?php //if(empty($settings['donateAmount'])) { echo $plea; } ?>
 </footer>
