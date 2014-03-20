@@ -66,7 +66,6 @@ s=`curl -s --include --header "Content-Type: application/json" \
 if [ $s=200 ]; then
 	echo "saved"
 else
-	printf "error registering machine, %s" $s | tee -a /var/messages
+	printf "error registering machine, %s" $s | tee -a /var/log/messages
 fi
 
-echo "done p&p register" >> /var/messages
