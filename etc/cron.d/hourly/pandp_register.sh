@@ -7,11 +7,8 @@ detect_boot_source()
 # modified from Vladiks script to use /tmp/ if no bootsource found!!! 
 	# bootfrom=<BOOTSOURCE> is always the last element of kernel
 	# command line so may get it this way.
-	bootfrom=`find /mnt -name uImage | head -1 | sed 's/-.*//;s/^.*\///'`
-
-	if [ -z "$bootfrom" ]; then
-		bootfrom="/tmp"	
-	fi
+	grep -q bootfrom /proc/cmdline &&
+		bootfrom=`sed 's/.*bootfrom=//' /proc/cmdline` 
 }
 detect_boot_source
 
