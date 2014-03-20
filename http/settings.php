@@ -532,7 +532,6 @@ include('menu.php');
 -->
 
 <!-- ######################## Backup -->
-
   <form name="backup" action="/settings.php" method="post" enctype="multipart/form-data" class="form-horizontal">
     <fieldset>
       <legend>Backup</legend>
@@ -556,6 +555,20 @@ include('menu.php');
     </fieldset>
   </form>
 <!-- ######################## -->
+
+  <!-- ######################## Reset stats -->
+  <form name="backup" action="/settings.php" method="post" enctype="multipart/form-data" class="form-horizontal">
+      <fieldset>
+          <legend>Statistics reset</legend>
+          <div class="form-group">
+              <div class="col-lg-9 col-offset-3">
+                  <a class="btn btn-default" href="/clear_stats.php">Reset</a>
+                  <p class="help-block">This will reset your miner accumulated statistics, and restart it's self-learning scaling algorithm</p>
+              </div>
+          </div>
+      </fieldset>
+  </form>
+  <!-- ######################## -->
 
 <script type="text/javascript" id="js">
   function checkPass(id, submitButton)
