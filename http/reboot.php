@@ -38,4 +38,5 @@ sleep(3);
 // flush buffer, so user can see the countdown timer without waiting for the script to complete (500 error)
 ob_flush();
 flush();
+exec('/bin/sync');
 exec('/sbin/reboot > /dev/null 2>&1 &');

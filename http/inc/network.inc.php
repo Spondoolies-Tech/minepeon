@@ -56,6 +56,7 @@ function set_fixed_network($settings)
     "nameserver ".$settings['3']."\n";
 
     file_put_contents("/etc/resolv.conf", $resolve_file);
+    network_sync();
 }
 
 function set_dhcp_network()
@@ -68,6 +69,11 @@ function set_dhcp_network()
         "iface eth0 inet dhcp\n";
 
     file_put_contents("/etc/network/interfaces", $network_file);
+    network_sync();
+}
+
+function network_sync(){
+	exec('/bin/sync');
 }
 
 $network_settings = get_network("eth0");

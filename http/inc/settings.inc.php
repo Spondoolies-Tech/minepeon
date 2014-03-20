@@ -21,6 +21,11 @@ function writeSettings($settings, $file = 'minepeon.conf') {
 	// can be used to save to an alternat file name with writeSettings($settings, 'OtherFileName.conf);
 
 	file_put_contents("/etc/" . $file, json_encode($settings/*, JSON_PRETTY_PRINT | JSON_NUMERIC_CHECK*/));
+	settings_sync();
+}
+
+function settings_sync(){
+	exec('/bin/sync');
 }
 
 

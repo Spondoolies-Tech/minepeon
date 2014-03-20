@@ -1,5 +1,7 @@
 <?php
 
+require_once('constants.inc.php');
+require_once('settings.inc.php'); // for syncing
 
 function miner($command, $parameter) {
 
@@ -48,6 +50,7 @@ echo $e;
 function setMinerSpeed($speed){
 	if(!is_numeric($speed) ) return;
 	file_put_contents(MINER_WORKMODE_FILE, $speed);
+	settings_sync();
 }
 
 function getMinerSpeed(){

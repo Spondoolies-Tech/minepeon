@@ -46,6 +46,7 @@ if (isset($_POST['userPassword1'])) {
         $hash = crypt($_POST['userPassword1'], base64_encode($_POST['userPassword1']));
         $contents = UI_USER_NAME . ':' . $hash;
         file_put_contents('/etc/ui.pwd', $contents);
+	settings_sync();
 
 		header('Location: /settings.php');
 		exit;
@@ -60,6 +61,7 @@ if (isset($_POST['rootPassword1'])) {
 
         $npass = $_POST['rootPassword1'];
         exec("echo -e \"$npass\n$npass\n\" | passwd root");
+	settings_sync();
         header('Location: /settings.php');
         exit;
 
@@ -67,16 +69,20 @@ if (isset($_POST['rootPassword1'])) {
 }
 
 // Miner startup file
+/*
+ * if you enable this, make sure to fix the file paths!
 if (isset($_POST['minerSettings'])) {
 
 	if ($_POST['minerSettings'] <> '') {
 	
+		
 		file_put_contents('/opt/minepeon/etc/init.d/miner-start.sh', preg_replace('/\x0d/', '', $_POST['minerSettings']));
 		exec('/usr/bin/chmod +x /opt/minepeon/etc/init.d/miner-start.sh');
+		settings_sync();
 	}
 }
-
 $minerStartup = file_get_contents('/opt/minepeon/etc/init.d/miner-start.sh');
+ */
 
 if (isset($_POST['agree'])) {
 	$settings['agree'] = time();
