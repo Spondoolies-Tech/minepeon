@@ -8,3 +8,20 @@ color: #252555;
  */
 background-color: #54576d;
 }
+.btn-default.disabled,
+.btn-default[disabled],
+.btn-default[disabled]:hover,
+ fieldset[disabled] .btn-default:hover,
+ .btn-default.disabled:focus,
+ .btn-default[disabled]:focus,
+ fieldset[disabled] .btn-default:focus,
+ .btn-default.disabled:active,
+ .btn-default[disabled]:active,
+ fieldset[disabled] .btn-default:active,
+ .btn-default.disabled.active,
+ .btn-default.active[disabled],
+ fieldset[disabled] .btn-default.active {
+    background-color: #B6B8B8;
+    border-color: #474949;
+    color: #666666;
+}
