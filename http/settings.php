@@ -31,12 +31,15 @@ if (isset($_POST['userTimezone'])) {
 
 // Network settings
 if (isset($_POST['dhcpEnable'])) {
-  if($_POST['dhcpEnable'] == "true")
-      set_dhcp_network();
-  else
-      set_fixed_network(array($_POST['ipaddress'], $_POST['subnet'], $_POST['gateway'], $_POST['dns1']));
-
-  header('Location: /reboot.php');
+  if($_POST['dhcpEnable'] == "true"){
+	  set_dhcp_network();
+	  $refresh_ip="none";
+  }
+  else{
+	  set_fixed_network(array($_POST['ipaddress'], $_POST['subnet'], $_POST['gateway'], $_POST['dns1']));
+	  $refresh_ip = $_POST['ipaddress'];
+  }
+  header('Location: /reboot.php?ip='.$refresh_ip); // 
   exit;
 }
 
@@ -255,31 +258,31 @@ include('menu.php');
           <div class="checkbox">
             <input type='hidden' value='false' name='dhcpEnable'>
             <label>
-              <input type="checkbox" <?php echo $settings['dhcpEnable']?"checked":""; ?> value="true" id="dhcpEnable" name="dhcpEnable"> Use DHCP
+              <input type="checkbox" <?php echo $network_settings['dhcp']?"checked":""; ?> value="true" id="dhcpEnable" name="dhcpEnable"> Use DHCP
             </label>
           </div>
         </div>
       </div>
-      <div class="form-group dhcp-enabled <?php echo $settings['dhcpEnable']?"":"collapse"; ?>">
+      <div class="form-group dhcp-enabled <?php echo !$network_settings['dhcp']?"":"collapse"; ?>">
         <label for="ipaddress" class="control-label col-lg-3">IP address</label>
         <div class="col-lg-9">
           <input type="text" value="<?php echo $network_settings['ipaddress'] ?>" id="ipaddress" name="ipaddress" class="form-control" placeholder="192.x.x.x">
         </div>
       </div>
-      <div class="form-group dhcp-enabled <?php echo $settings['dhcpEnable']?"":"collapse"; ?>">
+      <div class="form-group dhcp-enabled <?php echo !$network_settings['dhcp']?"":"collapse"; ?>">
         <label for="subnet" class="control-label col-lg-3">Subnet</label>
         <div class="col-lg-9">
           <input type="text" value="<?php echo $network_settings['subnet'] ?>" id="subnet" name="subnet" class="form-control" placeholder="255.255.255.0">
         </div>
       </div>
-      <div class="form-group dhcp-enabled <?php echo $settings['dhcpEnable']?"":"collapse"; dhcpEnable?>">
+      <div class="form-group dhcp-enabled <?php echo !$network_settings['dhcp']?"":"collapse"; dhcpEnable?>">
         <label for="gateway" class="control-label col-lg-3">Gateway</label>
         <div class="col-lg-9">
           <input type="text" value="<?php echo $network_settings['gateway'] ?>" id="gateway" name="gateway" class="form-control" placeholder="192.x.x.1">
         </div>
       </div>
 
-      <div class="form-group dhcp-enabled <?php echo $settings['dhcpEnable']?"":"collapse"; dhcpEnable?>">
+      <div class="form-group dhcp-enabled <?php echo !$network_settings['dhcp']?"":"collapse"; dhcpEnable?>">
         <label for="dns1" class="control-label col-lg-3">DNS</label>
         <div class="col-lg-9">
           <input type="text" value="<?php echo $network_settings['dns1'] ?>" id="dns1" name="dns1" class="form-control" placeholder="8.8.8.8">

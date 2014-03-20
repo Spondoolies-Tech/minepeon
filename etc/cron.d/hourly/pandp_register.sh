@@ -59,17 +59,17 @@ printf "Board ID: %s\n" $board_id
 }
 
 send_data(){ 
-	s=`curl -s --include --header "Content-Type: application/json" \
+	s=`curl -s -k --include --header "Content-Type: application/json" \
 	     --request PUT \
 	     --data-binary "{
 	    \"modelNumber\": \"$board\",
 	    \"lanAddress\": \"$lan_ip\",
 	    \"wanAddress\": \"$wan_ip\",
 	    \"fwVersion\": \"$firmware\",
-	    \"boardID\": \"$board_id\",
 	}" \
-	     "https://private-4745-spondapi.apiary.io/devices/registerDevice" \
+	     "https://private-2d2c7-spondapi.apiary-mock.com/devices/registerDevice" \
 		| head -1 | awk '{print $2}'`
+	    #\"boardID\": \"$board_id\",
 	debug
 }
 
