@@ -32,6 +32,7 @@ $client = stream_socket_client("tcp://$host:$port", $errno, $errorMessage);
 if ($client === false) {
 	$r['error']=$errno." ".$errorMessage;
 
+    //In case the command was to restart miner, and it didn't respond
     if($command["command"] === "restart")
         exec('/usr/local/bin/spond-manager restart > /dev/null 2>&1');
 }
