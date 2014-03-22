@@ -36,13 +36,12 @@ window.setTimeout('CountDown()',100);
 include('miner.inc.php');
 
 try{
-	miner('restart','');
-}catch(Exception $e){
-	/*echo "<div style='text-align:center;color:#a33;font-weight:bold;font-size:170%'>An error occurred while trying to restart the miner: ".$e->getMessage()."</div>";
-	echo '<script type="text/javascript">seconds = 90</script>';
-	echo '<a href="/">Click here to return to homepage</a>';*/
     exec('/usr/local/bin/spond-manager restart > /dev/null 2>&1 ');
+}catch(Exception $e){
+    /*echo "<div style='text-align:center;color:#a33;font-weight:bold;font-size:170%'>An error occurred while trying to restart the miner: ".$e->getMessage()."</div>";
+    echo '<script type="text/javascript">seconds = 90</script>';
+    echo '<a href="/">Click here to return to homepage</a>';*/
 }
 
-    header('Location: /');
-    exit();
+header('Location: /');
+exit();

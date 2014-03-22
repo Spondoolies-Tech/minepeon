@@ -16,7 +16,7 @@ function miner($command, $parameter) {
         $client = @stream_socket_client("tcp://$host:$port", $errno, $errorMessage, 1.5);
 
         if ($client === false) {
-		    throw new Exception("The miner is not ready");
+		    throw new Exception("The miner is not running or loading.");
         }
         fwrite($client, $jsonCmd);
         stream_set_timeout($client, 1.5);

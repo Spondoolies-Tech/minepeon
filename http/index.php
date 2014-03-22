@@ -141,8 +141,9 @@ echo "<center class='alert alert-info'><h1>".$error."</h1></center>";
     </div>
   </div>
   <center>
-    <a class="btn btn-default" href='/restart.php'>Restart Miner</a>  
-    <a class="btn btn-default" href='/reboot.php'>Reboot</a> 
+    <a class="btn btn-default" href='/restart.php'>Restart Miner nicely</a>
+    <a class="btn btn-default" href='/restart.php'>Restart Miner forcefully</a>
+    <a class="btn btn-default" href='/reboot.php'>Reboot</a>
     <a class="btn btn-default" href='/halt.php'>ShutDown</a>
   </center>
   <h3>Pools</h3>
