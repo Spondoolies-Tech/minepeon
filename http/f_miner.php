@@ -31,6 +31,9 @@ $client = stream_socket_client("tcp://$host:$port", $errno, $errorMessage);
 // Socket failed
 if ($client === false) {
 	$r['error']=$errno." ".$errorMessage;
+
+    if($command["command"] === "restart")
+        exec('/usr/local/bin/spond-manager restart > /dev/null 2>&1');
 }
 // Socket success
 else{

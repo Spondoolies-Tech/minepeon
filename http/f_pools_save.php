@@ -56,9 +56,16 @@ if (!empty($dataPools)) {
 	unset($data['pools']);
 	// Set new pool data
 	$data['pools']=$dataPools;
+
+    //Verify that API parameters are set in cgminer config and add any missing ones
+    If(!isset($data['api-listen']) || !isset($data['api-allow']))
+    {
+        $data['api-listen'] = true;
+        $data['api-allow'] = "W:127.0.0.1";
+    }
+
 	// Write back to file
-	$written = file_put_contents("/etc/cgminer.conf", json_encode($data/*, JSON_PRETTY_PRINT | JSON_NUMERIC_CHECK*/));
-	//$written = file_put_contents("/opt/minepeon/etc/miner.user.conf", json_encode($data, JSON_PRETTY_PRINT | JSON_NUMERIC_CHECK));
+	$written = file_put_contents("/etc/cgminer.conf", json_encode($data));
 }
 
 echo json_encode(array('success' => true, 'written' => $written, 'pools' => $dataPools));
