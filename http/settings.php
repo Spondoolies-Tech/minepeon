@@ -560,7 +560,7 @@ include('menu.php');
 <!-- ######################## -->
 
   <!-- ######################## Reset stats -->
-  <form name="backup" action="/settings.php" method="post" enctype="multipart/form-data" class="form-horizontal">
+  <!--<form name="reset" action="/settings.php" method="post" enctype="multipart/form-data" class="form-horizontal">
       <fieldset>
           <legend>Statistics reset</legend>
           <div class="form-group">
@@ -570,7 +570,7 @@ include('menu.php');
               </div>
           </div>
       </fieldset>
-  </form>
+  </form>-->
   <!-- ######################## -->
 
 <script type="text/javascript" id="js">
