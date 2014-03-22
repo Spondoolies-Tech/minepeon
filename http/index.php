@@ -79,22 +79,22 @@ include('head.php');
 include('menu.php');
 ?>
 <div class="container">
-  <h3 id="miner-header-txt">Not mining</h3><br>
+  <h3 id="miner-header-txt">No hash-rate information available yet</h3><br>
   <?php
   if (file_exists('/tmp/rrd/mhsav-hour.png')) {
   ?>
   <p class="text-center">
     <img src="rrd/mhsav-hour.png" alt="mhsav.png" />
     <img src="rrd/mhsav-day.png" alt="mhsav.png" /><br/>
-    <a href="#" id="chartToggle">Display extended charts</a>
+    <!--a href="#" id="chartToggle">Display extended charts</a-->
   </p>
-  <p class="text-center collapse chartMore">
+  <!--p class="text-center collapse chartMore">
     <img src="rrd/mhsav-week.png" alt="mhsav.png" />
     <img src="rrd/mhsav-month.png" alt="mhsav.png" />
   </p>
   <p class="text-center collapse chartMore">
     <img src="rrd/mhsav-year.png" alt="mhsav.png" />
-  </p>
+  </p--!>
   <?php
   } else {
   ?>
