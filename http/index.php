@@ -34,7 +34,7 @@ function create_graph($output, $start, $title) {
 $G_MHSav = 0;
 
 //MinePeon temperature
-$mpTemp = round(exec('cat /sys/class/thermal/thermal_zone0/temp') / 1000, 2);
+$mpTemp = explode(" ", file_get_contents("/var/run/mg_rate_temp"));
 
 //MinePeon Version
 $version = "SP10 Dawson";
@@ -109,8 +109,8 @@ echo "<center class='alert alert-info'><h1>".$error."</h1></center>";
   <div class="row">
     <div class="col-lg-4">
       <dl class="dl-horizontal">
-        <!--<dt>SP10 Dawson Temp</dt>
-        <dd><?php /*echo $mpTemp; */?> <small>&deg;C</small> | <?php /*echo $mpTemp*9/5+32; */?> <small>&deg;F</small></dd>-->
+        <dt>Temp Front / Back</dt>
+        <dd><?php echo $mpTemp[2]; ?> <small>&deg;C</small> / <?php echo $mpTemp[1]; ?> <small>&deg;C</small>
         <dt>System CPU Load</dt>
         <dd><?php echo $mpCPULoad[0]; ?> <small>[1 min]</small></dd>
         <dd><?php echo $mpCPULoad[1]; ?> <small>[5 min]</small></dd>
