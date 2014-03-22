@@ -3,7 +3,7 @@
     <a class="navbar-brand" href="/">SP10 Dawson</a>
     <ul class="nav navbar-nav">
       <!--<li><a href="/">Status</a></li>-->
-      <!--<li><a href="/asicstats.php">ASIC Stats</a></li>-->
+      <li><a href="/asicstats.php">ASIC Stats</a></li>
       <li><a href="/pools.php">Pools</a></li>
       <li><a href="/settings.php">Settings</a></li>
       <li><a href="/firmware.php">Firmware Upgrade</a></li>

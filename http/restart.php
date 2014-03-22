@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+<!--<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
     "http://www.w3.org/TR/html4/strict.dtd">
 <html>
   <head>
@@ -24,12 +24,12 @@ window.setTimeout('CountDown()',100);
   <body>
   <center>
   <p><h1>Restarting Miner</h1></p>
-  <p>You will be redirected in</p> 
+  <p>You will be redirected in</p>
   <p><h1 id="countdown">15</h1></p>
-  <p>seconds.</p> 
+  <p>seconds.</p>
   </center>
   </body>
-</html>
+</html>-->
 
 <?php
 
@@ -38,7 +38,10 @@ include('miner.inc.php');
 try{
 	miner('restart','');
 }catch(Exception $e){
-	echo "<div style='text-align:center;color:#a33;font-weight:bold;font-size:170%'>An error occurred while trying to restart the miner: ".$e->getMessage()."</div>";
+	/*echo "<div style='text-align:center;color:#a33;font-weight:bold;font-size:170%'>An error occurred while trying to restart the miner: ".$e->getMessage()."</div>";
 	echo '<script type="text/javascript">seconds = 90</script>';
-	echo '<a href="/">Click here to return to homepage</a>';
+	echo '<a href="/">Click here to return to homepage</a>';*/
 }
+
+    header('Location: /');
+    exit();
