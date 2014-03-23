@@ -562,11 +562,11 @@ include('menu.php');
   <!-- ######################## Reset stats -->
   <form name="reset" action="/settings.php" method="post" enctype="multipart/form-data" class="form-horizontal">
       <fieldset>
-          <legend>Reset to factory settings</legend>
+          <legend>Factory reset</legend>
           <div class="form-group">
               <div class="col-lg-9 col-offset-3">
                   <a class="btn btn-default" href="/reset_to_factory.php">Reset to factory settings</a>
-                  <p class="help-block">This will your miner settings to the factory default ones!</p>
+                  <p class="help-block">This will restore your miner settings to the factory default ones!</p>
               </div>
           </div>
       </fieldset>
