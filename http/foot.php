@@ -8,6 +8,7 @@
 <script type="text/javascript" src="js/jquery.tablesorter.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/bootbox.min.js"></script>
+<script type="text/javascript" src="js/spond.js"></script>
 <script type="text/javascript" id="js">
   $(document).ready(function() {
     $(".tablesorter").tablesorter();
