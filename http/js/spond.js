@@ -16,7 +16,7 @@ var ajax_op = function(ops){
 
 	this.initialResponse = "", // response from initial ajax request, before verifying operation was successful
 
-	this.errorMessage = "There was an error performing the requested operation. Please verify the state of your miner, and try again.",
+	this.errorMessage = "There was a timeout performing the requested operation. It doesn't mean that it failed, check the state of the miner in the main page in a minute.",
 
 	this.successMessage = "The requested operation was successful.",
 
