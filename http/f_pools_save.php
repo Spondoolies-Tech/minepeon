@@ -60,8 +60,8 @@ if (!empty($dataPools)) {
     //Verify that API parameters are set in cgminer config and add any missing ones
     If(!isset($data['api-listen']) || !isset($data['api-allow']))
     {
-        $data['api-listen'] = true;
-        $data['api-allow'] = "W:127.0.0.1";
+        /*$data['api-listen'] = true;
+        $data['api-allow'] = "W:127.0.0.1";*/
     }
 
 	// Write back to file
