@@ -17,4 +17,4 @@ flush();
 //Start the  process
 passthru(FIRMWARE_UPGRADE_SCRIPT . " --url " . FIRMWARE_UPGRADE_URL_DEV, $result);
 
-echo "\r\n\r\nReboot the machine by browsing to /reboot.php";
+echo "\r\n\r\nReboot the machine by browsing to http://" . $_SERVER['SERVER_ADDR'] . "/reboot.php";
