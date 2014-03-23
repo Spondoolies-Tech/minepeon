@@ -41,6 +41,8 @@ try{
 	/*echo "<div style='text-align:center;color:#a33;font-weight:bold;font-size:170%'>An error occurred while trying to restart the miner: ".$e->getMessage()."</div>";
 	echo '<script type="text/javascript">seconds = 90</script>';
 	echo '<a href="/">Click here to return to homepage</a>';*/
+
+    //If the API request has failed, restart the CGMiner process itself
     exec('/usr/local/bin/spond-manager restart > /dev/null 2>&1 ');
 }
 
