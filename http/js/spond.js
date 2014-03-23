@@ -34,7 +34,7 @@ var ajax_op = function(ops){
 		},
 
 	this.send = function(){
-		op.waiting = bootbox.dialog({message:"Sending..."});
+		op.waiting = bootbox.dialog({message:"Processing request. Please wait."});
 		var ajax = op.ajax;
 		ajax.type = op.method;
 		ajax.success  =op.verifyComplete;

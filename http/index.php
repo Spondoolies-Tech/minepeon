@@ -79,7 +79,7 @@ include('head.php');
 include('menu.php');
 ?>
 <div class="container">
-  <h3 id="miner-header-txt">No hash-rate information available yet</h3><br>
+  <h3 id="miner-header-txt">SP10 Miner</h3><br>
   <?php
   if (file_exists('/tmp/rrd/mhsav-hour.png')) {
   ?>
@@ -141,8 +141,8 @@ echo "<center class='alert alert-info'><h1>".$error."</h1></center>";
     </div>
   </div>
   <center>
-    <a class="btn btn-default" href='/restart.php' onclick="return send_restart('nice');">Restart Miner nicely</a>
-    <a class="btn btn-default" href='/restart.php' onclick="return send_restart();">Restart Miner forcefully</a>
+    <a class="btn btn-default" href='/restart.php' onclick="return send_restart('nice');">Restart CgMiner</a>
+    <a class="btn btn-default" href='/restart.php' onclick="return send_restart();">Force Restart CgMiner</a>
     <a class="btn btn-default" href='/reboot.php'>Reboot</a>
     <a class="btn btn-default" href='/halt.php'>ShutDown</a>
     <script type="text/javascript">
@@ -290,11 +290,12 @@ function statsTable($devs) {
 		} else {
 			$tableRow = $tableRow . "<tr class=\"success\">";
 		}
-        if($dev['MHSav']/1000 > 100){
     ?>
-    <script type="text/javascript">document.getElementById("miner-header-txt").innerText = "<?php echo "Mining Rate: ".round($dev['MHSav']/1000000,2)?>Ths";</script>
+    <script type="text/javascript">
+        document.getElementById("miner-header-txt").innerText = "<?php echo "Mining Rate: ".round($dev['MHSav']/1000000,2)?>Ths";
+        document.getElementById("miner-header-txt").innerHTML = "<?php echo "Mining Rate: ".round($dev['MHSav']/1000000,2)?>Ths";
+    </script>
     <?php
-        }
 
 	$tableRow = $tableRow . "<td>" . "SP10" . "</td>
       <!-- <td>" . "1" . "</td>
