@@ -64,6 +64,15 @@ function miner_service($op = "restart"){
 	else return 'There was an error while calling the Spondoolies manager.';
 }
 
-
+function miner_restart($nice = false){
+	if($nice){
+		try{
+		return miner('restart');
+		}catch(Exception $e){
+		
+		}
+	}
+	return miner_service('restart');
+}
 
 

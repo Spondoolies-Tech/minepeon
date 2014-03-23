@@ -8,7 +8,9 @@ header('Pragma: no-cache');
 switch($_GET['op']){
 case 'mining_restart':
 	require_once('miner.inc.php');
-	$ret = miner_service('restart');
+	$nice = isset($_GET['nice']);
+	//$ret = miner_service('restart');
+	$ret = miner_restart($nice);
 	break;
 default:
 	$ret = 'Error: Unknown operation';
