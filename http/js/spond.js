@@ -66,7 +66,6 @@ var ajax_op = function(ops){
 	this.success = function(){
 		op.waiting.modal('hide');
 		bootbox.alert(op.successMessage);
-		setTimeout('document.location.reload()', 5000);
 		return true;
 	}
 

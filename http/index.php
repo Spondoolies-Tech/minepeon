@@ -141,10 +141,28 @@ echo "<center class='alert alert-info'><h1>".$error."</h1></center>";
     </div>
   </div>
   <center>
-    <a class="btn btn-default" href='/restart.php'>Restart Miner nicely</a>
-    <a class="btn btn-default" href='/restart.php'>Restart Miner forcefully</a>
+    <a class="btn btn-default" href='/restart.php' onclick="return send_restart('nice');">Restart Miner nicely</a>
+    <a class="btn btn-default" href='/restart.php' onclick="return send_restart();">Restart Miner forcefully</a>
     <a class="btn btn-default" href='/reboot.php'>Reboot</a>
     <a class="btn btn-default" href='/halt.php'>ShutDown</a>
+    <script type="text/javascript">
+	function send_restart(type){
+		if(typeof(type) == "undefined") type ="";
+		var timeout = 10; // for nice, 10 tries is sufficient
+		if(type != "nice"){
+			var timeout = 30; // hard restart can take longer to get back up
+		}
+		var a = new ajax_op({
+			url: "control.php?op=mining_restart&"+type,
+			wait_url: "status.php?proc=cgminer",
+			wait: 2, 
+			timeout: timeout,
+			success: function(){document.location.reload(); }
+		});	
+		a.send();
+		return false;
+	}
+    </script>
   </center>
   <h3>Pools</h3>
   <table id="pools" class="table table-striped table-hover">
