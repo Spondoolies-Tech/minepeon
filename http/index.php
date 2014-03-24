@@ -77,6 +77,13 @@ try{
 
 include('head.php');
 include('menu.php');
+
+require('status.php');
+$proc_status = array();
+$cg_status = get_status('ps_cgminer');
+$proc_status['cgminer'] = ($cg_status['status']) ? 'Running' : 'Not running';
+$mg_status = get_status('ps_miner_gate');
+$proc_status['minergate'] = ($mg_status['status']) ? 'Running' : 'Not running';
 ?>
 <div class="container">
   <h3 id="miner-header-txt">SP10 Miner</h3><br>
@@ -135,6 +142,10 @@ echo "<center class='alert alert-info'><h1>".$error."</h1></center>";
         <dd><?php echo(file_get_contents("/fw_ver")) ?></dd>
         <dt>CGMiner Version</dt>
         <dd><?php echo $summary['STATUS'][0]['Description']; ?></dd>
+        <dt>CGMiner Status</dt>
+	<dd class="status-<?php echo strtolower(str_replace(' ', '_', $proc_status['cgminer'])); ?>"><?php echo $proc_status['cgminer']; ?></dd>
+        <dt>MinerGate Status</dt>
+	<dd class="status-<?php echo strtolower(str_replace(' ', '_', $proc_status['minergate'])); ?>"><?php echo $proc_status['minergate']; ?></dd>
 <!--        <dt>Donation Minutes</dt>
         <dd><//?php echo $settings['donateAmount']; ?>
 -->      </dl>

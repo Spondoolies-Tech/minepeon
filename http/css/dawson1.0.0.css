@@ -25,3 +25,11 @@ background-color: #54576d;
     border-color: #474949;
     color: #666666;
 }
+
+.status-running{
+	color:green;
+}
+.status-not_running{
+	color:red;
+	font-weight:bold;
+}
