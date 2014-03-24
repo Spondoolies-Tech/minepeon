@@ -1,25 +1,15 @@
 //var ajax_op = {
 
 var ajax_op = function(ops){
-	
 	op = this;
-
 	this.method = "get",
-
-	this.url = "", 
-
+	this.url = "",
 	this.wait_url = "", // should return "{status:true}", unless a custom status function is provided.
-
-	this.timeout = 5, // will check for completed status this many times. 
-
+	this.timeout = 5, // will check for completed status this many times.
 	this.wait = 1, //seconds to wait between checking status
-
 	this.initialResponse = "", // response from initial ajax request, before verifying operation was successful
-
-	this.errorMessage = "There was a timeout performing the requested operation. It doesn't mean that it failed, check the state of the miner in the main page in a minute.",
-
+	this.errorMessage = "There was a timeout performing the requested operation. It probably means CgMiner waits for the pool, check the state of CgMiner in the main page in a minute.",
 	this.successMessage = "The requested operation was successful.",
-
 	this.waiting;
 
 	this.status = function(data){ // data from wait_url
@@ -34,7 +24,7 @@ var ajax_op = function(ops){
 		},
 
 	this.send = function(){
-		op.waiting = bootbox.dialog({message:"Processing request. Please wait."});
+		op.waiting = bootbox.dialog({message:"Processing request. Please wait (up to 30 seconds)."});
 		var ajax = op.ajax;
 		ajax.type = op.method;
 		ajax.success  =op.verifyComplete;

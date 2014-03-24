@@ -223,7 +223,7 @@ $tzselect = $tzselect . '</select>';
 $minerSpeed = getMinerSpeed();
 
 $max_watts = get_psu_limit();
-if(!$max_watts) $max_watts = 1250;
+if(!$max_watts) $max_watts = 1200;
 
 include('head.php');
 include('menu.php');
@@ -370,11 +370,11 @@ include('menu.php');
           <div class="form-group">
               <label for="userTimezone" class="control-label col-lg-3">Maximum Power Consumption</label>
               <div class="col-lg-9">
-		<div><input type="radio" name="max_watts" id="max_watts_1200" value="1200" <?php if($max_watts == 1200) echo 'checked="checked"'; ?>> <label for="max_watts_1200">1200 Watts (Recommended for 110V.)</label></div>
-		<div><input type="radio" name="max_watts" id="max_watts_1250" value="1250" <?php if($max_watts == 1250) echo 'checked="checked"'; ?>> <label for="max_watts_1250">1250 Watts (Recommended for 220V.)</label></div>
-<?php 		if($max_watts != 1250 && $max_watts != 1200){ ?>
+		<div><input type="radio" name="max_watts" id="max_watts_1200" value="1200" <?php if($max_watts == 1200) echo 'checked="checked"'; ?>> <label for="max_watts_1200">1200 Watts</label></div>
+		<div><input type="radio" name="max_watts" id="max_watts_1250" value="1250" <?php if($max_watts == 1250) echo 'checked="checked"'; ?>> <label for="max_watts_1250">1250 Watts</label></div>
+<?php   if($max_watts != 1250 && $max_watts != 1200){ ?>
 
-		<div><input type="radio" name="max_watts" id="max_watts_<?php echo $max_watts; ?>" value="<?php echo $max_watts; ?>" checked="checked"> <label for="max_watts_<?php echo $max_watts; ?>"><?php echo $max_watts; ?> Watts (Custom setting, not recommended or supported.)</label></div>
+		<div><input type="radio" name="max_watts" id="max_watts_<?php echo $max_watts; ?>" value="<?php echo $max_watts; ?>" checked="checked"> <label for="max_watts_<?php echo $max_watts; ?>"><?php echo $max_watts; ?> Watts (Custom setting)</label></div>
 <?php } ?>
                   <button type="submit" class="btn btn-default">Save</button>
               </div>
