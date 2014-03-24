@@ -31,7 +31,8 @@ if (isset($_POST['userTimezone'])) {
 
 if(isset($_POST['max_watts'])){
 	set_psu_limit($_POST['max_watts']);
-	header('Location: /settings.php');
+	  $mining_restart = true;
+	//header('Location: /settings.php');
 }
 
 // Network settings
@@ -229,6 +230,13 @@ include('head.php');
 include('menu.php');
 ?>
 <div class="container">
+<?php if(isset($mining_restart)){ ?>
+<div class="help-block alert lead">You must restart MinerGate for your settings to take effect.<br/>
+	<?php //if(isset($mining_restart)){ echo "<br/>You must restart the mining service for your settings to take effect."; include('widgets/mining_restart.php'); }?>
+<?php include('widgets/mining_restart.php'); ?>
+</div>	
+
+<?php } ?>
   <h2>Settings</h2>
 
 <!-- ######################## Miner speed -->
@@ -250,7 +258,6 @@ include('menu.php');
                   </div>
                   <p class="help-block">NOTE: This will change the fans noise and the power consumption.</p>
                   <button type="submit" class="btn btn-default">Save</button>
-	<?php if($mining_restart){ echo "<br/>You must restart the mining service for your settings to take effect."; include('widgets/mining_restart.php'); }?>
               </div>
           </div>
       </fieldset>
