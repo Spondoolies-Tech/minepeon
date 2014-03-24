@@ -28,6 +28,13 @@ function settings_sync(){
 	exec('/bin/sync');
 }
 
+function get_psu_limit(){
+	return exec('cat '.MAX_ELECTRICAL_USAGE_FILE);
+}
+function set_psu_limit($limit){
+	exec('echo '.$limit.' > '.MAX_ELECTRICAL_USAGE_FILE, $output, $ret);
+	return $ret;
+}
 
 
 $plea = '

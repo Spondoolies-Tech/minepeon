@@ -8,3 +8,5 @@ const UI_USER_NAME = "admin";
 
 const MINER_WORKMODE_FILE = '/etc/mg_work_mode';
 const DEFAULT_MINER_WORKMODE = 2; //turbo
+
+const MAX_ELECTRICAL_USAGE_FILE = '/etc/mg_psu_limit';

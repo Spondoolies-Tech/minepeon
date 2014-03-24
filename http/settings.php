@@ -29,6 +29,11 @@ if (isset($_POST['userTimezone'])) {
 
 }
 
+if(isset($_POST['max_watts'])){
+	set_psu_limit($_POST['max_watts']);
+	header('Location: /settings.php');
+}
+
 // Network settings
 if (isset($_POST['dhcpEnable'])) {
   if($_POST['dhcpEnable'] == "true"){
@@ -217,6 +222,9 @@ $tzselect = $tzselect . '</select>';
 
 $minerSpeed = getMinerSpeed();
 
+$max_watts = get_psu_limit();
+if(!$max_watts) $max_watts = 1250;
+
 include('head.php');
 include('menu.php');
 ?>
@@ -348,6 +356,26 @@ include('menu.php');
               <div class="col-lg-9">
                   <?php echo $tzselect ?>
                   <p class="help-block">Miner thinks it is now <?php echo date('D, d M Y H:i:s T') ?></p>
+                  <button type="submit" class="btn btn-default">Save</button>
+              </div>
+          </div>
+      </fieldset>
+  </form>
+  <!-- ######################## -->
+  <!-- ######################## Timezone -->
+
+  <form name="max_watts" action="/settings.php" method="post" class="form-horizontal">
+      <fieldset>
+          <legend>PSU</legend>
+          <div class="form-group">
+              <label for="userTimezone" class="control-label col-lg-3">Maximum Power Consumption</label>
+              <div class="col-lg-9">
+		<div><input type="radio" name="max_watts" id="max_watts_1200" value="1200" <?php if($max_watts == 1200) echo 'checked="checked"'; ?>> <label for="max_watts_1200">1200 Watts (Recommended for 110V.)</label></div>
+		<div><input type="radio" name="max_watts" id="max_watts_1250" value="1250" <?php if($max_watts == 1250) echo 'checked="checked"'; ?>> <label for="max_watts_1250">1250 Watts (Recommended for 220V.)</label></div>
+<?php 		if($max_watts != 1250 && $max_watts != 1200){ ?>
+
+		<div><input type="radio" name="max_watts" id="max_watts_<?php echo $max_watts; ?>" value="<?php echo $max_watts; ?>" checked="checked"> <label for="max_watts_<?php echo $max_watts; ?>"><?php echo $max_watts; ?> Watts (Custom setting, not recommended or supported.)</label></div>
+<?php } ?>
                   <button type="submit" class="btn btn-default">Save</button>
               </div>
           </div>
