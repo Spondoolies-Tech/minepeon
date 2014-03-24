@@ -153,7 +153,7 @@ echo "<center class='alert alert-info'><h1>".$error."</h1></center>";
   </div>
   <center>
     <a class="btn btn-default" href='/restart.php' onclick="return send_restart('nice');">Restart CgMiner</a>
-    <a class="btn btn-default" href='/restart.php' onclick="return send_restart();">Force Restart CgMiner</a>
+    <a class="btn btn-default" href='/restart.php' onclick="return send_restart();">Restart MinerGate</a>
     <a class="btn btn-default" href='/reboot.php'>Reboot</a>
     <a class="btn btn-default" href='/halt.php'>ShutDown</a>
     <script type="text/javascript">
