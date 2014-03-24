@@ -33,3 +33,9 @@ background-color: #54576d;
 	color:red;
 	font-weight:bold;
 }
+
+.navbar-nav>li span.disabled{
+	padding:15px 0;
+	display:block;
+	color:#b3b3b3;
+}

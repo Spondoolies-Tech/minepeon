@@ -10,3 +10,6 @@ const MINER_WORKMODE_FILE = '/etc/mg_work_mode';
 const DEFAULT_MINER_WORKMODE = 2; //turbo
 
 const MAX_ELECTRICAL_USAGE_FILE = '/etc/mg_psu_limit';
+
+const CURRENT_VERSION_FILE = '/fw_version';
+const LATEST_VERSION_FILE = '/tmp/fw_update';
