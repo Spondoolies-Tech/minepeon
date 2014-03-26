@@ -18,9 +18,9 @@ case 'mining_restart':
 case 'indicate':
 	// flash LED's 
 	require_once('leds.inc.php');
-	$times = $_GET['times'];
-	if(!is_numeric($times)) $times = 3;
-	led_flash(YELLOW_LED, $times, .5);
+	$seconds = $_GET['time'];
+	if(!is_numeric($seconds)) $seconds = 3;
+	led_flash(YELLOW_LED, $seconds*2, .25);
 	break;
 default:
 	$ret = 'Error: Unknown operation';
