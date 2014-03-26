@@ -66,8 +66,9 @@ send_data(){
 	    \"lanAddress\": \"$lan_ip\",
 	    \"wanAddress\": \"$wan_ip\",
 	    \"fwVersion\": \"$firmware\",
+	    \"deviceId\": \"$board_id\",
 	}" \
-	     "https://private-2d2c7-spondapi.apiary-mock.com/devices/registerDevice" \
+	     "https://pnp.spondoolies-tech.com/devices/registerDevice" \
 		| head -1 | awk '{print $2}'`
 	    #\"boardID\": \"$board_id\",
 	debug
