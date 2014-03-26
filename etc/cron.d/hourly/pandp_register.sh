@@ -1,8 +1,9 @@
 #!/bin/sh
 
-# functions copied from vladik update
+# most functions copied from vladik update
 no_bootsource=201
 mount_fail=204
+NO_CONNECTION=205
 
 # Mount boot partition if not mounted already.
 mount_boot_partition()
@@ -49,6 +50,11 @@ board_id(){
 	board_id=`dd bs=12 skip=7 count=1 if=$EEPROM_DEVICE 2>/dev/null`
 }
 
+check_connection()
+{
+	ping -c3 "https://pnp.spondoolies-tech.com/devices/registerDevice"
+}
+
 debug(){ 
 printf "External IP: %s\n" $ext_ip
 printf "Lan IP: %s\n" $lan_ip
@@ -75,6 +81,11 @@ send_data(){
 }
 
 main(){
+	check_connection
+	if [ $? != 0 ]; then
+		echo 'cannot register device, no connection' >> /var/log/messages
+		return  $NO_CONNECTION
+	fi
 	detect_boot_source
 	mount_boot_partition
 	board=`cat /board_ver`
