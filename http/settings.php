@@ -380,11 +380,12 @@ include('menu.php');
           <div class="form-group">
               <label for="userTimezone" class="control-label col-lg-3">Maximum Power Consumption</label>
               <div class="col-lg-9">
-		<div><input type="radio" name="max_watts" id="max_watts_1200" value="1200" <?php if($max_watts == 1200) echo 'checked="checked"'; ?>> <label for="max_watts_1200">1200 Watts</label></div>
-		<div><input type="radio" name="max_watts" id="max_watts_1250" value="1250" <?php if($max_watts == 1250) echo 'checked="checked"'; ?>> <label for="max_watts_1250">1250 Watts</label></div>
-<?php   if($max_watts != 1250 && $max_watts != 1200){ ?>
+                <div><input type="radio" name="max_watts" id="max_watts_1150" value="1150" <?php if($max_watts == 1150) echo 'checked="checked"'; ?>> <label for="max_watts_1150">1150 Watts</label></div>
+                <div><input type="radio" name="max_watts" id="max_watts_1200" value="1200" <?php if($max_watts == 1200) echo 'checked="checked"'; ?>> <label for="max_watts_1200">1200 Watts</label></div>
+                <div><input type="radio" name="max_watts" id="max_watts_1250" value="1250" <?php if($max_watts == 1250) echo 'checked="checked"'; ?>> <label for="max_watts_1250">1250 Watts</label></div>
+<?php   if($max_watts != 1250 && $max_watts != 1200 && $max_watts != 1150){ ?>
 
-		<div><input type="radio" name="max_watts" id="max_watts_<?php echo $max_watts; ?>" value="<?php echo $max_watts; ?>" checked="checked"> <label for="max_watts_<?php echo $max_watts; ?>"><?php echo $max_watts; ?> Watts (Custom setting)</label></div>
+		<div><input type="radio" name="max_watts" id="max_watts_<?php echo $max_watts; ?>" value="<?php echo $max_watts; ?>" checked="checked"> <label for="max_watts_<?php echo $max_watts; ?>"><?php echo $max_watts; ?> Watts (Custom setting found)</label></div>
 <?php } ?>
                   <button type="submit" class="btn btn-default">Save</button>
               </div>
