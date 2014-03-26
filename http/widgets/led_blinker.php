@@ -8,7 +8,10 @@
 function setBlinkTime(e){
 	$(e).hide();
 	$('.led_blinker', $(e).parent('.blinker')).html("Blink Led for <span class='time_input'></span> Seconds");
-	$('#blink_timer').attr('type', 'text').click(function(ev){ev.stopPropagation();}).appendTo('.time_input', $(e).parent('.blinker'));
+	$('#blink_timer').attr('type', 'text')
+		.click(function(ev){ev.stopPropagation();})
+		.keypress(function(ev){if(ev.keyCode == 13){$(this).parents('.btn').trigger('click'); ev.preventDefault();}})
+		.appendTo('.time_input', $(e).parent('.blinker'));
 }
 </script>
 
