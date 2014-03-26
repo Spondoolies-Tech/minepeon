@@ -31,7 +31,7 @@ return $ret;
 
 function get_pid($proc){
 	// note, that this matchs the expected output of ps on the miner. ps on other machines may not have the process name in field 5, or the id in field 1
-	return exec(" ps | awk '\$5 ~ /$proc/{print \$1}'");
+	return exec(" ps -l | awk '\$10 ~ /$proc/{print \$3}'");
 }
 
 if(isset($_GET['proc'])){

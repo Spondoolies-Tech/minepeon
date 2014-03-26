@@ -156,6 +156,7 @@ echo "<center class='alert alert-info'><h1>".$error."</h1></center>";
     <a class="btn btn-default" href='/restart.php' onclick="return send_restart();">Restart MinerGate</a>
     <a class="btn btn-default" href='/reboot.php'>Reboot</a>
     <a class="btn btn-default" href='/halt.php'>ShutDown</a>
+	<?php include('widgets/led_blinker.php'); ?>
     <script type="text/javascript">
 	function send_restart(type){
 		if(typeof(type) == "undefined") type ="";

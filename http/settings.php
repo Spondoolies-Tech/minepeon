@@ -269,7 +269,7 @@ include('menu.php');
     <fieldset>
       <legend>Network settings</legend>
       <div class="form-group">
-        <div class="col-lg-9 col-offset-3">
+        <div class="col-lg-6 col-offset-3">
           <div class="checkbox">
             <input type='hidden' value='false' name='dhcpEnable'>
             <label>
@@ -277,6 +277,9 @@ include('menu.php');
             </label>
           </div>
         </div>
+	<div class="col-lg-3">
+	<?php include('widgets/led_blinker.php'); ?>
+	</div> 
       </div>
       <div class="form-group dhcp-enabled <?php echo !$network_settings['dhcp']?"":"collapse"; ?>">
         <label for="ipaddress" class="control-label col-lg-3">IP address</label>
