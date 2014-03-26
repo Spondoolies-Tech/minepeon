@@ -1,7 +1,7 @@
-<div class="blinker wrapper ">
+<span class="blinker wrapper ">
 <a class="btn btn-default  led_blinker" onclick="toggle_blink(this)">Blink LED</a>
 <input type="hidden" id="blink_timer" value="10" size="2" />
-</div>
+</span>
 
 <script type="text/javascript">
 //<img src="img/clock.png" onclick="setBlinkTime(this)" alt="Timer" title="Set Blink Period" width="26" height="26"/>
