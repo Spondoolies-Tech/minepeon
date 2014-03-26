@@ -15,12 +15,14 @@ case 'mining_restart':
 	//$ret = miner_service('restart');
 	$ret = miner_restart($nice);
 	break;
-case 'indicate':
+case 'blink_led':
+case 'end_blink_led':
 	// flash LED's 
 	require_once('leds.inc.php');
-	$seconds = $_GET['time'];
-	if(!is_numeric($seconds)) $seconds = 3;
-	led_flash(YELLOW_LED, $seconds*2, .25);
+	//$seconds = $_GET['time'];
+	//if(!is_numeric($seconds)) $seconds = 3;
+	//led_flash(YELLOW_LED, $seconds*2, .25);
+	led_flash($_GET['op'] == "blink_led" ? "start":"stop");
 	break;
 default:
 	$ret = 'Error: Unknown operation';
