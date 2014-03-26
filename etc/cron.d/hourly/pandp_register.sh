@@ -52,7 +52,7 @@ board_id(){
 
 check_connection()
 {
-	ping -c3 "https://pnp.spondoolies-tech.com/devices/registerDevice"
+	ping -c3 "pnp.spondoolies-tech.com"
 }
 
 debug(){ 
