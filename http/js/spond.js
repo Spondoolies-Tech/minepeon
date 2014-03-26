@@ -67,3 +67,10 @@ var ajax_op = function(ops){
 	}
 };
 
+//
+//general purpose functions
+function blink(times){
+	if(typeof(times) == undefined || parseInt(times) < 1) times = 1;
+	$.get('control.php?op=indicate&times='+times);
+	// do we use less resources turning on/off from js, or using sleep in php?
+}
