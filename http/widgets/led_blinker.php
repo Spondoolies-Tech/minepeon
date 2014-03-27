@@ -1,11 +1,15 @@
+<?php
+$is_blinking = file_exists(BLINK_FILE);
+$blink_text = $is_blinking ? "Stop Blinking LED" : "Blink LED"; 
+?>
 <span class="blinker wrapper ">
-<a class="btn btn-default  led_blinker" onclick="toggle_blink(this)">Blink LED</a>
+	<a class="btn btn-default  led_blinker" onclick="toggle_blink(this)"><?php echo $blink_text; ?></a>
 <input type="hidden" id="blink_timer" value="10" size="2" />
 </span>
 
 <script type="text/javascript">
 //<img src="img/clock.png" onclick="setBlinkTime(this)" alt="Timer" title="Set Blink Period" width="26" height="26"/>
-blink_state="off";
+blink_state="<?php echo $is_blinking ? "on" : "off";?>";
 function toggle_blink(e){
 	if(blink_state == "on"){
 		blink("end_blink_led");

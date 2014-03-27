@@ -17,3 +17,4 @@ const LATEST_VERSION_FILE = '/tmp/fw_update';
 //leds
 //const GREEN_LED = 51; // reserved for miner use
 const YELLOW_LED = 22;
+const BLINK_FILE = '/tmp/blink'; // NOTE: file also defined in /usr/local/bin/leds script.
