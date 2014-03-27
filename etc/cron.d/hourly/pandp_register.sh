@@ -52,7 +52,7 @@ board_id(){
 
 check_connection()
 {
-	ping -c3 "pnp.spondoolies-tech.com"
+	ping -w2 "8.8.8.8" # ip, not fqdn. dns lookup will hang if there is no connection
 }
 
 debug(){ 
@@ -74,7 +74,7 @@ send_data(){
 	    \"fwVersion\": \"$firmware\",
 	    \"deviceId\": \"$board_id\",
 	}" \
-	     "https://pnp.spondoolies-tech.com/devices/registerDevice" \
+	     "http://pnp.spondoolies-tech.com/devices/registerDevice" \
 		| head -1 | awk '{print $2}'`
 	    #\"boardID\": \"$board_id\",
 	debug
