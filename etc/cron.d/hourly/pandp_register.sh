@@ -81,7 +81,13 @@ send_data(){
 	debug
 }
 
+check_enabled()
+{
+	grep -qv '"registerDevice":"true"' /etc/minepeon.conf && exit 1
+}
+
 main(){
+	check_enabled
 	check_connection
 	if [ $? != 0 ]; then
 		echo 'cannot register device, no connection' >> /var/log/messages

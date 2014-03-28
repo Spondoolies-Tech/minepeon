@@ -98,6 +98,11 @@ if (isset($_POST['agree'])) {
 	$writeSettings = true;
 }
 
+if(isset($_POST['setRegisterDevice'])){ // toggle PandP device regisatration.
+	$settings['registerDevice'] = (array_key_exists('registerDevice', $_POST) && $_POST['registerDevice'] == "true") ? "true":"false";
+	$writeSettings = true;
+}
+
 // Mining settings
 
 if (isset($_POST['miningExpDev'])) {
@@ -606,6 +611,27 @@ include('menu.php');
               <div class="col-lg-9 col-offset-3">
                   <a name="resetfactory" class="btn btn-default miner-action" onclick="confirmClick('/reset_to_factory.php');">Reset to factory settings</a>
                   <p class="help-block">This will restore your miner settings to the factory default ones!</p>
+              </div>
+          </div>
+      </fieldset>
+  </form>
+  <!-- ######################## -->
+
+  <!-- ######################## Device Registration -->
+  <form name="reset" action="settings.php" method="post" enctype="multipart/form-data" class="form-horizontal">
+      <fieldset>
+          <legend>Device Registration</legend>
+          <div class="form-group">
+              <div class="col-lg-9 col-offset-3">
+<div>
+            <label class="form-group alert-enabled " for="deviceRegisterOption">
+		<input type="hidden" name="setRegisterDevice" value="" />
+	    <input type="checkbox"  <?php echo (!array_key_exists('registerDevice', $settings) || $settings['registerDevice'] == "true")?"checked":""; ?> id="deviceRegisterOption" name="registerDevice" value="true"/> 
+	    Send device data to Spondoolies-tech.com. <?php if(!array_key_exists('registerDevice', $settings)){ ?> <br/>This option is currently enabled by default. <?php } ?>
+            </label>
+<br/>
+		<input class="btn btn-default" value="Save" type="submit" />
+             </div>
               </div>
           </div>
       </fieldset>
