@@ -1,6 +1,7 @@
 #!/bin/sh
 
 # most functions copied from vladik update
+register_url="http://pnp.spondoolies-tech.com/devices/registerDevice"
 no_bootsource=201
 mount_fail=204
 NO_CONNECTION=205
@@ -72,9 +73,9 @@ send_data(){
 	    \"lanAddress\": \"$lan_ip\",
 	    \"wanAddress\": \"$wan_ip\",
 	    \"fwVersion\": \"$firmware\",
-	    \"deviceId\": \"$board_id\",
+	    \"deviceId\": \"$board_id\"
 	}" \
-	     "http://pnp.spondoolies-tech.com/devices/registerDevice" \
+	     $register_url \
 		| head -1 | awk '{print $2}'`
 	    #\"boardID\": \"$board_id\",
 	debug
