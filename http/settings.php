@@ -98,6 +98,11 @@ if (isset($_POST['agree'])) {
 	$writeSettings = true;
 }
 
+if(isset($_POST['setRegisterDevice'])){ // toggle PandP device regisatration.
+	$settings['registerDevice'] = (array_key_exists('registerDevice', $_POST) && $_POST['registerDevice'] == "true") ? "true":"false";
+	$writeSettings = true;
+}
+
 // Mining settings
 
 if (isset($_POST['miningExpDev'])) {
@@ -269,7 +274,7 @@ include('menu.php');
     <fieldset>
       <legend>Network settings</legend>
       <div class="form-group">
-        <div class="col-lg-9 col-offset-3">
+        <div class="col-lg-6 col-offset-3">
           <div class="checkbox">
             <input type='hidden' value='false' name='dhcpEnable'>
             <label>
@@ -277,6 +282,9 @@ include('menu.php');
             </label>
           </div>
         </div>
+	<div class="col-lg-3">
+	<?php include('widgets/led_blinker.php'); ?>
+	</div> 
       </div>
       <div class="form-group dhcp-enabled <?php echo !$network_settings['dhcp']?"":"collapse"; ?>">
         <label for="ipaddress" class="control-label col-lg-3">IP address</label>
@@ -377,11 +385,12 @@ include('menu.php');
           <div class="form-group">
               <label for="userTimezone" class="control-label col-lg-3">Maximum Power Consumption</label>
               <div class="col-lg-9">
-		<div><input type="radio" name="max_watts" id="max_watts_1200" value="1200" <?php if($max_watts == 1200) echo 'checked="checked"'; ?>> <label for="max_watts_1200">1200 Watts</label></div>
-		<div><input type="radio" name="max_watts" id="max_watts_1250" value="1250" <?php if($max_watts == 1250) echo 'checked="checked"'; ?>> <label for="max_watts_1250">1250 Watts</label></div>
-<?php   if($max_watts != 1250 && $max_watts != 1200){ ?>
+                <div><input type="radio" name="max_watts" id="max_watts_1150" value="1150" <?php if($max_watts == 1150) echo 'checked="checked"'; ?>> <label for="max_watts_1150">1150 Watts</label></div>
+                <div><input type="radio" name="max_watts" id="max_watts_1200" value="1200" <?php if($max_watts == 1200) echo 'checked="checked"'; ?>> <label for="max_watts_1200">1200 Watts</label></div>
+                <div><input type="radio" name="max_watts" id="max_watts_1250" value="1250" <?php if($max_watts == 1250) echo 'checked="checked"'; ?>> <label for="max_watts_1250">1250 Watts</label></div>
+<?php   if($max_watts != 1250 && $max_watts != 1200 && $max_watts != 1150){ ?>
 
-		<div><input type="radio" name="max_watts" id="max_watts_<?php echo $max_watts; ?>" value="<?php echo $max_watts; ?>" checked="checked"> <label for="max_watts_<?php echo $max_watts; ?>"><?php echo $max_watts; ?> Watts (Custom setting)</label></div>
+		<div><input type="radio" name="max_watts" id="max_watts_<?php echo $max_watts; ?>" value="<?php echo $max_watts; ?>" checked="checked"> <label for="max_watts_<?php echo $max_watts; ?>"><?php echo $max_watts; ?> Watts (Custom setting found)</label></div>
 <?php } ?>
                   <button type="submit" class="btn btn-default">Save</button>
               </div>
@@ -602,6 +611,27 @@ include('menu.php');
               <div class="col-lg-9 col-offset-3">
                   <a name="resetfactory" class="btn btn-default miner-action" onclick="confirmClick('/reset_to_factory.php');">Reset to factory settings</a>
                   <p class="help-block">This will restore your miner settings to the factory default ones!</p>
+              </div>
+          </div>
+      </fieldset>
+  </form>
+  <!-- ######################## -->
+
+  <!-- ######################## Device Registration -->
+  <form name="reset" action="settings.php" method="post" enctype="multipart/form-data" class="form-horizontal">
+      <fieldset>
+          <legend>Device Registration</legend>
+          <div class="form-group">
+              <div class="col-lg-9 col-offset-3">
+<div>
+            <label class="form-group alert-enabled " for="deviceRegisterOption">
+		<input type="hidden" name="setRegisterDevice" value="" />
+	    <input type="checkbox"  <?php echo (!array_key_exists('registerDevice', $settings) || $settings['registerDevice'] == "true")?"checked":""; ?> id="deviceRegisterOption" name="registerDevice" value="true"/> 
+	    Send device data to Spondoolies-tech.com. <?php if(!array_key_exists('registerDevice', $settings)){ ?> <br/>This option is currently enabled by default. <?php } ?>
+            </label>
+<br/>
+		<input class="btn btn-default" value="Save" type="submit" />
+             </div>
               </div>
           </div>
       </fieldset>

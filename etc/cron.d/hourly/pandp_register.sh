@@ -1,8 +1,10 @@
 #!/bin/sh
 
-# functions copied from vladik update
+# most functions copied from vladik update
+register_url="http://pnp.spondoolies-tech.com/devices/registerDevice"
 no_bootsource=201
 mount_fail=204
+NO_CONNECTION=205
 
 # Mount boot partition if not mounted already.
 mount_boot_partition()
@@ -32,7 +34,7 @@ external_ip(){
 lan_ip(){
 	lan_ip=`ifconfig | grep -A1 eth0 | awk '/inet/{print $2}' | cut -c 6-`
 	if [ -z "$lan_ip" ]; then
-		lan_ip="NA"
+		lan_ip="0.0.0.0"
 	fi
 }	
 
@@ -40,13 +42,18 @@ lan_ip(){
 wan_ip(){
 	wan_ip=`ifconfig | grep -A1 wan0 | awk '/inet/{print $2}' | cut -c 6-`
 	if [ -z "$wan_ip" ]; then
-		wan_ip="NA"
+		wan_ip="0.0.0.0"
 	fi
 }
 
 board_id(){
 	EEPROM_DEVICE=/sys/bus/i2c/devices/0-0050/eeprom
 	board_id=`dd bs=12 skip=7 count=1 if=$EEPROM_DEVICE 2>/dev/null`
+}
+
+check_connection()
+{
+	ping -w2 "8.8.8.8" # ip, not fqdn. dns lookup will hang if there is no connection
 }
 
 debug(){ 
@@ -66,15 +73,26 @@ send_data(){
 	    \"lanAddress\": \"$lan_ip\",
 	    \"wanAddress\": \"$wan_ip\",
 	    \"fwVersion\": \"$firmware\",
-	    \"deviceId\": \"$board_id\",
+	    \"deviceId\": \"$board_id\"
 	}" \
-	     "https://pnp.spondoolies-tech.com/devices/registerDevice" \
+	     $register_url \
 		| head -1 | awk '{print $2}'`
 	    #\"boardID\": \"$board_id\",
 	debug
 }
 
+check_enabled()
+{
+	grep -q '"registerDevice":"false"' /etc/minepeon.conf && exit 1
+}
+
 main(){
+	check_enabled
+	check_connection
+	if [ $? != 0 ]; then
+		echo 'cannot register device, no connection' >> /var/log/messages
+		return  $NO_CONNECTION
+	fi
 	detect_boot_source
 	mount_boot_partition
 	board=`cat /board_ver`
