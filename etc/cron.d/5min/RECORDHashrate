@@ -60,7 +60,7 @@ function create_graph_hash($output, $start, $title) {
         "--lower=0",
 	    "--x-grid=none",
         "DEF:hashrate=" . $RRDPATH . "hashrate.rrd:hashrate:AVERAGE",
-        "CDEF:realspeed=hashrate,1000,*",
+        "CDEF:realspeed=hashrate,1000000,*",
         "LINE2:realspeed#FF0000"
     );
     $ret = rrd_graph("/tmp/rrd/" . $output, $options);
