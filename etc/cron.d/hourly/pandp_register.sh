@@ -34,7 +34,7 @@ external_ip(){
 lan_ip(){
 	lan_ip=`ifconfig | grep -A1 eth0 | awk '/inet/{print $2}' | cut -c 6-`
 	if [ -z "$lan_ip" ]; then
-		lan_ip="NA"
+		lan_ip="0.0.0.0"
 	fi
 }	
 
@@ -42,7 +42,7 @@ lan_ip(){
 wan_ip(){
 	wan_ip=`ifconfig | grep -A1 wan0 | awk '/inet/{print $2}' | cut -c 6-`
 	if [ -z "$wan_ip" ]; then
-		wan_ip="NA"
+		wan_ip="0.0.0.0"
 	fi
 }
 
@@ -83,7 +83,7 @@ send_data(){
 
 check_enabled()
 {
-	grep -qv '"registerDevice":"true"' /etc/minepeon.conf && exit 1
+	grep -q '"registerDevice":"false"' /etc/minepeon.conf && exit 1
 }
 
 main(){
