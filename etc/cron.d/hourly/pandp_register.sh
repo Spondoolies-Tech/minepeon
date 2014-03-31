@@ -57,9 +57,8 @@ check_connection()
 }
 
 debug(){ 
-printf "External IP: %s\n" $ext_ip
+printf "WAN IP: %s\n" $ext_ip
 printf "Lan IP: %s\n" $lan_ip
-printf "WLan IP: %s\n" $wan_ip
 printf "Firmware: %s\n" $firmware
 printf "Model: %s\n" $board
 printf "Board ID: %s\n" $board_id
@@ -69,15 +68,15 @@ send_data(){
 	s=`curl -s -k --include --header "Content-Type: application/json" \
 	     --request PUT \
 	     --data-binary "{
+	    \"deviceId\": \"$board_id\",
 	    \"modelNumber\": \"$board\",
 	    \"lanAddress\": \"$lan_ip\",
-	    \"wanAddress\": \"$wan_ip\",
-	    \"fwVersion\": \"$firmware\",
-	    \"deviceId\": \"$board_id\"
+	    \"wanAddress\": \"$ext_ip\",
+	    \"fwVersion\": \"$firmware\"
 	}" \
-	     $register_url \
+	     http://pnp.spondoolies-tech.com/devices/registerDevice \
 		| head -1 | awk '{print $2}'`
-	    #\"boardID\": \"$board_id\",
+
 	debug
 }
 
