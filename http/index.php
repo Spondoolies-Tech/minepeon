@@ -85,9 +85,10 @@ $proc_status['cgminer'] = ($cg_status['status']) ? 'Running' : 'Not running';
 $mg_status = get_status('ps_miner_gate');
 $proc_status['minergate'] = ($mg_status['status']) ? 'Running' : 'Not running';
 
+//Check if Spond manager is running properly (2 processes will patch as ps is launched under PHP)
 function isSpondRunning() {
-    exec("pgrep spond", $pids);
-    return empty($pids);
+    exec("ps | grep spond", $pids);
+    return (!empty($pids) && sizeof($pids) > 2);
 }
 ?>
 <div class="container">
@@ -157,26 +158,30 @@ echo "<center class='alert alert-info'><h1>".$error."</h1></center>";
     </div>
   </div>
   <center>
-    <a class="btn btn-default" href='/control.php' onclick="return send_command(<?php if(isSpondRunning())echo "'spond_stop'"; else echo "'spond_start'"?>);"><?php if(isSpondRunning())echo "Stop Spond Manager"; else echo "Start Spond Manager"?></a>
-    <a class="btn btn-default" href='/restart.php' onclick="return send_command('nice');">Restart CGMiner</a>
-    <a class="btn btn-default" href='/restart.php' onclick="return send_command();">Restart MinerGate</a>
+    <a class="btn btn-default" href='' onclick="return send_command(<?php if(isSpondRunning())echo "'spond_stop'"; else echo "'spond_start'"?>);"><?php if(isSpondRunning())echo "Stop Spond Manager"; else echo "Start Spond Manager"?></a>
+    <a class="btn btn-default" href='/restart.php' onclick="return send_command('mining_restart', 'nice');">Restart CGMiner</a>
+    <a class="btn btn-default" href='/restart.php' onclick="return send_command('mining_restart');">Restart MinerGate</a>
     <a class="btn btn-default" href='/reboot.php'>Reboot</a>
     <a class="btn btn-default" href='/halt.php'>ShutDown</a>
 	<?php include('widgets/led_blinker.php'); ?>
     <script type="text/javascript">
-	function send_command(type){
-		if(typeof(type) == "undefined") type ="";
-		var timeout = 10; // for nice, 10 tries is sufficient
+	function send_command(cmd, type){
+		if(typeof(type) == "undefined")
+            type ="";
+
+        var timeout = 10; // for nice, 10 tries is sufficient
 		if(type != "nice"){
-			var timeout = 30; // hard restart can take longer to get back up
+            timeout = 30; // hard restart can take longer to get back up
 		}
-		var a = new ajax_op({
-			url: "control.php?op=mining_restart&"+type,
+
+		var a = new AjaxOps({
+			url: "control.php?op=" + cmd + "&"+type,
 			wait_url: "status.php?proc=cgminer",
 			wait: 2, 
 			timeout: timeout,
 			success: function(){document.location.reload(); }
-		});	
+		});
+
 		a.send();
 		return false;
 	}

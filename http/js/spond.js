@@ -1,4 +1,4 @@
-var ajax_op = function(ops){
+var AjaxOps = function(ops){
 	op = this;
 	this.method = "get",
 	this.url = "",

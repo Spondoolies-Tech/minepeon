@@ -3,7 +3,7 @@
 </div>
 <script type="text/javascript">
 	function restart_mining(){
-		var a = new ajax_op({
+		var a = new AjaxOps({
 			url: "control.php?op=mining_restart",
 			wait_url: "status.php?proc=cgminer",
 			wait: 2, 
