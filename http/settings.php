@@ -101,6 +101,26 @@ if (isset($_POST['agree'])) {
 if(isset($_POST['setRegisterDevice'])){ // toggle PandP device regisatration.
 	$settings['registerDevice'] = (array_key_exists('registerDevice', $_POST) && $_POST['registerDevice'] == "true") ? "true":"false";
 	$writeSettings = true;
+
+    //Rename the actual cron'ed registering file
+    if($settings['registerDevice'] == "true")
+        rename("/etc/cron/pandp_register.sh", "/etc/cron/pandp_register.sh.disabled");
+    else
+        rename("/etc/cron/pandp_register.sh.disabled", "/etc/cron/pandp_register.sh");
+
+}
+
+if(isset($_POST['setSSLEnforce'])){ // toggle SSL Enforcement
+	$settings['setSSLEnforce'] = (array_key_exists('setSSLEnforce', $_POST) && $_POST['setSSLEnforce'] == "true") ? "true":"false";
+	$writeSettings = true;
+
+    //Rename the actual cron'ed registering file
+    if($settings['setSSLEnforce'] == "true")
+        rename("/etc/lighttpd/auth.conf", "/etc/lighttpd/auth.conf.disabled");
+    else
+        rename("/etc/lighttpd/auth.conf.disabled", "/etc/lighttpd/auth.conf");
+
+    exec("kilall lighttpd && lighttpd -f /etc/lighttpd/lighttpd.conf");
 }
 
 // Mining settings
@@ -628,6 +648,27 @@ include('menu.php');
 		<input type="hidden" name="setRegisterDevice" value="" />
 	    <input type="checkbox"  <?php echo (!array_key_exists('registerDevice', $settings) || $settings['registerDevice'] == "true")?"checked":""; ?> id="deviceRegisterOption" name="registerDevice" value="true"/> 
 	    Send device data to Spondoolies-tech.com. <?php if(!array_key_exists('registerDevice', $settings)){ ?> <br/>This option is currently enabled by default. <?php } ?>
+            </label>
+<br/>
+		<input class="btn btn-default" value="Save" type="submit" />
+             </div>
+              </div>
+          </div>
+      </fieldset>
+  </form>
+  <!-- ######################## -->
+
+  <!-- ######################## SSL control -->
+  <form name="reset" action="settings.php" method="post" enctype="multipart/form-data" class="form-horizontal">
+      <fieldset>
+          <legend>SSL Enforcement</legend>
+          <div class="form-group">
+              <div class="col-lg-9 col-offset-3">
+<div>
+            <label class="form-group alert-enabled " for="deviceRegisterOption">
+		<input type="hidden" name="setSSLEnforce" value="" />
+	    <input type="checkbox"  <?php echo (!array_key_exists('setSSLEnforce', $settings) || $settings['setSSLEnforce'] == "true")?"checked":""; ?> id="setSSLEnforceOption" name="setSSLEnforceOption" value="true"/>
+	    Enforce SSL login. <?php if(!array_key_exists('registerDevice', $settings)){ ?> <br/>This option is currently disabled by default. <?php } ?>
             </label>
 <br/>
 		<input class="btn btn-default" value="Save" type="submit" />

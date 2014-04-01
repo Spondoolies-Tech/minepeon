@@ -24,6 +24,14 @@ case 'end_blink_led':
 	//led_flash(YELLOW_LED, $seconds*2, .25);
 	led_flash($_GET['op'] == "blink_led" ? "start":"stop");
 	break;
+
+    case'spond_start':
+        exec("spond start");
+        break;
+
+    case'spond_stop':
+        exec("spond stop");
+        break;
 default:
 	$ret = 'Error: Unknown operation';
 }

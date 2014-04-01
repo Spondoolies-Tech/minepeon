@@ -84,6 +84,11 @@ $cg_status = get_status('ps_cgminer');
 $proc_status['cgminer'] = ($cg_status['status']) ? 'Running' : 'Not running';
 $mg_status = get_status('ps_miner_gate');
 $proc_status['minergate'] = ($mg_status['status']) ? 'Running' : 'Not running';
+
+function isSpondRunning() {
+    exec("pgrep spond", $pids);
+    return empty($pids);
+}
 ?>
 <div class="container">
   <h3 id="miner-header-txt">SP10 Miner</h3><br>
@@ -152,13 +157,14 @@ echo "<center class='alert alert-info'><h1>".$error."</h1></center>";
     </div>
   </div>
   <center>
-    <a class="btn btn-default" href='/restart.php' onclick="return send_restart('nice');">Restart CgMiner</a>
-    <a class="btn btn-default" href='/restart.php' onclick="return send_restart();">Restart MinerGate</a>
+    <a class="btn btn-default" href='/control.php' onclick="return send_command(<?php if(isSpondRunning())echo "'spond_stop'"; else echo "'spond_start'"?>);"><?php if(isSpondRunning())echo "Stop Spond Manager"; else echo "Start Spond Manager"?></a>
+    <a class="btn btn-default" href='/restart.php' onclick="return send_command('nice');">Restart CGMiner</a>
+    <a class="btn btn-default" href='/restart.php' onclick="return send_command();">Restart MinerGate</a>
     <a class="btn btn-default" href='/reboot.php'>Reboot</a>
     <a class="btn btn-default" href='/halt.php'>ShutDown</a>
 	<?php include('widgets/led_blinker.php'); ?>
     <script type="text/javascript">
-	function send_restart(type){
+	function send_command(type){
 		if(typeof(type) == "undefined") type ="";
 		var timeout = 10; // for nice, 10 tries is sufficient
 		if(type != "nice"){
