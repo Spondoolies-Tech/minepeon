@@ -158,7 +158,7 @@ echo "<center class='alert alert-info'><h1>".$error."</h1></center>";
     </div>
   </div>
   <center>
-    <a class="btn btn-default" href='' onclick="return send_command(<?php if(isSpondRunning())echo "'spond_stop'"; else echo "'spond_start'"?>);"><?php if(isSpondRunning())echo "Stop Spond Manager"; else echo "Start Spond Manager"?></a>
+    <a class="btn btn-default" href='' onclick="return send_command(<?php if(isSpondRunning())echo "'spond_stop'"; else echo "'spond_start'"?>);"><?php if(isSpondRunning())echo "Stop Miner"; else echo "Start Miner"?></a>
     <a class="btn btn-default" href='/restart.php' onclick="return send_command('mining_restart', 'nice');">Restart CGMiner</a>
     <a class="btn btn-default" href='/restart.php' onclick="return send_command('mining_restart');">Restart MinerGate</a>
     <a class="btn btn-default" href='/reboot.php'>Reboot</a>
@@ -179,7 +179,7 @@ echo "<center class='alert alert-info'><h1>".$error."</h1></center>";
 			wait_url: "status.php?proc=cgminer",
 			wait: 2, 
 			timeout: timeout,
-			success: function(){document.location.reload(); }
+			success: function(){setTimeout(function() { document.location.reload()}, 3500) }
 		});
 
 		a.send();
