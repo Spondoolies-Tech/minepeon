@@ -116,9 +116,9 @@ if(isset($_POST['setSSLEnforce'])){ // toggle SSL Enforcement
 
     //Rename the actual cron'ed registering file
     if($settings['setSSLEnforce'] == "true")
-        rename("/etc/lighttpd/auth.conf", "/etc/lighttpd/auth.conf.disabled");
+        rename("/etc/lighttpd/redirect.conf", "/etc/lighttpd/redirect.conf.disabled");
     else
-        rename("/etc/lighttpd/auth.conf.disabled", "/etc/lighttpd/auth.conf");
+        rename("/etc/lighttpd/redirect.conf.disabled", "/etc/lighttpd/redirect.conf");
 
     exec("kilall lighttpd && lighttpd -f /etc/lighttpd/lighttpd.conf");
 }
