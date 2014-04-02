@@ -9,7 +9,7 @@ $latest_ver = exec('cat '.LATEST_VERSION_FILE);
       <!--<li><a href="/">Status</a></li>-->
       <li><a href="/pools.php">Pools</a></li>
       <li><a href="/settings.php">Settings</a></li>
-      <li><a href="/firmware.php" >Firmware Upgrade</a></li>
+      <li><a href="/firmware.php">Firmware Upgrade</a></li>
 <?php /* if($cur_ver == $latest_ver){ ?>
 	<li><span class="disabled" title="You already have the latest version of the firmware installed.">Firmware Upgrade</span></li>
 <?php }else{ ?>
