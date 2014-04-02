@@ -1,4 +1,5 @@
 <?php
+require_once('global.inc.php');
 require('ansi.inc.php');
 include('head.php');
 include('menu.php');
