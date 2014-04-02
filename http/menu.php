@@ -6,15 +6,13 @@ $latest_ver = exec('cat '.LATEST_VERSION_FILE);
   <div class="container">
     <a class="navbar-brand" href="/">SP10 Dawson</a>
     <ul class="nav navbar-nav">
-      <!--<li><a href="/">Status</a></li>-->
       <li><a href="/pools.php">Pools</a></li>
       <li><a href="/settings.php">Settings</a></li>
-      <li><a href="/firmware.php">Firmware Upgrade</a></li>
-<?php /* if($cur_ver == $latest_ver){ ?>
-	<li><span class="disabled" title="You already have the latest version of the firmware installed.">Firmware Upgrade</span></li>
+<?php  if(version_compare($cur_ver, $latest_ver) < 0){ ?>
+    <li><a href="/firmware.php">Firmware Upgrade <p class="badge badge-info">New!</p></a></li>
 <?php }else{ ?>
-      <li><a class="alert" href="/firmware.php" title="Upgrade to version <?php echo $latest_ver;?> (Current version is <?php echo $cur_ver?>.)" >Firmware Upgrade</a><span class="badge alert" style="position:absolute;top:4px;right:0;"><?php echo $latest_ver;?></span></li>
-<?php } */ ?>
+    <li><a href="/firmware.php">Firmware Upgrade</a></li>
+<?php }  ?>
       <li><a href="/asics.php">ASIC Stats</a></li>
 <!--      <li><a href="about.php">About</a></li>
       <li><a href="contact.php">Contact</a></li>

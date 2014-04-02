@@ -8,8 +8,9 @@
 /**
  * @var $setting sarray
  */
-require_once('inc/settings.inc.php');
 
+require_once('inc/constants.inc.php');
+require_once('inc/settings.inc.php');
 
 // make sure user has accepted terms and conditions before allowing them to do anything else
 if((!array_key_exists('agree', $settings) || ! intval(time($settings['agree'])))  ){

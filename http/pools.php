@@ -1,5 +1,5 @@
 <?php
-require('settings.inc.php');
+require_once('global.inc.php');
 
 // set the number of extra empty rows for adding pools
 $extraPools = 1;

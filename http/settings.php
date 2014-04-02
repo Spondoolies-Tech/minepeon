@@ -3,7 +3,6 @@
 require_once('global.inc.php');
 require_once('miner.inc.php');
 require_once('network.inc.php');
-require_once('constants.inc.php');
 
 // Check for settings to write and do it after all checks
 $writeSettings=false;
