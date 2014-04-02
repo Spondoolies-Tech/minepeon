@@ -104,10 +104,9 @@ if(isset($_POST['setRegisterDevice'])){ // toggle PandP device regisatration.
 
     //Rename the actual cron'ed registering file
     if($settings['registerDevice'] == "true")
-        rename("/etc/cron/pandp_register.sh", "/etc/cron/pandp_register.sh.disabled");
-    else
         rename("/etc/cron/pandp_register.sh.disabled", "/etc/cron/pandp_register.sh");
-
+    else
+        rename("/etc/cron/pandp_register.sh", "/etc/cron/pandp_register.sh.disabled");
 }
 
 if(isset($_POST['setSSLEnforce'])){ // toggle SSL Enforcement
@@ -116,9 +115,9 @@ if(isset($_POST['setSSLEnforce'])){ // toggle SSL Enforcement
 
     //Rename the actual cron'ed registering file
     if($settings['setSSLEnforce'] == "true")
-        rename("/etc/lighttpd/redirect.conf", "/etc/lighttpd/redirect.conf.disabled");
-    else
         rename("/etc/lighttpd/redirect.conf.disabled", "/etc/lighttpd/redirect.conf");
+    else
+        rename("/etc/lighttpd/redirect.conf", "/etc/lighttpd/redirect.conf.disabled");
 
     exec("kilall lighttpd && lighttpd -f /etc/lighttpd/lighttpd.conf");
 }
@@ -665,10 +664,10 @@ include('menu.php');
           <div class="form-group">
               <div class="col-lg-9 col-offset-3">
 <div>
-            <label class="form-group alert-enabled " for="deviceRegisterOption">
+        <label class="form-group alert-enabled " for="setSSLEnforce">
 		<input type="hidden" name="setSSLEnforce" value="" />
-	    <input type="checkbox"  <?php echo (!array_key_exists('setSSLEnforce', $settings) || $settings['setSSLEnforce'] == "true")?"checked":""; ?> id="setSSLEnforceOption" name="setSSLEnforceOption" value="true"/>
-	    Enforce SSL login. <?php if(!array_key_exists('registerDevice', $settings)){ ?> <br/>This option is currently disabled by default. <?php } ?>
+	    <input type="checkbox"  <?php echo (!array_key_exists('setSSLEnforce', $settings) || $settings['setSSLEnforce'] == "true")?"checked":""; ?> id="setSSLEnforce" name="setSSLEnforce" value="true"/>
+	    Enforce SSL login. This option is currently disabled by default.
             </label>
 <br/>
 		<input class="btn btn-default" value="Save" type="submit" />
