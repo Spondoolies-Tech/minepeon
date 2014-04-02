@@ -99,14 +99,14 @@ if (isset($_POST['agree'])) {
 }
 
 if(isset($_POST['setRegisterDevice'])){ // toggle PandP device regisatration.
-	$settings['registerDevice'] = (array_key_exists('registerDevice', $_POST) && $_POST['registerDevice'] == "true") ? "true":"false";
+	$settings['setRegisterDevice'] = (array_key_exists('setRegisterDevice', $_POST) && $_POST['setRegisterDevice'] == "true") ? "true":"false";
 	$writeSettings = true;
 
     //Rename the actual cron'ed registering file
-    if($settings['registerDevice'] == "true")
-        rename("/etc/cron/pandp_register.sh.disabled", "/etc/cron/pandp_register.sh");
+    if($settings['setRegisterDevice'] == "true")
+            rename("/etc/cron.d/pandp_register.sh.disabled", "/etc/cron.d/pandp_register.sh");
     else
-        rename("/etc/cron/pandp_register.sh", "/etc/cron/pandp_register.sh.disabled");
+        rename("/etc/cron.d/pandp_register.sh", "/etc/cron.d/pandp_register.sh.disabled");
 }
 
 if(isset($_POST['setSSLEnforce'])){ // toggle SSL Enforcement
@@ -643,10 +643,10 @@ include('menu.php');
           <div class="form-group">
               <div class="col-lg-9 col-offset-3">
 <div>
-            <label class="form-group alert-enabled " for="deviceRegisterOption">
+            <label class="form-group alert-enabled " for="setRegisterDevice">
 		<input type="hidden" name="setRegisterDevice" value="" />
-	    <input type="checkbox"  <?php echo (!array_key_exists('registerDevice', $settings) || $settings['registerDevice'] == "true")?"checked":""; ?> id="deviceRegisterOption" name="registerDevice" value="true"/> 
-	    Send device data to Spondoolies-tech.com. <?php if(!array_key_exists('registerDevice', $settings)){ ?> <br/>This option is currently enabled by default. <?php } ?>
+	    <input type="checkbox"  <?php echo (!array_key_exists('setRegisterDevice', $settings) || $settings['setRegisterDevice'] == "true")?"checked":""; ?> id="setRegisterDevice" name="setRegisterDevice" value="true"/>
+	    Send device data to Spondoolies-tech.com (enabled by default).
             </label>
 <br/>
 		<input class="btn btn-default" value="Save" type="submit" />
@@ -667,7 +667,7 @@ include('menu.php');
         <label class="form-group alert-enabled " for="setSSLEnforce">
 		<input type="hidden" name="setSSLEnforce" value="" />
 	    <input type="checkbox"  <?php echo (!array_key_exists('setSSLEnforce', $settings) || $settings['setSSLEnforce'] == "true")?"checked":""; ?> id="setSSLEnforce" name="setSSLEnforce" value="true"/>
-	    Enforce SSL login. This option is currently disabled by default.
+	    Enforce SSL login (disabled by default).
             </label>
 <br/>
 		<input class="btn btn-default" value="Save" type="submit" />
