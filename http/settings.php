@@ -252,16 +252,19 @@ include('menu.php');
               <div class="col-lg-9 col-offset-3">
                   <div class="radio">
                       <label>
-                          <input type="radio" name="minerSpeed" id="minerSpeed" value="0" <?php echo $minerSpeed == 0?"checked":"";?> >Silent<br>
+                          <input type="radio" name="minerSpeed" id="minerSpeed" value="3" <?php echo $minerSpeed == 3?"checked":"";?> >~1.00Th / ~720W / ~quiet<br>
                       </label>
                       <label>
-                          <input type="radio" name="minerSpeed" id="minerSpeed" value="1" <?php echo $minerSpeed == 1?"checked":"";?> >Normal<br>
+                          <input type="radio" name="minerSpeed" id="minerSpeed" value="0" <?php echo $minerSpeed == 0?"checked":"";?> >~1.35Th / ~1100W / ~quiet<br>
                       </label>
                       <label>
-                          <input type="radio" name="minerSpeed" id="minerSpeed" value="2" <?php echo $minerSpeed == 2?"checked":"";?> >Turbo
+                          <input type="radio" name="minerSpeed" id="minerSpeed" value="1" <?php echo $minerSpeed == 1?"checked":"";?> >~1.43Th / ~1350W / normal<br>
+                      </label>
+                      <label>
+                          <input type="radio" name="minerSpeed" id="minerSpeed" value="2" <?php echo $minerSpeed == 2?"checked":"";?> >~1.47Th / ~1370W / turbo
                       </label>
                   </div>
-                  <p class="help-block">NOTE: This will change the fans noise and the power consumption.</p>
+                  <p class="help-block">NOTE: The numbers are an estimation. If you have 110V socket your rate will be limited by the firmware.</p>
                   <button type="submit" class="btn btn-default">Save</button>
               </div>
           </div>
