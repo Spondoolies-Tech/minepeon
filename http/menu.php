@@ -8,6 +8,7 @@ $latest_ver = exec('cat '.LATEST_VERSION_FILE);
     <ul class="nav navbar-nav">
       <li><a href="/pools.php">Pools</a></li>
       <li><a href="/settings.php">Settings</a></li>
+      <li><a href="/wifi.php">WiFi</a></li>
 <?php  if(version_compare($cur_ver, $latest_ver) < 0){ ?>
     <li><a href="/firmware.php">Firmware Upgrade <p class="badge badge-info">New!</p></a></li>
 <?php }else{ ?>
