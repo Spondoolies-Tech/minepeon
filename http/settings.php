@@ -319,14 +319,14 @@ include('menu.php');
           <input type="text" value="<?php echo $network_settings['subnet'] ?>" id="subnet" name="subnet" class="form-control" placeholder="255.255.255.0" onblur="checkIP(this)">
         </div>
       </div>
-      <div class="form-group dhcp-enabled <?php echo !$network_settings['dhcp']?"":"collapse"; $dhcpEnable?>">
+      <div class="form-group dhcp-enabled <?php echo !$network_settings['dhcp']?"":"collapse";?>">
         <label for="gateway" class="control-label col-lg-3">Gateway</label>
         <div class="col-lg-9">
           <input type="text" value="<?php echo $network_settings['gateway'] ?>" id="gateway" name="gateway" class="form-control" placeholder="192.x.x.1" onblur="checkIP(this)">
         </div>
       </div>
 
-      <div class="form-group dhcp-enabled <?php echo !$network_settings['dhcp']?"":"collapse"; $dhcpEnable?>">
+      <div class="form-group dhcp-enabled <?php echo !$network_settings['dhcp']?"":"collapse";?>">
         <label for="dns1" class="control-label col-lg-3">DNS</label>
         <div class="col-lg-9">
           <input type="text" value="<?php echo $network_settings['dns1'] ?>" id="dns1" name="dns1" class="form-control" placeholder="8.8.8.8" onblur="checkIP(this)">
