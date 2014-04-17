@@ -15,6 +15,7 @@ const CURRENT_VERSION_FILE = '/fw_ver';
 const LATEST_VERSION_FILE = '/tmp/fw_update';
 
 const WIFI_NETWORKS_FILE = '/var/run/wifi';
+const WIFI_SIGNAL_THRESHOLD = 0.5;
 
 //leds
 //const GREEN_LED = 51; // reserved for miner use
