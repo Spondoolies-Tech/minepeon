@@ -146,6 +146,11 @@ echo "<center class='alert alert-info'><h1>".$error."</h1></center>";
     </div>
     <div class="col-lg-4">
       <dl class="dl-horizontal">
+
+        <dt>Hostname</dt>
+        <dd><?php echo exec("hostname", $name); ?></dd>
+        <dt>MAC address</dt>
+        <dd><?php echo exec("/usr/local/bin/getmac.sh", $name);  ?></dd>
         <dt>Hardware Version</dt>
         <dd><?php echo $version; ?></dd>
         <dt>FW Version</dt>
