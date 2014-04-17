@@ -47,7 +47,13 @@ function set_fixed_network($settings)
     "iface eth0 inet static\n".
     "address ".$settings['0']."\n".
     "netmask ".$settings['1']."\n".
-    "gateway ".$settings['2']."\n";
+    "gateway ".$settings['2']."\n".
+    "\n".
+    "auto wlan0\n".
+    "iface wlan0 inet static\n".
+    "address ".$settings['3']."\n".
+    "netmask ".$settings['4']."\n".
+    "gateway ".$settings['5']."\n";
 
     file_put_contents("/etc/network/interfaces", $network_file);
 
@@ -67,7 +73,10 @@ function set_dhcp_network()
     $network_file = $network_file_header.
         "#Dynamic network configuration\n".
         "auto eth0\n".
-        "iface eth0 inet dhcp\n";
+        "iface eth0 inet dhcp\n".
+        "\n".
+        "auto wlan0\n".
+        "iface wlan0 inet dhcp\n";
 
     file_put_contents("/etc/network/interfaces", $network_file);
     network_sync();
