@@ -310,33 +310,33 @@ include('menu.php');
       <div class="form-group dhcp-enabled <?php echo !$network_settings['dhcp']?"":"collapse"; ?>">
         <label for="ipaddress" class="control-label col-lg-3">IP address</label>
         <div class="col-lg-9">
-          <input type="text" value="<?php echo $network_settings['ipaddress'] ?>" id="ipaddress" name="ipaddress" class="form-control" placeholder="192.x.x.x">
+          <input type="text" value="<?php echo $network_settings['ipaddress'] ?>" id="ipaddress" name="ipaddress" class="form-control" placeholder="192.x.x.x" onblur="checkIP(this)">
         </div>
       </div>
       <div class="form-group dhcp-enabled <?php echo !$network_settings['dhcp']?"":"collapse"; ?>">
         <label for="subnet" class="control-label col-lg-3">Subnet</label>
         <div class="col-lg-9">
-          <input type="text" value="<?php echo $network_settings['subnet'] ?>" id="subnet" name="subnet" class="form-control" placeholder="255.255.255.0">
+          <input type="text" value="<?php echo $network_settings['subnet'] ?>" id="subnet" name="subnet" class="form-control" placeholder="255.255.255.0" onblur="checkIP(this)">
         </div>
       </div>
-      <div class="form-group dhcp-enabled <?php echo !$network_settings['dhcp']?"":"collapse"; dhcpEnable?>">
+      <div class="form-group dhcp-enabled <?php echo !$network_settings['dhcp']?"":"collapse";?>">
         <label for="gateway" class="control-label col-lg-3">Gateway</label>
         <div class="col-lg-9">
-          <input type="text" value="<?php echo $network_settings['gateway'] ?>" id="gateway" name="gateway" class="form-control" placeholder="192.x.x.1">
+          <input type="text" value="<?php echo $network_settings['gateway'] ?>" id="gateway" name="gateway" class="form-control" placeholder="192.x.x.1" onblur="checkIP(this)">
         </div>
       </div>
 
-      <div class="form-group dhcp-enabled <?php echo !$network_settings['dhcp']?"":"collapse"; dhcpEnable?>">
+      <div class="form-group dhcp-enabled <?php echo !$network_settings['dhcp']?"":"collapse";?>">
         <label for="dns1" class="control-label col-lg-3">DNS</label>
         <div class="col-lg-9">
-          <input type="text" value="<?php echo $network_settings['dns1'] ?>" id="dns1" name="dns1" class="form-control" placeholder="8.8.8.8">
+          <input type="text" value="<?php echo $network_settings['dns1'] ?>" id="dns1" name="dns1" class="form-control" placeholder="8.8.8.8" onblur="checkIP(this)">
         </div>
       </div>
 
       <div class="form-group">
         <div class="col-lg-9 col-offset-3">
           <p class="help-block alert">Note that incorrect settings may make your miner unavailable. <br/>Change this setting only if you are sure this is what you want.</p>
-          <button type="submit" class="btn btn-default">Save</button>
+          <button type="submit" class="btn btn-default" onclick="return a=[],$('input.form-control:visible', $(this).parents('form')).each(function(){a.push(checkIP(this));}), a.reduce(function(a,b){return a&&b;});">Save</button>
       </div>
       </div>
     </fieldset>
@@ -720,6 +720,16 @@ include('menu.php');
         message.innerHTML = "Passwords Do Not Match!"
     }
 }
+function checkIP(e){
+	$(e).val($(e).val().trim());
+	if(!$(e).val().match(/^\d{0,3}\.\d{0,3}(\.\d{0,3}\.\d{0,3})?$/)){
+		$(e).addClass('invalid alert').attr({title:'Invalid IP Address'});
+	}else{
+		$(e).removeClass('invalid alert').attr({title:""});
+	}
+	return !$(e).hasClass('invalid');
+}
+
   function enableRestore(){
   	$('#restore_button').removeClass('disabled');
   }

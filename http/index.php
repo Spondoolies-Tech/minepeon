@@ -34,7 +34,11 @@ function create_graph($output, $start, $title) {
 $G_MHSav = 0;
 
 //MinePeon temperature
-$mpTemp = explode(" ", file_get_contents("/var/run/mg_rate_temp"));
+if(file_exists("/var/run/mg_rate_temp")){
+	$mpTemp = explode(" ", file_get_contents("/var/run/mg_rate_temp"));
+}else{
+	$mpTemp = array(null, null, null);
+}
 
 //MinePeon Version
 $version = "SP10 Dawson";
