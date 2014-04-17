@@ -60,7 +60,7 @@ include('menu.php');
     //Handle the connect command
     if (isset($_POST['connect'])) {
         //Preparation
-        $descriptorspec = array(
+        $desc = array(
             0 => array("pipe", "r"),  // stdin is a pipe that the child will read from
             1 => array("pipe", "w"),  // stdout is a pipe that the child will write to
             2 => array("file", "/tmp/wifi-conf-create.txt", "a") // stderr is a file to write to
@@ -84,7 +84,7 @@ include('menu.php');
         fclose($pipes[2]);
         proc_close($process);
 
-        header('Location: /wifi.php');
+        header('Location: /wifi.php?result=' . $result);
         exit;
     }
 ?>
