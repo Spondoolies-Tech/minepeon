@@ -112,7 +112,7 @@ if (isset($_POST['connect'])) {
                 <th>SSID</th>
                 <th>Good Signal</th>
                 <th>Secured</th>
-                <th>Connect</th>
+                <th>Connect to WiFi</th>
             </tr>
             </thead>
             <tbody>
