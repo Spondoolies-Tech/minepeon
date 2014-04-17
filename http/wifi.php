@@ -84,7 +84,7 @@ include('menu.php');
         fclose($pipes[2]);
         proc_close($process);
 
-        header('Location: /wifi.php?result=' . $result);
+        header('Location: /wifi.php?result=' .  $result);
         exit;
     }
 ?>
