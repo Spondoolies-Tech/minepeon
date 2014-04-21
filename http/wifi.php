@@ -64,7 +64,7 @@ if(isset($_GET["result"]) && $_GET["result"] != 0) {
 
 <?php
 //Scan for WiFi on every page refresh
-//exec("iwlist wlan0 scan | iwlist-scan-parse.awk > " . WIFI_NETWORKS_FILE);
+exec("iwlist wlan0 scan | iwlist-scan-parse.awk > " . WIFI_NETWORKS_FILE);
 $wifiJson = file_get_contents(WIFI_NETWORKS_FILE);
 $wifiNetworks = json_decode($wifiJson, true);
 
