@@ -50,6 +50,7 @@ echo $e;
 function setMinerSpeed($speed){
 	if(!is_numeric($speed) ) return;
 	file_put_contents(MINER_WORKMODE_FILE, $speed);
+	miner_service("restart");
 	settings_sync();
 }
 
@@ -59,7 +60,7 @@ function getMinerSpeed(){
 }
 
 function miner_service($op = "restart"){
-	exec('/usr/local/bin/spond-manager '.$op. " > /dev/null");
+	exec(MINER_CONTROL_CMD.$op. " > /dev/null");
 	if(!$ret) return 'Operation succesful';
 	else return 'There was an error while calling the Spondoolies manager.';
 }

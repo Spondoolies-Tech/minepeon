@@ -58,3 +58,21 @@ background-color: #54576d;
 .badge-info {
     background-color: #3a87ad;
 }
+
+.delete{
+/*	background: url(delete.png) center center;*/
+	width:2em;
+	padding: auto;
+	margin: 0 .5em;
+	color:red;
+	cursor: pointer;
+}
+.add{
+	width:2em;
+	font-weight:bold;
+	margin:0 .5em;
+	cursor: pointer;
+	padding: auto;
+	color:green;
+	font-size:120%;
+}

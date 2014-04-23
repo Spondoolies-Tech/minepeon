@@ -3,6 +3,7 @@
 require_once('global.inc.php');
 require_once('miner.inc.php');
 require_once('network.inc.php');
+require_once('cron.inc.php');
 
 // Check for settings to write and do it after all checks
 $writeSettings=false;
@@ -209,6 +210,10 @@ if (isset($_POST['alertSmtpAuthPort'])) {
 
 }
 
+if(isset($_POST['speedSched'])){
+	save_schedule(CRON_GROUP_MINER_SPEED, $_POST);
+}
+
 // Write settings
 if ($writeSettings) {
   ksort($settings);
@@ -249,6 +254,8 @@ $minerSpeed = getMinerSpeed();
 $max_watts = get_psu_limit();
 if(!$max_watts) $max_watts = 1200;
 
+$schedule = get_schedule(CRON_GROUP_MINER_SPEED);
+
 include('head.php');
 include('menu.php');
 ?>
@@ -286,6 +293,44 @@ include('menu.php');
                   <button type="submit" class="btn btn-default">Save</button>
               </div>
           </div>
+      </fieldset>
+  </form>
+  <form name="speedSched" action="" method="post" class="form-horizontal">
+	<input type="hidden" name="speedSched" />
+      <fieldset>
+	<legend>Miner Speed Scheduling</legend>
+          <div class="form-group">
+              <div class="col-lg-9 col-offset-3">
+                  <div class="">
+	
+<?php 
+	echo '<div class="jobs-container-all" '.($schedule['*']?'':'style="display:none;"').'>';
+	echo '<h4>Every Day</h4><div class="day-all">';
+	foreach($schedule['*']as $time=>$cmd){
+	echo '<div class="job">'.schedule_form_element(CRON_GROUP_MINER_SPEED, 'all', $time, $cmd).'<span class="delete" onclick="removeCron(this)">X</span></div>';
+	}
+	echo '</div><hr/>';
+	echo '</div>';
+	unset($schedule['*']);
+	$days = array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday');
+	foreach($days as $day_index=>$day){
+		echo '<div class="jobs-container-'.$day_index.'" '.($schedule[$day_index]?'':'style="display:none;"').'>';
+		echo '<h4>'.$day.'</h4><div class="day-'.$day_index.'">';
+	foreach($schedule[$day_index] as $time=>$cmd){
+		echo '<div class="job">'.schedule_form_element(CRON_GROUP_MINER_SPEED, $day_index, $time, $cmd).'<span class="delete" onclick="removeCron(this)">X</span></div>';
+	}
+		echo '</div><hr/></div>';
+}?> 
+		<h4>New</h4>
+		<div class="job">
+		<span class="days">On <select multiple="multiple" class="multiple"><option value="all" selected="selected">All Days</option><?php foreach($days as $k=>$v) echo '<option value="'.$k.'">'.$v.'</option>'; ?></select></span>
+		<?php echo schedule_form_element(CRON_GROUP_MINER_SPEED); ?> 
+			<span class="add" onclick="addCron(this)">+</span></div>
+		  </div>
+                  <p><button type="submit" class="btn btn-default">Save</button></p>
+	      </div>
+	</div>
+
       </fieldset>
   </form>
 <!-- ######################## -->
@@ -733,6 +778,25 @@ function checkIP(e){
   function enableRestore(){
   	$('#restore_button').removeClass('disabled');
   }
+	function removeCron(e){
+		$(e).parents('.job').remove();
+	}
+	function addCron(e){
+		if($(e).hasClass('delete')) return removeCron(e);
+		var p = $(e).parents('.job');
+		var days = $('select.multiple', p).val();
+		if(days[0] == "all") days = ["all"]; // remove individual selected days if "all days" was selected
+		for(d in days){
+			var job = p.clone();
+			$('select', p).each(function(){$('.'+$(this).attr('class'), job).val($(this).val()); });
+			$('.day_field', job).val(days[d]);
+			$('.add', job).removeClass('add').addClass('delete').text('X');
+			$('.days', job).remove();
+			$('.day-'+days[d]).append(job);
+			$('.jobs-container-'+days[d]).show();
+			delete job;
+		}
+	}
 </script>
 <?php
 include('foot.php');

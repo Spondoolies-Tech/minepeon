@@ -9,6 +9,8 @@
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/bootbox.min.js"></script>
 <script type="text/javascript" src="js/spond.js"></script>
+<script type="text/javascript" src="js/bootstrap-multiselect.js"></script>
+<link rel="stylesheet" href="css/bootstrap-multiselect.css" type="text/css"/>
 <script type="text/javascript" id="js">
   $(document).ready(function() {
     $(".tablesorter").tablesorter();
@@ -41,6 +43,7 @@
 		return false;
 	}
     });
+    $('select.multiple').multiselect({buttonClass:"btn-disabled"});
   });
 </script>
 
