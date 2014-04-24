@@ -53,7 +53,7 @@ $wifiJson = join("", $cmdOutput);
 $wifiNetworks = json_decode($wifiJson, true);
 
 //Find the connected WiFi network (if any)
-$connectedWiFi = exec("iwgetid wlan0 --raw");
+$connectedWiFi = exec("iwgetid wlan0 --raw --ap");
 ?>
 
     <div class="container">
@@ -77,7 +77,7 @@ $connectedWiFi = exec("iwgetid wlan0 --raw");
             if(isset($wifiNetworks) && isset($wifiNetworks["WiFi"]) && sizeof($wifiNetworks["WiFi"]) > 0)
                 foreach($wifiNetworks["WiFi"] as $wifi){
                     //Check if the iterated WiFi is the connected one
-                    $connected = $connectedWiFi == $wifi["ESSID"];
+                    $connected = $connectedWiFi == $wifi["MAC"];
 
                     //Check signal quality
                     $signal = explode('/', $wifi["Quality"]);
