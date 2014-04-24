@@ -85,8 +85,8 @@ $connectedWiFi = exec("iwgetid wlan0 --raw");
 
                     //Add visual indicators
                     $colorCSS = $goodSignal ? "" : "text-danger";
-                    $colorCSS = $wifi["Enc"] ? "" : "text-danger";
-                    $colorCSS = $connected ? "text-success" : "";
+                    $colorCSS = $wifi["Enc"] ? $colorCSS : "text-danger";
+                    $colorCSS = $connected ? "text-success" : $colorCSS;
                     ?>
                     <tr>
                         <td><span class="<?php echo $colorCSS ?> "><?php echo $wifi["ESSID"]; echo $connected ? " (connected)" : "" ?></span></td>

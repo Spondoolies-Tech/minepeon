@@ -14,7 +14,7 @@ const MAX_ELECTRICAL_USAGE_FILE = '/etc/mg_psu_limit';
 const CURRENT_VERSION_FILE = '/fw_ver';
 const LATEST_VERSION_FILE = '/tmp/fw_update';
 
-const WIFI_SIGNAL_THRESHOLD = 0.5;
+const WIFI_SIGNAL_THRESHOLD = 0.4;
 
 //leds
 //const GREEN_LED = 51; // reserved for miner use
