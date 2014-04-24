@@ -50,6 +50,9 @@ include('menu.php');
 exec("iwlist wlan0 scan | iwlist-scan-parse.awk > " . WIFI_NETWORKS_FILE);
 $wifiJson = file_get_contents(WIFI_NETWORKS_FILE);
 $wifiNetworks = json_decode($wifiJson, true);
+
+//Find the connected WiFi network (if any)
+$connectedWiFi = exec("iwgetid wlan0 --raw");
 ?>
 
     <div class="container">
@@ -72,8 +75,8 @@ $wifiNetworks = json_decode($wifiJson, true);
             <?php
             if(isset($wifiNetworks) && isset($wifiNetworks["WiFi"]) && sizeof($wifiNetworks["WiFi"]) > 0)
                 foreach($wifiNetworks["WiFi"] as $wifi){
-                    $connected = false;
-                    //$connected = $wifi["Connected"]; //TODO: Enable once connected indicator is added
+                    //If the current WiFi is connected, indicate it visually
+                    $connected = $connectedWiFi == $wifi["ESSID"];
                     $connectedCSS = $connected ? "text-success" : "";
                     ?>
                     <tr>
