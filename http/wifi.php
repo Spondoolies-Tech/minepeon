@@ -47,8 +47,9 @@ include('menu.php');
 
 <?php
 //Scan for WiFi on every page refresh
-exec("iwlist wlan0 scan | iwlist-scan-parse.awk > " . WIFI_NETWORKS_FILE);
-$wifiJson = file_get_contents(WIFI_NETWORKS_FILE);
+$cmdOutput = array();
+exec("/sbin/iwlist wlan0 scan | /usr/local/bin/iwlist-scan-parse.awk 2>&1", $cmdOutput);
+$wifiJson = join("", $cmdOutput);
 $wifiNetworks = json_decode($wifiJson, true);
 
 //Find the connected WiFi network (if any)
