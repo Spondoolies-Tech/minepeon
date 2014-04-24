@@ -76,18 +76,26 @@ $connectedWiFi = exec("iwgetid wlan0 --raw");
             <?php
             if(isset($wifiNetworks) && isset($wifiNetworks["WiFi"]) && sizeof($wifiNetworks["WiFi"]) > 0)
                 foreach($wifiNetworks["WiFi"] as $wifi){
-                    //If the current WiFi is connected, indicate it visually
+                    //Check if the iterated WiFi is the connected one
                     $connected = $connectedWiFi == $wifi["ESSID"];
-                    $connectedCSS = $connected ? "text-success" : "";
+
+                    //Check signal quality
+                    $signal = explode('/', $wifi["Quality"]);
+                    $goodSignal = ($signal[0]/$signal[1] > WIFI_SIGNAL_THRESHOLD) ? true : false;
+
+                    //Add visual indicators
+                    $colorCSS = $goodSignal ? "" : "text-danger";
+                    $colorCSS = $wifi["Enc"] ? "" : "text-danger";
+                    $colorCSS = $connected ? "text-success" : "";
                     ?>
                     <tr>
-                        <td><span class="<?php echo $connectedCSS ?> "><?php echo $wifi["ESSID"]; echo $connected ? " (connected)" : "" ?></span></td>
-                        <td><i class="fa <?php $signal = explode('/', $wifi["Quality"]); echo $signal[0]/$signal[1] > WIFI_SIGNAL_THRESHOLD ? "fa-signal" : "fa-ban" ?> fa-lg <?php echo $connectedCSS ?>"></i></td>
+                        <td><span class="<?php echo $colorCSS ?> "><?php echo $wifi["ESSID"]; echo $connected ? " (connected)" : "" ?></span></td>
+                        <td><i class="fa <?php echo $goodSignal ? "fa-signal" : "fa-ban" ?> fa-lg <?php echo $colorCSS ?>"></i></td>
 
 
-                        <td><i class="fa <?php echo $wifi["Enc"] ? "fa-lock" : "fa-unlock" ?> fa-lg <?php echo $connectedCSS ?>"></i></td>
+                        <td><i class="fa <?php echo $wifi["Enc"] ? "fa-lock" : "fa-unlock" ?> fa-lg <?php echo $colorCSS ?>"></i></td>
 
-                        <td style="<?php echo !$connected ? "cursor: pointer;" : "" ?>" onclick="<?php echo !$connected ? "connectToWiFi('".$wifi["ESSID"]."', '".$wifi["KeyMgmt"]."', '".$wifi["Proto"]."', '".$wifi["Pairwise"]."', '".$wifi["Group"]."',".$wifi["Enc"].")" : "" ?>"><i class="fa <?php echo $connected ? "fa-check-square" : "fa-link" ?> fa-lg <?php echo $connectedCSS ?>"></i></td>
+                        <td style="<?php echo !$connected ? "cursor: pointer;" : "" ?>" onclick="<?php echo !$connected ? "connectToWiFi('".$wifi["ESSID"]."', '".$wifi["KeyMgmt"]."', '".$wifi["Proto"]."', '".$wifi["Pairwise"]."', '".$wifi["Group"]."',".$wifi["Enc"].")" : "" ?>"><i class="fa <?php echo $connected ? "fa-check-square" : "fa-link" ?> fa-lg <?php echo $colorCSS ?>"></i></td>
 
                     </tr>
             <?php } ?>
