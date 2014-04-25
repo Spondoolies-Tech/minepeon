@@ -9,10 +9,8 @@ auto lo
 iface lo inet loopback\n\n";
 
 $wifi_section_footer =
-"
-pre-up wpa_supplicant -B -D wext -i wlan0 -c /etc/wifi.conf;sleep 3
-post-down pkill wpa_supplicant;pkill udhcpc\n
-";
+"pre-up wpa_supplicant -B -D wext -i wlan0 -c /etc/wifi.conf;sleep 3
+post-down pkill wpa_supplicant;pkill udhcpc\n";
 
 function get_network($interface="eth0")
 {
