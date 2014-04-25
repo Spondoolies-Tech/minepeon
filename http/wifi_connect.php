@@ -18,14 +18,16 @@ if(isset($_POST['password'])) {
 //Close input to start command
 fclose($pipes[0]);
 
-$result = stream_get_contents($pipes[1]);
+stream_get_contents($pipes[1]);
 
 //Clean-up
 fclose($pipes[1]);
 fclose($pipes[2]);
 proc_close($process);
 
-echo $result;
+
+//Restart the network
+exec('/etc/init.d/S40network restart');
 
 exit(0);
 ?>

@@ -13,16 +13,19 @@ include('menu.php');
             url: path,
             type: method,
             dataType: 'json',
-            data: params,
+            data: params/*,
             success: function(result) {
                 if(result == 0){
                     //Reload the page to initiate WiFi scan and show connected networks
                     window.location.replace("/wifi.php");
                 }
-            }
+            }*/
         });
 
-        bootbox.alert("Error connecting to WiFi network!", function() {});
+        //bootbox.alert("Error connecting to WiFi network!", function() {});
+
+        //Refresh the WiFi list, and indicate the (probably) connected WiFi network
+        scanWiFi();
     }
 
 
@@ -59,7 +62,7 @@ $connectedWiFi = exec("iwgetid wlan0 --raw --ap");
     <div class="container">
         <center><h1>WiFi networks</h1></center>
         <br/><br/>
-        <button class="btn btn-default" onclick="scanWiFi()">Scan for WiFi</button>
+        <button class="btn btn-default" onclick="scanWiFi()">Rescan</button>
         <input type='hidden' name='wifiScan'>
         <br><br>
         <table id="stats" class="tablesorter table table-striped table-hover stats">
