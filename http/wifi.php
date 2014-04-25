@@ -29,7 +29,8 @@ include('menu.php');
 
         bootbox.dialog({
             title: "Please wait",
-            message: "Connecting to the chosen WiFi network..."
+            message: "Connecting to the chosen WiFi network...",
+            closeButton: false
         });
     }
 
