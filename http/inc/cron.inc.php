@@ -12,7 +12,7 @@ define("CRON_MINER_SPEED_SCHEDULE", "echo %s > ".MINER_WORKMODE_FILE. " && ".CRO
 const CRONLINE = '%s %s * * %s %s';
 
 function get_schedule($group){
-	$cron = array();
+	$cron = $ret = array();
 	$start = sprintf(CRON_BEGIN, $group);
 	$end = sprintf(CRON_END, $group);
 	$state = "read";
@@ -67,6 +67,7 @@ function write_schedule($group, $lines){
 	$rc = popen(CRON_CMD." - ", 'w');
 	fwrite($rc, implode("\n", $cronlines)."\n");
 	pclose($rc);
+	// RESTART CRON
 }
 
 function save_schedule($group, $data){
@@ -76,6 +77,7 @@ function save_schedule($group, $data){
 }
 
 function cron2sched($schedule){
+	if(empty($schedule)) return array();
 	$item_template = array('minute'=>0, 'hour'=>0, 'cmd');
 	$times = array("minute", "hour", "day", "month", "weekday");
 	$ret = array_fill(0, 7, null);
@@ -85,7 +87,7 @@ function cron2sched($schedule){
 		$cmd = str_replace($sched, '', $item);
 		$sched = array_combine($times, array_filter(explode(' ', trim($sched))));
 		foreach(explode(',', $sched['weekday']) as $day){
-			if(!$ret[$day]) $ret[$day] = array();
+			if(!array_key_exists($day, $ret)) $ret[$day] = array();
 			foreach(explode(',', $sched['minute']) as $minute){
 			foreach(explode(',', $sched['hour']) as $hour){
 				$time = sprintf('%02s:%02s', $hour, $minute);
@@ -95,10 +97,10 @@ function cron2sched($schedule){
 			}
 		}
 	}
+	$ret = array_filter($ret);
 	foreach($ret as &$day){
 		ksort($day);
 	}
-	$ret = array_filter($ret);
 	return $ret;
 }
 
@@ -107,7 +109,7 @@ function sched2cron($sched){
 	foreach($sched as $cmd => $day){
 		foreach($day as $d => $hour){
 			foreach($hour as $h => $minutes){
-				if($d == 'all') $d = '*';
+				if(strval($d) == 'all') $d = '*';
 				$crons[] = sprintf(CRONLINE, $minutes, $h, $d, sprintf(CRON_MINER_SPEED_SCHEDULE, $cmd));
 			}
 		}
@@ -181,7 +183,7 @@ function command_select($group, $default=-1){
 
 function hour_select($default=""){
 		if(is_numeric($default)) $default = intval($default);
-		$e = '<select name="hour[]" class="hour_field"><option value="*">0-23</option>';
+		$e = '<select name="hour[]" class="hour_field">';//<option value="*">0-23</option>';
 		for($i = 0; $i < 24; $i++){
 			$selected = '';
 			if($i == $default) $selected = 'selected="selected"';
@@ -193,7 +195,7 @@ function hour_select($default=""){
 
 function minute_select($default=""){
 		$default = intval($default);
-		$e = '<select name="minute[]" class="minute_field"><option value="*">0-59</option>';
+		$e = '<select name="minute[]" class="minute_field">'; //<option value="*">0-59</option>';
 		for($i = 0; $i < 60; $i++){
 			$selected = '';
 			if($i == $default) $selected = 'selected="selected"';

@@ -5,6 +5,9 @@ require_once('miner.inc.php');
 require_once('network.inc.php');
 require_once('cron.inc.php');
 
+$utc = new DateTimeZone('UTC');
+$dt = new DateTime('now', $utc);
+
 // Check for settings to write and do it after all checks
 $writeSettings=false;
 
@@ -24,6 +27,12 @@ if (isset($_POST['userTimezone'])) {
   $settings['userTimezone'] = $_POST['userTimezone'];
   ksort($settings);
   writeSettings($settings);
+	$current_tz = new DateTimeZone($_POST['userTimezone']);
+	$offset =  $current_tz->getOffset($dt);
+	$transition =  $current_tz->getTransitions($dt->getTimestamp(), $dt->getTimestamp());
+	$abbr = $transition[0]['abbr'];
+	$tz = $abbr.strval(-1*$offset/3600);
+	file_put_contents('/etc/profile.d/timezone.sh', 'export TZ='.$tz);
   header('Location: /settings.php');
   exit;
 
@@ -234,8 +243,6 @@ function formatOffset($offset) {
 
 }
 
-$utc = new DateTimeZone('UTC');
-$dt = new DateTime('now', $utc);
 
 $tzselect = '<select id="userTimezone" name="userTimezone" class="form-control">';
 
@@ -304,9 +311,9 @@ include('menu.php');
                   <div class="">
 	
 <?php 
-	echo '<div class="jobs-container-all" '.($schedule['*']?'':'style="display:none;"').'>';
+	echo '<div class="jobs-container-all" '.(array_key_exists('*', $schedule)?'':'style="display:none;"').'>';
 	echo '<h4>Every Day</h4><div class="day-all">';
-	foreach($schedule['*']as $time=>$cmd){
+	if(array_key_exists('*', $schedule)) foreach($schedule['*']as $time=>$cmd){
 	echo '<div class="job">'.schedule_form_element(CRON_GROUP_MINER_SPEED, 'all', $time, $cmd).'<span class="delete" onclick="removeCron(this)">X</span></div>';
 	}
 	echo '</div><hr/>';
@@ -314,20 +321,22 @@ include('menu.php');
 	unset($schedule['*']);
 	$days = array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday');
 	foreach($days as $day_index=>$day){
-		echo '<div class="jobs-container-'.$day_index.'" '.($schedule[$day_index]?'':'style="display:none;"').'>';
+		echo '<div class="jobs-container-'.$day_index.'" '.(array_key_exists($day_index, $schedule)?'':'style="display:none;"').'>';
 		echo '<h4>'.$day.'</h4><div class="day-'.$day_index.'">';
-	foreach($schedule[$day_index] as $time=>$cmd){
+	if(array_key_exists($day_index, $schedule) ) foreach($schedule[$day_index] as $time=>$cmd){
 		echo '<div class="job">'.schedule_form_element(CRON_GROUP_MINER_SPEED, $day_index, $time, $cmd).'<span class="delete" onclick="removeCron(this)">X</span></div>';
 	}
 		echo '</div><hr/></div>';
 }?> 
+		<div class="jobs-container-new">
 		<h4>New</h4>
 		<div class="job">
-		<span class="days">On <select multiple="multiple" class="multiple"><option value="all" selected="selected">All Days</option><?php foreach($days as $k=>$v) echo '<option value="'.$k.'">'.$v.'</option>'; ?></select></span>
+		<span class="days">On <select multiple="multiple" class="new_day multiple"><option value="all" selected="selected">All Days</option><?php foreach($days as $k=>$v) echo '<option value="'.$k.'">'.$v.'</option>'; ?></select></span>
 		<?php echo schedule_form_element(CRON_GROUP_MINER_SPEED); ?> 
 			<span class="add" onclick="addCron(this)">+</span></div>
 		  </div>
-                  <p><button type="submit" class="btn btn-default">Save</button></p>
+                  <p><br/><button type="submit" class="btn btn-default" onclick="return saveCrons(this)">Save</button></p>
+	      </div>
 	      </div>
 	</div>
 
@@ -796,6 +805,15 @@ function checkIP(e){
 			$('.jobs-container-'+days[d]).show();
 			delete job;
 		}
+		cron_ready_to_add = false;
+	}
+	function saveCrons(e){
+		if(cron_ready_to_add) bootbox.confirm('You have selected a new Cron, but did not add it to the list. If you want to save this cron, click "Cancel", and then click on the "+" to add your new cron to the list.', function(s){
+			console.log(s);
+			if(s) $(e).parents('form').submit();
+		});
+		else $(e).parents('form').submit();
+		return false;
 	}
 </script>
 <?php

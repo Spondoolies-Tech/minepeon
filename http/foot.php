@@ -43,7 +43,20 @@
 		return false;
 	}
     });
-    $('select.multiple').multiselect({buttonClass:"btn-disabled"});
+    /**
+     * settings page
+     **/
+    $('select.new_day').multiselect({buttonClass:"btn-none", onChange: function(e, c){
+		cron_ready_to_add = true;
+		if(c){ // something was checked, not unchecked
+			if($(e).val() != "all") $('select.new_day').multiselect('deselect', 'all');
+			else $('select.new_day').multiselect('deselect', [0,1,2,3,4,5,6]);
+		}
+    	}});
+    cron_ready_to_add  = false;
+    $('select', '.jobs-container-new').change(function(){
+    	cron_ready_to_add = true;
+    });
   });
 </script>
 
