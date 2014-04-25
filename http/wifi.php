@@ -103,7 +103,7 @@ $connectedWiFi = exec("iwgetid wlan0 --raw --ap");
                         <td><i class="fa <?php echo $goodSignal ? "fa-signal" : "fa-ban" ?> fa-lg <?php echo $colorCSS ?>"></i></td>
 
 
-                        <td><i class="fa <?php echo $wifi["Enc"] ? "fa-lock" : "fa-unlock" ?> fa-lg <?php echo $colorCSS ?>"></i></td>
+                        <td><i class="fa <?php echo $wifi["Enc"] == "true" ? "fa-lock" : "fa-unlock" ?> fa-lg <?php echo $colorCSS ?>"></i></td>
 
                         <td style="<?php echo !$connected ? "cursor: pointer;" : "" ?>" onclick="<?php echo !$connected ? "connectToWiFi('".$wifi["ESSID"]."', '".$wifi["KeyMgmt"]."', '".$wifi["Proto"]."', '".$wifi["Pairwise"]."', '".$wifi["Group"]."',".$wifi["Enc"].")" : "" ?>"><i class="fa <?php echo $connected ? "fa-check-square" : "fa-link" ?> fa-lg <?php echo $colorCSS ?>"></i></td>
 
