@@ -100,7 +100,8 @@ function network_sync(){
 	exec('/bin/sync');
 }
 
-$network_settings = get_network("eth0");
+$eth_settings = get_network("eth0");
+$wlan_settings = get_network("wlan0");
 
 //Tester
 //var_dump($network_settings);
