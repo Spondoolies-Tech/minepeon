@@ -69,7 +69,7 @@ $connectedWiFi = exec("iwgetid wlan0 --raw --ap");
             <thead>
             <tr>
                 <th>SSID</th>
-                <th>Good Signal</th>
+                <th>Signal Quality</th>
                 <th>Secured</th>
                 <th>Connect to WiFi</th>
             </tr>
