@@ -90,6 +90,13 @@ $connectedWiFi = exec("iwgetid wlan0 --raw --ap");
                     $colorCSS = $goodSignal ? "" : "text-danger";
                     $colorCSS = $wifi["Enc"] ? $colorCSS : "text-danger";
                     $colorCSS = $connected ? "text-success" : $colorCSS;
+
+                    //Sanitize the WiFi variables for the JS function
+                    $wifi["KeyMgmt"] = isset($wifi["KeyMgmt"]) ? $wifi["KeyMgmt"] : "";
+                    $wifi["Proto"] = isset($wifi["Proto"]) ? $wifi["Proto"] : "";
+                    $wifi["Pairwise"] = isset($wifi["Pairwise"]) ? $wifi["Pairwise"] : "";
+                    $wifi["Group"] = isset($wifi["Group"]) ? $wifi["Group"] : "";
+                    $wifi["Enc"] = $wifi["Enc"] ? "true" : "false";
                     ?>
                     <tr>
                         <td><span class="<?php echo $colorCSS ?> "><?php echo $wifi["ESSID"]; echo $connected ? " (connected)" : "" ?></span></td>
