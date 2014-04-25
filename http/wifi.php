@@ -13,19 +13,20 @@ include('menu.php');
             url: path,
             type: method,
             dataType: 'json',
-            data: params/*,
-            success: function(result) {
-                if(result == 0){
+            data: params
+        })
+            .always(function(result) {
+                //Refresh the WiFi list, and indicate the (probably) connected WiFi network
+                scanWiFi();
+
+                /*if(result == 0){
                     //Reload the page to initiate WiFi scan and show connected networks
                     window.location.replace("/wifi.php");
-                }
-            }*/
+                }*/
         });
 
         //bootbox.alert("Error connecting to WiFi network!", function() {});
-
-        //Refresh the WiFi list, and indicate the (probably) connected WiFi network
-        scanWiFi();
+        bootbox.alert("Connecting to chosen WiFi network, please wait...", function() {});
     }
 
 
