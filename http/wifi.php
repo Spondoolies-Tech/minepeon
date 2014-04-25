@@ -26,7 +26,11 @@ include('menu.php');
         });
 
         //bootbox.alert("Error connecting to WiFi network!", function() {});
-        bootbox.alert("Connecting to chosen WiFi network, please wait...", function() {});
+
+        bootbox.dialog({
+            title: "Please wait",
+            message: "Connecting to the chosen WiFi network..."
+        });
     }
 
 
