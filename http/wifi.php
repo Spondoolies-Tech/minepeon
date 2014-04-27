@@ -18,14 +18,7 @@ include('menu.php');
             .always(function(result) {
                 //Refresh the WiFi list, and indicate the (probably) connected WiFi network
                 scanWiFi();
-
-                /*if(result == 0){
-                    //Reload the page to initiate WiFi scan and show connected networks
-                    window.location.replace("/wifi.php");
-                }*/
         });
-
-        //bootbox.alert("Error connecting to WiFi network!", function() {});
 
         bootbox.dialog({
             title: "Please wait",

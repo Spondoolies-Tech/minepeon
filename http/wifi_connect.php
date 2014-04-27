@@ -20,7 +20,7 @@ fclose($pipes[0]);
 
 stream_get_contents($pipes[1]);
 
-//Clean-up
+//Clean-up inputs
 fclose($pipes[1]);
 fclose($pipes[2]);
 proc_close($process);
