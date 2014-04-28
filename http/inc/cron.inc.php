@@ -67,7 +67,6 @@ function write_schedule($group, $lines){
 	$rc = popen(CRON_CMD." - ", 'w');
 	fwrite($rc, implode("\n", $cronlines)."\n");
 	pclose($rc);
-	// RESTART CRON
 }
 
 function save_schedule($group, $data){
@@ -85,7 +84,8 @@ function cron2sched($schedule){
 		preg_match("/(\S+\s+){5}/", $item, $m);
 		$sched = $m[0];
 		$cmd = str_replace($sched, '', $item);
-		$sched = array_combine($times, array_filter(explode(' ', trim($sched))));
+		$cron_symbols = preg_split('/\s+/', trim($sched));
+		$sched = array_combine($times, $cron_symbols);
 		foreach(explode(',', $sched['weekday']) as $day){
 			if(!array_key_exists($day, $ret)) $ret[$day] = array();
 			foreach(explode(',', $sched['minute']) as $minute){

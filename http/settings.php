@@ -32,7 +32,7 @@ if (isset($_POST['userTimezone'])) {
 	$transition =  $current_tz->getTransitions($dt->getTimestamp(), $dt->getTimestamp());
 	$abbr = $transition[0]['abbr'];
 	$tz = $abbr.strval(-1*$offset/3600);
-	file_put_contents('/etc/profile.d/timezone.sh', 'export TZ='.$tz);
+	file_put_contents('/etc/profile.d/timezone.sh', 'export TZ='.$tz); exec('export TZ='.$tz.'; date; /etc/init.d/S47cron restart'); // changing TZ will not affect running processes, like cron
   header('Location: /settings.php');
   exit;
 
