@@ -76,3 +76,25 @@ background-color: #54576d;
 	color:green;
 	font-size:120%;
 }
+
+.json.formatted{
+	background:#ededef;
+	padding:10px;
+	border:1px grey solid;
+}
+.json.formatted .list .obj li{
+	display:inline-block;
+	padding:2px 8px 1px 0;
+}
+.json.formatted .list .obj li .key{
+	border-bottom: grey 1px dashed;
+}
+.json.formatted li{
+	list-style-type:none;
+}
+.json.formatted .value{
+	color: #333;
+}
+.json.formatted .key{
+	font-weight:bold;
+}
