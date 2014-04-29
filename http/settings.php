@@ -304,8 +304,9 @@ include('menu.php');
           </div>
         </div>
 	<div class="col-lg-3">
+    <a class="btn btn-default" href="/wifi.php">WiFi networks</a>
 	<?php include('widgets/led_blinker.php'); ?>
-	</div> 
+	</div>
       </div>
       <div class="form-group dhcp-enabled <?php echo !$eth_settings['dhcp']?"":"collapse"; ?>">
         <label for="ipaddress" class="control-label col-lg-3">IP address</label>
