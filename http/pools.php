@@ -63,6 +63,23 @@ include('menu.php');
 		<p><button type="button" class="btn btn-default" value="" id="save">Submit</button></p>
 		<p class="save-msg"></p>
 	</form>
+
+    <!-- ######################## Cgminer.conf -->
+    <form name="cgconf" action="/settings.php" method="post" class="form-horizontal">
+        <fieldset>
+            <legend>CGMiner Conf</legend>
+            <div class="form-group">
+                <label for="userTimezone" class="control-label col-lg-3"></label>
+                <div class="col-lg-9">
+                    <?php echo json2html(file_get_contents('/etc/cgminer.conf')); ?>
+                    <p class="help-block">To edit this file, please use SSH to log in to your miner, and then use vi /etc/cgminer.conf </p>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+    <!-- ######################## -->
+
+
 </div>
 <?php
 include('foot.php');
