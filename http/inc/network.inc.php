@@ -54,9 +54,9 @@ function set_fixed_network($settings)
     "\n".
     "auto wlan0\n".
     "iface wlan0 inet static\n".
-    "address ".$settings['3']."\n".
-    "netmask ".$settings['4']."\n".
-    "gateway ".$settings['5']."\n".
+    "address ".$settings['4']."\n".
+    "netmask ".$settings['5']."\n".
+    "gateway ".$settings['6']."\n".
     $wifi_section_footer;
 
     file_put_contents("/etc/network/interfaces", $network_file);
