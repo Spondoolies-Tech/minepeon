@@ -8,7 +8,11 @@ $desc = array(
 );
 
 //Create and open new process
-$cmd = 'ESSID="'.$_POST['wifiName'].'" KEY_MGMT="'.$_POST['keyMgmt'].'" PROTO="'.$_POST['protocol'].'" PAIRWISE_CIPHERS="'.$_POST['pairWise'].'" GROUP_CIPHERS="'.$_POST['groupCiphers'].'" /usr/local/bin/wifi-conf-create.sh';
+if(isset($_POST['password'])) //with password and key, if set
+    $cmd = 'ESSID="'.$_POST['wifiName'].'" KEY_MGMT="'.$_POST['keyMgmt'].'" PROTO="'.$_POST['protocol'].'" PAIRWISE_CIPHERS="'.$_POST['pairWise'].'" GROUP_CIPHERS="'.$_POST['groupCiphers'].'" /usr/local/bin/wifi-conf-create.sh';
+else //without password and key
+    $cmd = 'ESSID="'.$_POST['wifiName'].'" KEY_MGMT="NONE" /usr/local/bin/wifi-conf-create.sh';
+
 $process = proc_open($cmd, $desc, $pipes);
 
 //Input password, if defined
