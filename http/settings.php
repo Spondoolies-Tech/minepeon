@@ -305,7 +305,7 @@ include('menu.php');
   <form name="speedSched" action="" method="post" class="form-horizontal">
 	<input type="hidden" name="speedSched" />
       <fieldset>
-	<legend>Miner Speed Scheduling</legend>
+	<legend>Miner Speed Scheduling (experimental)</legend>
           <div class="form-group">
               <div class="col-lg-9 col-offset-3">
                   <div class="">
