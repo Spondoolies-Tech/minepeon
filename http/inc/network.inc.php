@@ -45,19 +45,19 @@ function set_fixed_network($settings)
     global $network_file_header, $wifi_section_footer;
 
     $network_file = $network_file_header.
-    "#Your static network configuration\n".
+    "#Static network configuration\n".
     "auto eth0\n".
     "iface eth0 inet static\n".
     "address ".$settings['0']."\n".
     "netmask ".$settings['1']."\n".
-    "gateway ".$settings['2']."\n".
     "\n".
     "auto wlan0\n".
     "iface wlan0 inet static\n".
     "address ".$settings['4']."\n".
     "netmask ".$settings['5']."\n".
     "gateway ".$settings['6']."\n".
-    $wifi_section_footer;
+    $wifi_section_footer."\n".
+    "gateway ".$settings['2'];
 
     file_put_contents("/etc/network/interfaces", $network_file);
 
