@@ -41,7 +41,7 @@ if (isset($_POST['dhcpEnable'])) {
 	  $refresh_ip="none";
   }
   else{
-	  set_fixed_network(array($_POST['ipaddress'], $_POST['subnet'], $_POST['gateway'], $_POST['dns1'], $_POST['wifi_ipaddress'], $_POST['wifi_subnet'], $_POST['wifi_gateway']));
+	  set_fixed_network(array($_POST['ipaddress'], $_POST['subnet'], $_POST['gateway'], $_POST['dns1'], $_POST['wifi_ipaddress'], $_POST['wifi_subnet']));
 	  $refresh_ip = $_POST['ipaddress'];
   }
   header('Location: /reboot.php?ip='.$refresh_ip); // 
@@ -309,24 +309,17 @@ include('menu.php');
 	</div>
       </div>
       <div class="form-group dhcp-enabled <?php echo !$eth_settings['dhcp']?"":"collapse"; ?>">
-        <label for="ipaddress" class="control-label col-lg-3">IP address</label>
+        <label for="ipaddress" class="control-label col-lg-3">LAN IP address</label>
         <div class="col-lg-9">
           <input type="text" value="<?php echo $eth_settings['ipaddress'] ?>" id="ipaddress" name="ipaddress" class="form-control" placeholder="192.x.x.x" onblur="checkIP(this)">
         </div>
       </div>
       <div class="form-group dhcp-enabled <?php echo !$eth_settings['dhcp']?"":"collapse"; ?>">
-        <label for="subnet" class="control-label col-lg-3">Subnet</label>
+        <label for="subnet" class="control-label col-lg-3">LAN Subnet</label>
         <div class="col-lg-9">
           <input type="text" value="<?php echo $eth_settings['subnet'] ?>" id="subnet" name="subnet" class="form-control" placeholder="255.255.255.0" onblur="checkIP(this)">
         </div>
       </div>
-      <div class="form-group dhcp-enabled <?php echo !$eth_settings['dhcp']?"":"collapse";?>">
-        <label for="gateway" class="control-label col-lg-3">Gateway</label>
-        <div class="col-lg-9">
-          <input type="text" value="<?php echo $eth_settings['gateway'] ?>" id="gateway" name="gateway" class="form-control" placeholder="192.x.x.1" onblur="checkIP(this)">
-        </div>
-      </div>
-
 
       <div class="form-group dhcp-enabled <?php echo !$wlan_settings['dhcp']?"":"collapse"; ?>">
         <label for="wifi_ipaddress" class="control-label col-lg-3">WiFi IP address</label>
@@ -340,11 +333,12 @@ include('menu.php');
           <input type="text" value="<?php echo $wlan_settings['subnet'] ?>" id="wifi_subnet" name="wifi_subnet" class="form-control" placeholder="255.255.255.0" onblur="checkIP(this)">
         </div>
       </div>
-      <div class="form-group dhcp-enabled <?php echo !$wlan_settings['dhcp']?"":"collapse";?>">
-        <label for="wifi_gateway" class="control-label col-lg-3">WiFi Gateway</label>
-        <div class="col-lg-9">
-          <input type="text" value="<?php echo $wlan_settings['gateway'] ?>" id="wifi_gateway" name="wifi_gateway" class="form-control" placeholder="192.x.x.1" onblur="checkIP(this)">
-        </div>
+
+      <div class="form-group dhcp-enabled <?php echo !$eth_settings['dhcp']?"":"collapse";?>">
+          <label for="gateway" class="control-label col-lg-3">Gateway</label>
+          <div class="col-lg-9">
+              <input type="text" value="<?php echo $eth_settings['gateway'] ?>" id="gateway" name="gateway" class="form-control" placeholder="192.x.x.1" onblur="checkIP(this)">
+          </div>
       </div>
 
       <div class="form-group dhcp-enabled <?php echo !$eth_settings['dhcp']?"":"collapse";?>">
