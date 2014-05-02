@@ -56,7 +56,7 @@ function set_fixed_network($settings)
     "address ".$settings['4']."\n".
     "netmask ".$settings['5']."\n".
     $wifi_section_footer."\n".
-    "gateway ".$settings['2'];
+    "gateway ".$settings['2']."\n";
 
     file_put_contents("/etc/network/interfaces", $network_file);
 
