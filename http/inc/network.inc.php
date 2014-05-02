@@ -55,7 +55,6 @@ function set_fixed_network($settings)
     "iface wlan0 inet static\n".
     "address ".$settings['4']."\n".
     "netmask ".$settings['5']."\n".
-    "gateway ".$settings['6']."\n".
     $wifi_section_footer."\n".
     "gateway ".$settings['2'];
 
