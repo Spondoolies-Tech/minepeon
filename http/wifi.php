@@ -114,6 +114,7 @@ if(isset($wifiNetworks) && isset($wifiNetworks["WiFi"]) && sizeof($wifiNetworks[
 <?php           }
 }
 else  { ?>
+    <br><br>
     <span class="text-danger">No WiFi networks found, please make sure your WiFi dongle is fully plugged in and re-scan.</span>
 <?php } ?>
 
