@@ -64,6 +64,8 @@ $connectedWiFi = exec("iwgetid wlan0 --raw --ap");
         <button class="btn btn-default" onclick="scanWiFi()">Re-scan</button>
         <input type='hidden' name='wifiScan'>
         <br><br>
+<?php
+if(isset($wifiNetworks) && isset($wifiNetworks["WiFi"]) && sizeof($wifiNetworks["WiFi"]) > 0){ ?>
         <table id="stats" class="tablesorter table table-striped table-hover stats">
             <thead>
             <tr>
@@ -75,8 +77,7 @@ $connectedWiFi = exec("iwgetid wlan0 --raw --ap");
             </thead>
             <tbody>
 
-            <?php
-            if(isset($wifiNetworks) && isset($wifiNetworks["WiFi"]) && sizeof($wifiNetworks["WiFi"]) > 0)
+<?php
                 foreach($wifiNetworks["WiFi"] as $wifi){
                     //Check if the iterated WiFi is the connected one
                     $connected = $connectedWiFi == $wifi["MAC"];
@@ -107,10 +108,14 @@ $connectedWiFi = exec("iwgetid wlan0 --raw --ap");
                         <td style="<?php echo !$connected ? "cursor: pointer;" : "" ?>" onclick="<?php echo !$connected ? "connectToWiFi('".$wifi["ESSID"]."', '".$wifi["KeyMgmt"]."', '".$wifi["Proto"]."', '".$wifi["Pairwise"]."', '".$wifi["Group"]."',".$wifi["Enc"].")" : "" ?>"><i class="fa <?php echo $connected ? "fa-check-square" : "fa-link" ?> fa-lg <?php echo $colorCSS ?>"></i></td>
 
                     </tr>
-            <?php } ?>
             </tbody>
         </table>
     </div>
+<?php           }
+}
+else  { ?>
+    <span class="text-danger">No WiFi networks found, please make sure your WiFi dongle is fully plugged in and re-scan.</span>
+<?php } ?>
 
 <?php
 include('foot.php');
