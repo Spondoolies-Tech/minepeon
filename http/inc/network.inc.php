@@ -8,6 +8,9 @@ $network_file_header =
 auto lo
 iface lo inet loopback\n\n";
 
+$wifi_section_footer =
+"pre-up wpa_supplicant -B -D wext -i wlan0 -c /etc/wifi.conf;sleep 3
+post-down pkill wpa_supplicant;pkill udhcpc\n";
 
 function get_network($interface="eth0")
 {
@@ -39,14 +42,20 @@ function get_network($interface="eth0")
 
 function set_fixed_network($settings)
 {
-    global $network_file_header;
+    global $network_file_header, $wifi_section_footer;
 
     $network_file = $network_file_header.
-    "#Your static network configuration\n".
+    "#Static network configuration\n".
     "auto eth0\n".
     "iface eth0 inet static\n".
     "address ".$settings['0']."\n".
     "netmask ".$settings['1']."\n".
+    "\n".
+    "auto wlan0\n".
+    "iface wlan0 inet static\n".
+    "address ".$settings['4']."\n".
+    "netmask ".$settings['5']."\n".
+    $wifi_section_footer."\n".
     "gateway ".$settings['2']."\n";
 
     file_put_contents("/etc/network/interfaces", $network_file);
@@ -62,12 +71,16 @@ function set_fixed_network($settings)
 
 function set_dhcp_network()
 {
-    global $network_file_header;
+    global $network_file_header, $wifi_section_footer;
 
     $network_file = $network_file_header.
         "#Dynamic network configuration\n".
         "auto eth0\n".
-        "iface eth0 inet dhcp\n";
+        "iface eth0 inet dhcp\n".
+        "\n".
+        "auto wlan0\n".
+        "iface wlan0 inet dhcp\n".
+        $wifi_section_footer;
 
     file_put_contents("/etc/network/interfaces", $network_file);
     network_sync();
@@ -84,7 +97,8 @@ function network_sync(){
 	exec('/bin/sync');
 }
 
-$network_settings = get_network("eth0");
+$eth_settings = get_network("eth0");
+$wlan_settings = get_network("wlan0");
 
 //Tester
 //var_dump($network_settings);

@@ -6,7 +6,7 @@ if(!isset($refresh_ip)) $refresh_ip =  $_SERVER['SERVER_ADDR'];
     "http://www.w3.org/TR/html4/strict.dtd">
 <html>
   <head>
-    <title>Page title</title>
+    <title>Rebooting...</title>
 <?php if($refresh_ip != "none"){ ?>
 <script type="text/javascript">
 var start = new Date();
