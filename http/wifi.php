@@ -59,7 +59,7 @@ $connectedWiFi = exec("iwgetid wlan0 --raw --ap");
 ?>
 
     <div class="container">
-        <center><h1>WiFi networks</h1></center>
+        <center><h1>WiFi networks (experimental)</h1></center>
         <br/><br/>
         <button class="btn btn-default" onclick="scanWiFi()">Re-scan</button>
         <input type='hidden' name='wifiScan'>
