@@ -87,9 +87,7 @@ if(isset($wifiNetworks) && isset($wifiNetworks["WiFi"]) && sizeof($wifiNetworks[
                     $goodSignal = ($signal[0]/$signal[1] > WIFI_SIGNAL_THRESHOLD) ? true : false;
 
                     //Add visual indicators
-                    $colorCSS = $goodSignal ? "" : "text-danger";
-                    $colorCSS = $wifi["Enc"] ? $colorCSS : "text-danger";
-                    $colorCSS = $connected ? "text-success" : $colorCSS;
+                    $colorCSS = $connected ? "text-success" : "";
 
                     //Sanitize the WiFi variables for the JS function
                     $wifi["KeyMgmt"] = isset($wifi["KeyMgmt"]) ? $wifi["KeyMgmt"] : "";
@@ -116,7 +114,7 @@ if(isset($wifiNetworks) && isset($wifiNetworks["WiFi"]) && sizeof($wifiNetworks[
 }
 else  { ?>
     <br><br>
-    <span class="text-danger">No WiFi networks found, please make sure your WiFi dongle is fully plugged in and re-scan.</span>
+    <span class="text-danger">No WiFi networks found, please make sure your WiFi dongle is fully plugged in and "Re-scan" again.</span>
 <?php } ?>
 
 <?php
