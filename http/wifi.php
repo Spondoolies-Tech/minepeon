@@ -70,9 +70,9 @@ if(isset($wifiNetworks) && isset($wifiNetworks["WiFi"]) && sizeof($wifiNetworks[
             <thead>
             <tr>
                 <th>SSID</th>
-                <th>Signal Quality</th>
-                <th>Secured</th>
-                <th>Connect to WiFi</th>
+                <th class="sorter-false">Signal Quality</th>
+                <th class="sorter-false">Secured</th>
+                <th class="sorter-false">Connect to WiFi</th>
             </tr>
             </thead>
             <tbody>
