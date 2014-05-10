@@ -358,7 +358,7 @@ include('menu.php');
           </div>
         </div>
 	<div class="col-lg-3">
-    <a class="btn btn-default" href="/wifi.php">WiFi networks</a>
+    <!--<a class="btn btn-default" href="/wifi.php">WiFi networks</a>-->
 	<?php include('widgets/led_blinker.php'); ?>
 	</div>
       </div>
