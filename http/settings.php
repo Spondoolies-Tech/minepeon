@@ -261,7 +261,9 @@ $tzselect = $tzselect . '</select>';
 $minerSpeed = getMinerSpeed();
 
 $max_watts = get_psu_limit();
-if(!$max_watts) $max_watts = 1200;
+if(!$max_watts) $max_watts = 1250;
+
+$voltage = exec('cat /etc/voltage');
 
 $schedule = get_schedule(CRON_GROUP_MINER_SPEED);
 
@@ -281,7 +283,8 @@ include('menu.php');
 <!-- ######################## Miner speed -->
 <form name="speed" action="/settings.php" method="post" class="form-horizontal" id="speed_settings" onsubmit="return saveCustomSpeed()">
       <fieldset>
-          <legend>Miner Speed</legend>
+          <legend>Over-clocking <?php echo "(Socket voltage: $voltage volt)"; ?></legend>
+
           <div class="basic form-group">
               <div class="basic col-lg-9 col-offset-3 view-alternative">
                   <div class="radio">
@@ -330,7 +333,10 @@ include('menu.php');
                   </div>
               </div>
 	      <div class="col-offset-3 col-9 buttons">
-                  <p class="help-block">NOTE: The numbers are an estimation. If you have 110V socket your rate will be limited by the firmware.</p>
+              <?php if ($voltage < 130) { ?>
+                  <p class="help-block">NOTE: Your ASIC voltage will be limited by the firmware FCC module because of your low socket voltage.</p>
+              <?php } ?>
+
 		</div>
 	      <div class="col-offset-3 col-6 buttons">
                   <button type="submit" class="btn btn-default">Save</button>
@@ -392,7 +398,7 @@ include('menu.php');
 		}
 	</script>
   </form>
-  <form name="speedSched" action="" method="post" class="form-horizontal">
+  <!--form name="speedSched" action="" method="post" class="form-horizontal">
 	<input type="hidden" name="speedSched" />
       <fieldset>
 	<legend>Miner Speed Scheduling (experimental)</legend>
@@ -400,7 +406,7 @@ include('menu.php');
               <div class="col-lg-9 col-offset-3">
                   <div class="">
 	
-<?php 
+< ?php
 	echo '<div class="jobs-container-all" '.(array_key_exists('*', $schedule)?'':'style="display:none;"').'>';
 	echo '<h4>Every Day</h4><div class="day-all">';
 	if(array_key_exists('*', $schedule)) foreach($schedule['*']as $time=>$cmd){
@@ -421,8 +427,8 @@ include('menu.php');
 		<div class="jobs-container-new">
 		<h4>New</h4>
 		<div class="job">
-		<span class="days">On <select multiple="multiple" class="new_day multiple"><option value="all" selected="selected">All Days</option><?php foreach($days as $k=>$v) echo '<option value="'.$k.'">'.$v.'</option>'; ?></select></span>
-		<?php echo schedule_form_element(CRON_GROUP_MINER_SPEED); ?> 
+		<span class="days">On <select multiple="multiple" class="new_day multiple"><option value="all" selected="selected">All Days</option>< ?php foreach($days as $k=>$v) echo '<option value="'.$k.'">'.$v.'</option>'; ?></select></span>
+		< ?php echo schedule_form_element(CRON_GROUP_MINER_SPEED); ?>
 			<span class="add" onclick="addCron(this)">+</span></div>
 		  </div>
                   <p><br/><button type="submit" class="btn btn-default" onclick="return saveCrons(this)">Save</button></p>
@@ -826,7 +832,7 @@ include('menu.php');
   </form>
   <!-- ######################## -->
 
-  <!-- ######################## SSL control -->
+  <!-- ######################## SSL control >
   <form name="reset" action="settings.php" method="post" enctype="multipart/form-data" class="form-horizontal">
       <fieldset>
           <legend>SSL Enforcement</legend>
@@ -835,7 +841,7 @@ include('menu.php');
 <div>
         <label class="form-group alert-enabled " for="setSSLEnforce">
 		<input type="hidden" name="setSSLEnforce" value="" />
-	    <input type="checkbox"  <?php echo (!array_key_exists('setSSLEnforce', $settings) || $settings['setSSLEnforce'] == "true")?"checked":""; ?> id="setSSLEnforce" name="setSSLEnforce" value="true"/>
+	    <input type="checkbox"  < ?php echo (!array_key_exists('setSSLEnforce', $settings) || $settings['setSSLEnforce'] == "true")?"checked":""; ?> id="setSSLEnforce" name="setSSLEnforce" value="true"/>
 	    Enforce SSL login (disabled by default).
             </label>
 <br/>
