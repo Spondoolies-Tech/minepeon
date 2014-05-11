@@ -139,7 +139,7 @@ echo "<center class='alert alert-info'><h1>".$error."</h1></center>";
         <dt>Best Share</dt>
         <dd><?php echo $summary['SUMMARY'][0]['BestShare']; ?></dd>
 		<dt>Miner time</dt>
-        <dd><?php echo date('D, d M Y H:i:s T') ?></dd>
+        <dd><?php echo date('D, d M Y H:i') ?></dd>
         <dt>System Uptime</dt>
         <dd><?php echo secondsToWords(round($uptime[0])); ?></dd>
         <dt>CGMiner Uptime</dt>
