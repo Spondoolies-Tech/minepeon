@@ -27,15 +27,6 @@ function writeSettings($settings, $file = 'minepeon.conf') {
 function settings_sync(){
 	exec('/bin/sync');
 }
-
-function get_psu_limit(){
-	return exec('cat '.MAX_ELECTRICAL_USAGE_FILE);
-}
-function set_psu_limit($limit){
-	exec('echo '.$limit.' > '.MAX_ELECTRICAL_USAGE_FILE, $output, $ret);
-	return $ret;
-}
-
 function json2html($json, $level=0){
 	$json_test = json_decode($json, true);
 	if(is_array($json_test)) $json = $json_test;

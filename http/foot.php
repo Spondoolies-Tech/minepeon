@@ -57,6 +57,7 @@
     $('select', '.jobs-container-new').change(function(){
     	cron_ready_to_add = true;
     });
+    if(speedSettings) setupSpeedSettings();
   });
 </script>
 

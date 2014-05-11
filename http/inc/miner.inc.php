@@ -48,16 +48,32 @@ echo $e;
 }
 
 function setMinerSpeed($speed){
-	if(!is_numeric($speed) ) return;
+	$old_speed = getMinerSpeed();
+	$speed = sprintf("%s %s", $speed, $old_speed[3]); // psu limit in fourth place
 	file_put_contents(MINER_WORKMODE_FILE, $speed);
 	miner_service("restart");
 	settings_sync();
 }
 
 function getMinerSpeed(){
-	if(file_exists(MINER_WORKMODE_FILE)) return file_get_contents(MINER_WORKMODE_FILE);
-	return DEFAULT_MINER_WORKMODE;
+	if(file_exists(MINER_WORKMODE_FILE)) $s = file_get_contents(MINER_WORKMODE_FILE);
+	else $s = DEFAULT_MINER_WORKMODE;
+	return explode(' ', $s);
 }
+
+function get_psu_limit(){
+	$speed = getMinerSpeed();
+	return $speed[3];
+	//return exec('cat '.MAX_ELECTRICAL_USAGE_FILE);
+}
+function set_psu_limit($limit){
+	//exec('echo '.$limit.' > '.MAX_ELECTRICAL_USAGE_FILE, $output, $ret);
+	$speed = getMinerSpeed();
+	$speed[3] = $limit;
+	$speed = implode(' ', $speed);
+	return file_put_contents(MINER_WORKMODE_FILE, $speed);
+}
+
 
 function miner_service($op = "restart"){
 	exec(MINER_CONTROL_CMD.$op. " > /dev/null");

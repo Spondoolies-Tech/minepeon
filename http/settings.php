@@ -145,8 +145,10 @@ if (isset($_POST['miningExpHash'])) {
   $writeSettings=true;
 
 }
-if (isset($_POST['minerSpeed'])) {
-  setMinerSpeed(intval($_POST["minerSpeed"]));
+if (isset($_POST['fan_speed'])) {
+ // setMinerSpeed(intval($_POST["minerSpeed"]));
+  $speed = sprintf("%d %d %d", $_POST['fan_speed'], (float)$_POST['min_voltage']*1000, (float)$_POST['max_voltage']*1000);
+  setMinerSpeed($speed);
   $mining_restart = true;
 }
 
@@ -277,30 +279,115 @@ include('menu.php');
   <h2>Settings</h2>
 
 <!-- ######################## Miner speed -->
-<form name="speed" action="/settings.php" method="post" class="form-horizontal">
+<form name="speed" action="/settings.php" method="post" class="form-horizontal" id="speed_settings" onsubmit="return saveCustomSpeed()">
       <fieldset>
-          <legend>Miner speed</legend>
-          <div class="form-group">
-              <div class="col-lg-9 col-offset-3">
+          <legend>Miner Speed</legend>
+          <div class="basic form-group">
+              <div class="basic col-lg-9 col-offset-3 view-alternative">
                   <div class="radio">
                       <label>
-                          <input type="radio" name="minerSpeed" id="minerSpeed" value="3" <?php echo $minerSpeed == 3?"checked":"";?> >~1.00Th / ~720W / ~quiet<br>
                       </label>
                       <label>
-                          <input type="radio" name="minerSpeed" id="minerSpeed" value="0" <?php echo $minerSpeed == 0?"checked":"";?> >~1.35Th / ~1100W / ~quiet<br>
+                          <input name="speed_basic_radio" type="radio" speed="quiet" id="minerSpeed" value="0" <?php echo $minerSpeed == 0?"checked":"";?> onclick="setCustomSpeed(this)">~1.35Th / ~1100W / ~quiet<br>
                       </label>
                       <label>
-                          <input type="radio" name="minerSpeed" id="minerSpeed" value="1" <?php echo $minerSpeed == 1?"checked":"";?> >~1.43Th / ~1350W / normal<br>
+                          <input name="speed_basic_radio" type="radio" speed="normal" id="minerSpeed" value="1" <?php echo $minerSpeed == 1?"checked":"";?> onclick="setCustomSpeed(this)">~1.43Th / ~1350W / normal<br>
                       </label>
                       <label>
-                          <input type="radio" name="minerSpeed" id="minerSpeed" value="2" <?php echo $minerSpeed == 2?"checked":"";?> >~1.47Th / ~1370W / turbo
+                          <input name="speed_basic_radio" type="radio" speed="turbo" id="minerSpeed" value="2" <?php echo $minerSpeed == 2?"checked":"";?> onclick="setCustomSpeed(this)">~1.47Th / ~1370W / turbo
                       </label>
                   </div>
-                  <p class="help-block">NOTE: The numbers are an estimation. If you have 110V socket your rate will be limited by the firmware.</p>
-                  <button type="submit" class="btn btn-default">Save</button>
               </div>
+              <div class="custom col-lg-9 col-offset-3 view-alternative" style="display:none">
+                  <div>
+			<div class="row">
+				<div class="col-4">
+				      <label for="">Fan Speed</label>
+				</div>
+				<div>
+					<select name="fan_speed" id="fan_speed_select">
+					<?php for($i = 40; $i < 99; $i += 10){
+						printf('<option value="%d" %s>%d</option>', $i, ($i == $minerSpeed[0])?' selected="selected"':'', $i);
+					} ?>
+					</select>
+				</div>
+			</div>	
+			<div class="row">
+				<div class="col-4">
+				      <label for="">Maximum Voltage (0.635-0.810)</label>
+				</div>
+				<div><input size="5" type="number" onblur="validateSpeed(this)" id="maximum_voltage" name="max_voltage" value="<?php echo $minerSpeed[2]/1000?>" min=".635" max=".810"/></div>
+			</div>	
+			<div class="row">
+				<div class="col-4">
+				      <label for="">Start Voltage (0.635-0.810)</label>
+				</div>
+				<div><input size="5" type="number" onblur="validateSpeed(this)" id="minimum_voltage" name="min_voltage" value="<?php echo $minerSpeed[1]/1000?>" min=".635" max=".810"/></div>
+			</div>
+                  </div>
+              </div>
+	      <div class="col-offset-3 col-9 buttons">
+                  <p class="help-block">NOTE: The numbers are an estimation. If you have 110V socket your rate will be limited by the firmware.</p>
+		</div>
+	      <div class="col-offset-3 col-6 buttons">
+                  <button type="submit" class="btn btn-default">Save</button>
+		</div>
+		<div>
+                  <button class="btn btn-default" onclick="return toggleCustomSpeedSettings()"><span id="settings_view_name">Advanced</span> Voltage Settings</button>
+		</div>
           </div>
       </fieldset>
+	<script type="text/javascript">
+		speedSettings = {
+			turbo:{min:.664, max:.683, fan:80},
+			normal:{min:.664, max:.683, fan:70},
+			quiet:{min:.635, max:.635, fan:50}
+		}
+		function setupSpeedSettings(){
+			// check if we have a predefined settings, if not show custom settings
+			var predefined = false;
+			for(s in speedSettings){
+				if(speedSettings[s].min==<?php echo ($minerSpeed[1]/1000)?> &&  speedSettings[s].max==<?php echo ($minerSpeed[2]/1000)?> &&  speedSettings[s].fan==<?php echo $minerSpeed[0]?>){
+					$('input[speed='+s+']').prop('checked', true);
+					predefined = true;
+				}
+			}
+			if(!predefined) toggleCustomSpeedSettings(true);
+		}
+		advanced_warning = false;
+		function toggleCustomSpeedSettings(force){
+			if(!force && !advanced_warning && $('#settings_view_name').text() == "Advanced"){
+				advanced_warning = true;
+				bootbox.confirm("Choosing a manual voltage setting can lead to overheating the unit, which can damage your miner or cause it to restart unexpectedly.<br/><br/>Do you want to continue?", 
+					function(confirm){
+						if(confirm) toggleCustomSpeedSettings();
+						else advanced_warning = false;
+					});
+					return false;
+			}
+			$('form#speed_settings .view-alternative').toggle();
+			$('#settings_view_name').text($('#settings_view_name').text()=="Advanced"?"Basic":"Advanced");
+			return false;
+		}
+		function setCustomSpeed(e){
+			var speed = $(e).attr('speed'); 	
+			$('#fan_speed_select').val(speedSettings[speed].fan);
+			$('#maximum_voltage').val(speedSettings[speed].max);
+			$('#minimum_voltage').val(speedSettings[speed].min);
+		}
+		function validateSpeed(e){
+			if(parseFloat($(e).val()) < parseFloat($(e).attr('min'))) $(e).val($(e).attr('min'));
+			if(parseFloat($(e).val()) > parseFloat($(e).attr('max'))) $(e).val($(e).attr('max'));
+		}
+		function saveCustomSpeed(){
+			if($('#speed_settings .view-alternative.basic').is(':visible')) setCustomSpeed($('#speed_settings .view-alternative.basic input:checked')[0]);
+			if($('#maximum_voltage').val() < $('#minimum_voltage').val()){
+				bootbox.alert("Maximum voltage must be greater than start value.");
+				return false;
+			}
+			return true;	
+		}
+	</script>
   </form>
   <form name="speedSched" action="" method="post" class="form-horizontal">
 	<input type="hidden" name="speedSched" />
@@ -835,7 +922,6 @@ function checkIP(e){
 	}
 	function saveCrons(e){
 		if(cron_ready_to_add) bootbox.confirm('You have selected a new Cron, but did not add it to the list. If you want to save this cron, click "Cancel", and then click on the "+" to add your new cron to the list.', function(s){
-			console.log(s);
 			if(s) $(e).parents('form').submit();
 		});
 		else $(e).parents('form').submit();
