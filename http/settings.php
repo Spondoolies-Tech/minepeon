@@ -300,30 +300,33 @@ include('menu.php');
               </div>
               <div class="custom col-lg-9 col-offset-3 view-alternative" style="display:none">
                   <div>
-			<div class="row">
-				<div class="col-4">
-				      <label for="">Fan Speed</label>
-				</div>
-				<div>
-					<select name="fan_speed" id="fan_speed_select">
-					<?php for($i = 40; $i < 99; $i += 10){
-						printf('<option value="%d" %s>%d</option>', $i, ($i == $minerSpeed[0])?' selected="selected"':'', $i);
-					} ?>
-					</select>
-				</div>
-			</div>	
-			<div class="row">
-				<div class="col-4">
-				      <label for="">Maximum Voltage (0.635-0.810)</label>
-				</div>
-				<div><input size="5" type="number" onblur="validateSpeed(this)" id="maximum_voltage" name="max_voltage" value="<?php echo $minerSpeed[2]/1000?>" min=".635" max=".810"/></div>
-			</div>	
-			<div class="row">
-				<div class="col-4">
-				      <label for="">Start Voltage (0.635-0.810)</label>
-				</div>
-				<div><input size="5" type="number" onblur="validateSpeed(this)" id="minimum_voltage" name="min_voltage" value="<?php echo $minerSpeed[1]/1000?>" min=".635" max=".810"/></div>
-			</div>
+                      <div class="row">
+                          <div class="col-4">
+                              <label for="">Fan Speed</label>
+                          </div>
+                          <div>
+                              <select name="fan_speed" id="fan_speed_select">
+                                  <?php for($i = 40; $i < 99; $i += 10){
+                                      printf('<option value="%d" %s>%d</option>', $i, ($i == $minerSpeed[0])?' selected="selected"':'', $i);
+                                  } ?>
+                              </select>
+                          </div>
+                      </div>
+
+                      <div class="row">
+                          <div class="col-4">
+                              <label for="">Start Voltage (0.635-0.79)</label>
+                          </div>
+				<div><input size="5" type="number" onblur="validateSpeed(this)" id="minimum_voltage" name="min_voltage" value="<?php echo $minerSpeed[1]/1000?>" min=".635" max=".79" step="0.001" /></div>
+                      </div>
+
+                      <div class="row">
+                          <div class="col-4">
+                              <label for="">Maximum Voltage (0.635-0.79)</label>
+                          </div>
+				<div><input size="5" type="number" onblur="validateSpeed(this)" id="maximum_voltage" name="max_voltage" value="<?php echo $minerSpeed[2]/1000?>" min=".635" max=".79" step="0.001" /></div>
+                      </div>
+
                   </div>
               </div>
 	      <div class="col-offset-3 col-9 buttons">
