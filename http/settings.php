@@ -261,7 +261,9 @@ $tzselect = $tzselect . '</select>';
 $minerSpeed = getMinerSpeed();
 
 $max_watts = get_psu_limit();
-if(!$max_watts) $max_watts = 1200;
+if(!$max_watts) $max_watts = 1250;
+
+$voltage = exec('cat /etc/voltage');
 
 $schedule = get_schedule(CRON_GROUP_MINER_SPEED);
 
@@ -281,20 +283,21 @@ include('menu.php');
 <!-- ######################## Miner speed -->
 <form name="speed" action="/settings.php" method="post" class="form-horizontal" id="speed_settings" onsubmit="return saveCustomSpeed()">
       <fieldset>
-          <legend>Miner Speed</legend>
+          <legend>Over-clocking <?php echo "(Socket voltage: $voltage volt)"; ?></legend>
+
           <div class="basic form-group">
               <div class="basic col-lg-9 col-offset-3 view-alternative">
                   <div class="radio">
                       <label>
                       </label>
                       <label>
-                          <input name="speed_basic_radio" type="radio" speed="quiet" id="minerSpeed" value="0" <?php echo $minerSpeed == 0?"checked":"";?> onclick="setCustomSpeed(this)">~1.35Th / ~1100W / ~quiet<br>
+                          <input name="speed_basic_radio" type="radio" speed="quiet" id="minerSpeed" value="0" <?php echo $minerSpeed == 0?"checked":"";?> onclick="setCustomSpeed(this)">slow fans, medium rate<br>
                       </label>
                       <label>
-                          <input name="speed_basic_radio" type="radio" speed="normal" id="minerSpeed" value="1" <?php echo $minerSpeed == 1?"checked":"";?> onclick="setCustomSpeed(this)">~1.43Th / ~1350W / normal<br>
+                          <input name="speed_basic_radio" type="radio" speed="normal" id="minerSpeed" value="1" <?php echo $minerSpeed == 1?"checked":"";?> onclick="setCustomSpeed(this)">medium fans, high rate<br>
                       </label>
                       <label>
-                          <input name="speed_basic_radio" type="radio" speed="turbo" id="minerSpeed" value="2" <?php echo $minerSpeed == 2?"checked":"";?> onclick="setCustomSpeed(this)">~1.47Th / ~1370W / turbo
+                          <input name="speed_basic_radio" type="radio" speed="turbo" id="minerSpeed" value="2" <?php echo $minerSpeed == 2?"checked":"";?> onclick="setCustomSpeed(this)">turbo fans, highest rate
                       </label>
                   </div>
               </div>
@@ -315,22 +318,25 @@ include('menu.php');
 
                       <div class="row">
                           <div class="col-4">
-                              <label for="">Start Voltage (0.635-0.79)</label>
+                              <label for="">Start Voltage (0.560-0.690)</label>
                           </div>
-				<div><input size="5" type="number" onblur="validateSpeed(this)" id="minimum_voltage" name="min_voltage" value="<?php echo $minerSpeed[1]/1000?>" min=".635" max=".79" step="0.001" /></div>
+				<div><input size="5" type="number" onblur="validateSpeed(this)" id="minimum_voltage" name="min_voltage" value="<?php echo $minerSpeed[1]/1000?>" min=".560" max=".690" step="0.001" /></div>
                       </div>
 
                       <div class="row">
                           <div class="col-4">
-                              <label for="">Maximum Voltage (0.635-0.79)</label>
+                              <label for="">Maximum Voltage (0.560-0.780)</label>
                           </div>
-				<div><input size="5" type="number" onblur="validateSpeed(this)" id="maximum_voltage" name="max_voltage" value="<?php echo $minerSpeed[2]/1000?>" min=".635" max=".79" step="0.001" /></div>
+				<div><input size="5" type="number" onblur="validateSpeed(this)" id="maximum_voltage" name="max_voltage" value="<?php echo $minerSpeed[2]/1000?>" min=".560" max=".78" step="0.001" /></div>
                       </div>
 
                   </div>
               </div>
 	      <div class="col-offset-3 col-9 buttons">
-                  <p class="help-block">NOTE: The numbers are an estimation. If you have 110V socket your rate will be limited by the firmware.</p>
+              <?php if ($voltage < 130) { ?>
+                  <p class="help-block">NOTE: Your ASIC voltage will be limited by the firmware FCC module because of your low socket voltage.</p>
+              <?php } ?>
+
 		</div>
 	      <div class="col-offset-3 col-6 buttons">
                   <button type="submit" class="btn btn-default">Save</button>
@@ -392,7 +398,7 @@ include('menu.php');
 		}
 	</script>
   </form>
-  <form name="speedSched" action="" method="post" class="form-horizontal">
+  <!--form name="speedSched" action="" method="post" class="form-horizontal">
 	<input type="hidden" name="speedSched" />
       <fieldset>
 	<legend>Miner Speed Scheduling (experimental)</legend>
@@ -400,7 +406,7 @@ include('menu.php');
               <div class="col-lg-9 col-offset-3">
                   <div class="">
 	
-<?php 
+< ?php
 	echo '<div class="jobs-container-all" '.(array_key_exists('*', $schedule)?'':'style="display:none;"').'>';
 	echo '<h4>Every Day</h4><div class="day-all">';
 	if(array_key_exists('*', $schedule)) foreach($schedule['*']as $time=>$cmd){
@@ -421,8 +427,8 @@ include('menu.php');
 		<div class="jobs-container-new">
 		<h4>New</h4>
 		<div class="job">
-		<span class="days">On <select multiple="multiple" class="new_day multiple"><option value="all" selected="selected">All Days</option><?php foreach($days as $k=>$v) echo '<option value="'.$k.'">'.$v.'</option>'; ?></select></span>
-		<?php echo schedule_form_element(CRON_GROUP_MINER_SPEED); ?> 
+		<span class="days">On <select multiple="multiple" class="new_day multiple"><option value="all" selected="selected">All Days</option>< ?php foreach($days as $k=>$v) echo '<option value="'.$k.'">'.$v.'</option>'; ?></select></span>
+		< ?php echo schedule_form_element(CRON_GROUP_MINER_SPEED); ?>
 			<span class="add" onclick="addCron(this)">+</span></div>
 		  </div>
                   <p><br/><button type="submit" class="btn btn-default" onclick="return saveCrons(this)">Save</button></p>
@@ -565,7 +571,7 @@ include('menu.php');
       </fieldset>
   </form>
 
-  <!-- ######################## Timezone -->
+  <!-- ######################## Timezone >
 
   <form name="max_watts" action="/settings.php" method="post" class="form-horizontal">
       <fieldset>
@@ -573,13 +579,13 @@ include('menu.php');
           <div class="form-group">
               <label for="userTimezone" class="control-label col-lg-3">Maximum Power Consumption</label>
               <div class="col-lg-9">
-                <div><input type="radio" name="max_watts" id="max_watts_1150" value="1150" <?php if($max_watts == 1150) echo 'checked="checked"'; ?>> <label for="max_watts_1150">1150 Watts</label></div>
-                <div><input type="radio" name="max_watts" id="max_watts_1200" value="1200" <?php if($max_watts == 1200) echo 'checked="checked"'; ?>> <label for="max_watts_1200">1200 Watts</label></div>
-                <div><input type="radio" name="max_watts" id="max_watts_1250" value="1250" <?php if($max_watts == 1250) echo 'checked="checked"'; ?>> <label for="max_watts_1250">1250 Watts</label></div>
-<?php   if($max_watts != 1250 && $max_watts != 1200 && $max_watts != 1150){ ?>
+                <div><input type="radio" name="max_watts" id="max_watts_1150" value="1150" < ?php if($max_watts == 1150) echo 'checked="checked"'; ?>> <label for="max_watts_1150">1150 Watts</label></div>
+                <div><input type="radio" name="max_watts" id="max_watts_1200" value="1200" < ?php if($max_watts == 1200) echo 'checked="checked"'; ?>> <label for="max_watts_1200">1200 Watts</label></div>
+                <div><input type="radio" name="max_watts" id="max_watts_1250" value="1250" < ?php if($max_watts == 1250) echo 'checked="checked"'; ?>> <label for="max_watts_1250">1250 Watts</label></div>
+< ?php   if($max_watts != 1250 && $max_watts != 1200 && $max_watts != 1150){ ?>
 
-		<div><input type="radio" name="max_watts" id="max_watts_<?php echo $max_watts; ?>" value="<?php echo $max_watts; ?>" checked="checked"> <label for="max_watts_<?php echo $max_watts; ?>"><?php echo $max_watts; ?> Watts (Custom setting found)</label></div>
-<?php } ?>
+		<div><input type="radio" name="max_watts" id="max_watts_< ?php echo $max_watts; ?>" value="< ?php echo $max_watts; ?>" checked="checked"> <label for="max_watts_< ?php echo $max_watts; ?>">< ?php echo $max_watts; ?> Watts (Custom setting found)</label></div>
+< ?php } ?>
                   <button type="submit" class="btn btn-default">Save</button>
               </div>
           </div>
@@ -593,7 +599,7 @@ include('menu.php');
       <div class="form-group">
         <label for="miningExpDev" class="control-label col-lg-3">Expected Devices</label>
         <div class="col-lg-9">
-          <input type="number" value="<?php /*echo $settings['miningExpDev'] */?>" id="miningExpDev" name="miningExpDev" class="form-control">
+          <input type="number" value="< ?php /*echo $settings['miningExpDev'] */?>" id="miningExpDev" name="miningExpDev" class="form-control">
           <p class="help-block">
             If the count of active devices falls below this value, an alert will be sent.
           </p>
@@ -603,7 +609,7 @@ include('menu.php');
         <label for="miningExpHash" class="control-label col-lg-3">Expected Hashrate</label>
         <div class="col-lg-9">
           <div class="input-group">
-            <input type="number" value="<?php /*echo $settings['miningExpHash'] */?>" id="miningExpHash" name="miningExpHash" class="form-control">
+            <input type="number" value="< ?php /*echo $settings['miningExpHash'] */?>" id="miningExpHash" name="miningExpHash" class="form-control">
             <span class="input-group-addon">MH/s</span>
           </div>
           <p class="help-block">
@@ -628,7 +634,7 @@ include('menu.php');
           <div class="checkbox">
             <input type='hidden' value='false' name='alertEnable'>
             <label>
-              <input type="checkbox" <?php /*echo $settings['alertEnable']?"checked":""; */?> value="true" id="alertEnable" name="alertEnable"> Enable e-mail alerts
+              <input type="checkbox" < ?php /*echo $settings['alertEnable']?"checked":""; */?> value="true" id="alertEnable" name="alertEnable"> Enable e-mail alerts
             </label>
           </div>
         </div>
@@ -826,7 +832,7 @@ include('menu.php');
   </form>
   <!-- ######################## -->
 
-  <!-- ######################## SSL control -->
+  <!-- ######################## SSL control >
   <form name="reset" action="settings.php" method="post" enctype="multipart/form-data" class="form-horizontal">
       <fieldset>
           <legend>SSL Enforcement</legend>
@@ -835,7 +841,7 @@ include('menu.php');
 <div>
         <label class="form-group alert-enabled " for="setSSLEnforce">
 		<input type="hidden" name="setSSLEnforce" value="" />
-	    <input type="checkbox"  <?php echo (!array_key_exists('setSSLEnforce', $settings) || $settings['setSSLEnforce'] == "true")?"checked":""; ?> id="setSSLEnforce" name="setSSLEnforce" value="true"/>
+	    <input type="checkbox"  < ?php echo (!array_key_exists('setSSLEnforce', $settings) || $settings['setSSLEnforce'] == "true")?"checked":""; ?> id="setSSLEnforce" name="setSSLEnforce" value="true"/>
 	    Enforce SSL login (disabled by default).
             </label>
 <br/>
