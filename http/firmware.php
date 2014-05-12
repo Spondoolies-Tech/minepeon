@@ -14,7 +14,7 @@ include('menu.php');
                 var o = $('#upgrade_output');
 
                 var xhr = new XMLHttpRequest();
-                if($('#settings_view_name').text()=="Advanced")
+                if($('#settings_view_name').text()=="Manual")
                     xhr.open("GET", "upgrade.php", true);
                 else
                     xhr.open("GET", "upgrade.php?targetVersion=" + $('#selectedVersion').val(), true);
@@ -57,7 +57,7 @@ include('menu.php');
             }
 
             $('.view-alternative').toggle();
-            settingsView.text(settingsView.text()=="Advanced"?"Basic":"Advanced");
+            settingsView.text(settingsView.text()=="Manual"?"Automatic":"Manual");
 
             return false;
         }
@@ -101,7 +101,7 @@ include('menu.php');
             <div class="buttons">
                 <button class="btn btn-default" onclick="return upgradeFirmware()">Upgrade Now</button>
 
-                <button class="btn btn-default col-offset-2" onclick="return toggleCustomVersionSelection()"><span id="settings_view_name">Advanced</span> firmware selection</button>
+                <button class="btn btn-default col-offset-2" onclick="return toggleCustomVersionSelection()"><span id="settings_view_name">Manual</span> firmware selection</button>
             </div>
 
             <br><br>
