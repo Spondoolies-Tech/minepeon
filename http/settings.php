@@ -476,7 +476,7 @@ include('menu.php');
         $disabled = "disabled";
 ?>
 
-      <div class="form-group dhcp-enabled <?php echo !$wlan_settings['dhcp']?"":"collapse"; ?>">
+      <!-- <div class="form-group dhcp-enabled <?php echo !$wlan_settings['dhcp']?"":"collapse"; ?>">
         <label for="wifi_ipaddress" class="control-label col-lg-3">WiFi IP address</label>
         <div class="col-lg-9">
           <input type="text" <?php echo $disabled ?> value="<?php echo $wlan_settings['ipaddress'] ?>" id="wifi_ipaddress" name="wifi_ipaddress" class="form-control" placeholder="192.x.x.x" onblur="checkIP(this)">
@@ -487,7 +487,7 @@ include('menu.php');
         <div class="col-lg-9">
           <input type="text" <?php echo $disabled ?> value="<?php echo $wlan_settings['subnet'] ?>" id="wifi_subnet" name="wifi_subnet" class="form-control" placeholder="255.255.255.0" onblur="checkIP(this)">
         </div>
-      </div>
+      </div> -->
 
       <div class="form-group dhcp-enabled <?php echo !$eth_settings['dhcp']?"":"collapse";?>">
           <label for="gateway" class="control-label col-lg-3">Gateway</label>
@@ -503,13 +503,16 @@ include('menu.php');
         </div>
       </div>
 
-      <div class="form-group dhcp-enabled <?php echo !$eth_settings['dhcp']?"":"collapse";?>">
-      <div class="form-group">
-        <div class="col-lg-9 col-offset-3">
-          <p class="help-block alert">Note that incorrect settings may make your miner unavailable. <br/>Change this setting only if you are sure this is what you want.<br/><br/>WiFi settings will be enabled only if you plugged a WiFi USB dongle and connected to a WiFi network via the "WiFi networks" button.</p>
-          <button type="submit" class="btn btn-default" onclick="return a=[],$('input.form-control:visible', $(this).parents('form')).each(function(){a.push(checkIP(this));}), a.reduce(function(a,b){return a&&b;});">Save</button>
-      </div>
-      </div>
+        <div class="form-group">
+            <div class="col-lg-9 col-offset-3">
+                <div class="form-group dhcp-enabled <?php echo !$eth_settings['dhcp']?"":"collapse";?>">
+                    <p class="help-block alert">Note that incorrect settings may make your miner unavailable. <br/>Change this setting only if you are sure this is what you want.<br/><br/><!--WiFi settings will be enabled only if you plugged a WiFi USB dongle and connected to a WiFi network via the "WiFi networks" button.--></p>
+                </div>
+
+                <button type="submit" class="btn btn-default" onclick="return a=[],$('input.form-control:visible', $(this).parents('form')).each(function(){a.push(checkIP(this));}), a.reduce(function(a,b){return a&&b;});">Save</button>
+            </div>
+        </div>
+
     </fieldset>
   </form>
 <!-- ######################## -->

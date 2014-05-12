@@ -51,14 +51,14 @@ function set_fixed_network($settings)
     "address ".$settings['0']."\n".
     "netmask ".$settings['1']."\n";
 
-    if((isset($settings['4']) && $settings['4'] != "") && (isset($settings['5']) && $settings['5'] != "")) {
+    /*if((isset($settings['4']) && $settings['4'] != "") && (isset($settings['5']) && $settings['5'] != "")) {
         $network_file .= "\n".
         "auto wlan0\n".
         "iface wlan0 inet static\n".
         "address ".$settings['4']."\n".
         "netmask ".$settings['5']."\n".
         $wifi_section_footer."\n";
-    }
+    }*/
 
     $network_file .= "gateway ".$settings['2']."\n";
 
@@ -81,10 +81,10 @@ function set_dhcp_network()
         "#Dynamic network configuration\n".
         "auto eth0\n".
         "iface eth0 inet dhcp\n".
-        "\n".
-        "auto wlan0\n".
+        "\n";
+        /*"auto wlan0\n".
         "iface wlan0 inet dhcp\n".
-        $wifi_section_footer;
+        $wifi_section_footer;*/
 
     file_put_contents("/etc/network/interfaces", $network_file);
     network_sync();
