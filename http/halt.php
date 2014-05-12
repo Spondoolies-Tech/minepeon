@@ -32,6 +32,6 @@ window.setTimeout('CountDown()',20);
 </html>
 
 <?php
-exec('/usr/local/bin/spond-manager stop > /dev/null 2>&1');
+//exec('/usr/local/bin/spond-manager stop > /dev/null 2>&1');
 sleep(5);
 exec('/sbin/halt > /dev/null 2>&1 &');
