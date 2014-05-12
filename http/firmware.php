@@ -14,7 +14,10 @@ include('menu.php');
                 var o = $('#upgrade_output');
 
                 var xhr = new XMLHttpRequest();
-                xhr.open("GET", "upgrade.php?targetVersion=" + $('#selectedVersion').val(), true);
+                if($('#settings_view_name').text()=="Advanced")
+                    xhr.open("GET", "upgrade.php", true);
+                else
+                    xhr.open("GET", "upgrade.php?targetVersion=" + $('#selectedVersion').val(), true);
 
                 xhr.onreadystatechange = function(){
                     if(xhr.readyState > 2){
@@ -38,24 +41,23 @@ include('menu.php');
 
         }
 
-        advanced_warning = false;
-        function toggleCustomVersionSelection(force){
-            var advanced_warning;
+        var oneTimeWarning = true;
+        function toggleCustomVersionSelection(){
             var settingsView = $('#settings_view_name');
 
-            if (!force && !advanced_warning && settingsView.text() == "Advanced") {
-                advanced_warning = true;
+            if (oneTimeWarning) {
                 bootbox.confirm("Choosing an outdated or test version might cause a lower perfromance for your miner or cause it to restart unexpectedly.<br/><br/>Do you want to continue?",
                     function (confirm) {
-                        if (confirm) toggleCustomVersionSelection(true);
-                        else advanced_warning = false;
+                        if (confirm) {
+                            oneTimeWarning = false;
+                            toggleCustomVersionSelection();
+                        }
                     });
                 return false;
             }
 
             $('.view-alternative').toggle();
             settingsView.text(settingsView.text()=="Advanced"?"Basic":"Advanced");
-            $('#selectedVersion').val("");
 
             return false;
         }
@@ -69,31 +71,27 @@ include('menu.php');
         <fieldset>
             <legend></legend>
 
-            <label for="selectedVersion">Current firmware version:</label>
+            <label for="currentVersion">Current firmware version:</label>
             <b><?php echo(file_get_contents(CURRENT_VERSION_FILE)) ?></b>
             <br/>
 
             <div class="basic view-alternative">
-                <b><?php $version = file_get_contents(LATEST_VERSION_FILE);
-                    if ($version) {
-                        ?>
-                        <label for="selectedVersion">Latest available firmware version:</label>
-                        <?php
-                        echo($version);
-                    }?></b>
+                <label for="latestVersion">Latest available firmware version:</label>
+                <b><?php echo(file_get_contents(LATEST_VERSION_FILE)) ?></b>
             </div>
 
             <div class="basic view-alternative" style="display:none">
                 <label for="selectedVersion">Available versions:</label>
                 <select class="form-control" id="selectedVersion">
-                    <option value="">Please select a target firmware version</option>
-                    < ?php
+                    <?php
                     $fwVersionsJson = file_get_contents(FIRMWARE_AVAILABLE_VERSIONS);
                     $fwVersions = json_decode($fwVersionsJson, true);
 
+                    $selected = " selected ";
                     foreach($fwVersions as $fwVersion) {
                         $testVersionLabel = $fwVersion["isTestVersion"] ? " - TEST VERSION" : "";
-                        echo('<option value="'. $fwVersion["firmwareVersion"] . '">' . $fwVersion["firmwareVersion"] . $testVersionLabel . '</option>');
+                        echo('<option value="'. $fwVersion["firmwareVersion"] . '"' . $selected . '>' . $fwVersion["firmwareVersion"] . $testVersionLabel . '</option>');
+                        $selected = "";
                     }
                     ?>
                 </select>
@@ -102,7 +100,8 @@ include('menu.php');
             <br/>
             <div class="buttons">
                 <button class="btn btn-default" onclick="return upgradeFirmware()">Upgrade Now</button>
-                <!--button class="btn btn-default col-offset-2" onclick="return toggleCustomVersionSelection()"><span id="settings_view_name">Advanced</span> firmware selection</button-->
+
+                <button class="btn btn-default col-offset-2" onclick="return toggleCustomVersionSelection()"><span id="settings_view_name">Advanced</span> firmware selection</button>
             </div>
 
             <br><br>

@@ -16,8 +16,8 @@ flush();
 
 //Start the  process
 //If not version set, download the latest one available
-if(!isset($_GET["targetVersion"]) || $_GET["targetVersion"] == "")
+if(!isset($_GET["targetVersion"]))
     passthru(FIRMWARE_UPGRADE_SCRIPT . " --url " . FIRMWARE_UPGRADE_URL, $result);
 //Otherwise use the target version
 else
-    passthru(FIRMWARE_UPGRADE_SCRIPT . " --url " . FIRMWARE_DOWNLOAD_VERSION . $_GET["targetVersion"], $result);
+    passthru(FIRMWARE_UPGRADE_SCRIPT . " --url " . FIRMWARE_DOWNLOAD_VERSION . " --ver " . $_GET["targetVersion"], $result);
