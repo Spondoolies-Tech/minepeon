@@ -12,10 +12,9 @@ include('menu.php');
                 $('.miner-action').addClass('disabled');
 
                 var o = $('#upgrade_output');
-                //var s = $('#upgrade_scroller');
 
                 var xhr = new XMLHttpRequest();
-                xhr.open("GET", "upgrade.php", true);
+                xhr.open("GET", "upgrade.php?targetVersion=" + $('#selectedVersion').val(), true);
 
                 xhr.onreadystatechange = function(){
                     if(xhr.readyState > 2){
@@ -56,6 +55,7 @@ include('menu.php');
 
             $('.view-alternative').toggle();
             settingsView.text(settingsView.text()=="Advanced"?"Basic":"Advanced");
+            $('#selectedVersion').val("");
 
             return false;
         }
@@ -81,6 +81,7 @@ include('menu.php');
             <div class="basic view-alternative" style="display:none">
                 <label for="selectedVersion">Available versions:</label>
                 <select class="form-control" id="selectedVersion">
+                    <option value="">Please select a target firmware version</option>
                     <?php
                     $fwVersionsJson = file_get_contents(FIRMWARE_AVAILABLE_VERSIONS);
                     $fwVersions = json_decode($fwVersionsJson, true);

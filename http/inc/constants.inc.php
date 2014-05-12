@@ -4,6 +4,9 @@ const FIRMWARE_UPGRADE_SCRIPT = "/usr/local/bin/upgrade-software.sh";
 const FIRMWARE_UPGRADE_URL = "http://firmware.spondoolies-tech.com/release/spon.tar";
 const FIRMWARE_UPGRADE_URL_DEV = "http://firmware.spondoolies-tech.com/development/spon.tar";
 
+const FIRMWARE_AVAILABLE_VERSIONS = "http://firmware.spondoolies-tech.com/release/versions?id=SP10";
+const FIRMWARE_DOWNLOAD_VERSION = "http://firmware.spondoolies-tech.com/release/download?id=SP10&fwver=";
+
 const MINER_CONTROL_CMD = "/usr/local/bin/spond-manager ";
 
 const UI_USER_NAME = "admin";
