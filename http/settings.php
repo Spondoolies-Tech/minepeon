@@ -273,10 +273,8 @@ include('menu.php');
 <div class="container">
 <?php if(isset($mining_restart)){ ?>
 <div class="help-block alert lead">You must restart MinerGate for your settings to take effect.<br/>
-	<?php //if(isset($mining_restart)){ echo "<br/>You must restart the mining service for your settings to take effect."; include('widgets/mining_restart.php'); }?>
-<?php include('widgets/mining_restart.php'); ?>
-</div>	
-
+    <?php include('widgets/mining_restart.php'); ?>
+</div>
 <?php } ?>
   <h2>Settings</h2>
 

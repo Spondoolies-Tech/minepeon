@@ -51,7 +51,7 @@ function setMinerSpeed($speed){
 	$old_speed = getMinerSpeed();
 	$speed = sprintf("%s %s", $speed, $old_speed[3]); // psu limit in fourth place
 	file_put_contents(MINER_WORKMODE_FILE, $speed);
-	miner_service("restart");
+	//miner_service("restart");
 	settings_sync();
 }
 
