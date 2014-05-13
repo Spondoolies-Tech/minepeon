@@ -64,7 +64,6 @@ function set_fixed_network($settings)
     }
 
     $network_file .= $wifi_section_footer."\n".
-    "\n".
     "gateway ".$settings['2']."\n";
 
     file_put_contents("/etc/network/interfaces", $network_file);
