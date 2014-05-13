@@ -87,7 +87,7 @@ include('menu.php');
                 <label for="selectedVersion">Available versions:</label>
                 <select class="form-control" id="selectedVersion">
                     <option value="">Please select a target firmware version</option>
-                    < ?php
+                    <?php
                     $fwVersionsJson = file_get_contents(FIRMWARE_AVAILABLE_VERSIONS);
                     $fwVersions = json_decode($fwVersionsJson, true);
 
@@ -102,7 +102,7 @@ include('menu.php');
             <br/>
             <div class="buttons">
                 <button class="btn btn-default" onclick="return upgradeFirmware()">Upgrade Now</button>
-                <!--button class="btn btn-default col-offset-2" onclick="return toggleCustomVersionSelection()"><span id="settings_view_name">Advanced</span> firmware selection</button-->
+                <button class="btn btn-default col-offset-2" onclick="return toggleCustomVersionSelection()"><span id="settings_view_name">Advanced</span> firmware selection</button>
             </div>
 
             <br><br>
