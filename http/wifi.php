@@ -62,6 +62,7 @@ $connectedWiFi = exec("iwgetid wlan0 --raw --ap");
         <center><h1>WiFi networks (experimental)</h1></center>
         <br/><br/>
         <button class="btn btn-default" onclick="scanWiFi()">Re-scan</button>
+        <a class="btn btn-default col-offset-1" href="/settings.php">Back to settings</a>
         <input type='hidden' name='wifiScan'>
         <br><br>
 <?php
