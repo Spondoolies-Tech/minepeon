@@ -511,8 +511,8 @@ include('menu.php');
 
                 <button type="submit" class="btn btn-default" onclick="return a=[],$('input.form-control:visible', $(this).parents('form')).each(function(){a.push(checkIP(this));}), a.reduce(function(a,b){return a&&b;});">Save</button>
             </div>
-
         </div>
+
     </fieldset>
   </form>
 <!-- ######################## -->
