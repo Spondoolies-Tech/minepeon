@@ -49,18 +49,23 @@ function set_fixed_network($settings)
     "auto eth0\n".
     "iface eth0 inet static\n".
     "address ".$settings['0']."\n".
-    "netmask ".$settings['1']."\n";
+    "netmask ".$settings['1']."\n".
+    "\n".
+    "auto wlan0\n";
 
+    //If correct WiFi networks settings specified
     if((isset($settings['4']) && $settings['4'] != "") && (isset($settings['5']) && $settings['5'] != "")) {
-        $network_file .= "\n".
-        "auto wlan0\n".
-        "iface wlan0 inet static\n".
+        $network_file .= "iface wlan0 inet static\n".
         "address ".$settings['4']."\n".
-        "netmask ".$settings['5']."\n".
-        $wifi_section_footer."\n";
+        "netmask ".$settings['5']."\n";
+    }
+    else {
+        $network_file .= "iface wlan0 inet dhcp\n";
     }
 
-    $network_file .= "gateway ".$settings['2']."\n";
+    $network_file .= $wifi_section_footer."\n".
+    "\n".
+    "gateway ".$settings['2']."\n";
 
     file_put_contents("/etc/network/interfaces", $network_file);
 
