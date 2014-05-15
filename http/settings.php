@@ -452,7 +452,7 @@ include('menu.php');
           </div>
         </div>
 	<div class="col-lg-3">
-    <!--<a class="btn btn-default" href="/wifi.php">WiFi networks</a>-->
+    <a class="btn btn-default" href="/wifi.php">WiFi networks</a>
 	<?php include('widgets/led_blinker.php'); ?>
 	</div>
       </div>
@@ -476,7 +476,7 @@ include('menu.php');
         $disabled = "disabled";
 ?>
 
-      <!-- <div class="form-group dhcp-enabled <?php echo !$wlan_settings['dhcp']?"":"collapse"; ?>">
+      <div class="form-group dhcp-enabled <?php echo !$wlan_settings['dhcp']?"":"collapse"; ?>">
         <label for="wifi_ipaddress" class="control-label col-lg-3 <?php echo $disabled ?>">WiFi IP address</label>
         <div class="col-lg-9">
           <input type="text" <?php echo $disabled ?> value="<?php echo $wlan_settings['ipaddress'] ?>" id="wifi_ipaddress" name="wifi_ipaddress" class="form-control" placeholder="192.x.x.x" onblur="checkIP(this)">
@@ -487,7 +487,7 @@ include('menu.php');
         <div class="col-lg-9">
           <input type="text" <?php echo $disabled ?> value="<?php echo $wlan_settings['subnet'] ?>" id="wifi_subnet" name="wifi_subnet" class="form-control" placeholder="255.255.255.0" onblur="checkIP(this)">
         </div>
-      </div> -->
+      </div>
 
       <div class="form-group dhcp-enabled <?php echo !$eth_settings['dhcp']?"":"collapse";?>">
           <label for="gateway" class="control-label col-lg-3">Gateway</label>
