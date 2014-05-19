@@ -13,7 +13,7 @@ create_graph("mhsav-month.png", "-1m", "Last Month");
 create_graph("mhsav-year.png", "-1y", "Last Year");
 
 function create_graph($output, $start, $title) {
-  $RRDPATH = '/mnt/mmc-config/rrd/';
+  $RRDPATH = '/mnt/config/rrd/';
   $options = array(
     "--slope-mode",
     "--start", $start,
