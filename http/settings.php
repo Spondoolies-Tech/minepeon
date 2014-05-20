@@ -352,10 +352,10 @@ include('menu.php');
       </fieldset>
 	<script type="text/javascript">
 		speedSettings = {
-			turbo:{min:.664, max:.683, fan:80},
-			normal:{min:.664, max:.683, fan:70},
-			quiet:{min:.635, max:.635, fan:50}
-		}
+			turbo:{min:.664, max:.683, fan:80, watts:1250},
+			normal:{min:.664, max:.683, fan:70, watts:1250},
+			quiet:{min:.635, max:.635, fan:50, watts:1250}
+		, watts:1250}
 		function setupSpeedSettings(){
 			// check if we have a predefined settings, if not show custom settings
 			var predefined = false;
@@ -387,6 +387,7 @@ include('menu.php');
 			$('#fan_speed_select').val(speedSettings[speed].fan);
 			$('#maximum_voltage').val(speedSettings[speed].max);
 			$('#minimum_voltage').val(speedSettings[speed].min);
+			$('#max_watts').val(speedSettings[speed].watts);
 		}
 		function validateSpeed(e){
 			if(parseFloat($(e).val()) < parseFloat($(e).attr('min'))) $(e).val($(e).attr('min'));
