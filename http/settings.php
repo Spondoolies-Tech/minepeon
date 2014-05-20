@@ -299,6 +299,12 @@ include('menu.php');
                       </label>
                   </div>
               </div>
+              <div class="custom col-lg-9 col-offset-3">
+		      <div>
+		      <label for="userTimezone" class="control-label">Maximum Power Consumption</label>
+		      </div>
+			<div class="col-lg-6"><input type="text" size="4" name="max_watts" id="max_watts" value="<?php echo $max_watts?>"></div>
+	      </div>
               <div class="custom col-lg-9 col-offset-3 view-alternative" style="display:none">
                   <div>
                       <div class="row">
