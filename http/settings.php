@@ -38,12 +38,6 @@ if (isset($_POST['userTimezone'])) {
 
 }
 
-if(isset($_POST['max_watts'])){
-	set_psu_limit($_POST['max_watts']);
-	  $mining_restart = true;
-	//header('Location: /settings.php');
-}
-
 // Network settings
 if (isset($_POST['dhcpEnable'])) {
   if($_POST['dhcpEnable'] == "true"){
@@ -147,8 +141,7 @@ if (isset($_POST['miningExpHash'])) {
 }
 if (isset($_POST['fan_speed'])) {
  // setMinerSpeed(intval($_POST["minerSpeed"]));
-  $speed = sprintf("%d %d %d", $_POST['fan_speed'], (float)$_POST['min_voltage']*1000, (float)$_POST['max_voltage']*1000);
-  setMinerSpeed($speed);
+  setMinerSpeed($_POST);
   $mining_restart = true;
 }
 
@@ -260,8 +253,11 @@ $tzselect = $tzselect . '</select>';
 
 $minerSpeed = getMinerSpeed();
 
-$max_watts = get_psu_limit();
-if(!$max_watts) $max_watts = 1250;
+$max_watts = $minerSpeed[3];
+if(!$max_watts) $max_watts = DEFAULT_MAX_WATTS;
+$dc2dc_current = $minerSpeed[4];
+var_dump($minerSpeed);
+if(!$dc2dc_current) $dc2dc_current = DEFAULT_DC2DC_CURRENT;
 
 $voltage = exec('cat /etc/voltage');
 
@@ -333,6 +329,12 @@ include('menu.php');
 			      </div>
 				<div><input type="text" size="4" onblur="validateSpeed(this)" name="max_watts" id="max_watts" type="number" step="1" min="600" max="1500" value="<?php echo $max_watts?>"></div>
 		      </div>
+		      <div class="row">
+			      <div class="col-4">
+				      <label for="dc2dc_current" class="control-label">DC2DC Current Limit</label>
+			      </div>
+				<div><input type="text" size="4" onblur="validateSpeed(this)" name="dc2dc_current" id="dc2dc_current" type="number" step="1" min="50" max="65" value="<?php echo $dc2dc_current?>"></div>
+		      </div>
 
                   </div>
               </div>
@@ -352,15 +354,15 @@ include('menu.php');
       </fieldset>
 	<script type="text/javascript">
 		speedSettings = {
-			turbo:{min:.664, max:.683, fan:80, watts:1250},
-			normal:{min:.664, max:.683, fan:70, watts:1250},
-			quiet:{min:.635, max:.635, fan:50, watts:1250}
+			turbo:{min:.664, max:.683, fan:80, watts:<?php echo DEFAULT_MAX_WATTS?>, dc2dc:<?php echo DEFAULT_DC2DC_CURRENT?>},
+			normal:{min:.664, max:.683, fan:70, watts:<?php echo DEFAULT_MAX_WATTS?>, dc2dc:<?php echo DEFAULT_DC2DC_CURRENT?>},
+			quiet:{min:.635, max:.635, fan:50, watts:<?php echo DEFAULT_MAX_WATTS?>, dc2dc:<?php echo DEFAULT_DC2DC_CURRENT?>}
 		, watts:1250}
 		function setupSpeedSettings(){
 			// check if we have a predefined settings, if not show custom settings
 			var predefined = false;
 			for(s in speedSettings){
-				if(speedSettings[s].min==<?php echo ($minerSpeed[1]/1000)?> &&  speedSettings[s].max==<?php echo ($minerSpeed[2]/1000)?> &&  speedSettings[s].fan==<?php echo $minerSpeed[0]?>){
+				if(speedSettings[s].min==<?php echo ($minerSpeed[1]/1000)?> &&  speedSettings[s].max==<?php echo ($minerSpeed[2]/1000)?> &&  speedSettings[s].fan==<?php echo $minerSpeed[0]?> && speedSettings[s].watts==<?php echo $minerSpeed[3]?> && speedSettings[s].dc2dc==<?php echo $minerSpeed[4]?>){
 					$('input[speed='+s+']').prop('checked', true);
 					predefined = true;
 				}
@@ -388,6 +390,7 @@ include('menu.php');
 			$('#maximum_voltage').val(speedSettings[speed].max);
 			$('#minimum_voltage').val(speedSettings[speed].min);
 			$('#max_watts').val(speedSettings[speed].watts);
+			$('#dc2dc_current').val(speedSettings[speed].dc2dc);
 		}
 		function validateSpeed(e){
 			if(parseFloat($(e).val()) < parseFloat($(e).attr('min'))) $(e).val($(e).attr('min'));
