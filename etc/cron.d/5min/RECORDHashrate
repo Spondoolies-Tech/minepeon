@@ -5,7 +5,7 @@ include('settings.inc.php');
 
 $metric  = 'hashrate';
 $RRDFILE = $metric . '.rrd';
-$RRDPATH = '/mnt/mmc-config/rrd/';
+$RRDPATH = '/mnt/config/rrd/';
 $RRD     = $RRDPATH . $RRDFILE;
 
 
@@ -51,7 +51,7 @@ $ret = rrd_update($RRD, $update);
 // ###############################
 // Generate graph images
 function create_graph_hash($output, $start, $title) {
-    $RRDPATH = '/mnt/mmc-config/rrd/';
+    $RRDPATH = '/mnt/config/rrd/';
     $options = array(
         "--slope-mode",
         "--start", $start,
