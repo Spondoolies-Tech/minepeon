@@ -299,12 +299,6 @@ include('menu.php');
                       </label>
                   </div>
               </div>
-              <div class="custom col-lg-9 col-offset-3">
-		      <div>
-		      <label for="userTimezone" class="control-label">Maximum Power Consumption</label>
-		      </div>
-			<div class="col-lg-6"><input type="text" size="4" name="max_watts" id="max_watts" value="<?php echo $max_watts?>"></div>
-	      </div>
               <div class="custom col-lg-9 col-offset-3 view-alternative" style="display:none">
                   <div>
                       <div class="row">
@@ -336,6 +330,12 @@ include('menu.php');
 
                   </div>
               </div>
+              <div class="custom col-lg-9 col-offset-3">
+		      <div>
+		      <label for="userTimezone" class="control-label">Maximum Power Consumption</label>
+		      </div>
+			<div class="col-lg-6"><input type="text" size="4" name="max_watts" id="max_watts" value="<?php echo $max_watts?>"></div>
+	      </div>
 	      <div class="col-offset-3 col-9 buttons">
               <?php if ($voltage < 140) { ?>
                   <p class="help-block">NOTE: Your ASIC voltage will be limited by the firmware FCC module because of your low socket voltage.</p>
