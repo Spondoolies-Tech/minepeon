@@ -256,7 +256,6 @@ $minerSpeed = getMinerSpeed();
 $max_watts = $minerSpeed[3];
 if(!$max_watts) $max_watts = DEFAULT_MAX_WATTS;
 $dc2dc_current = $minerSpeed[4];
-var_dump($minerSpeed);
 if(!$dc2dc_current) $dc2dc_current = DEFAULT_DC2DC_CURRENT;
 
 $voltage = exec('cat /etc/voltage');
