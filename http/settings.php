@@ -123,12 +123,17 @@ if(isset($_POST['setSSLEnforce'])){ // toggle SSL Enforcement
 	$writeSettings = true;
 
     //Rename the actual cron'ed registering file
-    if($settings['setSSLEnforce'] == "true")
-        rename("/etc/lighttpd/redirect.conf.disabled", "/etc/lighttpd/redirect.conf");
-    else
-        rename("/etc/lighttpd/redirect.conf", "/etc/lighttpd/redirect.conf.disabled");
+    if($settings['setSSLEnforce'] == "true") {
+        rename("/etc/lighttpd/redirect.conf.ssl", "/etc/lighttpd/redirect.conf");
+    }
+    else {
+        rename("/etc/lighttpd/redirect.conf", "/etc/lighttpd/redirect.conf.ssl");
+        touch("/etc/lighttpd/redirect.conf");
+    }
 
-    exec("kilall lighttpd && lighttpd -f /etc/lighttpd/lighttpd.conf");
+    //Restart lighttpd
+    exec("/usr/bin/pkill lighttpd");
+    exec("/etc/init.d/S50lighttpd start");
 }
 
 // Mining settings
@@ -833,7 +838,7 @@ include('menu.php');
   </form>
   <!-- ######################## -->
 
-  <!-- ######################## SSL control >
+  <!-- ######################## SSL control -->
   <form name="reset" action="settings.php" method="post" enctype="multipart/form-data" class="form-horizontal">
       <fieldset>
           <legend>SSL Enforcement</legend>
@@ -842,7 +847,7 @@ include('menu.php');
 <div>
         <label class="form-group alert-enabled " for="setSSLEnforce">
 		<input type="hidden" name="setSSLEnforce" value="" />
-	    <input type="checkbox"  < ?php echo (!array_key_exists('setSSLEnforce', $settings) || $settings['setSSLEnforce'] == "true")?"checked":""; ?> id="setSSLEnforce" name="setSSLEnforce" value="true"/>
+	    <input type="checkbox"  <?php echo (!array_key_exists('setSSLEnforce', $settings) || $settings['setSSLEnforce'] == "true")?"checked":""; ?> id="setSSLEnforce" name="setSSLEnforce" value="true"/>
 	    Enforce SSL login (disabled by default).
             </label>
 <br/>
