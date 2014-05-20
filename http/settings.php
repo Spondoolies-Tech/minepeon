@@ -334,7 +334,7 @@ include('menu.php');
 		      <div>
 		      <label for="userTimezone" class="control-label">Maximum Power Consumption</label>
 		      </div>
-			<div class="col-lg-6"><input type="text" size="4" name="max_watts" id="max_watts" value="<?php echo $max_watts?>"></div>
+			<div class="col-lg-6"><input type="text" size="4" name="max_watts" id="max_watts" type="number" step="1" min="600" max="1500" value="<?php echo $max_watts?>"></div>
 	      </div>
 	      <div class="col-offset-3 col-9 buttons">
               <?php if ($voltage < 140) { ?>
