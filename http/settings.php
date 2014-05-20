@@ -131,9 +131,18 @@ if(isset($_POST['setSSLEnforce'])){ // toggle SSL Enforcement
         touch("/etc/lighttpd/redirect.conf");
     }
 
+    //Write settings
+    ksort($settings);
+    writeSettings($settings);
+
+
+    header('Location: /reload.php');
+    ob_flush();
+    flush();
+
     //Restart lighttpd
     exec("/usr/bin/pkill lighttpd");
-    exec("/etc/init.d/S50lighttpd start");
+    exec("lighttpd -f /etc/lighttpd/lighttpd.conf");
 }
 
 // Mining settings
