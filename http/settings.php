@@ -327,15 +327,15 @@ include('menu.php');
                           </div>
 				<div><input size="5" type="number" onblur="validateSpeed(this)" id="maximum_voltage" name="max_voltage" value="<?php echo $minerSpeed[2]/1000?>" min=".560" max=".78" step="0.001" /></div>
                       </div>
+		      <div class="row">
+			      <div class="col-4">
+				      <label for="max_watts" class="control-label">Maximum Power Consumption</label>
+			      </div>
+				<div><input type="text" size="4" onblur="validateSpeed(this)" name="max_watts" id="max_watts" type="number" step="1" min="600" max="1500" value="<?php echo $max_watts?>"></div>
+		      </div>
 
                   </div>
               </div>
-              <div class="custom col-lg-9 col-offset-3">
-		      <div>
-		      <label for="userTimezone" class="control-label">Maximum Power Consumption</label>
-		      </div>
-			<div class="col-lg-6"><input type="text" size="4" name="max_watts" id="max_watts" type="number" step="1" min="600" max="1500" value="<?php echo $max_watts?>"></div>
-	      </div>
 	      <div class="col-offset-3 col-9 buttons">
               <?php if ($voltage < 140) { ?>
                   <p class="help-block">NOTE: Your ASIC voltage will be limited by the firmware FCC module because of your low socket voltage.</p>
