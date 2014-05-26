@@ -353,10 +353,10 @@ include('menu.php');
       </fieldset>
 	<script type="text/javascript">
 		speedSettings = {
-			turbo:{min:.664, max:.683, fan:80, watts:<?php echo DEFAULT_MAX_WATTS?>, dc2dc:<?php echo DEFAULT_DC2DC_CURRENT?>},
-			normal:{min:.664, max:.683, fan:70, watts:<?php echo DEFAULT_MAX_WATTS?>, dc2dc:<?php echo DEFAULT_DC2DC_CURRENT?>},
-			quiet:{min:.635, max:.635, fan:50, watts:<?php echo DEFAULT_MAX_WATTS?>, dc2dc:<?php echo DEFAULT_DC2DC_CURRENT?>}
-		, watts:1250}
+			turbo:{min:.664, max:.750, fan:80, watts:<?php echo DEFAULT_MAX_WATTS?>, dc2dc:<?php echo DEFAULT_DC2DC_CURRENT?>},
+			normal:{min:.664, max:.750, fan:70, watts:<?php echo DEFAULT_MAX_WATTS?>, dc2dc:<?php echo DEFAULT_DC2DC_CURRENT?>},
+			quiet:{min:.635, max:.642, fan:50, watts:<?php echo DEFAULT_MAX_WATTS?>, dc2dc:<?php echo DEFAULT_DC2DC_CURRENT?>}
+		, watts:1260}
 		function setupSpeedSettings(){
 			// check if we have a predefined settings, if not show custom settings
 			var predefined = false;

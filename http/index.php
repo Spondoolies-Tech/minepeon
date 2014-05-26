@@ -98,7 +98,7 @@ function isSpondRunning() {
 <div class="container">
   <h3 id="miner-header-txt">SP10 Miner</h3><br>
   <?php
-  if (file_exists('/tmp/rrd/mhsav-hour.png')) {
+  if (file_exists('/mnt/config/rrd/mhsav-hour.png')) {
   ?>
   <p class="text-center">
     <img src="rrd/mhsav-hour.png" alt="mhsav.png" />
