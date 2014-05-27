@@ -815,14 +815,28 @@ include('menu.php');
   </form>
 <!-- ######################## -->
 
-  <!-- ######################## Reset stats -->
+<!-- ######################## Reset CGMiner settings to factory -->
+<form name="reset" action="/settings.php" method="post" enctype="multipart/form-data" class="form-horizontal">
+    <fieldset>
+        <legend>CGMiner reset</legend>
+        <div class="form-group">
+            <div class="col-lg-9 col-offset-3">
+                <a name="resetfactory" class="btn btn-default miner-action" onclick="confirmClick('/reset_cgminer_to_factory.php');">Reset CGminer to factory settings</a>
+                <p class="help-block">This will restore your CGMiner settings to the factory default ones!</p>
+            </div>
+        </div>
+    </fieldset>
+</form>
+<!-- ######################## -->
+
+  <!-- ######################## Reset miner settings to factory -->
   <form name="reset" action="/settings.php" method="post" enctype="multipart/form-data" class="form-horizontal">
       <fieldset>
           <legend>Factory reset</legend>
           <div class="form-group">
               <div class="col-lg-9 col-offset-3">
-                  <a name="resetfactory" class="btn btn-default miner-action" onclick="confirmClick('/reset_to_factory.php');">Reset to factory settings</a>
-                  <p class="help-block">This will restore your miner settings to the factory default ones!</p>
+                  <a name="resetfactory" class="btn btn-default miner-action" onclick="confirmClick('/reset_to_factory.php');">Reset miner to factory settings</a>
+                  <p class="help-block">This will restore your entire miner settings to the factory default ones!</p>
               </div>
           </div>
       </fieldset>
