@@ -141,8 +141,11 @@ if(isset($_POST['setSSLEnforce'])){ // toggle SSL Enforcement
     flush();
 
     //Restart lighttpd
-    exec("/usr/bin/pkill lighttpd");
-    exec("lighttpd -f /etc/lighttpd/lighttpd.conf");
+    /*exec("/usr/bin/pkill lighttpd");
+    exec("lighttpd -f /etc/lighttpd/lighttpd.conf");*/
+
+    //Reload once
+    exec("/etc/S50lighttpd reload");
 }
 
 // Mining settings
