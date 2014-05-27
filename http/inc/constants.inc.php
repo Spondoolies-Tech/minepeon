@@ -17,10 +17,9 @@ const MINER_WORKMODE_FILE = '/etc/mg_custom_mode'; // work_mode
 
 const CURRENT_VERSION_FILE = '/fw_ver';
 const LATEST_VERSION_FILE = '/tmp/fw_update';
-const BOARD_VERSION_FILE = '/board_ver';
-const BOARD_ID_FILE = '/board_id';
+const MODEL_ID_FILE = '/model_id';
 const CGMINER_CONF_FILE = '/etc/cgminer.conf';
-const MG_NOTICES_FILE = '/tmp/mg_events';
+const MG_EVENTS_FILE = '/tmp/mg_events';
 const MG_STATUS = '/tmp/mg_status';
 
 const WIFI_SIGNAL_THRESHOLD = 0.4;
