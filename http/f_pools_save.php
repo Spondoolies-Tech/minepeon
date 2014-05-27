@@ -23,9 +23,9 @@ for($i=0;$i<$poolLimit || $e < 3;$i++) {
 		// Set pool data
 		// Avoid empty pool passwords because it might be problematic if used in a command
 		$dataPools[] = array(
-			"url" => $_REQUEST['URL'.$i],
-			"user" => $_REQUEST['USER'.$i],
-			"pass" => empty($_REQUEST['PASS'.$i])?"none":$_REQUEST['PASS'.$i]
+			"url" => trim($_REQUEST['URL'.$i]),
+			"user" => trim($_REQUEST['USER'.$i]),
+			"pass" => trim(empty($_REQUEST['PASS'.$i])?"none":$_REQUEST['PASS'.$i])
 			);
 
 		// reset empty
