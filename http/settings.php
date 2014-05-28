@@ -122,12 +122,22 @@ if(isset($_POST['setSSLEnforce'])){ // toggle SSL Enforcement
 	$settings['setSSLEnforce'] = (array_key_exists('setSSLEnforce', $_POST) && $_POST['setSSLEnforce'] == "true") ? "true":"false";
 	$writeSettings = true;
 
-    //Rename the actual cron'ed registering file
+    //Re-create the proper redirect config
+    unlink("/etc/lighttpd/redirect.conf");
+
     if($settings['setSSLEnforce'] == "true") {
-        rename("/etc/lighttpd/redirect.conf.ssl", "/etc/lighttpd/redirect.conf");
+        //Write the HTTPS redirect code
+        $sslRedirect =
+        '$HTTP["scheme"] == "http" {
+            $HTTP["host"] =~ ".*" {
+                    url.redirect = (".*" => "https://%0$0")
+            }
+        }';
+
+        file_put_contents("/etc/lighttpd/redirect.conf", $sslRedirect . "\n");
     }
     else {
-        rename("/etc/lighttpd/redirect.conf", "/etc/lighttpd/redirect.conf.ssl");
+        //Otherwise just write empty file
         touch("/etc/lighttpd/redirect.conf");
     }
 
@@ -135,17 +145,16 @@ if(isset($_POST['setSSLEnforce'])){ // toggle SSL Enforcement
     ksort($settings);
     writeSettings($settings);
 
+    //Reload lighttpd to pick up the settings
+    exec("/etc/init.d/S50lighttpd reload");
 
-    header('Location: /reload.php');
-    ob_flush();
-    flush();
+    //Sleep 2 seconds to let the lighttpd to reload
+    sleep(2);
 
-    //Restart lighttpd
-    /*exec("/usr/bin/pkill lighttpd");
-    exec("lighttpd -f /etc/lighttpd/lighttpd.conf");*/
-
-    //Reload once
-    exec("/etc/S50lighttpd reload");
+    if($settings['setSSLEnforce'] == "true") {
+        //Reload the page in case of HTTPS
+        header("Location: /settings.php");
+    }
 }
 
 // Mining settings
