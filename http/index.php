@@ -97,14 +97,15 @@ function isSpondRunning() {
 ?>
 <div class="container">
   <h3 id="miner-header-txt">SP10 Miner</h3><br>
-</div>
   <?php
   if (file_exists('/mnt/config/rrd/mhsav-hour.png')) {
   ?>
   <p class="text-center">
     <img src="rrd/mhsav-hour.png" alt="mhsav.png" />
     <img src="rrd/mhsav-day.png" alt="mhsav.png" />
+</p><p class="text-center">
     <img src="rrd/mhsav-week.png" alt="mhsav.png" />
+    <img src="rrd/mhsav-month.png" alt="mhsav.png" />
     <!--a href="#" id="chartToggle">Display extended charts</a-->
   </p>
   <!--p class="text-center collapse chartMore">
@@ -125,7 +126,6 @@ function isSpondRunning() {
 echo "<center class='alert alert-info'><h1>".$error."</h1></center>";
 	}
   ?>
-<div class="container">
   <div class="row">
     <div class="col-lg-4">
       <dl class="dl-horizontal">
