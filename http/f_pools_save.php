@@ -17,14 +17,18 @@ $poolLimit = 20;
 
 // Loop through all rows, stop after 3 empty rows or if poolLimit is exceeded, process the POST or GET data
 $e = 0;
+$hostname = trim(exec("hostname"));
+$hostname = str_replace("miner-","",$hostname);
+$ip =  $_SERVER['SERVER_ADDR'];
 for($i=0;$i<$poolLimit || $e < 3;$i++) {
 	if(!empty($_REQUEST['URL'.$i]) and !empty($_REQUEST['USER'.$i])){
-
 		// Set pool data
 		// Avoid empty pool passwords because it might be problematic if used in a command
+        $user = str_replace("%h",$hostname,trim($_REQUEST['USER'.$i]));
+        $user = str_replace("%i",$ip,$user);
 		$dataPools[] = array(
 			"url" => trim($_REQUEST['URL'.$i]),
-			"user" => trim($_REQUEST['USER'.$i]),
+			"user" => $user,
 			"pass" => trim(empty($_REQUEST['PASS'.$i])?"none":$_REQUEST['PASS'.$i])
 			);
 

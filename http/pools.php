@@ -27,7 +27,7 @@ include('menu.php');
 					<input type="url" class="form-control" value="<?php echo $data['pools'][$i]['url']; ?>" name="URL<?php echo $i; ?>" id="URL<?php echo $i; ?>">
 				</div>
 				<div class="col-lg-5">
-					<label for="USER<?php echo $i; ?>">Username</label>
+					<label for="USER<?php echo $i; ?>">Username (%i for ip, %h for hostname)</label>
 					<input type="text" class="form-control" value="<?php echo $data['pools'][$i]['user']; ?>" name="USER<?php echo $i; ?>" id="USER<?php echo $i; ?>">
 				</div>
 				<div class="col-lg-2">
