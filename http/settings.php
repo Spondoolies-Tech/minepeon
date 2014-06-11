@@ -259,6 +259,7 @@ $dc2dc_current = $minerSpeed[4];
 if(!$dc2dc_current) $dc2dc_current = DEFAULT_DC2DC_CURRENT;
 
 $voltage = exec('cat /etc/voltage');
+$overvolt110 = file_exists("/etc/mg_ignore_110_fcc");
 
 $schedule = get_schedule(CRON_GROUP_MINER_SPEED);
 
@@ -276,7 +277,8 @@ include('menu.php');
 <!-- ######################## Miner speed -->
 <form name="speed" action="/settings.php" method="post" class="form-horizontal" id="speed_settings" onsubmit="return saveCustomSpeed()">
       <fieldset>
-          <legend>Over-clocking <?php echo "(Socket voltage: $voltage volt)"; ?></legend>
+          <legend>Over-clocking <?php echo "(Socket voltage: $voltage volt)"; if (($voltage < 130) && $overvolt110) echo " ! 110V limitation override ! "; ?></legend>
+
 
           <div class="basic form-group">
               <div class="basic col-lg-9 col-offset-3 view-alternative">
