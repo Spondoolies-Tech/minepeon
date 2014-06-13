@@ -7,7 +7,7 @@ $json = array();
 
 $stats = miner('stats');
 $json['stats'] = $stats['STATS'][0];
-$ppols = miner('pools');
+$pools = miner('pools');
 //$summary = miner("summary", "");
 $json['pools'] = $pools['POOLS'];
 
