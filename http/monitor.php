@@ -7,9 +7,15 @@ $json = array();
 
 $stats = miner('stats');
 $json['stats'] = $stats['STATS'][0];
+
 $pools = miner('pools');
-//$summary = miner("summary", "");
 $json['pools'] = $pools['POOLS'];
+
+$notify = miner('notify');
+$json['notify'] = $notify['NOTIFY'];
+
+$summary = miner('summary');
+$json['summary'] = $summary['SUMMARY'];
 
 $json['conf'] = json_decode(file_get_contents(CGMINER_CONF_FILE, true), true);
 
