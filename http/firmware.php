@@ -84,7 +84,7 @@ include('menu.php');
                 <label for="selectedVersion">Available versions:</label>
                 <select class="form-control" id="selectedVersion">
                     <?php
-                    $fwVersionsJson = file_get_contents(FIRMWARE_AVAILABLE_VERSIONS);
+                    $fwVersionsJson = file_get_contents(FIRMWARE_AVAILABLE_VERSIONS.$model_id);
                     $fwVersions = json_decode($fwVersionsJson, true);
 
                     $selected = " selected ";

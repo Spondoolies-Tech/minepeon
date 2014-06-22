@@ -41,7 +41,7 @@ if(file_exists("/var/run/mg_rate_temp")){
 }
 
 //MinePeon Version
-$version = "SP10 Dawson";
+$version = $full_model_name;
 
 //MinePeon CPU load
 $mpCPULoad = sys_getloadavg();
@@ -96,7 +96,7 @@ function isSpondRunning() {
 }
 ?>
 <div class="container">
-  <h3 id="miner-header-txt">SP10 Miner</h3><br>
+  <h3 id="miner-header-txt">Miner</h3><br>
   <?php
   if (file_exists('/mnt/config/rrd/mhsav-hour.png')) {
   ?>
@@ -157,7 +157,7 @@ echo "<center class='alert alert-info'><h1>".$error."</h1></center>";
         <dt>MAC address</dt>
         <dd><?php echo exec("/usr/local/bin/getmac.sh", $name);  ?></dd>
         <dt>Hardware Version</dt>
-        <dd><?php echo $version; ?></dd>
+        <dd><?php echo $full_model_name; ?></dd>
         <dt>FW Version</dt>
         <dd><?php echo(file_get_contents("/fw_ver")) ?></dd>
         <dt>CGMiner Version</dt>
@@ -245,7 +245,7 @@ echo "<center class='alert alert-info'><h1>".$error."</h1></center>";
 </div>
 <script language="javascript" type="text/javascript">
  
-document.title = '<?php echo $G_MHSav; ?>|<?php echo $version; ?>';
+document.title = '<?php echo $G_MHSav; ?>|<?php echo $full_model_name; ?>';
  
 <?php 
  
@@ -334,7 +334,7 @@ function statsTable($devs) {
     </script>
     <?php
 
-	$tableRow = $tableRow . "<td>" . "SP10" . "</td>
+	$tableRow = $tableRow . "<td>" . $model_id . "</td>
       <!-- <td>" . "1" . "</td>
       <td>" . $temperature . "</td> -->
       <td>" . $dev['MHSav'] / 1000 . "</td>

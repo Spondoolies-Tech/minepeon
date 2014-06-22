@@ -1,8 +1,12 @@
+<?php
+require_once('inc/global.inc.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>SP10 Dawson</title>
+  <title><?php echo $full_model_name ?></title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
   <meta name="author" content="">

@@ -745,7 +745,7 @@ include('menu.php');
 		  </script>
 		  <p class="help-block">
             Enter you own miner parameters or select a default bfgminer or cgminer configuration.  
-			You will need to press Save and then reboot SP10 Dawson when you finish.<br />
+			You will need to press Save and then reboot miner when you finish.<br />
 			If you intend to enable the cgminer-HEXu option <a href="http://minepeon.com/index.php/Cgminer-HEXu">please read this page for instructions.</a>
           </p>
         </div>
