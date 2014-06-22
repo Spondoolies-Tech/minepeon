@@ -4,7 +4,7 @@ $latest_ver = exec('cat '.LATEST_VERSION_FILE);
 ?>
 <div class="navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">SP10 Dawson</a>
+    <a class="navbar-brand" href="/"><?php echo $full_model_name ?></a>
     <ul class="nav navbar-nav">
       <li><a href="/pools.php">Pools</a></li>
       <li><a href="/settings.php">Settings</a></li>

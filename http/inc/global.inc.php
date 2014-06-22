@@ -27,3 +27,5 @@ if((!array_key_exists('agree', $settings) || ! intval(time($settings['agree'])))
 
 //Update watchdog monitored file (to prevent reboots)
 file_put_contents('/var/run/dont_reboot', "1");
+$model_id=trim(file_get_contents(MODEL_ID_FILE));
+$full_model_name=($model_id=="SP10")?"SP10 Dawson":"SP30 Yukon";

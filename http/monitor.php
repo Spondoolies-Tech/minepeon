@@ -20,7 +20,7 @@ $json['summary'] = $summary['SUMMARY'];
 $json['conf'] = json_decode(file_get_contents(CGMINER_CONF_FILE, true), true);
 
 $json['miner'] = array();
-	$json['miner']['model_id'] = trim(file_get_contents(MODEL_ID_FILE));
+	$json['miner']['model_id'] = $model_id;
     $hostname = trim(exec("hostname"));
     $json['miner']['board_ver'] = str_replace("miner-","",$hostname);
 	$json['miner']['fw_ver'] = trim(file_get_contents(CURRENT_VERSION_FILE));
