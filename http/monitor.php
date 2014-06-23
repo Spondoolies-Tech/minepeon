@@ -40,4 +40,5 @@ $json['workmode'] = array_combine(
 	array('fan_speed', 'min_voltage', 'max_voltage', 'max_watts', 'dc2dc_current'),
 	explode(' ', trim(file_get_contents(MINER_WORKMODE_FILE ))));
 
+header("Content-type: application/json");
 echo json_encode($json);
