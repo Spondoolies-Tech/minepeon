@@ -36,7 +36,7 @@ if (file_exists("/var/run/mg_rate_temp")) {
 	$s = file_get_contents("/var/run/mg_rate_temp");
 	$s=explode(" ", $s);
 } else {
-	$s=array(0,0);
+	$s=array(0,0,0,0);
 }
 
 $hashrate = $s[0];
