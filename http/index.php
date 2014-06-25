@@ -37,7 +37,7 @@ $G_MHSav = 0;
 if(file_exists("/var/run/mg_rate_temp")){
 	$mpTemp = explode(" ", file_get_contents("/var/run/mg_rate_temp"));
 }else{
-	$mpTemp = array(null, null, null);
+	$mpTemp = array(null, null, null, null);
 }
 
 //MinePeon Version
@@ -129,8 +129,8 @@ echo "<center class='alert alert-info'><h1>".$error."</h1></center>";
   <div class="row">
     <div class="col-lg-4">
       <dl class="dl-horizontal">
-        <dt>Temp Front / Back</dt>
-        <dd><?php echo $mpTemp[2]; ?> <small>&deg;C</small> / <?php echo $mpTemp[1]; ?> <small>&deg;C</small>
+        <dt>Temp Front / Back T,B </dt>
+        <dd><?php echo $mpTemp[1]; ?> <small>&deg;C</small> / <?php echo $mpTemp[2]; ?>,<?php echo $mpTemp[3]; ?> <small>&deg;C</small>
         <dt>System CPU Load</dt>
         <dd><?php echo $mpCPULoad[0]; ?> <small>[1 min]</small></dd>
         <dd><?php echo $mpCPULoad[1]; ?> <small>[5 min]</small></dd>
@@ -306,7 +306,7 @@ function statsTable($devs) {
         $s = file_get_contents("/var/run/mg_rate_temp");
         $s = explode(" ", $s);
     } else {
-        $s = array(0,0,0);
+        $s = array(0,0,0,0);
     }
 
     $dev['MHSav'] = intval($s[0]);
