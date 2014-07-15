@@ -253,9 +253,9 @@ $tzselect = $tzselect . '</select>';
 
 $minerSpeed = getMinerSpeed();
 
-$max_watts = $minerSpeed[3];
+$max_watts = $minerSpeed[4];
 if(!$max_watts) $max_watts = DEFAULT_MAX_WATTS;
-$dc2dc_current = $minerSpeed[4];
+$dc2dc_current = $minerSpeed[5];
 if(!$dc2dc_current) $dc2dc_current = DEFAULT_DC2DC_CURRENT;
 
 $voltage = exec('cat /etc/voltage');
@@ -313,16 +313,23 @@ include('menu.php');
 
                       <div class="row">
                           <div class="col-4">
-                              <label for="">Start Voltage (0.560-0.690)</label>
+                              <label for="">Start Volts Top (0.56-0.71)</label>
                           </div>
-				<div><input size="5" type="number" onblur="validateSpeed(this)" id="minimum_voltage" name="min_voltage" value="<?php echo $minerSpeed[1]/1000?>" min=".560" max=".690" step="0.001" /></div>
+				          <div><input size="5" type="number" onblur="validateSpeed(this)" id="minimum_voltage_top" name="start_voltage_top" value="<?php echo $minerSpeed[1]/1000?>" min=".560" max=".710" step="0.001" /></div>
+                      </div>
+
+                      <div class="row">
+                          <div class="col-4">
+                              <label for="">Start Volts Bottom(0.56-0.71)</label>
+                          </div>
+                          <div><input size="5" type="number" onblur="validateSpeed(this)" id="minimum_voltage_bot" name="start_voltage_bot" value="<?php echo $minerSpeed[2]/1000?>" min=".560" max=".710" step="0.001" /></div>
                       </div>
 
                       <div class="row">
                           <div class="col-4">
                               <label for="">Maximum Voltage (0.560-0.780)</label>
                           </div>
-				<div><input size="5" type="number" onblur="validateSpeed(this)" id="maximum_voltage" name="max_voltage" value="<?php echo $minerSpeed[2]/1000?>" min=".560" max=".78" step="0.001" /></div>
+				<div><input size="5" type="number" onblur="validateSpeed(this)" id="maximum_voltage" name="max_voltage" value="<?php echo $minerSpeed[3]/1000?>" min=".560" max=".78" step="0.001" /></div>
                       </div>
 		      <div class="row">
 			      <div class="col-4">
@@ -355,15 +362,20 @@ include('menu.php');
       </fieldset>
 	<script type="text/javascript">
 		speedSettings = {
-			turbo:{min:.664, max:.750, fan:80, watts:<?php echo DEFAULT_MAX_WATTS?>, dc2dc:<?php echo DEFAULT_DC2DC_CURRENT?>},
-			normal:{min:.664, max:.750, fan:70, watts:<?php echo DEFAULT_MAX_WATTS?>, dc2dc:<?php echo DEFAULT_DC2DC_CURRENT?>},
-			quiet:{min:.635, max:.642, fan:50, watts:<?php echo DEFAULT_MAX_WATTS?>, dc2dc:<?php echo DEFAULT_DC2DC_CURRENT?>}
+			turbo:{min_top:.664,min_bot:.664, max:.750, fan:80, watts:<?php echo DEFAULT_MAX_WATTS?>, dc2dc:<?php echo DEFAULT_DC2DC_CURRENT?>},
+			normal:{min_top:.664, min_bot:.664, max:.750, fan:70, watts:<?php echo DEFAULT_MAX_WATTS?>, dc2dc:<?php echo DEFAULT_DC2DC_CURRENT?>},
+			quiet:{min_top:.635, min_bot:.635, max:.642, fan:50, watts:<?php echo DEFAULT_MAX_WATTS?>, dc2dc:<?php echo DEFAULT_DC2DC_CURRENT?>}
 		, watts:1260}
 		function setupSpeedSettings(){
 			// check if we have a predefined settings, if not show custom settings
 			var predefined = false;
 			for(s in speedSettings){
-				if(speedSettings[s].min==<?php echo ($minerSpeed[1]/1000)?> &&  speedSettings[s].max==<?php echo ($minerSpeed[2]/1000)?> &&  speedSettings[s].fan==<?php echo $minerSpeed[0]?> && speedSettings[s].watts==<?php echo $minerSpeed[3]?> && speedSettings[s].dc2dc==<?php echo $minerSpeed[4]?>){
+				if(     speedSettings[s].min_top==<?php echo ($minerSpeed[1]/1000)?>
+                    &&  speedSettings[s].min_bot==<?php echo ($minerSpeed[2]/1000)?>
+                    &&  speedSettings[s].max==<?php echo ($minerSpeed[3]/1000)?>
+                    &&  speedSettings[s].fan==<?php echo $minerSpeed[0]?>
+                    &&  speedSettings[s].watts==<?php echo $minerSpeed[4]?>
+                    &&  speedSettings[s].dc2dc==<?php echo $minerSpeed[5]?>){
 					$('input[speed='+s+']').prop('checked', true);
 					predefined = true;
 				}
@@ -389,7 +401,8 @@ include('menu.php');
 			var speed = $(e).attr('speed'); 	
 			$('#fan_speed_select').val(speedSettings[speed].fan);
 			$('#maximum_voltage').val(speedSettings[speed].max);
-			$('#minimum_voltage').val(speedSettings[speed].min);
+			$('#minimum_voltage_top').val(speedSettings[speed].min_top);
+            $('#minimum_voltage_bot').val(speedSettings[speed].min_bot);
 			$('#max_watts').val(speedSettings[speed].watts);
 			$('#dc2dc_current').val(speedSettings[speed].dc2dc);
 		}
@@ -399,10 +412,14 @@ include('menu.php');
 		}
 		function saveCustomSpeed(){
 			if($('#speed_settings .view-alternative.basic').is(':visible')) setCustomSpeed($('#speed_settings .view-alternative.basic input:checked')[0]);
-			if($('#maximum_voltage').val() < $('#minimum_voltage').val()){
+			if($('#maximum_voltage').val() < $('#minimum_voltage_top').val()){
 				bootbox.alert("Maximum voltage must be greater than start value.");
 				return false;
 			}
+            if($('#maximum_voltage').val() < $('#minimum_voltage_bot').val()){
+                bootbox.alert("Maximum voltage must be greater than start value.");
+                return false;
+            }
 			return true;	
 		}
 	</script>

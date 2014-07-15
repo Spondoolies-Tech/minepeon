@@ -48,13 +48,13 @@ echo $e;
 }
 
 function setMinerSpeed($speed){
-	$speed = sprintf("%d %d %d %d %d", $speed['fan_speed'], (float)$speed['min_voltage']*1000, (float)$speed['max_voltage']*1000, $speed['max_watts'], $speed['dc2dc_current']);
+	$speed = sprintf("CONF:%d %d %d %d %d %d", $speed['fan_speed'], (float)$speed['start_voltage_top']*1000, (float)$speed['start_voltage_bot']*1000, (float)$speed['max_voltage']*1000, $speed['max_watts'], $speed['dc2dc_current']);
 	file_put_contents(MINER_WORKMODE_FILE, $speed);
 	settings_sync();
 }
 
 function getMinerSpeed(){
-	if(file_exists(MINER_WORKMODE_FILE)) $s = file_get_contents(MINER_WORKMODE_FILE);
+	if(file_exists(MINER_WORKMODE_FILE)) $s = trim(file_get_contents(MINER_WORKMODE_FILE), "CONF: ");
 	else $s = DEFAULT_MINER_WORKMODE.' '.DEFAULT_MAX_WATTS.' '.DEFAULT_DC2DC_CURRENT;
 	return explode(' ', $s);
 }
