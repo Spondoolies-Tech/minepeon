@@ -37,8 +37,8 @@ $json['mg_status'] = '';
 if(file_exists(MG_STATUS)) $json['mg_status'] = trim(file_get_contents(MG_STATUS));
 
 $json['workmode'] = array_combine(
-	array('fan_speed', 'min_voltage', 'max_voltage', 'max_watts','dc2dc_current'),
-	explode(' ', trim(file_get_contents(MINER_WORKMODE_FILE ))));
+	array('fan_speed', 'start_voltage_top', 'start_voltage_bot', 'max_voltage', 'max_watts','dc2dc_current'),
+	explode(' ', trim(trim(file_get_contents(MINER_WORKMODE_FILE ), "CONF:"))));
 
 header("Content-type: application/json");
 echo json_encode($json);
