@@ -41,7 +41,7 @@ if(file_exists("/var/run/mg_rate_temp")){
 }
 
 //MinePeon Version
-$version = "SP10 Dawson";
+$version = $full_model_name;
 
 //MinePeon CPU load
 $mpCPULoad = sys_getloadavg();
@@ -96,7 +96,7 @@ function isSpondRunning() {
 }
 ?>
 <div class="container">
-  <h3 id="miner-header-txt">SP10 Miner</h3><br>
+  <h3 id="miner-header-txt"><?php echo $version;?></h3><br>
   <?php
   if (file_exists('/mnt/config/rrd/mhsav-hour.png')) {
   ?>
@@ -305,11 +305,12 @@ function statsTable($devs) {
     if (file_exists("/var/run/mg_rate_temp")) {
         $s = file_get_contents("/var/run/mg_rate_temp");
         $s = explode(" ", $s);
+        $dev['MHSav'] = intval($s[0]);
     } else {
         $s = array(0,0,0,0);
     }
 
-    $dev['MHSav'] = intval($s[0]);
+
 
 
 	if ((time() - $dev['LastShareTime']) > 500) {
@@ -329,12 +330,12 @@ function statsTable($devs) {
 		}
     ?>
     <script type="text/javascript">
-        document.getElementById("miner-header-txt").innerText = "<?php echo "Mining Rate: ".round($dev['MHSav']/1000000,2)?>Ths";
-        document.getElementById("miner-header-txt").innerHTML = "<?php echo "Mining Rate: ".round($dev['MHSav']/1000000,2)?>Ths";
+        document.getElementById("miner-header-txt").innerText = "<?php echo "Mining Rate: ".round($dev['MHSav']/1,2)?>Mhs";
+        document.getElementById("miner-header-txt").innerHTML = "<?php echo "Mining Rate: ".round($dev['MHSav']/1,2)?>Mhs";
     </script>
     <?php
 
-	$tableRow = $tableRow . "<td>" . "SP10" . "</td>
+	$tableRow = $tableRow . "<td>" . $model_id . "</td>
       <!-- <td>" . "1" . "</td>
       <td>" . $temperature . "</td> -->
       <td>" . $dev['MHSav'] / 1000 . "</td>

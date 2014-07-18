@@ -30,7 +30,7 @@ window.setTimeout('CountDown()',100);
   <body>
   <center>
 <?php if($refresh_ip != "none"){ ?>
-  <p><h1>Rebooting SP10 Dawson</h1></p>
+  <p><h1>Rebooting Miner</h1></p>
   <p>You will be reconnected in</p>
   <p><h1 id="countdown">120</h1></p>
   <p>seconds.</p> 
