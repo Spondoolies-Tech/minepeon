@@ -335,7 +335,7 @@ include('menu.php');
 			      <div class="col-4">
 				      <label for="max_watts" class="control-label">Maximum Power Consumption</label>
 			      </div>
-				<div><input type="text" size="4" onblur="validateSpeed(this)" name="max_watts" id="max_watts" type="number" step="1" min="600" max="1500" value="<?php echo $max_watts?>"></div>
+				<div><input type="text" size="4" onblur="validateSpeed(this)" name="max_watts" id="max_watts" type="number" step="1" min="600" max="1600" value="<?php echo $max_watts?>"></div>
 		      </div>
 		      <div class="row">
 			      <div class="col-4">
@@ -762,7 +762,7 @@ include('menu.php');
 		  </script>
 		  <p class="help-block">
             Enter you own miner parameters or select a default bfgminer or cgminer configuration.  
-			You will need to press Save and then reboot miner when you finish.<br />
+			You will need to press Save and then reboot the miner when you finish.<br />
 			If you intend to enable the cgminer-HEXu option <a href="http://minepeon.com/index.php/Cgminer-HEXu">please read this page for instructions.</a>
           </p>
         </div>
