@@ -330,8 +330,8 @@ function statsTable($devs) {
 		}
     ?>
     <script type="text/javascript">
-        document.getElementById("miner-header-txt").innerText = "<?php echo "Mining Rate: ".round($dev['MHSav']/1,2)?>Mhs";
-        document.getElementById("miner-header-txt").innerHTML = "<?php echo "Mining Rate: ".round($dev['MHSav']/1,2)?>Mhs";
+        document.getElementById("miner-header-txt").innerText = "<?php echo "Mining Rate: ".round($dev['MHSav']/1000,2)?>Ghs";
+        document.getElementById("miner-header-txt").innerHTML = "<?php echo "Mining Rate: ".round($dev['MHSav']/1000,2)?>Ghs";
     </script>
     <?php
 
