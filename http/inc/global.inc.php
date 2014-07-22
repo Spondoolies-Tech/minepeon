@@ -29,3 +29,12 @@ if((!array_key_exists('agree', $settings) || ! intval(time($settings['agree'])))
 file_put_contents('/var/run/dont_reboot', "1");
 $model_id=trim(file_get_contents(MODEL_ID_FILE));
 $full_model_name=($model_id=="SP10")?"SP10 Dawson":"SP30 Yukon";
+
+
+if ($model_id == "SP10") {
+$DEFAULT_MAX_WATTS = 1260;
+$DEFAULT_DC2DC_CURRENT = 62;
+} else {
+$DEFAULT_MAX_WATTS = 1360;
+$DEFAULT_DC2DC_CURRENT = 140;
+}
