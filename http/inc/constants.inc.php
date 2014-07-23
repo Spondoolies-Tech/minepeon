@@ -30,5 +30,4 @@ const BLINK_FILE = '/tmp/blink'; // NOTE: file also defined in /usr/local/bin/le
 
 // numbers
 const DEFAULT_MINER_WORKMODE = "80 660 750"; //turbo
-const DEFAULT_MAX_WATTS = 1260;
-const DEFAULT_DC2DC_CURRENT = 62;
+

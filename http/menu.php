@@ -14,7 +14,9 @@ $latest_ver = exec('cat '.LATEST_VERSION_FILE);
     <li><a href="/firmware.php">Firmware Upgrade</a></li>
 <?php }  ?>
       <li><a href="/asics.php">ASIC Stats</a></li>
-      <li><a href="/hw.php">DCR</a></li>
+<?php if ($model_id=="SP10") { ?>
+        <li><a href="/hw.php">DCR</a></li>
+<?php }  ?>
 <!--      <li><a href="about.php">About</a></li>
       <li><a href="contact.php">Contact</a></li>
 -->      <li><a href="/license.php">License</a></li>

@@ -30,3 +30,11 @@ if((!array_key_exists('agree', $settings) || ! intval(time($settings['agree'])))
 
 //Update watchdog monitored file (to prevent reboots)
 file_put_contents('/var/run/dont_reboot', "1");
+
+if ($model_id == "SP10") {
+$DEFAULT_MAX_WATTS = 1260;
+$DEFAULT_DC2DC_CURRENT = 62;
+} else {
+$DEFAULT_MAX_WATTS = 1360;
+$DEFAULT_DC2DC_CURRENT = 140;
+}

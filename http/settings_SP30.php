@@ -306,35 +306,35 @@ include('menu.php');
                           </div>
                       </div>
 
-                      <div class="row">
+                      <div class="row hidden">
                           <div class="col-4">
                               <label for="">Start Volts Top (0.56-0.71)</label>
                           </div>
-				          <div><input size="5" type="number" onblur="validateSpeed(this)" id="minimum_voltage_top" name="start_voltage_top" value="<?php echo $minerSpeed[1]/1000?>" min=".560" max=".710" step="0.001" /></div>
+				          <div><input size="5" type="number" onblur="validateSpeed(this)" id="minimum_voltage_top" name="start_voltage_top" value="< ?php echo $minerSpeed[1]/1000?>" min=".660" max=".79" step="0.001" /></div>
                       </div>
 
-                      <div class="row">
+                      <div class="row hidden">
                           <div class="col-4">
                               <label for="">Start Volts Bottom(0.56-0.71)</label>
                           </div>
-                          <div><input size="5" type="number" onblur="validateSpeed(this)" id="minimum_voltage_bot" name="start_voltage_bot" value="<?php echo $minerSpeed[2]/1000?>" min=".560" max=".710" step="0.001" /></div>
+                          <div><input size="5" type="number" onblur="validateSpeed(this)" id="minimum_voltage_bot" name="start_voltage_bot" value="< ?php echo $minerSpeed[2]/1000?>" min=".660" max=".79" step="0.001" /></div>
                       </div>
 
                       <div class="row">
                           <div class="col-4">
-                              <label for="">Maximum Voltage (0.560-0.780)</label>
+                              <label for="">Maximum Voltage (0.660-0.790)</label>
                           </div>
-				<div><input size="5" type="number" onblur="validateSpeed(this)" id="maximum_voltage" name="max_voltage" value="<?php echo $minerSpeed[3]/1000?>" min=".560" max=".78" step="0.001" /></div>
+				<div><input size="5" type="number" onblur="validateSpeed(this)" id="maximum_voltage" name="max_voltage" value="<?php echo $minerSpeed[3]/1000?>" min=".660" max=".79" step="0.001" /></div>
                       </div>
 		      <div class="row">
 			      <div class="col-4">
-				      <label for="max_watts" class="control-label">Maximum Power Consumption</label>
+				      <label for="max_watts" class="control-label">Max PSU Power (1000W - 1600W) </label>
 			      </div>
-				<div><input type="text" size="4" onblur="validateSpeed(this)" name="max_watts" id="max_watts" type="number" step="1" min="600" max="1600" value="<?php echo $max_watts?>"></div>
+				<div><input type="text" size="4" onblur="validateSpeed(this)" name="max_watts" id="max_watts" type="number" step="1" min="1000" max="1600" value="<?php echo $max_watts?>"></div>
 		      </div>
 		      <div class="row">
 			      <div class="col-4">
-				      <label for="dc2dc_current" class="control-label">DC2DC Current Limit</label>
+				      <label for="dc2dc_current" class="control-label">DC2DC Limit (50A-180A)</label>
 			      </div>
 				<div><input type="text" size="4" onblur="validateSpeed(this)" name="dc2dc_current" id="dc2dc_current" type="number" step="1" min="50" max="65" value="<?php echo $dc2dc_current?>"></div>
 		      </div>
@@ -357,9 +357,10 @@ include('menu.php');
       </fieldset>
 	<script type="text/javascript">
 		speedSettings = {
-			turbo:{min_top:.664,min_bot:.664, max:.750, fan:80, watts:<?php echo DEFAULT_MAX_WATTS?>, dc2dc:<?php echo DEFAULT_DC2DC_CURRENT?>},
-			normal:{min_top:.664, min_bot:.664, max:.750, fan:70, watts:<?php echo DEFAULT_MAX_WATTS?>, dc2dc:<?php echo DEFAULT_DC2DC_CURRENT?>},
-			quiet:{min_top:.635, min_bot:.635, max:.642, fan:50, watts:<?php echo DEFAULT_MAX_WATTS?>, dc2dc:<?php echo DEFAULT_DC2DC_CURRENT?>}
+			turbo:{min_top:.680,min_bot:.680, max:.790, fan:90, watts:<?php echo $DEFAULT_MAX_WATTS?>, dc2dc:<?php echo $DEFAULT_DC2DC_CURRENT?>},
+			normal:{min_top:.680, min_bot:.680, max:.790, fan:70, watts:<?php echo $DEFAULT_MAX_WATTS?>, dc2dc:<?php echo $DEFAULT_DC2DC_CURRENT?>},
+			quiet:{min_top:.680, min_bot:.680, max:.790, fan:50, watts:<?php echo $DEFAULT_MAX_WATTS
+			?>, dc2dc:<?php echo $DEFAULT_DC2DC_CURRENT?>}
 		, watts:1260}
 		function setupSpeedSettings(){
 			// check if we have a predefined settings, if not show custom settings

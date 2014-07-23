@@ -55,7 +55,7 @@ function setMinerSpeed($speed){
 
 function getMinerSpeed(){
 	if(file_exists(MINER_WORKMODE_FILE)) $s = trim(file_get_contents(MINER_WORKMODE_FILE), "CONF: ");
-	else $s = DEFAULT_MINER_WORKMODE.' '.DEFAULT_MAX_WATTS.' '.DEFAULT_DC2DC_CURRENT;
+	else $s = DEFAULT_MINER_WORKMODE.' '.$DEFAULT_MAX_WATTS.' '.$DEFAULT_DC2DC_CURRENT;
 	return explode(' ', $s);
 }
 
