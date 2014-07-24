@@ -5,7 +5,7 @@
  * initially, this file is just to check that the user has accepted our terms and conditions
  */
 
-$model_id=trim(file_get_contents(MODEL_ID_FILE));
+$model_id=trim(file_get_contents('/model_id'));
 $full_model_name=($model_id=="SP10")?"SP10 Dawson":"SP30 Yukon";
 
 /**
@@ -32,9 +32,9 @@ if((!array_key_exists('agree', $settings) || ! intval(time($settings['agree'])))
 file_put_contents('/var/run/dont_reboot', "1");
 
 if ($model_id == "SP10") {
-$DEFAULT_MAX_WATTS = 1260;
-$DEFAULT_DC2DC_CURRENT = 62;
+$default_max_watts = 1260;
+$default_dc2dc_current = 62;
 } else {
-$DEFAULT_MAX_WATTS = 1360;
-$DEFAULT_DC2DC_CURRENT = 140;
+$default_max_watts = 1360;
+$default_dc2dc_current = 140;
 }

@@ -249,9 +249,9 @@ $tzselect = $tzselect . '</select>';
 $minerSpeed = getMinerSpeed();
 
 $max_watts = $minerSpeed[4];
-if(!$max_watts) $max_watts = $DEFAULT_MAX_WATTS;
+if(!$max_watts) $max_watts = $default_max_watts;
 $dc2dc_current = $minerSpeed[5];
-if(!$dc2dc_current) $dc2dc_current = $DEFAULT_DC2DC_CURRENT;
+if(!$dc2dc_current) $dc2dc_current = $default_dc2dc_current;
 
 $voltage = exec('cat /etc/voltage');
 $overvolt110 = file_exists("/etc/mg_ignore_110_fcc");
@@ -357,9 +357,9 @@ include('menu.php');
       </fieldset>
 	<script type="text/javascript">
 		speedSettings = {
-			turbo:{min_top:.664,min_bot:.664, max:.750, fan:80, watts:<?php echo $DEFAULT_MAX_WATTS?>, dc2dc:<?php echo $DEFAULT_DC2DC_CURRENT?>},
-			normal:{min_top:.664, min_bot:.664, max:.750, fan:70, watts:<?php echo $DEFAULT_MAX_WATTS?>, dc2dc:<?php echo $DEFAULT_DC2DC_CURRENT?>},
-			quiet:{min_top:.635, min_bot:.635, max:.642, fan:50, watts:<?php echo $DEFAULT_MAX_WATTS?>, dc2dc:<?php echo $DEFAULT_DC2DC_CURRENT?>}
+			turbo:{min_top:.664,min_bot:.664, max:.750, fan:80, watts:<?php echo $default_max_watts?>, dc2dc:<?php echo $default_dc2dc_current?>},
+			normal:{min_top:.664, min_bot:.664, max:.750, fan:70, watts:<?php echo $default_max_watts?>, dc2dc:<?php echo $default_dc2dc_current?>},
+			quiet:{min_top:.635, min_bot:.635, max:.642, fan:50, watts:<?php echo $default_max_watts?>, dc2dc:<?php echo $default_dc2dc_current?>}
 		, watts:1260}
 		function setupSpeedSettings(){
 			// check if we have a predefined settings, if not show custom settings
@@ -377,7 +377,7 @@ include('menu.php');
 			}
 			if(!predefined) toggleCustomSpeedSettings(true);
 		}
-		advanced_warning = false;
+		var advanced_warning = false;
 		function toggleCustomSpeedSettings(force){
 			if(!force && !advanced_warning && $('#settings_view_name').text() == "Advanced"){
 				advanced_warning = true;

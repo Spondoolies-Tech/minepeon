@@ -1,7 +1,6 @@
 <?php
 
-require_once('constants.inc.php');
-require_once('settings.inc.php'); // for syncing
+require_once('global.inc.php');
 
 function miner($command, $parameter) {
 
@@ -48,15 +47,24 @@ echo $e;
 }
 
 function setMinerSpeed($speed){
-	$speed = sprintf("CONF:%d %d %d %d %d %d", $speed['fan_speed'], (float)$speed['start_voltage_top']*1000, (float)$speed['start_voltage_bot']*1000, (float)$speed['max_voltage']*1000, $speed['max_watts'], $speed['dc2dc_current']);
-	file_put_contents(MINER_WORKMODE_FILE, $speed);
+	foreach($speed as $k=>$v){
+		$v = floatval($v);
+		if (floor($v) == 0) $v *= 1000;
+		$speed[$k] = intval($v);
+	}
+
+	$format = explode(' ', WORKMODE_FORMAT);
+	$workmode = array();
+	foreach($format as $key){$workmode[] = $speed[$key];}
+	$workmode = vsprintf(WORKMODE_FORMAT_LINE, $workmode);
+	file_put_contents(MINER_WORKMODE_FILE, $workmode);
 	settings_sync();
 }
 
 function getMinerSpeed(){
-	if(file_exists(MINER_WORKMODE_FILE)) $s = trim(file_get_contents(MINER_WORKMODE_FILE), "CONF: ");
-	else $s = DEFAULT_MINER_WORKMODE.' '.$DEFAULT_MAX_WATTS.' '.$DEFAULT_DC2DC_CURRENT;
-	return explode(' ', $s);
+	if(file_exists(MINER_WORKMODE_FILE)) $s = trim(file_get_contents(MINER_WORKMODE_FILE));
+	else throw new Exception("Workmode file (".MINER_WORKMODE_FILE.") missing. Please contact customer support.");
+	return sscanf($s, WORKMODE_FORMAT_LINE);
 }
 
 function miner_service($op = "restart"){

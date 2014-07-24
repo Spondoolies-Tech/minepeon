@@ -134,7 +134,7 @@ if (isset($_POST['miningExpHash'])) {
   $writeSettings=true;
 
 }
-if (isset($_POST['fan_speed'])) {
+if (isset($_POST['FAN'])) {
  // setMinerSpeed(intval($_POST["minerSpeed"]));
   setMinerSpeed($_POST);
   $mining_restart = true;
@@ -248,11 +248,6 @@ $tzselect = $tzselect . '</select>';
 
 $minerSpeed = getMinerSpeed();
 
-$max_watts = $minerSpeed[4];
-if(!$max_watts) $max_watts = DEFAULT_MAX_WATTS;
-$dc2dc_current = $minerSpeed[5];
-if(!$dc2dc_current) $dc2dc_current = DEFAULT_DC2DC_CURRENT;
-
 $voltage = exec('cat /etc/voltage');
 $overvolt110 = file_exists("/etc/mg_ignore_110_fcc");
 
@@ -294,11 +289,11 @@ include('menu.php');
               <div class="custom col-lg-9 col-offset-3 view-alternative" style="display:none">
                   <div>
                       <div class="row">
-                          <div class="col-4">
+                          <div class="col-5">
                               <label for="">Fan Speed</label>
                           </div>
                           <div>
-                              <select name="fan_speed" id="fan_speed_select">
+                              <select name="FAN" id="fan_speed_select">
                                   <?php for($i = 40; $i < 99; $i += 10){
                                       printf('<option value="%d" %s>%d</option>', $i, ($i == $minerSpeed[0])?' selected="selected"':'', $i);
                                   } ?>
@@ -307,36 +302,42 @@ include('menu.php');
                       </div>
 
                       <div class="row hidden">
-                          <div class="col-4">
+                          <div class="col-5">
                               <label for="">Start Volts Top (0.56-0.71)</label>
                           </div>
-				          <div><input size="5" type="number" onblur="validateSpeed(this)" id="minimum_voltage_top" name="start_voltage_top" value="< ?php echo $minerSpeed[1]/1000?>" min=".660" max=".79" step="0.001" /></div>
+				          <div><input size="5" type="number" onblur="validateSpeed(this)" id="minimum_voltage_top" name="VST" value="<?php echo $minerSpeed[1]/1000?>" min=".660" max=".79" step="0.001" /></div>
                       </div>
 
                       <div class="row hidden">
-                          <div class="col-4">
+                          <div class="col-5">
                               <label for="">Start Volts Bottom(0.56-0.71)</label>
                           </div>
-                          <div><input size="5" type="number" onblur="validateSpeed(this)" id="minimum_voltage_bot" name="start_voltage_bot" value="< ?php echo $minerSpeed[2]/1000?>" min=".660" max=".79" step="0.001" /></div>
+                          <div><input size="5" type="number" onblur="validateSpeed(this)" id="minimum_voltage_bot" name="VSB" value="<?php echo $minerSpeed[2]/1000?>" min=".660" max=".79" step="0.001" /></div>
                       </div>
 
                       <div class="row">
-                          <div class="col-4">
+                          <div class="col-5">
                               <label for="">Maximum Voltage (0.660-0.790)</label>
                           </div>
-				<div><input size="5" type="number" onblur="validateSpeed(this)" id="maximum_voltage" name="max_voltage" value="<?php echo $minerSpeed[3]/1000?>" min=".660" max=".79" step="0.001" /></div>
+				<div><input size="5" type="number" onblur="validateSpeed(this)" id="maximum_voltage" name="VMAX" value="<?php echo $minerSpeed[3]/1000?>" min=".660" max=".79" step="0.001" /></div>
                       </div>
 		      <div class="row">
-			      <div class="col-4">
-				      <label for="max_watts" class="control-label">Max PSU Power (1000W - 1600W) </label>
+			      <div class="col-5">
+				      <label for="max_watts_top" class="control-label">Max PSU Power Top (1000W - 1600W) </label>
 			      </div>
-				<div><input type="text" size="4" onblur="validateSpeed(this)" name="max_watts" id="max_watts" type="number" step="1" min="1000" max="1600" value="<?php echo $max_watts?>"></div>
+				<div><input type="text" size="4" onblur="validateSpeed(this)" name="AC_TOP" id="max_watts_top" type="number" step="1" min="1000" max="1600" value="<?php echo $minerSpeed[4]?>"></div>
 		      </div>
 		      <div class="row">
-			      <div class="col-4">
+			      <div class="col-5">
+				      <label for="max_watts_bot" class="control-label">Max PSU Power Bottom (1000W - 1600W) </label>
+			      </div>
+				<div><input type="text" size="4" onblur="validateSpeed(this)" name="AC_BOT" id="max_watts_bot" type="number" step="1" min="1000" max="1600" value="<?php echo $minerSpeed[5]?>"></div>
+		      </div>
+		      <div class="row">
+			      <div class="col-5">
 				      <label for="dc2dc_current" class="control-label">DC2DC Limit (50A-180A)</label>
 			      </div>
-				<div><input type="text" size="4" onblur="validateSpeed(this)" name="dc2dc_current" id="dc2dc_current" type="number" step="1" min="50" max="65" value="<?php echo $dc2dc_current?>"></div>
+				<div><input type="text" size="4" onblur="validateSpeed(this)" name="DC_AMP" id="dc2dc_current" type="number" step="1" min="50" max="65" value="<?php echo $minerSpeed[6]?>"></div>
 		      </div>
 
                   </div>
@@ -357,28 +358,31 @@ include('menu.php');
       </fieldset>
 	<script type="text/javascript">
 		speedSettings = {
-			turbo:{min_top:.680,min_bot:.680, max:.790, fan:90, watts:<?php echo $DEFAULT_MAX_WATTS?>, dc2dc:<?php echo $DEFAULT_DC2DC_CURRENT?>},
-			normal:{min_top:.680, min_bot:.680, max:.790, fan:70, watts:<?php echo $DEFAULT_MAX_WATTS?>, dc2dc:<?php echo $DEFAULT_DC2DC_CURRENT?>},
-			quiet:{min_top:.680, min_bot:.680, max:.790, fan:50, watts:<?php echo $DEFAULT_MAX_WATTS
-			?>, dc2dc:<?php echo $DEFAULT_DC2DC_CURRENT?>}
-		, watts:1260}
+<?php 
+$format = explode(' ', WORKMODE_FORMAT);
+$modes = array('turbo'=>explode(' ', WORKMODE_TURBO), 'normal'=>explode(' ', WORKMODE_NORMAL), 'quiet'=>explode(' ', WORKMODE_QUIET));
+foreach($modes as $mode=>$mode_settings){
+	echo $mode.':{';
+		foreach($mode_settings as $i => $s) echo $format[$i].':'.$s.', ';
+	echo "},\n";
+} ?>
+		}
+		advanced_warning = false;
 		function setupSpeedSettings(){
 			// check if we have a predefined settings, if not show custom settings
 			var predefined = false;
 			for(s in speedSettings){
-				if(     speedSettings[s].min_top==<?php echo ($minerSpeed[1]/1000)?>
-                    &&  speedSettings[s].min_bot==<?php echo ($minerSpeed[2]/1000)?>
-                    &&  speedSettings[s].max==<?php echo ($minerSpeed[3]/1000)?>
-                    &&  speedSettings[s].fan==<?php echo $minerSpeed[0]?>
-                    &&  speedSettings[s].watts==<?php echo $minerSpeed[4]?>
-                    &&  speedSettings[s].dc2dc==<?php echo $minerSpeed[5]?>){
+				if(
+					<?php $conds = array(); foreach($format as $i=>$f){ $conds[] = 'speedSettings[s].'.$f.'* (($("[name='.$f.']").attr("min") < 1) ? 1000 : 1) == '.$minerSpeed[$i]; } echo implode(' && ', $conds); ?>
+				)
+				{
 					$('input[speed='+s+']').prop('checked', true);
 					predefined = true;
+					break;
 				}
 			}
 			if(!predefined) toggleCustomSpeedSettings(true);
 		}
-		advanced_warning = false;
 		function toggleCustomSpeedSettings(force){
 			if(!force && !advanced_warning && $('#settings_view_name').text() == "Advanced"){
 				advanced_warning = true;
@@ -395,12 +399,9 @@ include('menu.php');
 		}
 		function setCustomSpeed(e){
 			var speed = $(e).attr('speed'); 	
-			$('#fan_speed_select').val(speedSettings[speed].fan);
-			$('#maximum_voltage').val(speedSettings[speed].max);
-			$('#minimum_voltage_top').val(speedSettings[speed].min_top);
-            $('#minimum_voltage_bot').val(speedSettings[speed].min_bot);
-			$('#max_watts').val(speedSettings[speed].watts);
-			$('#dc2dc_current').val(speedSettings[speed].dc2dc);
+			$('#speed_settings input, #speed_settings select').each(function(){
+				if(speedSettings[speed].hasOwnProperty($(this).attr('name'))) $(this).val(speedSettings[speed][$(this).attr('name')]);
+			});
 		}
 		function validateSpeed(e){
 			if(parseFloat($(e).val()) < parseFloat($(e).attr('min'))) $(e).val($(e).attr('min'));
