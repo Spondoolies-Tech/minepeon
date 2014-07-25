@@ -159,7 +159,13 @@ echo "<center class='alert alert-info'><h1>".$error."</h1></center>";
         <dt>Hardware Version</dt>
         <dd><?php echo $full_model_name; ?></dd>
         <dt>FW Version</dt>
-        <dd><?php echo(file_get_contents("/fw_ver")) ?></dd>
+        <dd><?php echo(file_get_contents("/fw_ver")) ?>
+        <?php
+             if (file_exists('/mnt/config/etc/bin/miner_gate_arm')) {
+                 echo "<b></br>CUSTOM miner_gate_arm !</b>";
+             }
+        ?>
+        </dd>
         <dt>CGMiner Version</dt>
         <dd><?php echo $summary['STATUS'][0]['Description']; ?></dd>
         <dt>CGMiner Status</dt>
