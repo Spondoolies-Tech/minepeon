@@ -301,18 +301,18 @@ include('menu.php');
                           </div>
                       </div>
 
-                      <div class="row hidden">
+                      <div class="row">
                           <div class="col-5">
-                              <label for="">Start Volts Top (0.56-0.71)</label>
+                              <label for="">Start Volts Top (0.66-0.71)</label>
                           </div>
-				          <div><input size="5" type="number" onblur="validateSpeed(this)" id="minimum_voltage_top" name="VST" value="<?php echo $minerSpeed[1]/1000?>" min=".660" max=".79" step="0.001" /></div>
+				          <div><input size="5" type="number" onblur="validateSpeed(this)" id="minimum_voltage_top" name="VST" value="<?php echo $minerSpeed[1]/1000?>" min=".660" max=".71" step="0.001" /></div>
                       </div>
 
-                      <div class="row hidden">
+                      <div class="row">
                           <div class="col-5">
-                              <label for="">Start Volts Bottom(0.56-0.71)</label>
+                              <label for="">Start Volts Bottom(0.66-0.71)</label>
                           </div>
-                          <div><input size="5" type="number" onblur="validateSpeed(this)" id="minimum_voltage_bot" name="VSB" value="<?php echo $minerSpeed[2]/1000?>" min=".660" max=".79" step="0.001" /></div>
+                          <div><input size="5" type="number" onblur="validateSpeed(this)" id="minimum_voltage_bot" name="VSB" value="<?php echo $minerSpeed[2]/1000?>" min=".660" max=".71" step="0.001" /></div>
                       </div>
 
                       <div class="row">
