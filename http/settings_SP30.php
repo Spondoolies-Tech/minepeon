@@ -342,12 +342,6 @@ include('menu.php');
 
                   </div>
               </div>
-	      <div class="col-offset-3 col-9 buttons">
-              <?php if ($voltage < 140) { ?>
-                  <p class="help-block">NOTE: Your ASIC voltage will be limited by the firmware FCC module because of your low socket voltage.</p>
-              <?php } ?>
-
-		</div>
 	      <div class="col-offset-3 col-6 buttons">
                   <button type="submit" class="btn btn-default">Save</button>
 		</div>
