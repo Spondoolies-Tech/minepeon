@@ -827,9 +827,15 @@ include('menu.php');
           <legend>Factory reset</legend>
           <div class="form-group">
               <div class="col-lg-9 col-offset-3">
-                  <a name="resetfactory" class="btn btn-default miner-action" onclick="confirmClick('/reset_to_factory.php');">Reset to factory settings</a>
+                  <a name="resetfactory" id="resetfactory" class="btn btn-default miner-action" onclick="return confirmClick(this);" href="/reset_to_factory.php?except=">Reset to factory settings</a>
+		  <input type="checkbox" value="cgminer.conf" onchange="changeUrl(this, '#resetfactory')" />Keep cgminer.conf
                   <p class="help-block">This will restore your miner settings to the factory default ones!</p>
               </div>
+<?php if(file_exists("/mnt/config/etc/bin/miner_gate_arm")){ ?>
+              <div class="col-lg-9 col-offset-3">
+                  <a name="reset_minerarm" class="btn btn-default miner-action" onclick="return confirmClick(this);" href="/reset_to_factory.php?files=bin/miner_gate_arm">Restore miner_gate_arm</a>
+              </div>
+<?php } ?>
           </div>
       </fieldset>
   </form>
@@ -878,12 +884,23 @@ include('menu.php');
   <!-- ######################## -->
 
 <script type="text/javascript" id="js">
+
     function confirmClick(target) {
         bootbox.confirm("Are you sure?", function(result) {
             if (!result) return;
-
-            window.location.replace(target);
+            window.location.replace($(target).attr('href'));
         });
+	return false;
+    }
+
+   function changeUrl(source, target){
+	var url = $(target).attr('href');
+	if($(source).is(':checked')){
+		url += ","+$(source).val();
+	}else{
+		url = url.replace(new RegExp($(source).val()), '');
+	}
+	$(target).attr('href', url);
     }
 
   function checkPass(id, submitButton)
