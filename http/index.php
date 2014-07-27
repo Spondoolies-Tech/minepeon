@@ -1,8 +1,8 @@
 <?php
 
-require('miner.inc.php');
-include('global.inc.php');
-include('functions.inc.php');
+require_once('global.inc.php');
+require_once('miner.inc.php');
+include_once('functions.inc.php');
 
 /*
 //Moved to Cron-based PHP CLI generation
@@ -91,8 +91,7 @@ $proc_status['minergate'] = ($mg_status['status']) ? 'Running' : 'Not running';
 
 //Check if Spond manager is running properly (2 processes will patch as ps is launched under PHP)
 function isSpondRunning() {
-    exec("ps | grep spond", $pids);
-    return (!empty($pids) && sizeof($pids) > 2);
+	return intval(file_get_contents(MINERGATE_RUNNING_FILE));
 }
 ?>
 <div class="container">

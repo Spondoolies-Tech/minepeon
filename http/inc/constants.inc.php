@@ -12,6 +12,7 @@ const MINER_CONTROL_CMD = "/usr/local/bin/spond-manager ";
 const UI_USER_NAME = "admin";
 
 const MINER_WORKMODE_FILE = '/etc/mg_custom_mode'; // work_mode
+const MINERGATE_RUNNING_FILE = '/etc/mining_status';
 
 //const MAX_ELECTRICAL_USAGE_FILE = '/etc/mg_psu_limit';
 
