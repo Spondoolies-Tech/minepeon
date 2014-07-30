@@ -12,6 +12,7 @@ const MINER_CONTROL_CMD = "/usr/local/bin/spond-manager ";
 const UI_USER_NAME = "admin";
 
 const MINER_WORKMODE_FILE = '/etc/mg_custom_mode'; // work_mode
+const MINER_RUNTIME_WORKMODE_FILE = '/tmp/mg_custom_mode'; // work_mode
 const MINERGATE_RUNNING_FILE = '/etc/mining_status';
 
 //const MAX_ELECTRICAL_USAGE_FILE = '/etc/mg_psu_limit';
@@ -33,6 +34,7 @@ const BLINK_FILE = '/tmp/blink'; // NOTE: file also defined in /usr/local/bin/le
 switch($model_id){
 	case "SP10":
 			define('WORKMODE_FORMAT', "fan_speed start_voltage_top start_voltage_bot max_voltage max_watts dc2dc_current");
+			define('WORKMODE_TEXT', "Fan Speed-Start Voltage (top)-Start Voltage (bottom)-Max Voltage-Max Watts-D2DC Current");
 			define('WORKMODE_FORMAT_LINE', "CONF:%d %d %d %d %d %d");
 			define('WORKMODE_TURBO', '90 .680 .680 .790 '.$DEFAULT_MAX_WATTS.' '.$DEFAULT_DC2DC_CURRENT);
 			define('WORKMODE_NORMAL', '70 .680 .680 .790 '.$DEFAULT_MAX_WATTS.' '.$DEFAULT_DC2DC_CURRENT);
@@ -41,6 +43,7 @@ switch($model_id){
 	case "SP30":
 			//const WORKMODE_FORMAT = "fan_speed start_voltage_top start_voltage_bot max_voltage max_watts_top max_watts_top dc2dc_current";
 			define('WORKMODE_FORMAT', "FAN VST VSB VMAX AC_TOP AC_BOT DC_AMP");
+			define('WORKMODE_TEXT', "Fan Speed-Start Voltage (top)-Start Voltage (bottom)-Max Voltage-Max Watts (top)-Max Watts (bottom)-D2DC Current");
 			define('WORKMODE_FORMAT_LINE', "FAN:%d VST:%d VSB:%d VMAX:%d AC_TOP:%d AC_BOT:%d DC_AMP:%d");
 			define('WORKMODE_TURBO', '90 .680 .680 .730 1340 1340 150');
 			define('WORKMODE_NORMAL', '80 .680 .680 .730 1340 1340 150');

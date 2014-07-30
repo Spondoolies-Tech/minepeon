@@ -61,10 +61,26 @@ function setMinerSpeed($speed){
 	settings_sync();
 }
 
-function getMinerSpeed(){
-	if(file_exists(MINER_WORKMODE_FILE)) $s = trim(file_get_contents(MINER_WORKMODE_FILE));
+function getMinerSpeed($runtime = false){
+	$file = MINER_WORKMODE_FILE;
+	if($runtime && file_exists(MINER_RUNTIME_WORKMODE_FILE)) $file = MINER_RUNTIME_WORKMODE_FILE;
+	if(file_exists($file)) $s = trim(file_get_contents($file));
 	else throw new Exception("Workmode file (".MINER_WORKMODE_FILE.") missing. Please contact customer support.");
 	return sscanf($s, WORKMODE_FORMAT_LINE);
+}
+
+/**
+ * this should replace getMinerSpeed
+ */
+function getMinerWorkmode($runtime=false){
+	$keys = explode(" ", WORKMODE_FORMAT);
+	$text = explode("-", WORKMODE_TEXT);
+	$data = getMinerSpeed($runtime);
+	$workmode = array();
+	foreach($data as $i=>$v){
+		$workmode[$keys[$i]] = array("text"=>$text[$i], "value"=>$v);
+	}
+	return $workmode;
 }
 
 function miner_service($op = "restart"){
