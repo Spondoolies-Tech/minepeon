@@ -2,12 +2,18 @@
     <div class="col-lg-4">
       <dl class="dl-horizontal">
         <dt>Temp Front / Back T,B </dt>
-        <dd><?php echo $mpTemp[1]; ?> <small>&deg;C</small> / <?php echo $mpTemp[2]; ?>,<?php echo $mpTemp[3]; ?> <small>&deg;C</small>
+        <dd><?php echo $mpTemp[1]; ?> <small>&deg;C</small> / <?php echo $mpTemp[2]; ?>,<?php echo $mpTemp[3]; ?> <small>&deg;C</small></dd>
 	
-	<?php foreach($workmode as $k=>$v){ ?>
-		<dt><?php echo $v['text']?></dt>
-		<dd><?php echo $v['value']; ?></dd>
-	<?php } ?>
+	<dt>Socket Voltage</dt>
+	<dd><?php echo $voltage." volt"; if (($voltage < 130) && $overvolt110) echo " ! 110V limitation override ! "; ?></dd>
+	<dt>Fan Speed</dt>
+	<dd><?php echo $workmode['FAN']['value']?></dd>
+	<dt>Start Voltage</dt>
+	<dd title="top/bottom"><?php echo $workmode['VST']['value']/1000?> / <?php echo $workmode['VSB']['value']/1000?></dd>
+	<dt>Max Voltage</dt>
+	<dd><?php echo $workmode['VMAX']['value']/1000?></dd>
+	<dt>Max Watts</dt>
+	<dd title="top/bottom"><?php echo $workmode['AC_TOP']['value']?> / <?php echo $workmode['AC_BOT']['value']?></dd>
       </dl>
     </div>
     <div class="col-lg-4">

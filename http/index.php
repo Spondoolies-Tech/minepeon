@@ -91,13 +91,16 @@ $proc_status['minergate'] = ($mg_status['status']) ? 'Running' : 'Not running';
 
 $workmode = getMinerWorkmode(true);
 
+$voltage = exec('cat /etc/voltage');
+$overvolt110 = file_exists("/etc/mg_ignore_110_fcc");
+
 //Check if Spond manager is running properly (2 processes will patch as ps is launched under PHP)
 function isSpondRunning() {
 	return intval(file_get_contents(MINERGATE_RUNNING_FILE));
 }
 ?>
 <div class="container">
-  <h3 id="miner-header-txt"><?php echo $version;?></h3><br>
+  <h3><span id="miner-header-txt"><?php echo $version;?></span></h3><br>
   <?php
   if (file_exists('/mnt/config/rrd/mhsav-hour.png')) {
   ?>
