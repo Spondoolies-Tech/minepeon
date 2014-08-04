@@ -831,7 +831,7 @@ foreach($modes as $mode=>$mode_settings){
               </div>
 <?php if(file_exists("/mnt/config/etc/bin/miner_gate_arm")){ ?>
               <div class="col-lg-9 col-offset-3">
-                  <a name="reset_minerarm" class="btn btn-default miner-action" onclick="return confirmClick(this);" href="/reset_to_factory.php?files=bin/miner_gate_arm">Restore miner_gate_arm</a>
+                  <a name="reset_minerarm" class="btn btn-default miner-action" onclick="return confirmClick(this);" href="/files.php?op=del&dir=config&files=bin/miner_gate_arm">Restore miner_gate_arm</a>
               </div>
 <?php } ?>
           </div>
