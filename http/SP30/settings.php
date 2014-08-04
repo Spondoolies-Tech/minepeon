@@ -248,7 +248,7 @@ $tzselect = $tzselect . '</select>';
 
 $minerSpeed = getMinerSpeed();
 
-$voltage = exec('cat /etc/voltage');
+$voltage = exec('cat /tmp/voltage');
 $overvolt110 = file_exists("/etc/mg_ignore_110_fcc");
 
 $schedule = get_schedule(CRON_GROUP_MINER_SPEED);
@@ -301,18 +301,18 @@ include('menu.php');
                           </div>
                       </div>
 
-                      <div class="row">
+                      <div class="row hidden">
                           <div class="col-5">
                               <label for="">Start Volts Top (0.66-0.71)</label>
                           </div>
-				          <div><input size="5" type="number" onblur="validateSpeed(this)" id="minimum_voltage_top" name="VST" value="<?php echo $minerSpeed[1]/1000?>" min=".660" max=".71" step="0.001" /></div>
+				          <div><input size="5" readonly="readonly"  type="number" onblur="validateSpeed(this)" id="minimum_voltage_top" name="VST" value="<?php echo $minerSpeed[1]/1000?>" min=".660" max=".71" step="0.001" /></div>
                       </div>
 
-                      <div class="row">
+                      <div class="row hidden">
                           <div class="col-5">
                               <label for="">Start Volts Bottom(0.66-0.71)</label>
                           </div>
-                          <div><input size="5" type="number" onblur="validateSpeed(this)" id="minimum_voltage_bot" name="VSB" value="<?php echo $minerSpeed[2]/1000?>" min=".660" max=".71" step="0.001" /></div>
+                          <div><input size="5" readonly="readonly" type="number" onblur="validateSpeed(this)" id="minimum_voltage_bot" name="VSB" value="<?php echo $minerSpeed[2]/1000?>" min=".660" max=".71" step="0.001" /></div>
                       </div>
 
                       <div class="row">
@@ -337,7 +337,7 @@ include('menu.php');
 			      <div class="col-5">
 				      <label for="dc2dc_current" class="control-label">DC2DC Limit (50A-180A)</label>
 			      </div>
-				<div><input type="text" size="4" onblur="validateSpeed(this)" name="DC_AMP" id="dc2dc_current" type="number" step="1" min="50" max="180" value="<?php echo $minerSpeed[6]?>"></div>
+				<div><input type="text" size="4" readonly="readonly" onblur="validateSpeed(this)" name="DC_AMP" id="dc2dc_current" type="number" step="1" min="50" max="180" value="<?php echo $minerSpeed[6]?>"></div>
 		      </div>
 
                   </div>

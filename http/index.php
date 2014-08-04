@@ -91,7 +91,7 @@ $proc_status['minergate'] = ($mg_status['status']) ? 'Running' : 'Not running';
 
 $workmode = getMinerWorkmode(true);
 
-$voltage = exec('cat /etc/voltage');
+$voltage = exec('cat /tmp/voltage');
 $overvolt110 = file_exists("/etc/mg_ignore_110_fcc");
 
 //Check if Spond manager is running properly (2 processes will patch as ps is launched under PHP)
@@ -135,10 +135,10 @@ echo "<center class='alert alert-info'><h1>".$error."</h1></center>";
 
   <center>
     <a class="btn btn-default" href='' onclick="return send_command(<?php if(isSpondRunning())echo "'spond_stop'"; else echo "'spond_start'"?>);"><?php if(isSpondRunning())echo "Stop Miner"; else echo "Start Miner"?></a>
-    <a class="btn btn-default" href='/restart.php' onclick="return send_command('mining_restart', 'nice');">Restart CGMiner</a>
+    <!-- a class="btn btn-default" href='/restart.php' onclick="return send_command('mining_restart', 'nice');">Restart CGMiner</a -->
     <a class="btn btn-default" href='/restart.php' onclick="return send_command('mining_restart');">Restart MinerGate</a>
     <a class="btn btn-default" href='/reboot.php'>Reboot</a>
-    <a class="btn btn-default" href='/halt.php'>ShutDown</a>
+    <!-- a class="btn btn-default" href='/halt.php'>ShutDown</a -->
 	<?php include('widgets/led_blinker.php'); ?>
     <script type="text/javascript">
 	function send_command(cmd, type){

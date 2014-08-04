@@ -253,7 +253,7 @@ if(!$max_watts) $max_watts = $default_max_watts;
 $dc2dc_current = $minerSpeed[5];
 if(!$dc2dc_current) $dc2dc_current = $default_dc2dc_current;
 
-$voltage = exec('cat /etc/voltage');
+$voltage = exec('cat /tmp/voltage');
 $overvolt110 = file_exists("/etc/mg_ignore_110_fcc");
 
 $schedule = get_schedule(CRON_GROUP_MINER_SPEED);

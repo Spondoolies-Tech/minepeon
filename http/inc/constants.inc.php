@@ -45,8 +45,8 @@ switch($model_id){
 			define('WORKMODE_FORMAT', "FAN VST VSB VMAX AC_TOP AC_BOT DC_AMP");
 			define('WORKMODE_TEXT', "Fan Speed-Start Voltage (top)-Start Voltage (bottom)-Max Voltage-Max Watts (top)-Max Watts (bottom)-D2DC Current");
 			define('WORKMODE_FORMAT_LINE', "FAN:%d VST:%d VSB:%d VMAX:%d AC_TOP:%d AC_BOT:%d DC_AMP:%d");
-			define('WORKMODE_TURBO', '90 .680 .680 .730 1340 1340 150');
-			define('WORKMODE_NORMAL', '80 .680 .680 .730 1340 1340 150');
+			define('WORKMODE_TURBO', '90 .670 .670 .730 1350 1350 150');
+			define('WORKMODE_NORMAL', '80 .670 .670 .730 1350 1350 150');
 			define('WORKMODE_QUIET', '60 .660 .660 .730 1100 1100 150');
 		break;
 	default:
