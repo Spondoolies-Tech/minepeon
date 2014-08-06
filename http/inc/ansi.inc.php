@@ -18,6 +18,7 @@ $ansi = array(
 $inline_colors = array_combine($ansi, $ansi);
 $inline_colors["green"] = "lightgreen";
 $inline_colors["black"] = "#282828";
+$inline_colors["blue"] = "skyblue";
 /*
 $inline_colors["white"] = "black";
 */
