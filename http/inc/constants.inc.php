@@ -22,6 +22,7 @@ const LATEST_VERSION_FILE = '/tmp/fw_update';
 const MODEL_ID_FILE = '/model_id';
 const CGMINER_CONF_FILE = '/etc/cgminer.conf';
 const MG_EVENTS_FILE = '/tmp/mg_event';
+const MG_EVENTS_LOG_FILE = '/tmp/mg_event_log';
 const MG_STATUS = '/tmp/mg_status';
 const WIFI_SIGNAL_THRESHOLD = 0.4;
 

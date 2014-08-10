@@ -31,7 +31,7 @@ $json['mg_events'] = '';
 if(file_exists(MG_EVENTS_FILE)){
 	$json['mg_events'] = trim(file_get_contents(MG_EVENTS_FILE));
 }
-//file_put_contents(MG_EVENTS_FILE, '');
+file_put_contents(MG_EVENTS_FILE, '');
 
 $json['mg_status'] = '';
 if(file_exists(MG_STATUS)) $json['mg_status'] = trim(file_get_contents(MG_STATUS));

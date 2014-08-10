@@ -8,7 +8,7 @@ include('menu.php');
 <pre style="padding:20px;font-size:85%">
 <div style="padding:10px;color:white;background:#282828">
 <?php
-exec('cat /tmp/mg_event',$d);
+exec('cat /tmp/mg_event_log',$d);
 echo $ansi->convert(implode("\n",$d));
 $d="";
 ?>

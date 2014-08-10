@@ -323,15 +323,15 @@ include('menu.php');
                       </div>
 		      <div class="row">
 			      <div class="col-5">
-				      <label for="max_watts_top" class="control-label">Max PSU Power Top (500W - 1600W) </label>
+				      <label for="max_watts_top" class="control-label">Max PSU Power Top (500W - 1400W) </label>
 			      </div>
-				<div><input type="text" size="4" onblur="validateSpeed(this)" name="AC_TOP" id="max_watts_top" type="number" step="1" min="500" max="1600" value="<?php echo $minerSpeed[4]?>"></div>
+				<div><input type="text" size="4" onblur="validateSpeed(this)" name="AC_TOP" id="max_watts_top" type="number" step="1" min="500" max="1400" value="<?php echo $minerSpeed[4]?>"></div>
 		      </div>
 		      <div class="row">
 			      <div class="col-5">
-				      <label for="max_watts_bot" class="control-label">Max PSU Power Bottom (500W - 1600W) </label>
+				      <label for="max_watts_bot" class="control-label">Max PSU Power Bottom (500W - 1400W) </label>
 			      </div>
-				<div><input type="text" size="4" onblur="validateSpeed(this)" name="AC_BOT" id="max_watts_bot" type="number" step="1" min="500" max="1600" value="<?php echo $minerSpeed[5]?>"></div>
+				<div><input type="text" size="4" onblur="validateSpeed(this)" name="AC_BOT" id="max_watts_bot" type="number" step="1" min="500" max="1400" value="<?php echo $minerSpeed[5]?>"></div>
 		      </div>
 		      <div class="row hidden">
 			      <div class="col-5">
