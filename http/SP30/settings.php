@@ -798,11 +798,12 @@ foreach($modes as $mode=>$mode_settings){
       <legend>Backup</legend>
      <div class="form-group">
         <div class="col-lg-9 col-offset-3">
-		  <a class="btn btn-default" href="/backup.php">Backup</a>
-		  <p class="help-block">The backup will contain all of your settings and statistics.</p>
+		  <a class="btn btn-default" href="/report.php">Report</a>
+		  <p class="help-block">The report will contain all of your settings and statistics.</p>
         </div>
       </div>
-      <div class="form-group">
+
+      <!-- div class="form-group">
 		<div class="col-lg-9 col-offset-3">
 		  <input type="file" name="file" id="file" class="btn btn-default" onchange="enableRestore()" data-input="false">
 		</div>
@@ -812,7 +813,7 @@ foreach($modes as $mode=>$mode_settings){
 		  <button type="submit" id="restore_button" name="submit" class="btn btn-default disabled" onclick="return  document.getElementById('file').value != ''">Restore</button>
 		  <p class="help-block">Restoring a configuration will cause your miner to reboot.</p>
 		</div>
-      </div>
+      </div -->
     </fieldset>
   </form>
 <!-- ######################## -->
