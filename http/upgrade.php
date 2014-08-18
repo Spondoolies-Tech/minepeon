@@ -13,6 +13,8 @@ header('Pragma: no-cache');
 echo "Beginning upgrade ".$_GET["targetVersion"].". Please wait, this can take up to 1 minute.\n";
 ob_flush();
 flush();
+//Update watchdog monitored file (to prevent reboots)
+file_put_contents('/var/run/dont_reboot', "php_active_upgrade");
 
 //Start the  process
 //If not version set, download the latest one available

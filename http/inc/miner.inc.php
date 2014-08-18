@@ -84,6 +84,9 @@ function getMinerWorkmode($runtime=false){
 }
 
 function miner_service($op = "restart"){
+    if (file_exists("/tmp/mg_last_voltage")) {
+        unlink("/tmp/mg_last_voltage");
+    }
 	exec(MINER_CONTROL_CMD.$op. " > /dev/null");
 	if(!$ret) return 'Operation succesful';
 	else return 'There was an error while calling the Spondoolies manager.';

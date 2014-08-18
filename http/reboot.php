@@ -48,4 +48,6 @@ window.setTimeout('CountDown()',100);
 ob_flush();
 flush();
 exec('/bin/sync');
+exec('kill `pidof watchdog`');
+exec('watchdog -T 15 -t 30 /dev/watchdog0');
 exec('/sbin/reboot > /dev/null 2>&1 &');

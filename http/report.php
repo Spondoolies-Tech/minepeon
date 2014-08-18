@@ -13,4 +13,4 @@ header('Expires: 0');
 
 // create the gzipped tarfile.
 // tar on miner does not support "z" flag
-passthru( "tar c /mnt/mmc-config | gzip ");
+passthru( "tar c /mnt/mmc-config /tmp | gzip ");

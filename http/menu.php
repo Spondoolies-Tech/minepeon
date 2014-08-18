@@ -1,6 +1,10 @@
 <?php
 $cur_ver = exec('cat '.CURRENT_VERSION_FILE);
 $latest_ver = exec('cat '.LATEST_VERSION_FILE);
+
+//Update watchdog monitored file (to prevent reboots)
+//file_put_contents('/var/run/dont_reboot', "php_active_menu");
+
 ?>
 <div class="navbar">
   <div class="container">

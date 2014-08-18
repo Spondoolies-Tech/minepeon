@@ -9,7 +9,9 @@ include('menu.php');
 <div style="padding:10px;color:white;background:#282828">
 <?php 
 exec('cat /var/log/asics', $details);
-echo $ansi->convert(implode("\n",$details)); 
+echo $ansi->convert(implode("\n",$details));
+exec('cat /etc/fet', $details2);
+echo $ansi->convert(implode("\n",$details2));
 ?>
 </div>
 </pre>

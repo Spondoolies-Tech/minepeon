@@ -3,6 +3,10 @@
 require_once('global.inc.php');
 include('head.php');
 include('menu.php');
+
+//Update watchdog monitored file (to prevent reboots)
+//file_put_contents('/var/run/dont_reboot', "php_active_fw");
+
 ?>
     <script type="text/javascript">
         function upgradeFirmware()

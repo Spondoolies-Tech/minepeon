@@ -795,7 +795,7 @@ foreach($modes as $mode=>$mode_settings){
 <!-- ######################## Backup -->
   <form name="backup" action="/settings.php" method="post" enctype="multipart/form-data" class="form-horizontal">
     <fieldset>
-      <legend>Backup</legend>
+      <legend>Report</legend>
      <div class="form-group">
         <div class="col-lg-9 col-offset-3">
 		  <a class="btn btn-default" href="/report.php">Report</a>
