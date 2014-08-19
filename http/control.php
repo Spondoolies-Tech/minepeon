@@ -24,7 +24,11 @@ case 'end_blink_led':
 	//led_flash(YELLOW_LED, $seconds*2, .25);
 	led_flash($_GET['op'] == "blink_led" ? "start":"stop");
 	break;
-
+    case 'clear_log':
+        if (file_exists("/tmp/mg_event_log")) {
+            unlink("/tmp/mg_event_log");
+        }
+        break;
     case 'spond_start':
         exec("/usr/local/bin/spond-manager start >> /dev/null 2>&1");
         break;

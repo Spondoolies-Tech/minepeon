@@ -14,7 +14,7 @@ echo "Beginning upgrade ".$_GET["targetVersion"].". Please wait, this can take u
 ob_flush();
 flush();
 //Update watchdog monitored file (to prevent reboots)
-file_put_contents('/var/run/dont_reboot', "php_active_upgrade");
+file_put_contents('/var/run/dont_reboot', "minepeon php_active_upgrade");
 
 //Start the  process
 //If not version set, download the latest one available

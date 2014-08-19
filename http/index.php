@@ -140,28 +140,7 @@ echo "<center class='alert alert-info'><h1>".$error."</h1></center>";
     <a class="btn btn-default" href='/reboot.php'>Reboot</a>
     <!-- a class="btn btn-default" href='/halt.php'>ShutDown</a -->
 	<?php include('widgets/led_blinker.php'); ?>
-    <script type="text/javascript">
-	function send_command(cmd, type){
-		if(typeof(type) == "undefined")
-            type ="";
 
-        var timeout = 10; // for nice, 10 tries is sufficient
-		if(type != "nice"){
-            timeout = 30; // hard restart can take longer to get back up
-		}
-
-		var a = new AjaxOps({
-			url: "control.php?op=" + cmd + "&"+type,
-			wait_url: "status.php?proc=cgminer",
-			wait: 2, 
-			timeout: timeout,
-			success: function(){setTimeout(function() { document.location.reload()}, 3500) }
-		});
-
-		a.send();
-		return false;
-	}
-    </script>
   </center>
   <h3>Pools</h3>
   <table id="pools" class="table table-striped table-hover">
