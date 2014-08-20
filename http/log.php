@@ -13,7 +13,7 @@ echo $ansi->convert(implode("\n",$d));
 $d="";
 ?>
 </pre>
-<a class="btn btn-default ajax" href='/control.php?op=clear_log'>Clear Events</a>
+<a class="btn btn-default clearlog" href='/control.php?op=clear_log'>Clear Events</a>
 
 <h3>Log</h3>
 <pre style="padding:20px;font-size:85%">
@@ -28,4 +28,17 @@ $d="";
     ?>
 </pre>
 
-<?php include('foot.php');
+<?php include('foot.php'); ?>
+    <script>
+	// same function is in spond.js using class 'ajax'. put here so customers will not have to clear cache?
+	$(function(){
+	$('a.clearlog').click(function(e){
+	    $.get($(this).attr('href'), function(){
+		document.location.reload();
+	    });
+	    e.preventDefault();
+	    return false;
+	});
+	});
+
+    </script>
