@@ -33,8 +33,11 @@
         <dt>FW Version</dt>
         <dd><?php echo(file_get_contents("/fw_ver")) ?>
         <?php
+          if (! is_link('/usr/local/bin/miner_gate_arm')) {
+                 echo "<b></br>CUSTOM miner_gate_arm! (/usr/local/bin)</b>";
+             }
              if (file_exists('/mnt/config/etc/bin/miner_gate_arm')) {
-                 echo "<b></br>CUSTOM miner_gate_arm !</b>";
+                 echo "<b></br>CUSTOM miner_gate_arm! (/etc/bin)</b>";
              }
         ?>
         </dd>

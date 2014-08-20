@@ -40,10 +40,13 @@
         <dt>FW Version</dt>
         <dd><?php echo(file_get_contents("/fw_ver")) ?>
         <?php
-             if (file_exists('/mnt/config/etc/bin/miner_gate_arm')) {
-                 echo "<b></br>CUSTOM miner_gate_arm !</b>";
+          if (! is_link('/usr/local/bin/miner_gate_arm')) {
+                 echo "<b></br>CUSTOM miner_gate_arm! (/usr/local/bin)</b>";
              }
-        ?>
+             if (file_exists('/mnt/config/etc/bin/miner_gate_arm')) {
+                 echo "<b></br>CUSTOM miner_gate_arm! (/etc/bin)</b>";
+             }
+	?>
         </dd>
         <dt>CGMiner Version</dt>
         <dd><?php echo $summary['STATUS'][0]['Description']; ?></dd>
