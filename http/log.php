@@ -8,6 +8,9 @@ $log_id = $_GET['log'];
 if(!is_null($log_id) && $log_id != '') $log_file .= '.'.$log_id;
 ?>
 <h3>System events</h3>
+
+<a class="clearlog" href='/control.php?op=clear_log'>Clear Events</a>
+
 <pre style="padding:20px;font-size:85%">
 <div style="padding:10px;color:white;background:#282828">
 <?php
@@ -16,8 +19,6 @@ echo $ansi->convert(implode("\n",$d));
 $d="";
 ?>
 </pre>
-<a class="btn btn-default clearlog" href='/control.php?op=clear_log'>Clear Events</a>
-
 <h3>Log</h3>
 <a href="?">Current</a>
 <?php 

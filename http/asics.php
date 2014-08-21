@@ -10,6 +10,8 @@ include('menu.php');
 <?php 
 exec('cat /var/log/asics', $details);
 echo $ansi->convert(implode("\n",$details));
+echo "";
+echo "";
 exec('cat /etc/fet', $details2);
 echo $ansi->convert(implode("\n",$details2));
 ?>
