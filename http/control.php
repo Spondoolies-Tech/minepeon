@@ -16,14 +16,11 @@ case 'mining_restart':
 	$ret = miner_restart($nice);
 	break;
 case 'blink_led':
+    exec('echo 5 > /tmp/blink_led');
+    break;
 case 'end_blink_led':
-	// flash LED's 
-	require_once('leds.inc.php');
-	//$seconds = $_GET['time'];
-	//if(!is_numeric($seconds)) $seconds = 3;
-	//led_flash(YELLOW_LED, $seconds*2, .25);
-	led_flash($_GET['op'] == "blink_led" ? "start":"stop");
-	break;
+    exec('rm /tmp/blink_led');
+    break;
     case 'clear_log':
         if (file_exists("/tmp/mg_event_log")) {
             unlink("/tmp/mg_event_log");

@@ -184,21 +184,9 @@ echo "<center class='alert alert-info'><h1>".$error."</h1></center>";
   ?>
 
 </div>
-<script language="javascript" type="text/javascript">
- 
-document.title = '<?php echo $G_MHSav; ?>|<?php echo $full_model_name; ?>';
- 
-<?php 
- 
-// Change screen colour test for alerts
- 
-/*if ($settings['donateAmount'] < 1) {
-	echo 'document.body.style.background = "#FFFFCF"';
-}*/
+<!--script language="javascript" type="text/javascript">document.title = '< ?php echo $_SERVER['SERVER_ADDR']; ?>|< ?php echo $model_id; ?>';
+</script-->
 
-?>
-
-</script>
 <?php
 include('foot.php');
 

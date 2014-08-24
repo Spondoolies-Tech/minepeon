@@ -6,7 +6,8 @@ require_once('inc/global.inc.php');
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title><?php echo $full_model_name ?></title>
+
+  <title><?php echo $_SERVER['SERVER_ADDR'];?>|<?php echo $model_id; ?></title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
   <meta name="author" content="">
