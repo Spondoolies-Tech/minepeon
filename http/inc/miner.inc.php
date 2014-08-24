@@ -1,6 +1,7 @@
 <?php
 
 require_once('global.inc.php');
+require_once('JSON.php'); // native decoder truncates long to int. php 5.4 provides flag to fix this, we run 5.3
 
 function miner($command, $parameter) {
 
@@ -22,9 +23,8 @@ function miner($command, $parameter) {
         $response = stream_get_contents($client);
         fclose($client);
         $response = preg_replace("/[^[:alnum:][:punct:]]/","",$response);
-        $response = json_decode($response, true);
-        return $response;
-
+	$json = new Services_JSON(SERVICES_JSON_LOOSE_TYPE);
+	return $json->decode($response);
 }
 
 function promotePool($addr, $user){
