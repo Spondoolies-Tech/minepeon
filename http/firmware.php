@@ -113,15 +113,19 @@ if (isset($_FILES["image"]["tmp_name"])) {
 
             <br/>
             <div class="buttons">
-                <button class="btn btn-default" onclick="return upgradeFirmware()">Upgrade Now</button>
+                <button class="btn btn-default" onclick="return upgradeFirmware()">Automatic Upgrade</button>
 
-                <button class="btn btn-default col-offset-2" onclick="return toggleCustomVersionSelection()"><span id="settings_view_name">Manual</span> firmware selection</button>
-<br/><hr/>
+                <button class="btn btn-default col-offset-1" onclick="return toggleCustomVersionSelection()"><span id="settings_view_name"><!--Manual--></span>Firmware Selection from Server</button>
+
+                <button class="btn btn-default col-offset-1" onclick="$('.manual_upgrade').show(800); return false;">Upload uImage file</button>
+		<div class="manual_upgrade" style="display:none">
+		<br/><hr/>
 
 		<form name="backup" action="" method="post" enctype="multipart/form-data" class="form-horizontal">
-			<label for="image_upload">Or upload image: <input type="file" name="image" ></label>
+			<label for="image_upload">Upload Image: <input type="file" name="image" ></label>
 			<input type="submit" value="Upgrade" class="btn btn-default" />
 		</form>
+		</div>
             </div>
 
             <br><br>
