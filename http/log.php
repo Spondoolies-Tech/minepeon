@@ -7,7 +7,7 @@ $log_file = 'messages';
 $log_id = $_GET['log'];
 if(!is_null($log_id) && $log_id != '') $log_file .= '.'.$log_id;
 ?>
-<h3>System events</h3>
+<h3>System Recovery Log <?php echo date('d M H:i') ?></h3>
 
 <a class="clearlog" href='/control.php?op=clear_log'>Clear Events</a>
 
@@ -19,7 +19,7 @@ echo $ansi->convert(implode("\n",$d));
 $d="";
 ?>
 </pre>
-<h3>Log</h3>
+<h3>System Log</h3>
 <a href="?">Current</a>
 <?php 
 $h = opendir('/mnt/config/log/');

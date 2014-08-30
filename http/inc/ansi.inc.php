@@ -52,9 +52,9 @@ class AnsiToHtmlConverter
         $this->charset = $charset;
         $this->inlineColors = $inline_colors;
         $this->colorNames = array(
-            'black', 'red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white',
+            'black', 'yellow', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white',
             '', '',
-            'brblack', 'brred', 'brgreen', 'bryellow', 'brblue', 'brmagenta', 'brcyan', 'brwhite',
+            'brblack', 'bryellow', 'brgreen', 'bryellow', 'brblue', 'brmagenta', 'brcyan', 'brwhite',
         );
     }
 
