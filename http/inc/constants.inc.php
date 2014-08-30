@@ -1,6 +1,7 @@
 <?php
 
 const FIRMWARE_UPGRADE_SCRIPT = "/usr/local/bin/upgrade-software.sh";
+const FIRMWARE_FILE_UPGRADE_SCRIPT = "/usr/local/bin/upgrade-software-from-file.sh";
 const FIRMWARE_UPGRADE_URL = "http://firmware.spondoolies-tech.com/release/spon.tar";
 const FIRMWARE_UPGRADE_URL_DEV = "http://firmware.spondoolies-tech.com/development/spon.tar";
 

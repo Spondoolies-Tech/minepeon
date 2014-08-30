@@ -5,10 +5,18 @@ include('head.php');
 include('menu.php');
 //Update watchdog monitored file (to prevent reboots)
 //file_put_contents('/var/run/dont_reboot', "php_active_fw");
-?>
+//
+
+if (isset($_FILES["image"]["tmp_name"])) {
+	rename($_FILES['image']['tmp_name'], '/tmp/image.tar');
+	$file_upgrade = true;
+}else{
+	$file_upgrade = false;
+}
+
 
     <script type="text/javascript">
-        function upgradeFirmware()
+        function upgradeFirmware(src)
         {
             bootbox.confirm("Press Ok to continue SW upgrade. Your pool settings will not be affected. Note that power interruption during the upgrade may brick your unit and require restore procedure with microSD card.", function(result) {
                 if (!result) return;
@@ -16,8 +24,10 @@ include('menu.php');
 
                 var o = $('#upgrade_output');
 
-                var xhr = new XMLHttpRequest();
-                if($('#settings_view_name').text()=="Manual")
+		var xhr = new XMLHttpRequest();
+		if(src == "file")
+		    xhr.open("GET", "upgrade.php?source=file", true);
+		else if($('#settings_view_name').text()=="Manual")
                     xhr.open("GET", "upgrade.php", true);
                 else
                     xhr.open("GET", "upgrade.php?targetVersion=" + $('#selectedVersion').val(), true);
@@ -102,9 +112,19 @@ include('menu.php');
 
             <br/>
             <div class="buttons">
-                <button class="btn btn-default" onclick="return upgradeFirmware()">Upgrade Now</button>
+                <button class="btn btn-default" onclick="return upgradeFirmware()">Automatic Upgrade</button>
 
-                <button class="btn btn-default col-offset-2" onclick="return toggleCustomVersionSelection()"><span id="settings_view_name">Manual</span> firmware selection</button>
+                <button class="btn btn-default col-offset-1" onclick="return toggleCustomVersionSelection()"><span id="settings_view_name"><!--Manual--></span>Firmware Selection from Server</button>
+
+                <button class="btn btn-default col-offset-1" onclick="$('.manual_upgrade').show(800); return false;">Upload uImage file</button>
+		<div class="manual_upgrade" style="display:none">
+		<br/><hr/>
+
+		<form name="backup" action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+			<label for="image_upload">Upload Image: <input type="file" name="image" ></label>
+			<input type="submit" value="Upgrade" class="btn btn-default" />
+		</form>
+		</div>
             </div>
 
             <br><br>
@@ -121,4 +141,9 @@ include('menu.php');
     </div>
 <?php
 include('foot.php');
-
+?>
+<script type="text/javascript">
+	<?php if($file_upgrade){ ?>
+		upgradeFirmware("file");
+	<?php } ?>
+</script>
