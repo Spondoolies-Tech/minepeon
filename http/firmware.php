@@ -13,7 +13,7 @@ if (isset($_FILES["image"]["tmp_name"])) {
 }else{
 	$file_upgrade = false;
 }
-
+?>
 
     <script type="text/javascript">
         function upgradeFirmware(src)
@@ -21,13 +21,12 @@ if (isset($_FILES["image"]["tmp_name"])) {
             bootbox.confirm("Press Ok to continue SW upgrade. Your pool settings will not be affected. Note that power interruption during the upgrade may brick your unit and require restore procedure with microSD card.", function(result) {
                 if (!result) return;
                 $('.miner-action').addClass('disabled');
-
                 var o = $('#upgrade_output');
 
-		var xhr = new XMLHttpRequest();
-		if(src == "file")
-		    xhr.open("GET", "upgrade.php?source=file", true);
-		else if($('#settings_view_name').text()=="Manual")
+                var xhr = new XMLHttpRequest();
+                if(src == "file")
+                    xhr.open("GET", "upgrade.php?source=file", true);
+                else if($('#settings_view_name').text()=="Manual")
                     xhr.open("GET", "upgrade.php", true);
                 else
                     xhr.open("GET", "upgrade.php?targetVersion=" + $('#selectedVersion').val(), true);
@@ -112,17 +111,17 @@ if (isset($_FILES["image"]["tmp_name"])) {
 
             <br/>
             <div class="buttons">
-                <button class="btn btn-default" onclick="return upgradeFirmware()">Automatic Upgrade</button>
+                <button class="btn btn-default" onclick="return upgradeFirmware()">Upgrade</button>
 
-                <button class="btn btn-default col-offset-1" onclick="return toggleCustomVersionSelection()"><span id="settings_view_name"><!--Manual--></span>Firmware Selection from Server</button>
+                <button class="btn btn-default col-offset-1" onclick="return toggleCustomVersionSelection()"><span id="settings_view_name">Manual</span> Selection</button>
 
-                <button class="btn btn-default col-offset-1" onclick="$('.manual_upgrade').show(800); return false;">Upload uImage file</button>
+                <button class="btn btn-default col-offset-1" onclick="$('.manual_upgrade').show(800); return false;">Upload FW file</button>
 		<div class="manual_upgrade" style="display:none">
 		<br/><hr/>
 
 		<form name="backup" action="" method="post" enctype="multipart/form-data" class="form-horizontal">
 			<label for="image_upload">Upload Image: <input type="file" name="image" ></label>
-			<input type="submit" value="Upgrade" class="btn btn-default" />
+			<input type="submit" value="Upgrade from file" class="btn btn-default" />
 		</form>
 		</div>
             </div>
