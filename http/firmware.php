@@ -24,7 +24,7 @@ if (isset($_FILES["image"]["tmp_name"])) {
 
                 var xhr = new XMLHttpRequest();
                 if(src == "file")
-                    xhr.open("GET", "upgrade.php?source=file", true);
+                    xhr.open("GET", "upgrade.php?source=file&targetVersion=from_file", true);
                 else if($('#settings_view_name').text()=="Manual")
                     xhr.open("GET", "upgrade.php", true);
                 else
