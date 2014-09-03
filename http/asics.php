@@ -20,7 +20,7 @@ if(isset($_POST['asic'])){
 
 if($controls) $asics = array_map(function($row){return explode(" ", trim($row));}, file(MG_DISABLED_ASICS) );
 ?>
-<h3 class="asics">Asic stats<button class="asics_control opener">ASICS Control Panel</button></h3>
+	<h3 class="asics">Asic stats<?php if($controls){ ?><button class="asics_control opener">ASICS Control Panel</button><?php } ?></h3>
 
 <pre style="padding:20px;font-size:85%">
 <div style="padding:10px;color:white;background:#282828">
