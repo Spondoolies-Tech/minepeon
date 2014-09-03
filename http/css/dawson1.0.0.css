@@ -98,3 +98,44 @@ background-color: #54576d;
 .json.formatted .key{
 	font-weight:bold;
 }
+
+.asics_control{
+	text-align: center;
+	position:relative;
+}
+.asics_control.opener{
+	float:right;
+}
+h3.asics{
+	padding: 0 25px;
+}
+.asics_control .board{
+	border: gray 3px dashed;
+	padding:3px;
+	margin: 8px auto;
+	width:200px;
+}
+.asics_control .asic{
+	width:40px;
+	height:40px;
+	position: relative;
+	font-size:18px;
+	border-width: 2px;
+	border-style: ridge;
+	display: inline-block;
+}
+.asics_control input{
+	position: absolute;
+	top: 16px;
+	left: 26px;
+	opacity: .6
+}
+
+.asics_control .enabled{
+	border-color: green;
+}
+.asics_control .disabled{
+	border-color: red;
+	color: red;
+}
+

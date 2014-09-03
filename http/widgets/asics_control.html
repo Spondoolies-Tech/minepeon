@@ -1,0 +1,18 @@
+<div class="asics_control controller">
+	<form action="asics.php" method="post">
+	<input type="hidden" name="asic[-1]" value="" /><!-- this is to prevent a non-empty post when all boxes are unchecked. -->
+	<div class="insructions">Each checkbox represents one ASIC. IF the checkbox is checked the ASIC is running, otherwise it is disabled. You can use the checkboxes to enable or disable ASICS. Clicking "Apply" will save your changes and restart MinerGate.</div>
+	<div class="top board"><h5>Top Board</h5>
+	<?php foreach($asics as $k=>$row) { 
+	foreach($row as $col=>$asic){
+	$asic = explode(':', $asic); ?>
+	<?php // note that 1 means disabled, not enmabled! ?>
+	<span class="asic <?php echo ($asic[1]==0)?'enabled':'disabled';?>"><label for="asic_checkbox_<?php echo $asic[0]; ?>"><?php echo $asic[0]; ?><input type="checkbox" value = "0" id="asic_checkbox_<?php echo $asic[0]; ?>" name="asic[<?php echo $asic[0]; ?>]" <?php echo ($asic[1]==0)?'checked="checked"':'' ?>/></label></span>
+	<?php } ?>
+	<br/>
+		<?php if($k == 4){ ?> 
+			</div><div class="bottom board"><h5>Bottom Board</h5>
+		<?php } ?>
+	<?php } ?>
+	</div>
+</div>
