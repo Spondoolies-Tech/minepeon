@@ -15,6 +15,19 @@ if (isset($_FILES["file"]["tmp_name"])) {
 }
 
 
+if(isset($_POST['asic'])){
+    $asics = array();
+    for($i = 0; $i < 30; $i++){
+        if(isset($_POST['asic'][$i]))  $asics[$i] = $_POST['asic'][$i];
+        else $asics[$i] = 1; // 1 = disabled, if checkbox was not checked
+    }
+    foreach($asics as $k=>$v) $asics[$k] = $k.':'.$v;
+    $asics = array_chunk($asics, 3);
+    file_put_contents(MG_DISABLED_ASICS, implode("\n", array_map(function($row){return implode(' ', $row);}, $asics)));
+}
+
+$asics = array_map(function($row){return explode(" ", trim($row));}, file(MG_DISABLED_ASICS));
+
 
 // User settings
 if (isset($_POST['userTimezone'])) {
@@ -539,6 +552,20 @@ foreach($modes as $mode=>$mode_settings){
   </form>
 <!-- ######################## -->
 
+
+<!-- ######################## Passwords -->
+<form name="password" action="/settings.php" method="post" class="form-horizontal">
+    <fieldset>
+        <legend>HW control</legend>
+        <div class="form-group">
+            <label for="asicControl" class="control-label col-lg-3">Disable ASICs</label>
+            <div class="col-lg-3">
+                <a class="btn btn-default asics_control opener">ASICS Control Panel</a>
+            </div>
+        </div>
+    </fieldset>
+</form>
+
   <!-- ######################## Passwords -->
   <form name="password" action="/settings.php" method="post" class="form-horizontal">
       <fieldset>
@@ -980,6 +1007,39 @@ function checkIP(e){
 		return false;
 	}
 </script>
+
+
+<div class="hidden">
+    <div class="asics_control container">
+        <?php include('widgets/asics_control.html'); ?>
+    </div>
+</div>
+
+
+
 <?php
 include('foot.php');
 ?>
+
+
+
+<script type="text/javascript">
+    $('.asics_control.opener').click(function(){bootbox.dialog({
+        message:$('.asics_control.container').clone().html(),
+        buttons:{
+            'Cancel': function(){},
+            'Apply': function(){
+                var form = $('.modal-content .asics_control.controller').find('input').serialize();
+                console.log($(this), form);
+                $.post("", form, function(data){
+                    send_command("mining_restart");
+                });
+            }
+        }
+    });
+    });
+    $('body').on('change', '.asic input', function(){
+        console.log(this, $(this).parents('.asic'));
+        $(this).parents('.asic').removeClass('enabled disabled').addClass($(this).is(":checked")?"enabled":"disabled");
+    });
+</script>

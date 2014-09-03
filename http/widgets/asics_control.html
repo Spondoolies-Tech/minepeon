@@ -1,7 +1,7 @@
 <div class="asics_control controller">
 	<form action="asics.php" method="post">
 	<input type="hidden" name="asic[-1]" value="" /><!-- this is to prevent a non-empty post when all boxes are unchecked. -->
-	<div class="insructions">Each checkbox represents one ASIC. IF the checkbox is checked the ASIC is running, otherwise it is disabled. You can use the checkboxes to enable or disable ASICS. Clicking "Apply" will save your changes and restart MinerGate.</div>
+	<div class="insructions">Each checkbox represents one ASIC. If the checkbox is checked the ASIC is enabled, otherwise it is disabled. Clicking "Apply" will save your changes and restart MinerGate.</div>
 	<div class="top board"><h5>Top Board</h5>
 	<?php foreach($asics as $k=>$row) { 
 	foreach($row as $col=>$asic){
