@@ -19,7 +19,9 @@ file_put_contents('/var/run/dont_reboot', "minepeon php_active_upgrade");
 //Start the  process
 //If not version set, download the latest one available
 if(isset($_GET['source']) && $_GET['source'] == "file"){
+    echo "Loading file...";
 	passthru(FIRMWARE_FILE_UPGRADE_SCRIPT." --file=/tmp/image.tar", $result);
+    echo "Loading file done.";
 }
 elseif(!isset($_GET["targetVersion"]))
     passthru(FIRMWARE_UPGRADE_SCRIPT . " --url " . FIRMWARE_UPGRADE_URL, $result);
