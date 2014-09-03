@@ -4,6 +4,9 @@ require('ansi.inc.php');
 include('head.php');
 include('menu.php');
 
+$controls = ($model_id == 'SP30');
+
+
 if(isset($_POST['asic'])){
 	$asics = array();
 	for($i = 0; $i < 30; $i++){
@@ -15,7 +18,7 @@ if(isset($_POST['asic'])){
 	file_put_contents(MG_DISABLED_ASICS, implode("\n", array_map(function($row){return implode(' ', $row);}, $asics)));
 }
 
-$asics = array_map(function($row){return explode(" ", trim($row));}, file(MG_DISABLED_ASICS) );
+if($controls) $asics = array_map(function($row){return explode(" ", trim($row));}, file(MG_DISABLED_ASICS) );
 ?>
 <h3 class="asics">Asic stats<button class="asics_control opener">ASICS Control Panel</button></h3>
 
@@ -33,7 +36,7 @@ echo $ansi->convert(implode("\n",$details2));
 </pre>
 <div class="hidden">
 <div class="asics_control container">
-	<?php include('widgets/asics_control.html'); ?>
+	<?php if($controls) include('widgets/asics_control.html'); ?>
 </div>
 </div>
 <?php include('foot.php'); ?>
