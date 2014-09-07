@@ -34,8 +34,8 @@ const YELLOW_LED = 22;
 const BLINK_FILE = '/tmp/blink'; // NOTE: file also defined in /usr/local/bin/leds script.
 
 // workmode
-switch($model_id){
-	case "SP10":
+switch($model_class){
+	case "SP1x":
 			define('WORKMODE_FORMAT', "fan_speed start_voltage_top start_voltage_bot max_voltage max_watts dc2dc_current");
 			define('WORKMODE_TEXT', "Fan Speed-Start Voltage (top)-Start Voltage (bottom)-Max Voltage-Max Watts-D2DC Current");
 			define('WORKMODE_FORMAT_LINE', "CONF:%d %d %d %d %d %d");
@@ -43,14 +43,21 @@ switch($model_id){
 			define('WORKMODE_NORMAL', '70 .680 .680 .790 '.$DEFAULT_MAX_WATTS.' '.$DEFAULT_DC2DC_CURRENT);
 			define('WORKMODE_QUIET', '50 .680 .680 .790 '.$DEFAULT_MAX_WATTS.' '.$DEFAULT_DC2DC_CURRENT);
 		break;
-	case "SP30":
-			//const WORKMODE_FORMAT = "fan_speed start_voltage_top start_voltage_bot max_voltage max_watts_top max_watts_top dc2dc_current";
+	case "SP3x":
 			define('WORKMODE_FORMAT', "FAN VST VSB VMAX AC_TOP AC_BOT DC_AMP");
 			define('WORKMODE_TEXT', "Fan Speed-Start Voltage (top)-Start Voltage (bottom)-Max Voltage-Max Watts (top)-Max Watts (bottom)-D2DC Current");
 			define('WORKMODE_FORMAT_LINE', "FAN:%d VST:%d VSB:%d VMAX:%d AC_TOP:%d AC_BOT:%d DC_AMP:%d");
 			define('WORKMODE_TURBO', '90 .670 .670 .730 1350 1350 150');
 			define('WORKMODE_NORMAL', '80 .670 .670 .730 1350 1350 150');
 			define('WORKMODE_QUIET', '60 .660 .660 .730 1100 1100 150');
+		break;
+	case "SP2x":
+			define('WORKMODE_FORMAT', "FAN VSB0 VSB1 VSB2 VSB3 VMAX AC_B0 AC_B1 AC_B2 AC_B3 DC_AMP");
+			define('WORKMODE_TEXT', "Fan Speed-Start Voltage (Board 1)-Start Voltage (Board 2)-Start Voltage (Board 3)-Start Voltage (Board 4)-Max Voltage-Max Watts (Board 1)-Max Watts (Board 2)-Max Watts (Board 3)-Max Watts (Board 4)-D2DC Current");
+			define('WORKMODE_FORMAT_LINE', "FAN:%d VSB0:%d VSB1:%d VSB2:%d VSB3:%d VMAX:%d AC_B0:%d AC_B1:%d AC_B2:%d AC_B3:%d DC_AMP:%d");
+			define('WORKMODE_TURBO', '90 .670 .670 .670 .670 .730 1350 1350 1350 1350 150');
+			define('WORKMODE_NORMAL', '80 .670 .670 .670 .670 .730 1350 1350 1350 1350 150');
+			define('WORKMODE_QUIET', '60 .660 .660 .660 .660 .730 1100 1100 1100 1100 150');
 		break;
 	default:
 		throw new Exception("Miner type not set or not known: '".$model_id."'.");

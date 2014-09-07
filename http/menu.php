@@ -18,8 +18,8 @@ $latest_ver = exec('cat '.LATEST_VERSION_FILE);
     <li><a href="/firmware.php">Firmware Upgrade</a></li>
 <?php }  ?>
       <li><a href="/asics.php">ASIC Stats</a></li>
-<?php if ($model_id=="SP10") { ?>
-        <li><a href="/hw.php">DCR</a></li>
+<?php if ($model_class=="SP1x") { ?>
+	<li><a href="/hw.php">DCR</a></li>
 <?php } else { ?>
         <li><a href="/log.php">Events</a></li>
 <?php }  ?>
