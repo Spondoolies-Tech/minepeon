@@ -6,7 +6,21 @@
  */
 
 $model_id=trim(file_get_contents('/model_id'));
-$full_model_name=($model_id=="SP10")?"SP10 Dawson":"SP30 Yukon";
+
+$model_class = preg_replace('/.$/', 'x', $model_id);
+
+switch($model_class){
+	case 'SP1x':
+		$model_name = 'Dawson';
+		break;
+	case 'SP3x':
+		$model_name = 'Yukon';
+		break;
+	case 'SP2x':
+		$model_name = '';
+		break;
+}
+$full_model_name= $model_id.' '.$model_name;
 
 /**
  * @var $setting sarray
@@ -28,10 +42,13 @@ if((!array_key_exists('agree', $settings) || ! intval(time($settings['agree'])))
 	}
 } 
 
-if ($model_id == "SP10") {
-$default_max_watts = 1260;
-$default_dc2dc_current = 62;
-} else {
-$default_max_watts = 1360;
-$default_dc2dc_current = 140;
+switch($model_class){
+	case 'SP1x':
+		$default_max_watts = 1260;
+		$default_dc2dc_current = 62;
+		break;
+	case 'SP3x':
+	default:
+		$default_max_watts = 1360;
+		$default_dc2dc_current = 140;
 }

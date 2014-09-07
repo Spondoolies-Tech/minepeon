@@ -131,7 +131,7 @@ echo "<center class='alert alert-info'><h1>".$error."</h1></center>";
 	}
   ?>
 
-<?php include($model_id.'/index_stats.php'); ?>
+<?php include($model_class.'/index_stats.php'); ?>
 
   <center>
     <a class="btn btn-default" href='' onclick="return send_command(<?php if(isSpondRunning())echo "'spond_stop'"; else echo "'spond_start'"?>);"><?php if(isSpondRunning())echo "Stop Miner"; else echo "Start Miner"?></a>

@@ -21,6 +21,7 @@ $json['conf'] = json_decode(file_get_contents(CGMINER_CONF_FILE, true), true);
 
 $json['miner'] = array();
 	$json['miner']['model_id'] = $model_id;
+	$json['miner']['model_class'] = preg_replace('/.$/', 'x', $model_id);
     $hostname = trim(exec("hostname"));
     $json['miner']['board_ver'] = str_replace("miner-","",$hostname);
 	$json['miner']['fw_ver'] = trim(file_get_contents(CURRENT_VERSION_FILE));
