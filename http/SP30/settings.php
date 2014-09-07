@@ -320,14 +320,14 @@ include('menu.php');
                           <div class="col-5">
                               <label for="">Start Volts Top (0.66-0.70)</label>
                           </div>
-				          <div><input size="5" readonly="readonly"  type="number" onblur="validateSpeed(this)" id="minimum_voltage_top" name="VST" value="<?php echo $minerSpeed[1]/1000?>" min=".660" max=".71" step="0.001" /></div>
+				          <div><input size="5"  type="number" onblur="validateSpeed(this)" id="minimum_voltage_top" name="VST" value="<?php echo $minerSpeed[1]/1000?>" min=".660" max=".71" step="0.001" /></div>
                       </div>
 
                       <div class="row NOThidden">
                           <div class="col-5">
                               <label for="">Start Volts Bottom(0.66-0.70)</label>
                           </div>
-                          <div><input size="5" readonly="readonly" type="number" onblur="validateSpeed(this)" id="minimum_voltage_bot" name="VSB" value="<?php echo $minerSpeed[2]/1000?>" min=".660" max=".71" step="0.001" /></div>
+                          <div><input size="5" type="number" onblur="validateSpeed(this)" id="minimum_voltage_bot" name="VSB" value="<?php echo $minerSpeed[2]/1000?>" min=".660" max=".71" step="0.001" /></div>
                       </div>
                       <small>Set your Maximum voltage to 0.790 for maximum mining or less for economy mode</small>
                       <div class="row">
@@ -353,7 +353,7 @@ include('menu.php');
 			      <div class="col-5">
 				      <label for="dc2dc_current" class="control-label">DC2DC Limit (50A-180A)</label>
 			      </div>
-				<div><input type="text" size="4" readonly="readonly" onblur="validateSpeed(this)" name="DC_AMP" id="dc2dc_current" type="number" step="1" min="50" max="180" value="<?php echo $minerSpeed[6]?>"></div>
+				<div><input type="text" size="4" onblur="validateSpeed(this)" name="DC_AMP" id="dc2dc_current" type="number" step="1" min="50" max="180" value="<?php echo $minerSpeed[6]?>"></div>
 		      </div>
 
                   </div>

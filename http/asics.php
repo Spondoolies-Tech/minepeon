@@ -12,7 +12,7 @@ include('menu.php');
 exec('cat /var/log/asics', $details);
 echo $ansi->convert(implode("\n",$details));
 echo "";
-echo "";
+echo "<br/>FET:<br/>";
 exec('cat /etc/fet', $details2);
 echo $ansi->convert(implode("\n",$details2));
 ?>
