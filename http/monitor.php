@@ -37,10 +37,14 @@ file_put_contents(MG_EVENTS_FILE, '');
 $json['mg_status'] = '';
 if(file_exists(MG_STATUS)) $json['mg_status'] = trim(file_get_contents(MG_STATUS));
 
+$wm_array = explode(' ', trim(trim(file_get_contents(MINER_WORKMODE_FILE))));
+foreach($wm_array as $key => $value) {
+	$exp_value = explode(':',$value);
+	$wm_result[] = $exp_value[1];
+}
 
 $json['workmode'] = array_combine(
-	array('fan_speed', 'start_voltage_top', 'start_voltage_bot', 'max_voltage', 'max_watts','dc2dc_current'),
-	explode(' ', trim(trim(file_get_contents(MINER_WORKMODE_FILE ), "CONF:"))));
+	array('fan_speed', 'start_voltage_top', 'start_voltage_bot', 'max_voltage', 'max_watts_top' , 'max_watts_bot','dc2dc_current'), $wm_result);
 
 header("Content-type: application/json");
 echo json_encode($json);
