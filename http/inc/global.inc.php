@@ -17,7 +17,7 @@ switch($model_class){
 		$model_name = 'Yukon';
 		break;
 	case 'SP2x':
-		$model_name = '';
+		$model_name = 'Jackson';
 		break;
 }
 $full_model_name= $model_id.' '.$model_name;
