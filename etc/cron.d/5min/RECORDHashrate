@@ -57,7 +57,7 @@ function create_graph_hash($output, $start, $title) {
         "--start", $start,
         "--title=$title",
         "--vertical-label=Hash per second",
-        "--lower=0",
+#       "--lower=0",
 #"--x-grid=none",
         "DEF:hashrate=" . $RRDPATH . "hashrate.rrd:hashrate:AVERAGE",
         "CDEF:realspeed=hashrate,1000000,*",

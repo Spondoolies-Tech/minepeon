@@ -13,7 +13,7 @@ exec('cat /var/log/asics', $details);
 echo $ansi->convert(implode("\n",$details));
 echo "";
 echo "<br/>FET:<br/>";
-exec('cat /etc/fet', $details2);
+exec('cat /tmp/mg_fet', $details2);
 echo $ansi->convert(implode("\n",$details2));
 ?>
 </div>

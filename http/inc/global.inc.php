@@ -5,22 +5,22 @@
  * initially, this file is just to check that the user has accepted our terms and conditions
  */
 
-$model_id=trim(file_get_contents('/model_id'));
-
-$model_class = preg_replace('/.$/', 'x', $model_id);
+$model_id=trim(file_get_contents('/model_name'));
+$model_class=trim(file_get_contents('/model_id'));
+#$model_class = preg_replace('/.$/', 'x', $model_id);
 
 switch($model_class){
 	case 'SP1x':
-		$model_name = 'Dawson';
+		$model_long_name = 'Dawson';
 		break;
 	case 'SP3x':
-		$model_name = 'Yukon';
+        $model_long_name = 'Yukon';
 		break;
 	case 'SP2x':
-		$model_name = 'Jackson';
+        $model_long_name = 'Jackson';
 		break;
 }
-$full_model_name= $model_id.' '.$model_name;
+$full_model_name= $model_id.' '.$model_long_name;
 
 /**
  * @var $setting sarray
