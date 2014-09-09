@@ -13,7 +13,8 @@ $ansi = array(
 	'34' =>  'blue',
 	'35' =>  'purple',
 	'36' =>  'cyan',
-	'37' =>  'white'
+	'37' =>  'white',
+	'45' =>  'magenta'
 );
 $inline_colors = array_combine($ansi, $ansi);
 $inline_colors["green"] = "lightgreen";
