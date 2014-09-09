@@ -191,6 +191,10 @@ echo "<center class='alert alert-info'><h1>".$error."</h1></center>";
 include('foot.php');
 
 function statsTable($devs) {
+
+  // add global variable $model_id
+  global $model_id;
+	
   if(count($devs)==0){
     return "</tbody></table><div class='alert alert-info'>Miner is not ready</div>";
   }
