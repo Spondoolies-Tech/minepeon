@@ -4,7 +4,7 @@ require('ansi.inc.php');
 include('head.php');
 include('menu.php');
 $log_file = 'messages';
-$log_id = $_GET['log'];
+if(isset($_GET['log'])) $log_id = $_GET['log']; else $log_id = '';
 if(!is_null($log_id) && $log_id != '') $log_file .= '.'.$log_id;
 ?>
 <h3>System Recovery Log <?php echo date('d M H:i') ?></h3>
