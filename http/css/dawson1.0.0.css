@@ -94,9 +94,11 @@ background-color: #54576d;
 }
 .json.formatted .value{
 	color: #333;
+	margin:20px;
 }
 .json.formatted .key{
 	font-weight:bold;
+	margin:20px;
 }
 
 .asics_control.controller{
