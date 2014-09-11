@@ -18,11 +18,12 @@ function get_network($interface="eth0")
 
     $submask = exec("ifconfig $interface | grep inet", $out);
     $submask = str_ireplace("inet addr:", "", $submask);
+    $submask = str_ireplace("Bcast:", "", $submask);
     $submask = str_ireplace("Mask:", "", $submask);
     $submask = trim($submask);
     $submask = explode(" ", $submask);
     $results['ipaddress'] = $submask[0];
-    $results['subnet'] = $submask[4];
+    $results['subnet'] = $submask[count($submask)-1];
     $results['dhcp'] = exec('cat /etc/network/interfaces | awk "/iface eth0/{print \$4}"') == "dhcp";
 
     $gatewayType = shell_exec("route -n");

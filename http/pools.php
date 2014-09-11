@@ -70,8 +70,8 @@ include('menu.php');
             <legend>CGMiner Conf</legend>
             <div class="form-group">
                 <label for="userTimezone" class="control-label"></label>
-                <div class="col-lg-9">
-                    <?php echo json2html(file_get_contents('/etc/cgminer.conf')); ?>
+                <div class="col-lg-9" style="width:100%">
+                    <?php echo json2html(file_get_contents('/etc/cgminer.conf', true)); ?>
                     <p class="help-block">To edit this file, please use SSH to log in to your miner, and then use vi /etc/cgminer.conf </p>
                 </div>
             </div>
