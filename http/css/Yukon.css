@@ -99,6 +99,9 @@ background-color: #54576d;
 	font-weight:bold;
 }
 
+.instructions{
+	text-align:left;
+}
 .asics_control.controller{
 	text-align: center;
 	position:relative;
@@ -110,7 +113,7 @@ h3.asics{
 	padding: 0 25px;
 }
 .asics_control .board{
-	border: gray 3px dashed;
+	border: gray 1px dashed;
 	padding:3px;
 	margin: 8px auto;
 	width:310px;
@@ -124,7 +127,7 @@ h3.asics{
 .asics_control .asic{
 	width:5em;
 	position: relative;
-	font-size:18px;
+	font-size:16px;
 	border-width: 2px;
 	border-style: ridge;
 	display: inline-block;

@@ -1,7 +1,15 @@
 <div class="asics_control controller">
 	<form action="asics.php" method="post">
 	<input type="hidden" name="asic[-1]" value="" /><!-- this is to prevent a non-empty post when all boxes are unchecked. -->
-	<div class="insructions">Each checkbox represents one ASIC. If the checkbox is checked the ASIC is enabled, otherwise it is disabled. Clicking "Apply" will save your changes and restart MinerGate.</div>
+	<div class="instructions">
+		This dialog represents the boards in your machine, and the ASICs in each board.
+		In general, ASICs should be enabled. Disabling ASICs will degrade your mining capacity.<br/>
+		You can change the status of an ASIC by clicking on the relevant box.<br/>
+		Changes will be saved when you click "Apply".<br/><br/>
+		Disabled state can be used to try to isolate noisy ASICs.<br/>
+		Removed status should only be set when an ASIC has been physically removed by a technician. This setting should not be selected by an end user.
+
+	</div>
 
 	<?php for($b = 0; $b < count($asics); $b++){ ?>
 	<div class="board"><h5>Board <?php echo $b+1; ?></h5>

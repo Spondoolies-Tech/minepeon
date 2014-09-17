@@ -99,6 +99,9 @@ background-color: #54576d;
 	font-weight:bold;
 }
 
+.instructions{
+	text-align:left;
+}
 .asics_control.controller{
 	text-align: center;
 	position:relative;
