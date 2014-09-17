@@ -16,7 +16,6 @@ if (isset($_FILES["file"]["tmp_name"])) {
 
 
 if(isset($_POST['asic'])){
-	var_dump(($_POST['asic']));
     $asics = array();
     for($i = 0; $i < 8; $i++){
         if(isset($_POST['asic'][$i]))  $asics[$i] = $_POST['asic'][$i];
