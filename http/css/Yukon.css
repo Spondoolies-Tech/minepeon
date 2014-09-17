@@ -1,0 +1,154 @@
+body{
+color: #252555;
+}
+
+.btn-default{
+/**
+ * overrides #474949
+ */
+background-color: #54576d;
+}
+.btn-default.disabled,
+.btn-default[disabled],
+.btn-default[disabled]:hover,
+ fieldset[disabled] .btn-default:hover,
+ .btn-default.disabled:focus,
+ .btn-default[disabled]:focus,
+ fieldset[disabled] .btn-default:focus,
+ .btn-default.disabled:active,
+ .btn-default[disabled]:active,
+ fieldset[disabled] .btn-default:active,
+ .btn-default.disabled.active,
+ .btn-default.active[disabled],
+ fieldset[disabled] .btn-default.active {
+    background-color: #B6B8B8;
+    border-color: #474949;
+    color: #666666;
+}
+
+.status-running{
+	color:green;
+}
+.status-not_running{
+	color:red;
+	font-weight:bold;
+}
+
+.navbar-nav>li span.disabled{
+	padding:15px 0;
+	display:block;
+	color:#b3b3b3;
+}
+
+.badge {
+    padding: 1px 9px 2px;
+    font-size: 12.025px;
+    font-weight: bold;
+    white-space: nowrap;
+    color: #ffffff;
+    background-color: #999999;
+    -webkit-border-radius: 9px;
+    -moz-border-radius: 9px;
+    border-radius: 9px;
+}
+
+.badge-success {
+    background-color: #468847;
+}
+.badge-info {
+    background-color: #3a87ad;
+}
+
+.delete{
+/*	background: url(delete.png) center center;*/
+	width:2em;
+	padding: auto;
+	margin: 0 .5em;
+	color:red;
+	cursor: pointer;
+}
+.add{
+	width:2em;
+	font-weight:bold;
+	margin:0 .5em;
+	cursor: pointer;
+	padding: auto;
+	color:green;
+	font-size:120%;
+}
+
+.json.formatted{
+	background:#ededef;
+	padding:10px;
+	border:1px grey solid;
+}
+.json.formatted .list .obj li{
+	display:inline-block;
+	padding:2px 8px 1px 0;
+}
+.json.formatted .list .obj li .key{
+	border-bottom: grey 1px dashed;
+}
+.json.formatted li{
+	list-style-type:none;
+}
+.json.formatted .value{
+	color: #333;
+}
+.json.formatted .key{
+	font-weight:bold;
+}
+
+.asics_control.controller{
+	text-align: center;
+	position:relative;
+}
+.asics_control.opener{
+
+}
+h3.asics{
+	padding: 0 25px;
+}
+.asics_control .board{
+	border: gray 3px dashed;
+	padding:3px;
+	margin: 8px auto;
+	width:310px;
+}
+.asics_control .asic *{
+	user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-webkit-user-select: none;
+}
+.asics_control .asic{
+	width:5em;
+	position: relative;
+	font-size:18px;
+	border-width: 2px;
+	border-style: ridge;
+	display: inline-block;
+}
+.asics_control input{
+	position: absolute;
+	top: 16px;
+	left: 26px;
+	opacity: .6
+}
+
+.asics_control .enabled{
+	border-color: green;
+	color:green;
+}
+.asics_control .removed{
+	border-color: red;
+	color: red;
+}
+
+.asic .status{
+	display: none;
+}
+.status_0 .enabled{ display: inline}
+.status_1 .disabled{ display: inline}
+.status_2 .removed{ display: inline}
+
