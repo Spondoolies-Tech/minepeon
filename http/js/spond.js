@@ -65,6 +65,32 @@ var AjaxOps = function(ops){
     }
 };
 
+// asics controls
+    $('.asics_control.opener').click(function(){bootbox.dialog({
+        message:$('.asics_control.container').clone().html(),
+        buttons:{
+            'Cancel': function(){},
+            'Apply': function(){
+                var form = $('.modal-content .asics_control.controller').find('input').serialize();
+                console.log($(this), form);
+                $.post("", form, function(data){
+                    send_command("mining_restart");
+                });
+            }
+        }
+    });
+    });
+    $('body').on('click', '.asic', function(){
+	var status = $(this).attr('class').match(/status_(\d)/)[1];
+	$(this).removeClass($(this).find(':visible').attr('class'));
+	$(this).removeClass('status_'+status);
+	status = ++status%3;
+	$(this).addClass('status_'+ status);
+	$(this).addClass($(this).find(':visible').attr('class'));
+	$(this).find('input').val(status);
+    });
+
+
 //
 //general purpose functions
 function blink(op){

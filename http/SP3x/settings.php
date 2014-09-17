@@ -1011,7 +1011,7 @@ function checkIP(e){
 
 <div class="hidden">
     <div class="asics_control container">
-        <?php include('widgets/'.$model_class.'/asics_control.html'); ?>
+        <?php include('widgets/asics_control.html'); ?>
     </div>
 </div>
 
@@ -1021,25 +1021,3 @@ function checkIP(e){
 include('foot.php');
 ?>
 
-
-
-<script type="text/javascript">
-    $('.asics_control.opener').click(function(){bootbox.dialog({
-        message:$('.asics_control.container').clone().html(),
-        buttons:{
-            'Cancel': function(){},
-            'Apply': function(){
-                var form = $('.modal-content .asics_control.controller').find('input').serialize();
-                console.log($(this), form);
-                $.post("", form, function(data){
-                    send_command("mining_restart");
-                });
-            }
-        }
-    });
-    });
-    $('body').on('change', '.asic input', function(){
-        console.log(this, $(this).parents('.asic'));
-        $(this).parents('.asic').removeClass('enabled disabled').addClass($(this).is(":checked")?"enabled":"disabled");
-    });
-</script>

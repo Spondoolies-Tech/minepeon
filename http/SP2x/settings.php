@@ -24,6 +24,7 @@ if(isset($_POST['asic'])){
     foreach($asics as $k=>$v) $asics[$k] = $k.':'.$v;
     $asics = array_chunk($asics, 2);
     file_put_contents(MG_DISABLED_ASICS, implode("\n", array_map(function($row){return implode(' ', $row);}, $asics)));
+    //echo '<pre>';var_dump($_POST['asic']); var_dump($asics); die;
 }
 
 $asics = array_map(function($row){return explode(" ", trim($row));}, file(MG_DISABLED_ASICS));
@@ -1030,32 +1031,11 @@ function checkIP(e){
 
 <div class="hidden">
     <div class="asics_control container">
-        <?php include('widgets/'.$model_class.'/asics_control.html'); ?>
+        <?php include('widgets/asics_control.html'); ?>
     </div>
 </div>
 
 <?php
 include('foot.php');
 ?>
-
-<script type="text/javascript">
-    $('.asics_control.opener').click(function(){bootbox.dialog({
-        message:$('.asics_control.container').clone().html(),
-        buttons:{
-            'Cancel': function(){},
-            'Apply': function(){
-                var form = $('.modal-content .asics_control.controller').find('input').serialize();
-                console.log($(this), form);
-                $.post("", form, function(data){
-                    send_command("mining_restart");
-                });
-            }
-        }
-    });
-    });
-    $('body').on('change', '.asic input', function(){
-        console.log(this, $(this).parents('.asic'));
-        $(this).parents('.asic').removeClass('enabled disabled').addClass($(this).is(":checked")?"enabled":"disabled");
-    });
-</script>
 
