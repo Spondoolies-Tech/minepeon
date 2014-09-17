@@ -3,14 +3,19 @@
 	<input type="hidden" name="asic[-1]" value="" /><!-- this is to prevent a non-empty post when all boxes are unchecked. -->
 	<div class="insructions">Each checkbox represents one ASIC. If the checkbox is checked the ASIC is enabled, otherwise it is disabled. Clicking "Apply" will save your changes and restart MinerGate.</div>
 
-	<?php for($b = 0; $b < 4; $b++){ ?>
+	<?php for($b = 0; $b < count($asics); $b++){ ?>
 	<div class="board"><h5>Board <?php echo $b+1; ?></h5>
-		<?php for($a = 0; $a < 2; $a++){ 
-		$asic = $asics[$b*2+$a];
+		<?php for($a = 0; $a < count($asics[$b]); $a++){ 
+		$asic = $asics[$b][$a];
 		$asic = explode(':', $asic); ?>
 
 		<?php // note that 1 means disabled, not enmabled! ?>
-		<span class="asic <?php echo ($asic[1]==0)?'enabled':'disabled';?>"><label for="asic_checkbox_<?php echo $asic[0]; ?>"><?php echo $asic[0]; ?><input type="checkbox" value = "0" id="asic_checkbox_<?php echo $asic[0]; ?>" name="asic[<?php echo $asic[0]; ?>]" <?php echo ($asic[1]==0)?'checked="checked"':'' ?>/></label></span>
+		<span class="asic status_<?php echo $asic[1]?>">
+			<input type="hidden" name="asic[<?php echo $asic[0]?>]" value="<?php echo $asic[1]?>" />
+			<span class="status enabled">Enabled</span>
+			<span class="status disabled">Disabled</span>
+			<span class="status removed">Removed</span>
+		</span>
 		<?php } ?>
 		</div>
 	<?php } ?>
