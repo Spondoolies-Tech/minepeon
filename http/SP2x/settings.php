@@ -15,6 +15,19 @@ if (isset($_FILES["file"]["tmp_name"])) {
 }
 
 
+if(isset($_POST['asic'])){
+	var_dump(($_POST['asic']));
+    $asics = array();
+    for($i = 0; $i < 8; $i++){
+        if(isset($_POST['asic'][$i]))  $asics[$i] = $_POST['asic'][$i];
+        else $asics[$i] = 1; // 1 = disabled, if checkbox was not checked
+    }
+    foreach($asics as $k=>$v) $asics[$k] = $k.':'.$v;
+    $asics = array_chunk($asics, 2);
+    file_put_contents(MG_DISABLED_ASICS, implode("\n", array_map(function($row){return implode(' ', $row);}, $asics)));
+}
+
+$asics = array_map(function($row){return explode(" ", trim($row));}, file(MG_DISABLED_ASICS));
 
 // User settings
 if (isset($_POST['userTimezone'])) {
@@ -246,7 +259,7 @@ foreach(DateTimeZone::listIdentifiers() as $tz) {
 }
 $tzselect = $tzselect . '</select>';
 
-$minerSpeed = getMinerSpeed();
+$workmode = getMinerWorkmode();
 
 $voltage = exec('cat /tmp/voltage');
 $overvolt110 = file_exists("/etc/mg_ignore_110_fcc");
@@ -276,13 +289,13 @@ include('menu.php');
                       <label>
                       </label>
                       <label>
-                          <input name="speed_basic_radio" type="radio" speed="quiet" id="minerSpeed" value="0" <?php echo $minerSpeed == 0?"checked":"";?> onclick="setCustomSpeed(this)">slow fans, medium rate<br>
+                          <input name="speed_basic_radio" type="radio" speed="quiet" id="minerSpeed" value="0" <?php echo $workmode == 0?"checked":"";?> onclick="setCustomSpeed(this)">slow fans, medium rate<br>
                       </label>
                       <label>
-                          <input name="speed_basic_radio" type="radio" speed="normal" id="minerSpeed" value="1" <?php echo $minerSpeed == 1?"checked":"";?> onclick="setCustomSpeed(this)">medium fans, high rate<br>
+                          <input name="speed_basic_radio" type="radio" speed="normal" id="minerSpeed" value="1" <?php echo $workmode == 1?"checked":"";?> onclick="setCustomSpeed(this)">medium fans, high rate<br>
                       </label>
                       <label>
-                          <input name="speed_basic_radio" type="radio" speed="turbo" id="minerSpeed" value="2" <?php echo $minerSpeed == 2?"checked":"";?> onclick="setCustomSpeed(this)">turbo fans, highest rate
+                          <input name="speed_basic_radio" type="radio" speed="turbo" id="minerSpeed" value="2" <?php echo $workmode == 2?"checked":"";?> onclick="setCustomSpeed(this)">turbo fans, highest rate
                       </label>
                   </div>
               </div>
@@ -297,7 +310,7 @@ include('menu.php');
                           <div>
                               <select name="FAN" id="fan_speed_select">
                                   <?php for($i = 40; $i < 99; $i += 10){
-                                      printf('<option value="%d" %s>%d</option>', $i, ($i == $minerSpeed[0])?' selected="selected"':'', $i);
+                                      printf('<option value="%d" %s>%d</option>', $i, ($i == $workmode['FAN']['value'])?' selected="selected"':'', $i);
                                   } ?>
                               </select>
                           </div>
@@ -305,42 +318,66 @@ include('menu.php');
                       <small>Set your starting voltage no more then 10 mv under your stable working voltage (from ASIC stats page)</small>
                       <div class="row NOThidden">
                           <div class="col-5">
-                              <label for="">Start Volts Top (0.66-0.70)</label>
+                              <label for="">Start Volts Unit 1(0.66-0.80)</label>
                           </div>
-				          <div><input size="5" readonly="readonly"  type="number" onblur="validateSpeed(this)" id="minimum_voltage_top" name="VST" value="<?php echo $minerSpeed[1]/1000?>" min=".660" max=".71" step="0.001" /></div>
+				          <div><input size="5" type="number" onblur="validateSpeed(this)" id="minimum_voltage_0" name="VS0" value="<?php echo $workmode['VS0']['value']/1000?>" min=".660" max=".81" step="0.001" /></div>
                       </div>
-
                       <div class="row NOThidden">
                           <div class="col-5">
-                              <label for="">Start Volts Bottom(0.66-0.70)</label>
+                              <label for="">Start Volts Unit 2(0.66-0.80)</label>
                           </div>
-                          <div><input size="5" readonly="readonly" type="number" onblur="validateSpeed(this)" id="minimum_voltage_bot" name="VSB" value="<?php echo $minerSpeed[2]/1000?>" min=".660" max=".71" step="0.001" /></div>
+				          <div><input size="5"  type="number" onblur="validateSpeed(this)" id="minimum_voltage_1" name="VS1" value="<?php echo $workmode['VS1']['value']/1000?>" min=".660" max=".81" step="0.001" /></div>
                       </div>
+                      <div class="row NOThidden">
+                          <div class="col-5">
+                              <label for="">Start Volts Unit 3(0.66-0.80)</label>
+                          </div>
+				          <div><input size="5"  type="number" onblur="validateSpeed(this)" id="minimum_voltage_2" name="VS2" value="<?php echo $workmode['VS2']['value']/1000?>" min=".660" max=".81" step="0.001" /></div>
+                      </div>
+                      <div class="row NOThidden">
+                          <div class="col-5">
+                              <label for="">Start Volts Unit 4(0.66-0.80)</label>
+                          </div>
+				          <div><input size="5"  type="number" onblur="validateSpeed(this)" id="minimum_voltage_3" name="VS3" value="<?php echo $workmode['VS3']['value']/1000?>" min=".660" max=".81" step="0.001" /></div>
+                      </div>
+
                       <small>Set your Maximum voltage to 0.790 for maximum mining or less for economy mode</small>
                       <div class="row">
                           <div class="col-5">
                               <label for="">Maximum Voltage (0.660-0.790)</label>
                           </div>
-				<div><input size="5" type="number" onblur="validateSpeed(this)" id="maximum_voltage" name="VMAX" value="<?php echo $minerSpeed[3]/1000?>" min=".660" max=".79" step="0.001" /></div>
+				<div><input size="5" type="number" onblur="validateSpeed(this)" id="maximum_voltage" name="VMAX" value="<?php echo $workmode['VMAX']['value']/1000?>" min=".660" max=".79" step="0.001" /></div>
                       </div>
-              <small>Set PSU power to 1360 and let the system learn the actual PSU limit.</small>
+              <small>Set PSU power to 120 and let the system learn the actual PSU limit.</small>
 		      <div class="row">
 			      <div class="col-5">
-				      <label for="max_watts_top" class="control-label">Max PSU Power Top (500W - 1400W) </label>
+				      <label for="max_watts_top" class="control-label">Max PSU Power Unit 1 (70W - 400W) </label>
 			      </div>
-				<div><input type="text" size="4" onblur="validateSpeed(this)" name="AC_TOP" id="max_watts_top" type="number" step="1" min="500" max="1400" value="<?php echo $minerSpeed[4]?>"></div>
+				<div><input type="text" size="4" onblur="validateSpeed(this)" name="AC0" id="max_watts_0" type="number" step="1" min="70" max="400" value="<?php echo $workmode['AC0']['value']?>"></div>
 		      </div>
 		      <div class="row">
 			      <div class="col-5">
-				      <label for="max_watts_bot" class="control-label">Max PSU Power Bottom (500W - 1400W) </label>
+				      <label for="max_watts_top" class="control-label">Max PSU Power Unit 2 (70W - 400W) </label>
 			      </div>
-				<div><input type="text" size="4" onblur="validateSpeed(this)" name="AC_BOT" id="max_watts_bot" type="number" step="1" min="500" max="1400" value="<?php echo $minerSpeed[5]?>"></div>
+				<div><input type="text" size="4" onblur="validateSpeed(this)" name="AC1" id="max_watts_1" type="number" step="1" min="70" max="400" value="<?php echo $workmode['AC1']['value']?>"></div>
+		      </div>
+		      <div class="row">
+			      <div class="col-5">
+				      <label for="max_watts_top" class="control-label">Max PSU Power Unit 3 (70W - 400W) </label>
+			      </div>
+				<div><input type="text" size="4" onblur="validateSpeed(this)" name="AC2" id="max_watts_2" type="number" step="1" min="70" max="400" value="<?php echo $workmode['AC2']['value']?>"></div>
+		      </div>
+		      <div class="row">
+			      <div class="col-5">
+				      <label for="max_watts_top" class="control-label">Max PSU Power Unit 4 (70W - 400W) </label>
+			      </div>
+				<div><input type="text" size="4" onblur="validateSpeed(this)" name="AC3" id="max_watts_3" type="number" step="1" min="70" max="400" value="<?php echo $workmode['AC3']['value']?>"></div>
 		      </div>
 		      <div class="row hidden">
 			      <div class="col-5">
 				      <label for="dc2dc_current" class="control-label">DC2DC Limit (50A-180A)</label>
 			      </div>
-				<div><input type="text" size="4" readonly="readonly" onblur="validateSpeed(this)" name="DC_AMP" id="dc2dc_current" type="number" step="1" min="50" max="180" value="<?php echo $minerSpeed[6]?>"></div>
+				<div><input type="text" size="4" onblur="validateSpeed(this)" name="DC_AMP" id="dc2dc_current" type="number" step="1" min="50" max="180" value="<?php echo $workmode['DC_AMP']['value']?>"></div>
 		      </div>
 
                   </div>
@@ -370,7 +407,7 @@ foreach($modes as $mode=>$mode_settings){
 			var predefined = false;
 			for(s in speedSettings){
 				if(
-					<?php $conds = array(); foreach($format as $i=>$f){ $conds[] = 'speedSettings[s].'.$f.'* (($("[name='.$f.']").attr("min") < 1) ? 1000 : 1) == '.$minerSpeed[$i]; } echo implode(' && ', $conds); ?>
+					<?php $conds = array(); foreach($format as $i=>$f){ $conds[] = 'speedSettings[s].'.$f.'* (($("[name='.$f.']").attr("min") < 1) ? 1000 : 1) == '.$workmode[$f]['value']; } echo implode(' && ', $conds); ?>
 				)
 				{
 					$('input[speed='+s+']').prop('checked', true);
@@ -539,6 +576,17 @@ foreach($modes as $mode=>$mode_settings){
   </form>
 <!-- ######################## -->
 
+<form name="password" action="/settings.php" method="post" class="form-horizontal">
+    <fieldset>
+        <legend>HW control</legend>
+        <div class="form-group">
+            <label for="asicControl" class="control-label col-lg-3">Disable ASICs</label>
+            <div class="col-lg-3">
+                <a class="btn btn-default asics_control opener">ASICS Control Panel</a>
+            </div>
+        </div>
+    </fieldset>
+</form>
   <!-- ######################## Passwords -->
   <form name="password" action="/settings.php" method="post" class="form-horizontal">
       <fieldset>
@@ -980,6 +1028,35 @@ function checkIP(e){
 		return false;
 	}
 </script>
+
+<div class="hidden">
+    <div class="asics_control container">
+        <?php include('widgets/'.$model_class.'/asics_control.html'); ?>
+    </div>
+</div>
+
 <?php
 include('foot.php');
 ?>
+
+<script type="text/javascript">
+    $('.asics_control.opener').click(function(){bootbox.dialog({
+        message:$('.asics_control.container').clone().html(),
+        buttons:{
+            'Cancel': function(){},
+            'Apply': function(){
+                var form = $('.modal-content .asics_control.controller').find('input').serialize();
+                console.log($(this), form);
+                $.post("", form, function(data){
+                    send_command("mining_restart");
+                });
+            }
+        }
+    });
+    });
+    $('body').on('change', '.asic input', function(){
+        console.log(this, $(this).parents('.asic'));
+        $(this).parents('.asic').removeClass('enabled disabled').addClass($(this).is(":checked")?"enabled":"disabled");
+    });
+</script>
+

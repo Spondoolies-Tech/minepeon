@@ -52,9 +52,9 @@ switch($model_class){
 			define('WORKMODE_QUIET', '60 .660 .660 .730 1100 1100 150');
 		break;
 	case "SP2x":
-			define('WORKMODE_FORMAT', "FAN VSB0 VSB1 VSB2 VSB3 VMAX AC_B0 AC_B1 AC_B2 AC_B3 DC_AMP");
+			define('WORKMODE_FORMAT', "FAN VS0 VS1 VS2 VS3 VMAX AC0 AC1 AC2 AC3 DC_AMP");
 			define('WORKMODE_TEXT', "Fan Speed-Start Voltage (Board 1)-Start Voltage (Board 2)-Start Voltage (Board 3)-Start Voltage (Board 4)-Max Voltage-Max Watts (Board 1)-Max Watts (Board 2)-Max Watts (Board 3)-Max Watts (Board 4)-D2DC Current");
-			define('WORKMODE_FORMAT_LINE', "FAN:%d VSB0:%d VSB1:%d VSB2:%d VSB3:%d VMAX:%d AC_B0:%d AC_B1:%d AC_B2:%d AC_B3:%d DC_AMP:%d");
+			define('WORKMODE_FORMAT_LINE', "FAN:%d VS0:%d VS1:%d VS2:%d VS3:%d VMAX:%d AC0:%d AC1:%d AC2:%d AC3:%d DC_AMP:%d");
 			define('WORKMODE_TURBO', '90 .670 .670 .670 .670 .730 1350 1350 1350 1350 150');
 			define('WORKMODE_NORMAL', '80 .670 .670 .670 .670 .730 1350 1350 1350 1350 150');
 			define('WORKMODE_QUIET', '60 .660 .660 .660 .660 .730 1100 1100 1100 1100 150');

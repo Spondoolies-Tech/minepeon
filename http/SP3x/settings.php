@@ -1011,7 +1011,7 @@ function checkIP(e){
 
 <div class="hidden">
     <div class="asics_control container">
-        <?php include('widgets/asics_control.html'); ?>
+        <?php include('widgets/'.$model_class.'/asics_control.html'); ?>
     </div>
 </div>
 
