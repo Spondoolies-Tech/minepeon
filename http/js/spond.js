@@ -82,11 +82,11 @@ var AjaxOps = function(ops){
     });
     $('body').on('click', '.asic', function(){
 	var status = $(this).attr('class').match(/status_(\d)/)[1];
-	$(this).removeClass($(this).find(':visible').attr('class'));
+	$(this).removeClass($(this).find('.status:visible').attr('class'));
 	$(this).removeClass('status_'+status);
 	status = ++status%3;
 	$(this).addClass('status_'+ status);
-	$(this).addClass($(this).find(':visible').attr('class'));
+	$(this).addClass($(this).find('.status:visible').attr('class'));
 	$(this).find('input').val(status);
     });
 

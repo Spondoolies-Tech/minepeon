@@ -116,7 +116,7 @@ h3.asics{
 	border: gray 1px dashed;
 	padding:3px;
 	margin: 8px auto;
-	width:310px;
+	width:320px;
 }
 .asics_control .asic *{
 	user-select: none;
@@ -125,7 +125,7 @@ h3.asics{
 	-webkit-user-select: none;
 }
 .asics_control .asic{
-	width:5em;
+	width:6em;
 	position: relative;
 	font-size:16px;
 	border-width: 2px;
@@ -137,6 +137,12 @@ h3.asics{
 	top: 16px;
 	left: 26px;
 	opacity: .6
+}
+
+.asic_id{
+	margin: 0 0 0 4px;
+	float:left;
+	color: #7c7c7c;
 }
 
 .asics_control .enabled{

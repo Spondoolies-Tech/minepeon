@@ -20,6 +20,7 @@
 		<?php // note that 1 means disabled, not enmabled! ?>
 		<span class="asic status_<?php echo $asic[1]?>">
 			<input type="hidden" name="asic[<?php echo $asic[0]?>]" value="<?php echo $asic[1]?>" />
+			<span class="asic_id"><?php echo count($asics[$b])*$b+$a;?></span>
 			<span class="status enabled">Enabled</span>
 			<span class="status disabled">Disabled</span>
 			<span class="status removed">Removed</span>
