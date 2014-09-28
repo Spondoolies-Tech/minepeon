@@ -22,7 +22,7 @@ function get_network($interface="eth0")
     $submask = trim($submask);
     $submask = explode(" ", $submask);
 
-    echo('submask').print_r($submask);
+//    echo('submask').print_r($submask);
 
     $results['ipaddress'] = $submask[0];
     $results['subnet'] = $submask[4];
