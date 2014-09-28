@@ -860,9 +860,9 @@ foreach($modes as $mode=>$mode_settings){
                   </p>
                   <p class="help-block">This will restore your miner settings to the factory default ones!</p>
               </div>
-<?php if(file_exists("/mnt/config/etc/bin/miner_gate_arm")){ ?>
+<?php if(file_exists("/mnt/config/etc/bin/miner_gate_".strtolower(str_replace('x', '0', $model_class)))){ ?>
               <div class="col-lg-9 col-offset-3">
-                  <a name="reset_minerarm" class="btn btn-default miner-action" onclick="return confirmClick(this);" href="/files.php?op=del&dir=config&files=bin/miner_gate_arm">Restore miner_gate_arm</a>
+		  <a name="reset_minerarm" class="btn btn-default miner-action" onclick="return confirmClick(this);" href="/files.php?op=del&dir=config&files=bin/miner_gate_<?php echo strtolower(str_replace('x', '0', $model_class)) ?>">Restore miner_gate_arm</a>
               </div>
 <?php } ?>
           </div>
