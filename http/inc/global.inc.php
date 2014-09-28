@@ -5,6 +5,8 @@
  * initially, this file is just to check that the user has accepted our terms and conditions
  */
 
+//ini_set("display_errors", 1);
+
 $model_id=trim(file_get_contents('/model_name'));
 $model_class=trim(file_get_contents('/model_id'));
 #$model_class = preg_replace('/.$/', 'x', $model_id);

@@ -21,6 +21,9 @@ function get_network($interface="eth0")
     $submask = str_ireplace("Mask:", "", $submask);
     $submask = trim($submask);
     $submask = explode(" ", $submask);
+
+    echo('submask').print_r($submask);
+
     $results['ipaddress'] = $submask[0];
     $results['subnet'] = $submask[4];
     $results['dhcp'] = exec('cat /etc/network/interfaces | awk "/iface eth0/{print \$4}"') == "dhcp";
@@ -33,7 +36,11 @@ function get_network($interface="eth0")
 
     $dnsType = file('/etc/resolv.conf');
     $dnsType = str_ireplace("nameserver ", "", $dnsType);
-    $results['dns1'] = $dnsType[1];
+
+//    echo('dnsType').print_r($dnsType);
+
+//    $results['dns1'] = $dnsType[1];
+    $results['dns1'] = $dnsType[0];
     //$dns2 = $dnsType[3];
     //$dns3 = $dnsType[4];
 

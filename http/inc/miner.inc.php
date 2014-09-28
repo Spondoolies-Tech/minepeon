@@ -62,11 +62,21 @@ function setMinerSpeed($speed){
 }
 
 function getMinerSpeed($runtime = false){
-	$file = MINER_WORKMODE_FILE;
-	if($runtime && file_exists(MINER_RUNTIME_WORKMODE_FILE)) $file = MINER_RUNTIME_WORKMODE_FILE;
-	if(file_exists($file)) $s = trim(file_get_contents($file));
-	else throw new Exception("Workmode file (".MINER_WORKMODE_FILE.") missing. Please contact customer support.");
-	return sscanf($s, WORKMODE_FORMAT_LINE);
+//    $file = MINER_WORKMODE_FILE;
+    if(/*$runtime &&*/ file_exists(MINER_WORKMODE_FILE)){
+        $file = MINER_WORKMODE_FILE;
+    }
+    elseif($runtime && file_exists(MINER_RUNTIME_WORKMODE_FILE)){
+        $file = MINER_RUNTIME_WORKMODE_FILE;
+    }
+
+    if(file_exists($file)){
+        $s = trim(file_get_contents($file));
+        return sscanf($s, WORKMODE_FORMAT_LINE);
+    }
+    else {
+        throw new Exception("Workmode file (".MINER_WORKMODE_FILE.") missing. Please contact customer support.");
+    }
 }
 
 /**
@@ -97,7 +107,7 @@ function miner_restart($nice = false){
 		try{
 		return miner('restart');
 		}catch(Exception $e){
-		
+
 		}
 	}
 	return miner_service('restart');

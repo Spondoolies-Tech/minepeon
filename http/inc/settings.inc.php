@@ -8,7 +8,9 @@ if (file_exists("/opt/minepeon/DEBUG")) {
 
 $settings = json_decode(file_get_contents("/etc/minepeon.conf", true), true);
 
-
+if(!isset($settings['userTimezone'])){
+    $settings['userTimezone'] = "UTC";
+}
 $timezone = $settings['userTimezone'];
 ini_set( 'date.timezone', $timezone );
 putenv("TZ=" . $timezone);
