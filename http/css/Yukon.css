@@ -125,7 +125,7 @@ h3.asics{
 	-webkit-user-select: none;
 }
 .asics_control .asic{
-	width:6em;
+	width:100px;
 	position: relative;
 	font-size:16px;
 	border-width: 2px;

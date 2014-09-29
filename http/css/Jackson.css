@@ -113,24 +113,24 @@ h3.asics{
 	padding: 0 25px;
 }
 .asics_control .board{
-	border: gray 3px dashed;
+	border: gray 1px dashed;
 	padding:3px;
 	margin: 8px auto;
-	width:200px;
-}
-.asics_control .asic{
-	width:5em;
-	position: relative;
-	font-size:16px;
-	border-width: 2px;
-	border-style: ridge;
-	display: inline-block;
+	width:240px;
 }
 .asics_control .asic *{
 	user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
 	-webkit-user-select: none;
+}
+.asics_control .asic{
+	width:100px;
+	position: relative;
+	font-size:16px;
+	border-width: 2px;
+	border-style: ridge;
+	display: inline-block;
 }
 .asics_control input{
 	position: absolute;
@@ -139,16 +139,21 @@ h3.asics{
 	opacity: .6
 }
 
+.asic_id{
+	margin: 0 0 0 4px;
+	float:left;
+	color: #7c7c7c;
+}
+
 .asics_control .enabled{
 	border-color: green;
 	color:green;
 }
-.asics_control .disabled{
-}
 .asics_control .removed{
-	border-color:red;
-	color:red;
+	border-color: red;
+	color: red;
 }
+
 .asic .status{
 	display: none;
 }
