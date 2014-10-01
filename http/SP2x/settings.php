@@ -309,7 +309,7 @@ include('menu.php');
                           </div>
                           <div>
                               <select name="FAN" id="fan_speed_select">
-                                  <?php for($i = 40; $i < 99; $i += 10){
+                                  <?php for($i = 40; $i < 101; $i += 10){
                                       printf('<option value="%d" %s>%d</option>', $i, ($i == $workmode['FAN']['value'])?' selected="selected"':'', $i);
                                   } ?>
                               </select>
@@ -351,27 +351,27 @@ include('menu.php');
               <small>Set PSU power to 120 and let the system learn the actual PSU limit.</small>
 		      <div class="row">
 			      <div class="col-5">
-				      <label for="max_watts_top" class="control-label">Max PSU Power Unit 1 (70W - 400W) </label>
+				      <label for="max_watts_top" class="control-label">Max PSU Power Unit 1 (70W - 288W) </label>
 			      </div>
-				<div><input type="text" size="4" onblur="validateSpeed(this)" name="AC0" id="max_watts_0" type="number" step="1" min="70" max="400" value="<?php echo $workmode['AC0']['value']?>"></div>
+				<div><input type="text" size="4" onblur="validateSpeed(this)" name="AC0" id="max_watts_0" type="number" step="1" min="70" max="288" value="<?php echo $workmode['AC0']['value']?>"></div>
 		      </div>
 		      <div class="row">
 			      <div class="col-5">
-				      <label for="max_watts_top" class="control-label">Max PSU Power Unit 2 (70W - 400W) </label>
+				      <label for="max_watts_top" class="control-label">Max PSU Power Unit 2 (70W - 288W) </label>
 			      </div>
-				<div><input type="text" size="4" onblur="validateSpeed(this)" name="AC1" id="max_watts_1" type="number" step="1" min="70" max="400" value="<?php echo $workmode['AC1']['value']?>"></div>
+				<div><input type="text" size="4" onblur="validateSpeed(this)" name="AC1" id="max_watts_1" type="number" step="1" min="70" max="288" value="<?php echo $workmode['AC1']['value']?>"></div>
 		      </div>
 		      <div class="row">
 			      <div class="col-5">
-				      <label for="max_watts_top" class="control-label">Max PSU Power Unit 3 (70W - 400W) </label>
+				      <label for="max_watts_top" class="control-label">Max PSU Power Unit 3 (70W - 288W) </label>
 			      </div>
-				<div><input type="text" size="4" onblur="validateSpeed(this)" name="AC2" id="max_watts_2" type="number" step="1" min="70" max="400" value="<?php echo $workmode['AC2']['value']?>"></div>
+				<div><input type="text" size="4" onblur="validateSpeed(this)" name="AC2" id="max_watts_2" type="number" step="1" min="70" max="288" value="<?php echo $workmode['AC2']['value']?>"></div>
 		      </div>
 		      <div class="row">
 			      <div class="col-5">
-				      <label for="max_watts_top" class="control-label">Max PSU Power Unit 4 (70W - 400W) </label>
+				      <label for="max_watts_top" class="control-label">Max PSU Power Unit 4 (70W - 288W) </label>
 			      </div>
-				<div><input type="text" size="4" onblur="validateSpeed(this)" name="AC3" id="max_watts_3" type="number" step="1" min="70" max="400" value="<?php echo $workmode['AC3']['value']?>"></div>
+				<div><input type="text" size="4" onblur="validateSpeed(this)" name="AC3" id="max_watts_3" type="number" step="1" min="70" max="288" value="<?php echo $workmode['AC3']['value']?>"></div>
 		      </div>
 		      <div class="row hidden">
 			      <div class="col-5">
