@@ -318,35 +318,35 @@ include('menu.php');
                       <small>Set your starting voltage no more then 10 mv under your stable working voltage (from ASIC stats page)</small>
                       <div class="row NOThidden">
                           <div class="col-5">
-                              <label for="">Start Volts Unit 1(0.66-0.80)</label>
+                              <label for="">Start Volts Unit 1(0.64-0.80)</label>
                           </div>
-				          <div><input size="5" type="number" onblur="validateSpeed(this)" id="minimum_voltage_0" name="VS0" value="<?php echo $workmode['VS0']['value']/1000?>" min=".660" max=".81" step="0.001" /></div>
+				          <div><input size="5" type="number" onblur="validateSpeed(this)" id="minimum_voltage_0" name="VS0" value="<?php echo $workmode['VS0']['value']/1000?>" min=".640" max=".81" step="0.001" /></div>
                       </div>
                       <div class="row NOThidden">
                           <div class="col-5">
-                              <label for="">Start Volts Unit 2(0.66-0.80)</label>
+                              <label for="">Start Volts Unit 2(0.64-0.80)</label>
                           </div>
-				          <div><input size="5"  type="number" onblur="validateSpeed(this)" id="minimum_voltage_1" name="VS1" value="<?php echo $workmode['VS1']['value']/1000?>" min=".660" max=".81" step="0.001" /></div>
+				          <div><input size="5"  type="number" onblur="validateSpeed(this)" id="minimum_voltage_1" name="VS1" value="<?php echo $workmode['VS1']['value']/1000?>" min=".640" max=".81" step="0.001" /></div>
                       </div>
                       <div class="row NOThidden">
                           <div class="col-5">
-                              <label for="">Start Volts Unit 3(0.66-0.80)</label>
+                              <label for="">Start Volts Unit 3(0.64-0.80)</label>
                           </div>
-				          <div><input size="5"  type="number" onblur="validateSpeed(this)" id="minimum_voltage_2" name="VS2" value="<?php echo $workmode['VS2']['value']/1000?>" min=".660" max=".81" step="0.001" /></div>
+				          <div><input size="5"  type="number" onblur="validateSpeed(this)" id="minimum_voltage_2" name="VS2" value="<?php echo $workmode['VS2']['value']/1000?>" min=".640" max=".81" step="0.001" /></div>
                       </div>
                       <div class="row NOThidden">
                           <div class="col-5">
-                              <label for="">Start Volts Unit 4(0.66-0.80)</label>
+                              <label for="">Start Volts Unit 4(0.64-0.80)</label>
                           </div>
-				          <div><input size="5"  type="number" onblur="validateSpeed(this)" id="minimum_voltage_3" name="VS3" value="<?php echo $workmode['VS3']['value']/1000?>" min=".660" max=".81" step="0.001" /></div>
+				          <div><input size="5"  type="number" onblur="validateSpeed(this)" id="minimum_voltage_3" name="VS3" value="<?php echo $workmode['VS3']['value']/1000?>" min=".640" max=".81" step="0.001" /></div>
                       </div>
 
                       <small>Set your Maximum voltage to 0.790 for maximum mining or less for economy mode</small>
                       <div class="row">
                           <div class="col-5">
-                              <label for="">Maximum Voltage (0.660-0.790)</label>
+                              <label for="">Maximum Voltage (0.640-0.790)</label>
                           </div>
-				<div><input size="5" type="number" onblur="validateSpeed(this)" id="maximum_voltage" name="VMAX" value="<?php echo $workmode['VMAX']['value']/1000?>" min=".660" max=".79" step="0.001" /></div>
+				<div><input size="5" type="number" onblur="validateSpeed(this)" id="maximum_voltage" name="VMAX" value="<?php echo $workmode['VMAX']['value']/1000?>" min=".640" max=".79" step="0.001" /></div>
                       </div>
               <small>Set PSU power to 120 and let the system learn the actual PSU limit.</small>
 		      <div class="row">
