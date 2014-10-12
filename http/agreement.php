@@ -4,7 +4,7 @@
  * If the user has not yet agred, show a button to allow him to accept.
  */
 
-require_once('global.inc.php');
+require_once('inc/global.inc.php');
 $agreement = file_get_contents('inc/terms_and_conditions.txt');
 
 require_once('head.php');

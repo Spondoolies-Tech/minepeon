@@ -1,6 +1,6 @@
 <?php
 
-include('global.inc.php');
+include('inc/global.inc.php');
 
 $fileDate = date("YmdHis");
 

@@ -1,7 +1,7 @@
 <?php
 
-require('global.inc.php');
-require('miner.inc.php');
+require('inc/global.inc.php');
+require('inc/miner.inc.php');
 
 $json = array();
 

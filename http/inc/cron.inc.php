@@ -1,6 +1,6 @@
 <?php
 
-require_once('inc/global.inc.php');
+require_once('global.inc.php');
 
 const CRON_BEGIN = "### BEGIN %s ###";
 const CRON_END =   "###  END %s  ###";

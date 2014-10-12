@@ -30,23 +30,25 @@ function settings_sync(){
 	exec('/bin/sync');
 }
 function json2html($json, $level=0){
-	$json_test = json_decode($json, true);
-	if(is_array($json_test)) $json = $json_test;
-	if(is_bool($json)) $json = ($json) ? 'True' : 'False';
-	if(!is_array($json)) $json = strval($json);
-	if(is_string($json)) return '<span class="value">'.$json.'</span>';
-	// if not string, is array
-	if(array_keys($json) == range(0, count($json)-1)){ // numeric array
-		$html = '<ul class="list">';
-		foreach($json as $v) $html .= '<li>'.json2html($v, $level+1).'</li>';
-		$html = $html.'</ul>';
-	}else{
-		$html = '<ul class="obj">';
-		foreach($json as $k=>$v) $html .= '<li><span class="key">'.$k.'</span><p>'.json2html($v, $level+1).'</p></li>';
-		$html = $html.'</ul>';
-	}
-	if($level == 0) $html = '<div class="json formatted">'.$html.'</div>';
-	return $html;
+    if(!empty($json)){
+        $json_test = json_decode($json, true);
+        if(is_array($json_test)) $json = $json_test;
+        if(is_bool($json)) $json = ($json) ? 'True' : 'False';
+        if(!is_array($json)) $json = strval($json);
+        if(is_string($json)) return '<span class="value">'.$json.'</span>';
+        // if not string, is array
+        if(array_keys($json) == range(0, count($json)-1)){ // numeric array
+            $html = '<ul class="list">';
+            foreach($json as $v) $html .= '<li>'.json2html($v, $level+1).'</li>';
+            $html = $html.'</ul>';
+        }else{
+            $html = '<ul class="obj">';
+            foreach($json as $k=>$v) $html .= '<li><span class="key">'.$k.'</span><p>'.json2html($v, $level+1).'</p></li>';
+            $html = $html.'</ul>';
+        }
+        if($level == 0) $html = '<div class="json formatted">'.$html.'</div>';
+        return $html;
+    }
 }
 
 $plea = '

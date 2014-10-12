@@ -28,8 +28,8 @@ $full_model_name= $model_id.' '.$model_long_name;
  * @var $setting sarray
  */
 
-require_once('inc/constants.inc.php');
-require_once('inc/settings.inc.php');
+require_once('constants.inc.php');
+require_once('settings.inc.php');
 
 // make sure user has accepted terms and conditions before allowing them to do anything else
 if((!array_key_exists('agree', $settings) || ! intval(time($settings['agree'])))  ){

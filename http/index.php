@@ -1,8 +1,8 @@
 <?php
 
-require_once('global.inc.php');
-require_once('miner.inc.php');
-include_once('functions.inc.php');
+require_once('inc/global.inc.php');
+require_once('inc/miner.inc.php');
+include_once('inc/functions.inc.php');
 
 /*
 //Moved to Cron-based PHP CLI generation

@@ -16,16 +16,19 @@ function get_network($interface="eth0")
 {
     $results = array();
 
-    $submask = exec("ifconfig $interface | grep inet", $out);
+    $submask = exec("ifconfig $interface | grep 'inet '", $out);
     $submask = str_ireplace("inet addr:", "", $submask);
     $submask = str_ireplace("Mask:", "", $submask);
     $submask = trim($submask);
     $submask = explode(" ", $submask);
 
-//    echo('submask').print_r($submask);
-
     $results['ipaddress'] = $submask[0];
-    $results['subnet'] = $submask[4];
+    if(isset($submask[4])){
+        $results['subnet'] = $submask[4];
+    }
+    else{
+        $results['subnet'] = '255.255.255.0';
+    }
     $results['dhcp'] = exec('cat /etc/network/interfaces | awk "/iface eth0/{print \$4}"') == "dhcp";
 
     $gatewayType = shell_exec("route -n");
@@ -36,8 +39,6 @@ function get_network($interface="eth0")
 
     $dnsType = file('/etc/resolv.conf');
     $dnsType = str_ireplace("nameserver ", "", $dnsType);
-
-//    echo('dnsType').print_r($dnsType);
 
 //    $results['dns1'] = $dnsType[1];
     $results['dns1'] = $dnsType[0];

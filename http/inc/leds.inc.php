@@ -1,5 +1,5 @@
 <?php
-require_once('inc/constants.inc.php');
+require_once('constants.inc.php');
 
 function led_start_flash(){
 	exec('echo 5 > /tmp/blink_led');

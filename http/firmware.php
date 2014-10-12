@@ -1,6 +1,6 @@
 <?php
 
-require_once('global.inc.php');
+require_once('inc/global.inc.php');
 include('head.php');
 include('menu.php');
 //Update watchdog monitored file (to prevent reboots)

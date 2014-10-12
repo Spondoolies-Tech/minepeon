@@ -6,7 +6,7 @@
 function get_status($proc){
 switch($proc){
 case 'cgminer':
-	require_once('miner.inc.php');
+	require_once('inc/miner.inc.php');
 	try{
 		miner('summary', '');
 		$status = true;

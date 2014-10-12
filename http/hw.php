@@ -1,6 +1,6 @@
 <?php
-require_once('global.inc.php');
-require('ansi.inc.php');
+require_once('inc/global.inc.php');
+require('inc/ansi.inc.php');
 include('head.php');
 include('menu.php');
 ?>
