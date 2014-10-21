@@ -43,7 +43,7 @@
           if (! is_link('/usr/local/bin/miner_gate_arm')) {
                  echo "<b></br>CUSTOM miner_gate_arm! (/usr/local/bin)</b>";
              }
-             if (file_exists('/mnt/config/etc/bin/miner_gate_arm')) {
+             if (file_exists('/mnt/config/etc/bin/miner_gate_sp30')) {
                  echo "<b></br>CUSTOM miner_gate_arm! (/etc/bin)</b>";
              }
 	?>
