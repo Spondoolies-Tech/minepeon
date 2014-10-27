@@ -26,6 +26,10 @@ background-color: #54576d;
     color: #666666;
 }
 
+.reboot-btn{
+    display: inline;
+}
+
 .status-running{
 	color:green;
 }

@@ -137,7 +137,11 @@ echo "<center class='alert alert-info'><h1>".$error."</h1></center>";
     <a class="btn btn-default" href='' onclick="return send_command(<?php if(isSpondRunning())echo "'spond_stop'"; else echo "'spond_start'"?>);"><?php if(isSpondRunning())echo "Stop Miner"; else echo "Start Miner"?></a>
     <!-- a class="btn btn-default" href='/restart.php' onclick="return send_command('mining_restart', 'nice');">Restart CGMiner</a -->
     <a class="btn btn-default" href='/restart.php' onclick="return send_command('mining_restart');">Restart MinerGate</a>
-    <a class="btn btn-default" href='/reboot.php'>Reboot</a>
+    <form class="reboot-btn" method="POST" action="/reboot.php">
+        <input type="submit" name="ip" value="Reboot" class="btn btn-default">
+        <input type="hidden" name="ip" value="<?php echo $_SERVER['REMOTE_ADDR']; ?>" class="btn btn-default">
+    </form>
+    <!--<a class="btn btn-default" href='/reboot.php'>Reboot</a>-->
     <!-- a class="btn btn-default" href='/halt.php'>ShutDown</a -->
 	<?php include('widgets/led_blinker.php'); ?>
 

@@ -1,5 +1,8 @@
-<?php
-if(isset($_GET['ip'])) $refresh_ip = $_GET['ip'];
+<?php 
+if(!isset($_POST['ip'])) {
+    header('Location: /');
+}
+elseif(isset($_POST['ip'])) $refresh_ip = $_POST['ip'];
 if(!isset($refresh_ip)) $refresh_ip =  $_SERVER['SERVER_ADDR'];
 ?>	
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"

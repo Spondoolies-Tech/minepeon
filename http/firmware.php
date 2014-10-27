@@ -133,7 +133,11 @@ if (isset($_FILES["image"]["tmp_name"])) {
 
             <div class="buttons">
                 <br><br>
-                <a class="btn btn-default hidden" id="reboot" name="reboot" href='/reboot.php'>Reboot</a>
+                <form class="reboot-btn" method="POST" action="/reboot.php">
+                    <input type="submit" name="ip" value="Reboot" class="btn btn-default">
+                    <input type="hidden" name="ip" value="<?php echo $_SERVER['REMOTE_ADDR']; ?>" class="btn btn-default">
+                </form>
+            <!--<a class="btn btn-default" href='/reboot.php'>Reboot</a>-->
             </div>
         </fieldset>
     </div>
