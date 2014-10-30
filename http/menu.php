@@ -26,6 +26,7 @@ $latest_ver = exec('cat '.LATEST_VERSION_FILE);
 <!--      <li><a href="about.php">About</a></li>
       <li><a href="contact.php">Contact</a></li>
 -->      <li><a href="/license.php">License</a></li>
+        <li><a href="/help.php">Help</a></li>
     </ul>
 	<a href="http://www.spondoolies-tech.com" target="_blank"><img class="logo responsive pull-right" src="img/SpondooliesLogo-transparent-small.png" /></a>
   </div>
