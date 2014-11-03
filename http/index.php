@@ -215,6 +215,7 @@ function statsTable($devs) {
         <th>Temp</th>
 -->
         <th>GH/s</th>
+        <th>5 min GH/s</th>
         <th>Accepted shares</th>
         <th>Rejected shares</th>
         <th>Errors</th>
@@ -272,6 +273,7 @@ function statsTable($devs) {
       <!-- <td>" . "1" . "</td>
       <td>" . $temperature . "</td> -->
       <td>" . $dev['MHSav'] / 1000 . "</td>
+      <td>" . $dev['MHS5m'] / 1000 . "</td>
       <td>" . $dev['Accepted'] . "</td>
       <td>" . $dev['Rejected'] . "</td>
       <td>" . $dev['HardwareErrors'] . "</td>
@@ -281,6 +283,7 @@ function statsTable($devs) {
 
 		$devices++;
 		$MHSav = $MHSav + $dev['MHSav'];
+		$MHS5m = $MHS5m + $dev['MHS5m'];
 		$Accepted = $Accepted + $dev['Accepted'];
 		$Rejected = $Rejected + $dev['Rejected'];
 		$HardwareErrors = $HardwareErrors + $dev['HardwareErrors'];
@@ -289,6 +292,7 @@ function statsTable($devs) {
 		$Utility = $Utility + $dev['Utility'];
 
 		$GLOBALS['G_MHSav'] = $MHSav / 1000 . " GH/s|" . $devices . " DEV";
+		$GLOBALS['G_MHS5m'] = $MHS5m / 1000 . " GH/s|" . $devices . " DEV";
 
 	}
   }
@@ -303,6 +307,7 @@ function statsTable($devs) {
   <th>" . $devices . "</th>
   <th></th>
   <th>" . $MHSav / 1000 . "</th>
+  <th>" . $MHS5m / 1000 . "</th>
   <th>" . $Accepted . "</th>
   <th>" . $Rejected . " [" . "</th>
   <th>" . $HardwareErrors . " [" . "</th>
