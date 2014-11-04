@@ -12,8 +12,6 @@ include('menu.php');
 exec('cat /var/log/asics', $details);
 echo $ansi->convert(implode("\n",$details));
 echo "";
-echo "<br/>FET:<br/>";
-exec('cat /tmp/mg_fet', $details2);
 echo $ansi->convert(implode("\n",$details2));
 ?>
 </div>
