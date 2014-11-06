@@ -57,7 +57,7 @@ if ($h = opendir('/mnt/config/log/')) {
         $('a.clearlog').click(function(e){
             $.get($(this).attr('href'), function(){
 //                document.location.reload();
-                document.location = document.location.href;
+                document.location = "/log.php";
             });
             e.preventDefault();
             return false;
