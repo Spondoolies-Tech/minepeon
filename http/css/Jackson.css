@@ -30,6 +30,10 @@ background-color: #54576d;
     display: inline;
 }
 
+.reset-graphs-btn{
+    display: inline;
+}
+
 .status-running{
 	color:green;
 }
