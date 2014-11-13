@@ -11,16 +11,33 @@ include('head.php');
 include('menu.php');
 ?>
 
+<style>
+#sortable { 
+    list-style-type: none; 
+    margin: 0; padding: 0; 
+    width: 100%; 
+}
+#sortable li {
+  background-color: #dff0d8;
+  border: 1px solid silver;
+  border-radius: 5px;
+  margin: 0 3px 3px;
+  padding: 1em;
+}
+</style>
+
 <div class="container">
 	<h1>Pools</h1>
-	<p>Miner will use the following pool (the order of pools defines priority):</p>
+	<p>Miner will use the following pool (the order of pools defines priority - drag to set the order):</p>
 	<form id="formpools">
 		<input type="hidden" name="saving" value="1">
+                <ul id="sortable">
 		<?php
 		// List populated pools
 		$countOfPools = count($data['pools']);
 		for ($i = 0; $i < $countOfPools; $i++) {
 			?>
+                        <li class="selector">
 			<div class="form-group row">
 				<div class="col-lg-5">
 					<label for="URL<?php echo $i; ?>"><span class="label label-success">Enabled</span> URL</label>
@@ -35,8 +52,11 @@ include('menu.php');
 					<input type="text" class="form-control" value="<?php echo $data['pools'][$i]['pass']; ?>" name="PASS<?php echo $i; ?>" id="PASS<?php echo $i; ?>">
 				</div>
 			</div>
+                        </li>
 			<?php
-		}
+		} ?>
+                </ul>
+                <?php
 
     // Extra empty rows to accomodate adding more pools
 		for ($i = $countOfPools; $i < $countOfPools+$extraPools; $i++) {
@@ -137,5 +157,37 @@ $(document).ready(function() {
 			}
 		});
 	});
+        
+//        $( "#sortable" ).disableSelection();
+        $( "#sortable" ).on( "sortstop", function( event, ui ) {
+            $.each($("#sortable .selector div.form-group.row"), function(i,li){
+                $.each($(li).find("label"), function(j, val){
+                    if($(val).attr('for').substring(0,3) === 'URL'){
+                        $(val).attr('for', 'URL' + i);
+                    }
+                    if($(val).attr('for').substring(0,3) === 'USE'){
+                        $(val).attr('for', 'USER' + i);
+                    }
+                    if($(val).attr('for').substring(0,3) === 'PAS'){
+                        $(val).attr('for', 'PASS' + i);
+                    }
+                });
+                $.each($(li).find("input"), function(j, val){
+                    if($(val).attr('id').substring(0,3) === 'URL'){
+                        $(val).attr('id', 'URL' + i);
+                        $(val).attr('name', 'URL' + i);
+                    }
+                    if($(val).attr('id').substring(0,3) === 'USE'){
+                        $(val).attr('id', 'USER' + i);
+                        $(val).attr('name', 'USER' + i);
+                    }
+                    if($(val).attr('id').substring(0,3) === 'PAS'){
+                        $(val).attr('id', 'PASS' + i);
+                        $(val).attr('name', 'PASS' + i);
+                    }
+                });
+            });
+            $("#save").click();
+        });
 });
 </script>

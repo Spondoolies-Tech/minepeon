@@ -10,6 +10,8 @@
 <script type="text/javascript" src="js/bootbox.min.js"></script>
 <script type="text/javascript" src="js/spond.js"></script>
 <script type="text/javascript" src="js/bootstrap-multiselect.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<script>$("#sortable").sortable();</script>
 <link rel="stylesheet" href="css/bootstrap-multiselect.css" type="text/css"/>
 <script type="text/javascript" id="js">
   $(document).ready(function() {
