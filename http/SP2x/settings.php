@@ -1,7 +1,12 @@
 <?php
-
+require_once('inc/global.inc.php');
 $utc = new DateTimeZone('UTC');
 $dt = new DateTime('now', $utc);
+
+if ($limited_access) {
+    echo "Limited access, no settings";
+    exit();
+}
 
 // Check for settings to write and do it after all checks
 $writeSettings=false;
@@ -268,6 +273,10 @@ $schedule = get_schedule(CRON_GROUP_MINER_SPEED);
 
 include('head.php');
 include('menu.php');
+
+
+
+
 ?>
 <div class="container">
 <?php if(isset($mining_restart)){ ?>
@@ -309,7 +318,7 @@ include('menu.php');
                           </div>
                           <div>
                               <select name="FAN" id="fan_speed_select">
-                                  <?php for($i = 40; $i < 101; $i += 10){
+                                  <?php for($i = 20; $i < 101; $i += 10){
                                       printf('<option value="%d" %s>%d</option>', $i, ($i == $workmode['FAN']['value'])?' selected="selected"':'', $i);
                                   } ?>
                               </select>

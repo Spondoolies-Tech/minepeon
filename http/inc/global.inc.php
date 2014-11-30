@@ -9,6 +9,10 @@
 
 $model_id=trim(file_get_contents('/model_name'));
 $model_class=trim(file_get_contents('/model_id'));
+$limited_access = 0;
+if(file_exists('/etc/mg_limited_access')){
+    $limited_access=intval(trim(file_get_contents('/etc/mg_limited_access')));
+}
 #$model_class = preg_replace('/.$/', 'x', $model_id);
 
 switch($model_class){

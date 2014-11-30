@@ -6,6 +6,14 @@ include('menu.php');
 //Update watchdog monitored file (to prevent reboots)
 //file_put_contents('/var/run/dont_reboot', "php_active_fw");
 //
+
+
+if ($limited_access) {
+    echo "Limited access, no settings";
+    exit();
+}
+
+
 if (isset($_FILES["image"]["tmp_name"])) {
 	rename($_FILES['image']['tmp_name'], '/tmp/image.tar');
 	$file_upgrade = true;

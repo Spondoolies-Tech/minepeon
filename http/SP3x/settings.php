@@ -3,6 +3,13 @@
 $utc = new DateTimeZone('UTC');
 $dt = new DateTime('now', $utc);
 
+
+if ($limited_access) {
+    echo "Limited access, no settings";
+    exit();
+}
+
+
 // Check for settings to write and do it after all checks
 $writeSettings=false;
 
@@ -309,7 +316,7 @@ include('menu.php');
                           </div>
                           <div>
                               <select name="FAN" id="fan_speed_select">
-                                  <?php for($i = 40; $i < 101; $i += 10){
+                                  <?php for($i = 20; $i < 101; $i += 10){
                                       printf('<option value="%d" %s>%d</option>', $i, ($i == $minerSpeed[0])?' selected="selected"':'', $i);
                                   } ?>
                               </select>

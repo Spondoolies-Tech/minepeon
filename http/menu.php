@@ -11,12 +11,17 @@ $latest_ver = exec('cat '.LATEST_VERSION_FILE);
     <a class="navbar-brand" href="/"><?php echo $full_model_name ?></a>
     <ul class="nav navbar-nav">
       <li><a href="/pools.php">Pools</a></li>
-      <li><a href="/settings.php">Settings</a></li>
-<?php  if(version_compare($cur_ver, $latest_ver) < 0){ ?>
-    <li><a href="/firmware.php">Firmware Upgrade <p class="badge badge-info">New!</p></a></li>
-<?php }else{ ?>
-    <li><a href="/firmware.php">Firmware Upgrade</a></li>
-<?php }  ?>
+
+<?php if (!$limited_access) { ?>
+    <li><a href="/settings.php">Settings</a></li>
+
+    <?php  if(version_compare($cur_ver, $latest_ver) < 0){ ?>
+        <li><a href="/firmware.php">Firmware Upgrade <p class="badge badge-info">New!</p></a></li>
+    <?php }else{ ?>
+        <li><a href="/firmware.php">Firmware Upgrade</a></li>
+    <?php }  ?>
+<?php } ?>
+
       <li><a href="/asics.php">ASIC Stats</a></li>
 <?php if ($model_class=="SP1x") { ?>
 	<li><a href="/hw.php">DCR</a></li>
