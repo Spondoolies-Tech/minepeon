@@ -356,6 +356,28 @@ include('menu.php');
 			      </div>
 				<div><input type="text" size="4" onblur="validateSpeed(this)" name="AC_BOT" id="max_watts_bot" type="number" step="1" min="500" max="1900" value="<?php echo $minerSpeed[5]?>"></div>
 		      </div>
+
+              <div class="row">
+                  <div class="col-5">
+                      <label for="max_watts_bot" class="control-label">Restart miner if rate below </label>
+                  </div>
+                  <div><input type="text" size="4" name="MIN_RATE" id="minmin_rate" type="number" step="1" min="0" max="9999" value="<?php echo file_get_contents("/etc/mg_minimal_rate")?>"></div>
+              </div>
+              <div class="row">
+                  <div class="col-5">
+                      <label for="max_watts_bot" class="control-label">Flag 1 </label>
+                  </div>
+                  <div><input type="text" size="4" name="MIN_RATE" id="minmin_rate" type="number" step="1"  value="<?php echo file_get_contents("/etc/mg_flag_0")?>"></div>
+              </div>
+              <div class="row">
+                  <div class="col-5">
+                      <label for="max_watts_bot" class="control-label">Flag 2 </label>
+                  </div>
+                  <div><input type="text" size="4" name="MIN_RATE" id="minmin_rate" type="number" step="1" value="<?php echo file_get_contents("/etc/mg_flag_1")?>"></div>
+              </div>
+
+
+
 		      <div class="row hidden">
 			      <div class="col-5">
 				      <label for="dc2dc_current" class="control-label">DC2DC Limit (50A-180A)</label>
