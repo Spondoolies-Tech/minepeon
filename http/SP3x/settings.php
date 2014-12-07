@@ -35,7 +35,6 @@ if(isset($_POST['asic'])){
 
 $asics = array_map(function($row){return explode(" ", trim($row));}, file(MG_DISABLED_ASICS));
 
-
 // User settings
 if (isset($_POST['userTimezone'])) {
 
@@ -159,6 +158,16 @@ if (isset($_POST['FAN'])) {
   setMinerSpeed($_POST);
   $mining_restart = true;
 }
+if(isset($_POST['minimal_rate']) && is_numeric($_POST['minimal_rate'])){
+	file_put_contents('/etc/mg_minimal_rate', $_POST['minimal_rate']);
+}
+if(isset($_POST['flag_0']) && is_numeric($_POST['flag_0'])){
+	file_put_contents('/etc/mg_flag_0', $_POST['flag_0']);
+}
+if(isset($_POST['flag_1']) && is_numeric($_POST['flag_1'])){
+	file_put_contents('/etc/mg_flag_1', $_POST['flag_1']);
+}
+
 
 // Donation settings
 if (isset($_POST['donateEnable']) and isset($_POST['donateAmount'])) {
@@ -359,21 +368,21 @@ include('menu.php');
 
               <div class="row">
                   <div class="col-5">
-                      <label for="max_watts_bot" class="control-label">Restart miner if rate below </label>
+                      <label for="minimal_rate" class="control-label">Restart miner if rate below </label>
                   </div>
-                  <div><input type="text" size="4" name="MIN_RATE" id="minmin_rate" type="number" step="1" min="0" max="9999" value="<?php echo file_get_contents("/etc/mg_minimal_rate")?>"></div>
+                  <div><input type="text" size="4" name="minimal_rate" id="minimal_rate" type="number" step="1" min="0" max="9999" value="<?php echo file_get_contents("/etc/mg_minimal_rate")?>"></div>
               </div>
               <div class="row">
                   <div class="col-5">
-                      <label for="max_watts_bot" class="control-label">Flag 1 </label>
+                      <label for="flag_0" class="control-label">Flag 1 </label>
                   </div>
-                  <div><input type="text" size="4" name="MIN_RATE" id="minmin_rate" type="number" step="1"  value="<?php echo file_get_contents("/etc/mg_flag_0")?>"></div>
+                  <div><input type="text" size="4" name="flag_0" id="flag_0" type="number" step="1"  value="<?php echo file_get_contents("/etc/mg_flag_0")?>"></div>
               </div>
               <div class="row">
                   <div class="col-5">
-                      <label for="max_watts_bot" class="control-label">Flag 2 </label>
+                      <label for="flag_1" class="control-label">Flag 2 </label>
                   </div>
-                  <div><input type="text" size="4" name="MIN_RATE" id="minmin_rate" type="number" step="1" value="<?php echo file_get_contents("/etc/mg_flag_1")?>"></div>
+                  <div><input type="text" size="4" name="flag_1" id="flag_1" type="number" step="1" value="<?php echo file_get_contents("/etc/mg_flag_1")?>"></div>
               </div>
 
 
