@@ -399,13 +399,13 @@ include('menu.php');
               </div>
               <div class="row">
                   <div class="col-5">
-                      <label for="flag_0" class="control-label">Flag 1 </label>
+                      <label for="flag_0" class="control-label">FPGA serial speed (0=10MB, 1=5MB, 2=2.5MB) </label>
                   </div>
                   <div><input type="text" size="4" name="flag_0" id="flag_0" type="number" step="1"  value="<?php echo file_get_contents("/etc/mg_flag_0")?>"></div>
               </div>
               <div class="row">
                   <div class="col-5">
-                      <label for="flag_1" class="control-label">Flag 2 </label>
+                      <label for="flag_1" class="control-label">Flag 1 </label>
                   </div>
                   <div><input type="text" size="4" name="flag_1" id="flag_1" type="number" step="1" value="<?php echo file_get_contents("/etc/mg_flag_1")?>"></div>
               </div>
