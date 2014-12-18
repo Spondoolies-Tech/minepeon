@@ -9,6 +9,15 @@ $data = json_decode(file_get_contents("/etc/cgminer.conf", true), true);
 
 include('head.php');
 include('menu.php');
+
+
+
+if ($limited_access & 1) {
+    echo "Limited access, no settings ".$limited_access;
+    exit();
+}
+
+
 ?>
 
 <style>

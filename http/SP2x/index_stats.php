@@ -24,6 +24,8 @@
         <dd><?php echo secondsToWords(round($uptime[0])); ?></dd>
         <dt>CGMiner Uptime</dt>
         <dd><?php echo secondsToWords($summary['SUMMARY'][0]['Elapsed']); ?></dd>
+        <dt>HTTP access limit</dt>
+        <dd><?php echo $limited_access; ?></dd>
       </dl>
     </div>
     <div class="col-lg-4">

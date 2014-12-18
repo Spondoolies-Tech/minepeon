@@ -25,6 +25,7 @@ $json['miner'] = array();
     $hostname = trim(exec("hostname"));
     $json['miner']['board_ver'] = str_replace("miner-","",$hostname);
 	$json['miner']['fw_ver'] = trim(file_get_contents(CURRENT_VERSION_FILE));
+    $json['miner']['mg_custom_mode'] = trim(file_get_contents(MINER_WORKMODE_FILE));
 	$json['miner']['mac'] = trim(exec("/usr/local/bin/getmac.sh"));
     $json['miner']['uptime'] = round($uptime[0]);
     $json['miner']['free_mem'] = exec('awk \'/MemFree/ {printf( "%.2d\n", $2 / 1024 )}\' /proc/meminfo');

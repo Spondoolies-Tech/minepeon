@@ -8,8 +8,8 @@ include('menu.php');
 //
 
 
-if ($limited_access) {
-    echo "Limited access, no settings";
+if ($limited_access & 2) {
+    echo "Limited access, no settings ".$limited_access;
     exit();
 }
 

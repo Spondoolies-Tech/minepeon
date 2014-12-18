@@ -3,8 +3,8 @@ require_once('inc/global.inc.php');
 $utc = new DateTimeZone('UTC');
 $dt = new DateTime('now', $utc);
 
-if ($limited_access) {
-    echo "Limited access, no settings";
+if ($limited_access & 2) {
+    echo "Limited access, no settings ".$limited_access;
     exit();
 }
 
@@ -405,7 +405,7 @@ include('menu.php');
               </div>
               <div class="row">
                   <div class="col-5">
-                      <label for="flag_1" class="control-label">Flag 1 </label>
+                      <label for="flag_1" class="control-label">Set to 666 and reboot for extranonce.subscribe</label>
                   </div>
                   <div><input type="text" size="4" name="flag_1" id="flag_1" type="number" step="1" value="<?php echo file_get_contents("/etc/mg_flag_1")?>"></div>
               </div>
