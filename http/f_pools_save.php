@@ -20,12 +20,15 @@ $e = 0;
 $hostname = trim(exec("hostname"));
 $hostname = str_replace("miner-","",$hostname);
 $ip =  $_SERVER['SERVER_ADDR'];
+
+
 for($i=0;$i<$poolLimit || $e < 3;$i++) {
 	if(!empty($_REQUEST['URL'.$i]) and !empty($_REQUEST['USER'.$i])){
 		// Set pool data
 		// Avoid empty pool passwords because it might be problematic if used in a command
-        $user = str_replace("%h",$hostname,trim($_REQUEST['USER'.$i]));
-        $user = str_replace("%i",$ip,$user);
+//        $user = str_replace("%h",$hostname,trim($_REQUEST['USER'.$i]));
+//        $user = str_replace("%i",$ip,$user);
+//        $user = str_replace("%v",trim(file_get_contents(CURRENT_VERSION_FILE)),$user);
 		$dataPools[] = array(
 			"url" => trim($_REQUEST['URL'.$i]),
 			"user" => $user,
@@ -45,13 +48,12 @@ for($i=0;$i<$poolLimit || $e < 3;$i++) {
 }
 
 $written = 0;
-
 // Recode into JSON and save
 // Never save if no pools given
 if (!empty($dataPools)) {
 	// Read current config, prefer miner.user.conf
 	//if(file_exists("/etc/cgminer.conf")){
-    $data = json_decode(file_get_contents("/etc/cgminer.conf", true), true);
+    $data = json_decode(file_get_contents("/etc/cgminer.conf.template", true), true);
 /*	}
 	else{
 		$data = json_decode(file_get_contents("/opt/minepeon/etc/miner.conf", true), true);
@@ -73,7 +75,7 @@ if (!empty($dataPools)) {
 	$data['pools']=$dataPools;
 
 	// Write back to file
-	$written = file_put_contents("/etc/cgminer.conf", json_encode($data));
+	$written = file_put_contents("/etc/cgminer.conf.template", json_encode($data));
 }
 
 echo json_encode(array('success' => true, 'written' => $written, 'pools' => $dataPools));

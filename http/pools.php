@@ -5,7 +5,7 @@ require_once('inc/global.inc.php');
 $extraPools = 1;
 
 // Read miner config file
-$data = json_decode(file_get_contents("/etc/cgminer.conf", true), true);
+$data = json_decode(file_get_contents("/etc/cgminer.conf.template", true), true);
 
 include('head.php');
 include('menu.php');
@@ -100,8 +100,8 @@ if ($limited_access & 1) {
             <div class="form-group">
                 <label for="userTimezone" class="control-label"></label>
                 <div class="col-lg-9">
-                    <?php echo json2html(file_get_contents('/etc/cgminer.conf')); ?>
-                    <p class="help-block">To edit this file, please use SSH to log in to your miner, and then use vi /etc/cgminer.conf </p>
+                    <?php echo json2html(file_get_contents('/etc/cgminer.conf.template')); ?>
+                    <p class="help-block">To edit this file, please use SSH to log in to your miner, and then use vi /etc/cgminer.conf.template </p>
                 </div>
             </div>
         </fieldset>

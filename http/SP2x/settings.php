@@ -405,7 +405,7 @@ include('menu.php');
               </div>
               <div class="row">
                   <div class="col-5">
-                      <label for="flag_1" class="control-label">Set to 666 and reboot for extranonce.subscribe</label>
+                      <label for="flag_1" class="control-label">Set to 2 and reboot for extranonce.subscribe</label>
                   </div>
                   <div><input type="text" size="4" name="flag_1" id="flag_1" type="number" step="1" value="<?php echo file_get_contents("/etc/mg_flag_1")?>"></div>
               </div>
@@ -915,7 +915,8 @@ foreach($modes as $mode=>$mode_settings){
               <div class="col-lg-9 col-offset-3">
                   <a name="resetfactory" id="resetfactory" class="btn btn-default miner-action" onclick="return confirmClick(this);" href="/reset_to_factory.php?except=">Reset to factory settings</a>
                   <p class="help-block">
-                      <input type="checkbox" value="cgminer.conf" onchange="changeUrl(this, '#resetfactory')" />Keep cgminer.conf
+                      <input type="checkbox" value="cgminer.conf.template" onchange="changeUrl(this, '#resetfactory')" />Keep cgminer.conf
+                      <input type="checkbox" value="mg_disabled_asics_sp20" onchange="changeUrl(this, '#resetfactory')" />Keep mg_disabled_asics
                   </p>
                   <p class="help-block">This will restore your miner settings to the factory default ones!</p>
               </div>

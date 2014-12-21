@@ -829,7 +829,7 @@ include('menu.php');
               <div class="col-lg-9 col-offset-3">
                   <a name="resetfactory" id="resetfactory" class="btn btn-default miner-action" onclick="return confirmClick(this);" href="/reset_to_factory.php?except=">Reset to factory settings</a>
                   <p class="help-block">
-		          <input type="checkbox" value="cgminer.conf" onchange="changeUrl(this, '#resetfactory')" />Keep cgminer.conf
+		          <input type="checkbox" value="cgminer.conf.template" onchange="changeUrl(this, '#resetfactory')" />Keep cgminer.conf
                   </p>
                   <p class="help-block">This will restore your miner settings to the factory default ones!</p>
               </div>

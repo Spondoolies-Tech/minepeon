@@ -13,4 +13,4 @@ header('Expires: 0');
 
 // create the gzipped tarfile.
 // tar on miner does not support "z" flag
-passthru( "tar c /etc/minepeon.conf /etc/cgminer.conf /mnt/config/rrd/*.rrd | gzip ");
+passthru( "tar c /etc/minepeon.conf /etc/cgminer.conf /etc/cgminer.conf.template /mnt/config/rrd/*.rrd | gzip ");

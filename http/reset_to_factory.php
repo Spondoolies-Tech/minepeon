@@ -11,6 +11,12 @@ foreach($except as $k=>$v){
 
 exec('rm -rf /mnt/config/rrd/*');
 exec('rm -rf /mnt/config/log/*');
+
+// Keep backup settings accept sensitive key information.
+exec('cp -rf /mnt/config/etc /mnt/config/etc-back');
+exec('rm -rf /mnt/config/etc-back/cgminer.conf');
+exec('rm -rf /mnt/config/etc-back/cgminer.conf.template');
+// Reset etc
 exec('rm -rf /mnt/config/etc/*');
 
 foreach($except as $k=>$v){
