@@ -100,7 +100,7 @@ if ($limited_access & 1) {
             <div class="form-group">
                 <label for="userTimezone" class="control-label"></label>
                 <div class="col-lg-9">
-                    <?php echo json2html(file_get_contents('/etc/cgminer.conf.template')); ?>
+                    <?php echo json2html(file_get_contents('/etc/cgminer.conf')); ?>
                     <p class="help-block">To edit this file, please use SSH to log in to your miner, and then use vi /etc/cgminer.conf.template </p>
                 </div>
             </div>
