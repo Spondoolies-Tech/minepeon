@@ -22,11 +22,13 @@ $hostname = str_replace("miner-","",$hostname);
 $ip =  $_SERVER['SERVER_ADDR'];
 
 
+
 for($i=0;$i<$poolLimit || $e < 3;$i++) {
 	if(!empty($_REQUEST['URL'.$i]) and !empty($_REQUEST['USER'.$i])){
 		// Set pool data
+        $user = trim($_REQUEST['USER'.$i]);
 		// Avoid empty pool passwords because it might be problematic if used in a command
-//        $user = str_replace("%h",$hostname,trim($_REQUEST['USER'.$i]));
+//        $user = str_replace("%h",$hostname,$user);
 //        $user = str_replace("%i",$ip,$user);
 //        $user = str_replace("%v",trim(file_get_contents(CURRENT_VERSION_FILE)),$user);
 		$dataPools[] = array(
@@ -75,6 +77,7 @@ if (!empty($dataPools)) {
 
 	// Write back to file
 	$written = file_put_contents("/etc/cgminer.conf.template", json_encode($data));
+    exec('/usr/local/bin/cgminer.conf.prepare.php');
 }
 
 echo json_encode(array('success' => true, 'written' => $written, 'pools' => $dataPools));

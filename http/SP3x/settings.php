@@ -380,7 +380,7 @@ include('menu.php');
               </div>
               <div class="row">
                   <div class="col-5">
-                      <label for="flag_1" class="control-label">Set to 2 (turn on bit 1) and reboot for extranonce.subscribe </label>
+                      <label for="flag_1" class="control-label">Set to 2 and reboot for extranonce.subscribe </label>
                   </div>
                   <div><input type="text" size="4" name="flag_1" id="flag_1" type="number" step="1" value="<?php echo file_get_contents("/etc/mg_flag_1")?>"></div>
               </div>
