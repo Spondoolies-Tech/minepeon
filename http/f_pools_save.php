@@ -52,12 +52,11 @@ $written = 0;
 // Never save if no pools given
 if (!empty($dataPools)) {
 	// Read current config, prefer miner.user.conf
-	//if(file_exists("/etc/cgminer.conf")){
-    $data = json_decode(file_get_contents("/etc/cgminer.conf.template", true), true);
-/*	}
-	else{
-		$data = json_decode(file_get_contents("/opt/minepeon/etc/miner.conf", true), true);
-	}*/
+	if(file_exists("/etc/cgminer.conf.template")){
+        $data = json_decode(file_get_contents("/etc/cgminer.conf.template", true), true);
+	} else {
+		$data = json_decode(file_get_contents("/etc/cgminer.conf", true), true);
+	}
     // Unset currect
     unset($data['pools']);
 
