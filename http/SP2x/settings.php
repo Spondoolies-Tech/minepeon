@@ -320,7 +320,7 @@ include('menu.php');
 
               <div class="custom col-lg-9 col-offset-3 view-alternative" style="display:none">
                   <div>
-                      <small>Set your fans to 80 unless you are in very cold place or in economy mode</small>
+                      <small>Set your fans</small>
                       <div class="row">
                           <div class="col-5">
                               <label for="">Fan Speed</label>
@@ -359,14 +359,14 @@ include('menu.php');
 				          <div><input size="5"  type="number" onblur="validateSpeed(this)" id="minimum_voltage_3" name="VS3" value="<?php echo $workmode['VS3']['value']/1000?>" min=".580" max=".81" step="0.001" /></div>
                       </div>
 
-                      <small>Set your Maximum voltage to 0.790 for maximum mining or less for economy mode</small>
+                      <small>Set your Maximum voltage limit to 0.790 for unlimited  or less for under-voltage</small>
                       <div class="row">
                           <div class="col-5">
-                              <label for="">Maximum Voltage (0.580-0.790)</label>
+                              <label for="">Voltage Limit (0.580-0.790)</label>
                           </div>
 				<div><input size="5" type="number" onblur="validateSpeed(this)" id="maximum_voltage" name="VMAX" value="<?php echo $workmode['VMAX']['value']/1000?>" min=".580" max=".79" step="0.001" /></div>
                       </div>
-              <small>Set PSU power to 120 and let the system learn the actual PSU limit.</small>
+              <small>Set PSU power.</small>
 		      <div class="row">
 			      <div class="col-5">
 				      <label for="max_watts_top" class="control-label">Max PSU Power Unit 1 (70W - 288W) </label>

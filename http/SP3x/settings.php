@@ -334,25 +334,25 @@ include('menu.php');
                       <small>Set your starting voltage no more then 10 mv under your stable working voltage (from ASIC stats page)</small>
                       <div class="row NOThidden">
                           <div class="col-5">
-                              <label for="">Start Volts Top (0.58-0.70)</label>
+                              <label for="">Start ASIC Voltage Top (0.58-0.70)</label>
                           </div>
 				          <div><input size="5"  type="number" onblur="validateSpeed(this)" id="minimum_voltage_top" name="VST" value="<?php echo $minerSpeed[1]/1000?>" min=".580" max=".71" step="0.001" /></div>
                       </div>
 
                       <div class="row NOThidden">
                           <div class="col-5">
-                              <label for="">Start Volts Bottom(0.58-0.70)</label>
+                              <label for="">Start ASIC Voltage Bottom(0.58-0.70)</label>
                           </div>
                           <div><input size="5" type="number" onblur="validateSpeed(this)" id="minimum_voltage_bot" name="VSB" value="<?php echo $minerSpeed[2]/1000?>" min=".580" max=".71" step="0.001" /></div>
                       </div>
-                      <small>Set your Maximum voltage to 0.790 for maximum mining or less for economy mode</small>
+                      <small>Set your Maximum voltage limit to 0.790 for unlimited  or less for under-voltage</small>
                       <div class="row">
                           <div class="col-5">
-                              <label for="">Maximum Voltage (0.590-0.790)</label>
+                              <label for="">ASIC Voltage Limit (0.590-0.790)</label>
                           </div>
 				<div><input size="5" type="number" onblur="validateSpeed(this)" id="maximum_voltage" name="VMAX" value="<?php echo $minerSpeed[3]/1000?>" min=".580" max=".79" step="0.001" /></div>
                       </div>
-              <small>Set PSU power to 1360 and let the system learn the actual PSU limit.</small>
+              <small>Set PSU power (1290W recommended for SP30/SP31, 1590W for SP35 ).</small>
 		      <div class="row">
 			      <div class="col-5">
 				      <label for="max_watts_top" class="control-label">Max PSU Power Top (500W - 1900W) </label>
