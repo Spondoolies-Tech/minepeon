@@ -58,7 +58,7 @@ if ($limited_access & 1) {
 					<input type="url" class="form-control" value="<?php echo $data['pools'][$i]['url']; ?>" name="URL<?php echo $i; ?>" id="URL<?php echo $i; ?>">
 				</div>
 				<div class="col-lg-5">
-					<label for="USER<?php echo $i; ?>">Username (%%i for ip, %%h for hostname, %%v for FW ver, %%m for miner type: _%%m...%%v...%%i)</label>
+					<label for="USER<?php echo $i; ?>">Username (%i/%j for ip/ip-fixed, %h for hostname, %v/%w for FW ver/ver-fixed, %m for miner type: _%m_%w_%i)</label>
 					<input type="text" class="form-control" value="<?php echo $data['pools'][$i]['user']; ?>" name="USER<?php echo $i; ?>" id="USER<?php echo $i; ?>">
 				</div>
 				<div class="col-lg-2">
@@ -82,7 +82,7 @@ if ($limited_access & 1) {
 					<input type="url" class="form-control" name="URL<?php echo $i; ?>" id="URL<?php echo $i; ?>">
 				</div>
 				<div class="col-lg-5">
-					<label for="USER<?php echo $i; ?>">Username (%%i for ip, %%h for hostname, %%v for FW ver, %%m for miner type: _%%m...%%v...%%i)</label>
+					<label for="USER<?php echo $i; ?>">Username (%i/%j for ip/ip-fixed, %h for hostname, %v/%w for FW ver/ver-fixed, %m for miner type: _%m_%w_%i)</label>
 					<input type="text" class="form-control" name="USER<?php echo $i; ?>" id="USER<?php echo $i; ?>">
 				</div>
 				<div class="col-lg-2">

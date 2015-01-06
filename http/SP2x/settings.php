@@ -405,7 +405,7 @@ include('menu.php');
               </div>
               <div class="row">
                   <div class="col-5">
-                      <label for="flag_1" class="control-label">Set to 2 and reboot for extranonce.subscribe</label>
+                      <label for="flag_1" class="control-label">ExtraFlag: add numbers: 1:no-scaling 2:extranonce.subscribe 4:no-debug 8:alt-bistword</label>
                   </div>
                   <div><input type="text" size="4" name="flag_1" id="flag_1" type="number" step="1" value="<?php echo file_get_contents("/etc/mg_flag_1")?>"></div>
               </div>
@@ -414,7 +414,7 @@ include('menu.php');
 		      <div class="row hidden">
 			      <div class="col-5">
 				      <label for="dc2dc_current" class="control-label">DC2DC Limit (50A-180A)</label>
-			      </div>
+			      </div> 8:
 				<div><input type="text" size="4" onblur="validateSpeed(this)" name="DC_AMP" id="dc2dc_current" type="number" step="1" min="50" max="180" value="<?php echo $workmode['DC_AMP']['value']?>"></div>
 		      </div>
 
