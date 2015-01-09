@@ -142,7 +142,7 @@ echo "<center class='alert alert-info'><h1>".$error."</h1></center>";
         <input type="hidden" name="ip" value="<?php echo $_SERVER['SERVER_ADDR']; ?>" class="btn btn-default">
     </form>
     <!--<a class="btn btn-default" href='/reboot.php'>Reboot</a>-->
-    <!-- a class="btn btn-default" href='/halt.php'>ShutDown</a -->
+    <a class="btn btn-default" href='/halt.php'>ShutDown</a>
 	<?php include('widgets/led_blinker.php'); ?>
     <form class="reset-graphs-btn" method="POST" action="/reset_graphs.php">
         <input type="submit" name="reset_graphs" value="Reset Graphs" class="btn btn-default">
