@@ -26,6 +26,7 @@ $latest_ver = exec('cat '.LATEST_VERSION_FILE);
 <?php } ?>
 
       <li><a href="/asics.php">ASIC Stats</a></li>
+      <!--li><a href="/carbon.php">Calc</a></li-->
 <?php if ($model_class=="SP1x") { ?>
 	<li><a href="/hw.php">DCR</a></li>
 <?php } else { ?>

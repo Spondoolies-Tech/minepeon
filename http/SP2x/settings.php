@@ -327,9 +327,13 @@ include('menu.php');
                           </div>
                           <div>
                               <select name="FAN" id="fan_speed_select">
-                                  <?php for($i = 20; $i < 101; $i += 10){
+
+                                  <?php
+                                  printf('<option value="0" %s>Auto</option>', ($i == $workmode['FAN']['value'])?' selected="selected"':'');
+                                  for($i = 10; $i < 101; $i += 10){
                                       printf('<option value="%d" %s>%d</option>', $i, ($i == $workmode['FAN']['value'])?' selected="selected"':'', $i);
                                   } ?>
+
                               </select>
                           </div>
                       </div>
