@@ -205,6 +205,7 @@ function statsTable($devs) {
 
   $devices = 0;
   $MHSav = 0;
+  $MHS5m = 0;
   $Accepted = 0;
   $Rejected = 0;
   $HardwareErrors = 0;
