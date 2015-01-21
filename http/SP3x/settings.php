@@ -238,8 +238,12 @@ if (isset($_POST['alertSmtpAuthPort'])) {
 
 }
 
-if(isset($_POST['speedSched'])){
+/*if(isset($_POST['speedSched'])){
 	save_schedule(CRON_GROUP_MINER_SPEED, $_POST);
+}*/
+
+if(isset($_POST['voltSched'])){
+	save_schedule(CRON_GROUP_START_VOLTAGE, $_POST);
 }
 
 // Write settings
@@ -280,7 +284,8 @@ $minerSpeed = getMinerSpeed();
 $voltage = exec('cat /tmp/voltage');
 $overvolt110 = file_exists("/etc/mg_ignore_110_fcc");
 
-$schedule = get_schedule(CRON_GROUP_MINER_SPEED);
+//$schedule = get_schedule(CRON_GROUP_MINER_SPEED);
+$schedule = get_schedule(CRON_GROUP_START_VOLTAGE);
 
 include('head.php');
 include('menu.php');
@@ -472,19 +477,19 @@ foreach($modes as $mode=>$mode_settings){
 		}
 	</script>
   </form>
-  <!--form name="speedSched" action="" method="post" class="form-horizontal">
-	<input type="hidden" name="speedSched" />
+  <form name="speedSched" action="" method="post" class="form-horizontal">
+	<input type="hidden" name="voltSched" />
       <fieldset>
 	<legend>Miner Speed Scheduling (experimental)</legend>
           <div class="form-group">
               <div class="col-lg-9 col-offset-3">
                   <div class="">
 	
-< ?php
+<?php
 	echo '<div class="jobs-container-all" '.(array_key_exists('*', $schedule)?'':'style="display:none;"').'>';
 	echo '<h4>Every Day</h4><div class="day-all">';
 	if(array_key_exists('*', $schedule)) foreach($schedule['*']as $time=>$cmd){
-	echo '<div class="job">'.schedule_form_element(CRON_GROUP_MINER_SPEED, 'all', $time, $cmd).'<span class="delete" onclick="removeCron(this)">X</span></div>';
+	echo '<div class="job">'.schedule_form_element(CRON_GROUP_START_VOLTAGE, 'all', $time, $cmd).'<span class="delete" onclick="removeCron(this)">X</span></div>';
 	}
 	echo '</div><hr/>';
 	echo '</div>';
@@ -494,15 +499,17 @@ foreach($modes as $mode=>$mode_settings){
 		echo '<div class="jobs-container-'.$day_index.'" '.(array_key_exists($day_index, $schedule)?'':'style="display:none;"').'>';
 		echo '<h4>'.$day.'</h4><div class="day-'.$day_index.'">';
 	if(array_key_exists($day_index, $schedule) ) foreach($schedule[$day_index] as $time=>$cmd){
-		echo '<div class="job">'.schedule_form_element(CRON_GROUP_MINER_SPEED, $day_index, $time, $cmd).'<span class="delete" onclick="removeCron(this)">X</span></div>';
+		echo '<div class="job">'.schedule_form_element(CRON_GROUP_START_VOLTAGE, $day_index, $time, $cmd).'<span class="delete" onclick="removeCron(this)">X</span></div>';
 	}
 		echo '</div><hr/></div>';
 }?> 
 		<div class="jobs-container-new">
 		<h4>New</h4>
 		<div class="job">
-		<span class="days">On <select multiple="multiple" class="new_day multiple"><option value="all" selected="selected">All Days</option>< ?php foreach($days as $k=>$v) echo '<option value="'.$k.'">'.$v.'</option>'; ?></select></span>
-		< ?php echo schedule_form_element(CRON_GROUP_MINER_SPEED); ?>
+		<span class="days">On <select multiple="multiple" class="new_day multiple"><option value="all" selected="selected">All Days</option><?php foreach($days as $k=>$v) echo '<option value="'.$k.'">'.$v.'</option>'; ?></select></span>
+		<?php //echo schedule_form_element(CRON_GROUP_MINER_SPEED); ?>
+
+		<?php echo schedule_form_element(CRON_GROUP_START_VOLTAGE); ?>
 			<span class="add" onclick="addCron(this)">+</span></div>
 		  </div>
                   <p><br/><button type="submit" class="btn btn-default" onclick="return saveCrons(this)">Save</button></p>
@@ -1027,6 +1034,10 @@ function checkIP(e){
 	function addCron(e){
 		if($(e).hasClass('delete')) return removeCron(e);
 		var p = $(e).parents('.job');
+		var cmd = p.find('.cmd');
+		if(parseFloat(cmd.attr("min")) > cmd.val() || parseFloat(cmd.attr("max")) < cmd.val()){
+			return false;
+		}
 		var days = $('select.multiple', p).val();
 		if(days[0] == "all") days = ["all"]; // remove individual selected days if "all days" was selected
 		for(d in days){
