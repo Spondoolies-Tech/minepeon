@@ -42,6 +42,9 @@ switch($model_class){
 			define('WORKMODE_TURBO', '90 .680 .680 .790 '.$DEFAULT_MAX_WATTS.' '.$DEFAULT_DC2DC_CURRENT);
 			define('WORKMODE_NORMAL', '70 .680 .680 .790 '.$DEFAULT_MAX_WATTS.' '.$DEFAULT_DC2DC_CURRENT);
 			define('WORKMODE_QUIET', '50 .680 .680 .790 '.$DEFAULT_MAX_WATTS.' '.$DEFAULT_DC2DC_CURRENT);
+			define('NUMBER_OF_BOARDS', 2);
+			define('MINIMUM_VOLTAGE', 560);
+			define('MAXIMUM_VOLTAGE', 710);
 		break;
 	case "SP3x":
 			define('WORKMODE_FORMAT', "FAN VST VSB VMAX AC_TOP AC_BOT DC_AMP");
@@ -50,6 +53,9 @@ switch($model_class){
 			define('WORKMODE_TURBO', '90 .670 .670 .730 1350 1350 150');
 			define('WORKMODE_NORMAL', '80 .670 .670 .730 1350 1350 150');
 			define('WORKMODE_QUIET', '60 .660 .660 .730 1100 1100 150');
+			define('NUMBER_OF_BOARDS', 2);
+			define('MINIMUM_VOLTAGE', 580);
+			define('MAXIMUM_VOLTAGE', 700);
 		break;
 	case "SP2x":
 			define('WORKMODE_FORMAT', "FAN VS0 VS1 VS2 VS3 VMAX AC0 AC1 AC2 AC3 DC_AMP");
@@ -58,6 +64,9 @@ switch($model_class){
 			define('WORKMODE_TURBO', '90 .670 .670 .670 .670 .730 1350 1350 1350 1350 150');
 			define('WORKMODE_NORMAL', '80 .670 .670 .670 .670 .730 1350 1350 1350 1350 150');
 			define('WORKMODE_QUIET', '60 .660 .660 .660 .660 .730 1100 1100 1100 1100 150');
+			define('NUMBER_OF_BOARDS', 4);
+			define('MINIMUM_VOLTAGE', 580);
+			define('MAXIMUM_VOLTAGE', 810);
 		break;
 	default:
 		throw new Exception("Miner type not set or not known: '".$model_id."'.");
