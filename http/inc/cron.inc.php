@@ -9,6 +9,8 @@ const CRON_CMD = "crontab";
 define("CRON_CMD_LIST", CRON_CMD." -l");
 const CRON_GROUP_MINER_SPEED = 'miner speed';
 define("CRON_MINER_SPEED_SCHEDULE", "echo %s > ".MINER_WORKMODE_FILE. " && ".CRON_MINER_RESTART_CMD);
+const CRON_GROUP_START_VOLTAGE = 'start voltage';
+define("CRON_MINER_VOLTAGE_SCHEDULE", "sed -i 's/\(\s\([a-zA-Z:.]*\)[0-9]\+\)\{".NUMBER_OF_BOARDS."\}/%s/' ".MINER_WORKMODE_FILE. " && ".CRON_MINER_RESTART_CMD);
 const CRONLINE = '%s %s * * %s %s';
 
 function get_schedule($group){
@@ -71,7 +73,7 @@ function write_schedule($group, $lines){
 
 function save_schedule($group, $data){
 	$sched = input2sched($data);
-	$cronlines = sched2cron($sched);
+	$cronlines = sched2cron($group, $sched);
 	write_schedule($group, $cronlines);
 }
 
@@ -104,13 +106,35 @@ function cron2sched($schedule){
 	return $ret;
 }
 
-function sched2cron($sched){
+function sched2cron($group, $sched){
 	$crons = array();
+	$cron_cmd = '';
+	switch($group){
+		case CRON_GROUP_MINER_SPEED:
+			$cron_cmd = CRON_MINER_SPEED_SCHEDULE;
+			break;
+		case CRON_GROUP_START_VOLTAGE:
+			$cron_cmd = CRON_MINER_VOLTAGE_SCHEDULE;
+			preg_match('/( \S+){'.NUMBER_OF_BOARDS.'}/', WORKMODE_FORMAT_LINE, $cron_change);
+			break;
+		default:
+			throw new Error("Cron group not defined");
+	}
 	foreach($sched as $cmd => $day){
 		foreach($day as $d => $hour){
 			foreach($hour as $h => $minutes){
 				if(strval($d) == 'all') $d = '*';
-				$crons[] = sprintf(CRONLINE, $minutes, $h, $d, sprintf(CRON_MINER_SPEED_SCHEDULE, $cmd));
+				switch($group){
+					case CRON_GROUP_MINER_SPEED:
+						$crons[] = sprintf(CRONLINE, $minutes, $h, $d, sprintf($cron_cmd, $cmd));
+						break;
+					case CRON_GROUP_START_VOLTAGE:
+						$cmd = str_replace('%d', $cmd*1000, $cron_change[0]); //str_repeat(' '.$cmd, NUMBER_OF_BOARDS);
+						$crons[] = sprintf(CRONLINE, $minutes, $h, $d, sprintf($cron_cmd, $cmd));
+						break;
+					default:
+						throw new Error("Cron group not defined");
+				}
 			}
 		}
 	}
@@ -160,8 +184,13 @@ function schedule_form_element($group, $day="", $time=":", $cmd=""){
 	$time = explode(':', $time);
 	switch($group){
 		case CRON_GROUP_MINER_SPEED:
-		sscanf($cmd, CRON_MINER_SPEED_SCHEDULE, $cmd);
-		$html = 'At '.hour_select($time[0]).':'.minute_select($time[1]).' switch to: '.command_select($group, $cmd).'<input type="hidden" name="day[]" value="'.$day.'" class="day_field" />';
+			sscanf($cmd, CRON_MINER_SPEED_SCHEDULE, $cmd);
+			$html = 'At '.hour_select($time[0]).':'.minute_select($time[1]).' switch to: '.command_select($group, $cmd).'<input type="hidden" name="day[]" value="'.$day.'" class="day_field" />';
+			break;
+		case CRON_GROUP_START_VOLTAGE:
+			sscanf($cmd, CRON_MINER_VOLTAGE_SCHEDULE, $cmd);
+			$cmd = preg_replace('/\D+/', '', $cmd)/1000; // extract numeric part, and add decimal
+			$html = 'At '.hour_select($time[0]).':'.minute_select($time[1]).' switch to: <input type="text" size="2" value="'.$cmd.'" name="cmd[]" class="cmd" min="'.(MINIMUM_VOLTAGE/1000).'" max="'.(MAXIMUM_VOLTAGE/1000).'"/> volts ('.(MINIMUM_VOLTAGE/1000).' - '.(MAXIMUM_VOLTAGE/1000).').<input type="hidden" name="day[]" value="'.$day.'" class="day_field" />';
 		break;
 	default:
 		throw new Exception('Unknown cron group referenced.');
