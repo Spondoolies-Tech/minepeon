@@ -166,6 +166,9 @@ if(isset($_POST['flag_0']) && is_numeric($_POST['flag_0'])){
 if(isset($_POST['flag_1']) && is_numeric($_POST['flag_1'])){
 	file_put_contents('/etc/mg_flag_1', $_POST['flag_1']);
 }
+if(isset($_POST['hostname'])){
+    file_put_contents('/etc/mg_hostname', $_POST['hostname']);
+}
 
 // Donation settings
 if (isset($_POST['donateEnable']) and isset($_POST['donateAmount'])) {
@@ -419,6 +422,12 @@ include('menu.php');
                   </div>
                   <div><input type="text" size="4" name="flag_1" id="flag_1" type="number" step="1" value="<?php echo file_get_contents("/etc/mg_flag_1")?>"></div>
               </div>
+              <div class="row">
+                  <div class="col-5">
+                      <label for="flag_1" class="control-label">Hostname, empty for default (needs reboot)</label>
+                  </div>
+                  <div><input type="text" size="4" name="hostname" id="hostname" value="<?php echo file_get_contents("/etc/mg_hostname")?>"></div>
+              </div>
 
 
 		      <div class="row hidden">
@@ -434,7 +443,7 @@ include('menu.php');
                   <button type="submit" class="btn btn-default">Save</button>
 		</div>
 		<div>
-                  <button class="btn btn-default" onclick="return toggleCustomSpeedSettings()"><span id="settings_view_name">Advanced</span> Voltage Settings</button>
+                  <button class="btn btn-default" onclick="return toggleCustomSpeedSettings()"><span id="settings_view_name">Advanced</span> Settings</button>
 		</div>
           </div>
       </fieldset>
