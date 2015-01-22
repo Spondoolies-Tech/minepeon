@@ -189,7 +189,7 @@ function schedule_form_element($group, $day="", $time=":", $cmd=""){
 		case CRON_GROUP_START_VOLTAGE:
 			sscanf($cmd, CRON_MINER_VOLTAGE_SCHEDULE, $cmd);
 			$cmd = preg_replace('/\D+/', '', $cmd)/1000; // extract numeric part, and add decimal
-			$html = 'At '.hour_select($time[0]).':'.minute_select($time[1]).' switch to: <input type="text" size="2" value="'.$cmd.'" name="cmd[]" class="cmd" min="'.(MINIMUM_VOLTAGE/1000).'" max="'.(MAXIMUM_VOLTAGE/1000).'"/> volts ('.(MINIMUM_VOLTAGE/1000).' - '.(MAXIMUM_VOLTAGE/1000).'. 0 to stop mining.).<input type="hidden" name="day[]" value="'.$day.'" class="day_field" />';
+			$html = 'At '.hour_select($time[0]).':'.minute_select($time[1]).' switch to: <input type="text" size="2" value="'.$cmd.'" name="cmd[]" class="cmd" min="'.(MINIMUM_VOLTAGE/1000).'" max="'.(MAXIMUM_VOLTAGE/1000).'"/> volts ('.(MINIMUM_VOLTAGE/1000).' - '.(MAXIMUM_VOLTAGE/1000).' (0 to stop mining).).<input type="hidden" name="day[]" value="'.$day.'" class="day_field" />';
 		break;
 	default:
 		throw new Exception('Unknown cron group referenced.');
