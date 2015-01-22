@@ -9,6 +9,7 @@ const FIRMWARE_AVAILABLE_VERSIONS = "http://firmware.spondoolies-tech.com/releas
 const FIRMWARE_DOWNLOAD_VERSION = "http://firmware.spondoolies-tech.com/release/download";
 
 const MINER_CONTROL_CMD = "/usr/local/bin/spond-manager ";
+const MINER_CHANGE_VOLTAGE_CMD = "/usr/local/bin/change_voltage ";
 
 const UI_USER_NAME = "admin";
 
