@@ -11,7 +11,7 @@ const CRON_GROUP_MINER_SPEED = 'miner speed';
 define("CRON_MINER_SPEED_SCHEDULE", "echo %s > ".MINER_WORKMODE_FILE. " && ".CRON_MINER_RESTART_CMD);
 const CRON_GROUP_START_VOLTAGE = 'start voltage';
 //define("CRON_MINER_VOLTAGE_SCHEDULE", "sed -i 's/\(\s\S*\)\{".NUMBER_OF_BOARDS."\}/%s/' ".MINER_WORKMODE_FILE. " && ".CRON_MINER_RESTART_CMD);
-define("CRON_MINER_VOLTAGE_SCHEDULE", MINER_CHANGE_VOLTAGE_CMD." %d"); 
+define("CRON_MINER_VOLTAGE_SCHEDULE", MINER_CHANGE_VOLTAGE_CMD." %d");
 const CRONLINE = '%s %s * * %s %s';
 
 function get_schedule($group){
