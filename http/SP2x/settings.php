@@ -1065,7 +1065,7 @@ function checkIP(e){
 		if($(e).hasClass('delete')) return removeCron(e);
 		var p = $(e).parents('.job');
 		var cmd = p.find('.cmd');
-		if(parseFloat(cmd.attr("min")) > cmd.val() || parseFloat(cmd.attr("max")) < cmd.val()){
+		if(cmd.val() != "0" && (parseFloat(cmd.attr("min")) > cmd.val() || parseFloat(cmd.attr("max")) < cmd.val())){
 			return false;
 		}
 		var days = $('select.multiple', p).val();
