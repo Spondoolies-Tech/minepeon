@@ -5,7 +5,12 @@
         <dd><?php echo $mpTemp[1]; ?> <small>&deg;C</small> / <?php echo $mpTemp[2]; ?>,<?php echo $mpTemp[3]; ?> <small>&deg;C</small></dd>
 	
 	<dt>Fan Speed</dt>
-	<dd><?php echo $workmode['FAN']['value']?></dd>
+	<dd><?php
+        if ($workmode['FAN']['value']) {
+            echo $workmode['FAN']['value'];
+        } else {
+            echo "Auto";
+        }?></dd>
 	<dt>Start Voltage</dt>
 	<dd title="top/bottom"><?php echo $workmode['VS0']['value']/1000?> / <?php echo $workmode['VS1']['value']/1000?> / <?php echo $workmode['VS2']['value']/1000?> / <?php echo $workmode['VS3']['value']/1000?></dd>
 	<dt>Max Voltage</dt>

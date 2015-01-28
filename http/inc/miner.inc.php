@@ -89,7 +89,7 @@ function getMinerWorkmode($runtime=false){
 	$workmode = array();
 	foreach($data as $i=>$v){
 		$workmode[$keys[$i]] = array("text"=>$text[$i], "value"=>$v);
-	}
+    }
 	return $workmode;
 }
 

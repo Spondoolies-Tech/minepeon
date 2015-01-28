@@ -338,7 +338,7 @@ include('menu.php');
                               <select name="FAN" id="fan_speed_select">
 
                                   <?php
-                                  printf('<option value="0" %s>Auto</option>', ($i == $workmode['FAN']['value'])?' selected="selected"':'');
+                                  printf('<option value="0" %s>Auto</option>', (0 == $workmode['FAN']['value'])?' selected="selected"':'');
                                   for($i = 10; $i < 101; $i += 10){
                                       printf('<option value="%d" %s>%d</option>', $i, ($i == $workmode['FAN']['value'])?' selected="selected"':'', $i);
                                   } ?>
@@ -418,7 +418,7 @@ include('menu.php');
               </div>
               <div class="row">
                   <div class="col-5">
-                      <label for="flag_1" class="control-label">ExtraFlag: add numbers: 1:no-scaling 2:extranonce.subscribe 4:no-debug 8:alt-bistword</label>
+                      <label for="flag_1" class="control-label">ExtraFlag (hex): add numbers: 1:no-scaling 2:extranonce.subscribe 4:no-debug 8:alt-bistword</label>
                   </div>
                   <div><input type="text" size="4" name="flag_1" id="flag_1" type="number" step="1" value="<?php echo file_get_contents("/etc/mg_flag_1")?>"></div>
               </div>
@@ -515,7 +515,7 @@ foreach($modes as $mode=>$mode_settings){
   <form name="speedSched" action="" method="post" class="form-horizontal">
 	<input type="hidden" name="voltSched" />
       <fieldset>
-	<legend>Miner Speed Scheduling (experimental)</legend>
+	<legend>Voltage Scheduling (time now: <?php echo date('H:i') ?>)</legend>
           <div class="form-group">
               <div class="col-lg-9 col-offset-3">
                   <div class="">
