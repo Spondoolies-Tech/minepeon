@@ -487,7 +487,7 @@ foreach($modes as $mode=>$mode_settings){
   <form name="speedSched" action="" method="post" class="form-horizontal">
 	<input type="hidden" name="voltSched" />
       <fieldset>
-        <legend>Voltage Scheduling (time now: <?php echo date('H:i') ?>)</legend>
+        <legend>Voltage Scheduling (time now: <?php echo date('H:i') ?>) - works in UTC</legend>
           <div class="form-group">
               <div class="col-lg-9 col-offset-3">
                   <div class="">
