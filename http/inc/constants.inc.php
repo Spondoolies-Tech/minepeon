@@ -51,9 +51,9 @@ switch($model_class){
 			define('WORKMODE_FORMAT', "FAN VST VSB VMAX AC_TOP AC_BOT DC_AMP");
 			define('WORKMODE_TEXT', "Fan Speed-Start Voltage (top)-Start Voltage (bottom)-Max Voltage-Max Watts (top)-Max Watts (bottom)-D2DC Current");
 			define('WORKMODE_FORMAT_LINE', "FAN:%d VST:%d VSB:%d VMAX:%d AC_TOP:%d AC_BOT:%d DC_AMP:%d");
-			define('WORKMODE_TURBO', '90 .670 .670 .730 1350 1350 150');
-			define('WORKMODE_NORMAL', '80 .670 .670 .730 1350 1350 150');
-			define('WORKMODE_QUIET', '60 .660 .660 .730 1100 1100 150');
+			define('WORKMODE_TURBO', '90 .660 .660 .730 1300 1300 150');
+			define('WORKMODE_NORMAL', '80 .650 .650 .730 1300 1300 150');
+			define('WORKMODE_QUIET', '60 .650 .650 .730 1100 1100 150');
 			define('NUMBER_OF_BOARDS', 2);
 			define('MINIMUM_VOLTAGE', 580);
 			define('MAXIMUM_VOLTAGE', 700);
@@ -62,9 +62,9 @@ switch($model_class){
 			define('WORKMODE_FORMAT', "FAN VS0 VS1 VS2 VS3 VMAX AC0 AC1 AC2 AC3 DC_AMP");
 			define('WORKMODE_TEXT', "Fan Speed-Start Voltage (Board 1)-Start Voltage (Board 2)-Start Voltage (Board 3)-Start Voltage (Board 4)-Max Voltage-Max Watts (Board 1)-Max Watts (Board 2)-Max Watts (Board 3)-Max Watts (Board 4)-D2DC Current");
 			define('WORKMODE_FORMAT_LINE', "FAN:%d VS0:%d VS1:%d VS2:%d VS3:%d VMAX:%d AC0:%d AC1:%d AC2:%d AC3:%d DC_AMP:%d");
-			define('WORKMODE_TURBO', '90 .670 .670 .670 .670 .730 1350 1350 1350 1350 150');
-			define('WORKMODE_NORMAL', '80 .670 .670 .670 .670 .730 1350 1350 1350 1350 150');
-			define('WORKMODE_QUIET', '60 .660 .660 .660 .660 .730 1100 1100 1100 1100 150');
+			define('WORKMODE_TURBO', '90 .670 .670 .670 .670 .740 280 280 280 280 150');
+			define('WORKMODE_NORMAL', '80 .670 .670 .670 .670 .740 280 280 280 280 150');
+			define('WORKMODE_QUIET', '40 .640 .640 .640 .640 .640 280 280 280 280 150');
 			define('NUMBER_OF_BOARDS', 4);
 			define('MINIMUM_VOLTAGE', 580);
 			define('MAXIMUM_VOLTAGE', 810);
