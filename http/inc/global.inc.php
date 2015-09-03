@@ -19,6 +19,9 @@ switch($model_class){
 	case 'SP1x':
 		$model_long_name = 'Dawson';
 		break;
+	case 'SP50':
+        $model_long_name = 'Yukon';
+		break;
 	case 'SP3x':
         $model_long_name = 'Yukon';
 		break;
@@ -53,6 +56,7 @@ switch($model_class){
 		$default_max_watts = 1260;
 		$default_dc2dc_current = 62;
 		break;
+	case 'SP50':
 	case 'SP3x':
 	default:
 		$default_max_watts = 1360;

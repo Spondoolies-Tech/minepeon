@@ -47,6 +47,17 @@ switch($model_class){
 			define('MINIMUM_VOLTAGE', 560);
 			define('MAXIMUM_VOLTAGE', 710);
 		break;
+	case "SP50":
+			define('WORKMODE_FORMAT', "FAN VST VSB VMAX AC_TOP AC_BOT DC_AMP");
+			define('WORKMODE_TEXT', "Fan Speed-Start Voltage (top)-Start Voltage (bottom)-Max Voltage-Max Watts (top)-Max Watts (bottom)-D2DC Current");
+			define('WORKMODE_FORMAT_LINE', "FAN:%d VST:%d VSB:%d VMAX:%d AC_TOP:%d AC_BOT:%d DC_AMP:%d");
+			define('WORKMODE_TURBO', '90 .660 .660 .730 1300 1300 150');
+			define('WORKMODE_NORMAL', '80 .650 .650 .730 1300 1300 150');
+			define('WORKMODE_QUIET', '60 .650 .650 .730 1100 1100 150');
+			define('NUMBER_OF_BOARDS', 2);
+			define('MINIMUM_VOLTAGE', 580);
+			define('MAXIMUM_VOLTAGE', 700);
+		break;
 	case "SP3x":
 			define('WORKMODE_FORMAT', "FAN VST VSB VMAX AC_TOP AC_BOT DC_AMP");
 			define('WORKMODE_TEXT', "Fan Speed-Start Voltage (top)-Start Voltage (bottom)-Max Voltage-Max Watts (top)-Max Watts (bottom)-D2DC Current");

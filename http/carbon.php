@@ -13,7 +13,10 @@ The numbers presented here are rough estimation of your bottom line gains under 
 Find the optimal voltage based on your electricity price and set your "start voltage" and "max voltage" to those settings.
 It is not recommended to change the max wattage setting for PSU for under-volting.
 Note1: The numbers here are for average miner and it is a linear approximation of non-linear function. Make proper calculation to get actual values for your system
-Note2: Not all voltages may work on your system because of PSU and ASIC limitation. SP31/SP35/SP20 ASICs should work between 620mv and 740mv, SP30 ASICs work in 640mv to 740mv range. The PSU also limits your system.<br/>
+Note2: Not all voltages may work on your system because of PSU and ASIC limitation. SP31/SP35/SP20 ASICs should work between 620mv and 740mv, SP30 ASICs work in 640mv to 740mv range. The PSU also limits your system.
+Note3: SP50 under development ...
+<br/>
+
 
 
 <form name ="myform" action="#">
@@ -23,6 +26,7 @@ Miner type:
 <option value="sp30">sp30</option>
 <option value="sp31">sp31</option>
 <option value="sp35">sp35</option>
+<option value="sp50">sp50</option>
 </select>
 
 Price per kw  <input type ="text" id = "cent_per_kw" value="10"/>cent<br/>
@@ -76,6 +80,7 @@ Bottom line gain:  <input type ="text" id = "txt_gain"/> $<br/>
                 power_watts = (16.05*asic_voltage) - 8575;
                 hash_gh  = (21.3*asic_voltage) -10732;
                 break;
+            case "sp50":
             case "sp31":
             case "sp35":
                 power_watts = (25.36*asic_voltage) - 14116;
